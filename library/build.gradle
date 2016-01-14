@@ -9,7 +9,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 16
         targetSdkVersion 23
     }
 
@@ -33,7 +33,6 @@ repositories {
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
@@ -41,12 +40,13 @@ dependencies {
 
     compile 'me.dm7.barcodescanner:zxing:1.8.3'
 
-    compile 'com.github.raxden:AndroidCommons:v2.1.29@aar'
-    compile 'com.github.raxden:AndroidDB:v2.1.7@aar'
-    compile 'com.github.raxden:AndroidRater:v2.1.7@aar'
-    compile 'com.github.raxden:AndroidGCM:v2.1.16@aar'
-    compile 'com.github.raxden:AndroidAnalytics:v2.1.7@aar'
-    compile 'com.github.raxden:AndroidShakeDetector:v2.1.4@aar'
+    compile 'com.github.raxden:AndroidCommons:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidRecycler:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidDB:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidRater:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidGCM:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidAnalytics:v2.2.0@aar'
+    compile 'com.github.raxden:AndroidShakeDetector:v2.2.0@aar'
 }
 
 task sourcesJar(type: Jar) {
