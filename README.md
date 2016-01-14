@@ -1,4 +1,4 @@
-Android App
+Android Square
 ==========
 
 Works on Android 4.1 (API level 16) and upwards.
