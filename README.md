@@ -1,7 +1,7 @@
 Android Square
 ==========
 
-Works on Android 4.1 (API level 16) and upwards.
+Framework for Android that lets you add useful features to your activities or fragments via interfaces. Works on Android 4.1 (API level 16) and upwards.
 
 [![Release](https://img.shields.io/github/release/raxden/AndroidSquare.svg?label=maven central)](https://jitpack.io/#raxden/AndroidSquare/) [![API](https://img.shields.io/badge/API-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
