@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="app__content"/>
+    <item type="id" name="app__content_drawer"/>
+    <item type="id" name="app__drawer_layout"/>
+    <item type="id" name="app__progress"/>
+    <item type="id" name="app__progress_label"/>
+    <item type="id" name="app__toolbar"/>
+    <item type="id" name="app__viewpager"/>
+    <item type="id" name="app__webview"/>
+</resources>

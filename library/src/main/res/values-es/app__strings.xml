@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- CountBack module -->
+    <string name="app__count_back_exit_message">Presiona atrás de nuevo para salir</string>
+
+</resources>
