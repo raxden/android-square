@@ -9,7 +9,7 @@ import com.raxdenstudios.square.activity.module.impl.RaterModuleImpl;
  */
 public interface RaterModule {
 
-    void onRaterModuleLoaded(RaterModuleListener module);
+    void onModuleLoaded(RaterModuleListener module);
     void onRaterModuleClick(RaterModuleImpl.RaterOption optionSelected);
 
     interface RaterModuleListener {

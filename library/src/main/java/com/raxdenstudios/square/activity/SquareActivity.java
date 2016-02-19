@@ -9,10 +9,10 @@ import com.raxdenstudios.square.fragment.dialog.WildcardDialogFragment;
 /**
  * Created by agomez on 18/02/2015.
  */
-public class ImprovedActivity extends AppCompatActivity
+public class SquareActivity extends AppCompatActivity
         implements OnProgressListener, OnNoticeListener {
 
-    private static final String TAG = ImprovedActivity.class.getSimpleName();
+    private static final String TAG = SquareActivity.class.getSimpleName();
 
     /* Callbacks */
 

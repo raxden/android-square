@@ -189,79 +189,81 @@ public class ModuleActivityManager {
     }
 
     private void initModules(ModularActivity activity) {
-        modules = new ArrayList<ModuleActivity>();
+        Log.d(TAG, "========== Prepare to init activity modules ==========");
+        modules = new ArrayList<>();
         if (activity instanceof InflateLayoutModule) {
-            Log.d(TAG, "[initModules] InflateLayoutModule loaded!");
+            Log.d(TAG, "....."+InflateLayoutModule.class.getSimpleName()+" loaded!");
             modules.add(new InflateLayoutModuleImpl(activity));
         }
         if (activity instanceof AutoInflateLayoutModule) {
-            Log.d(TAG, "[initModules] AutoInflateLayoutModule loaded!");
+            Log.d(TAG, "....."+AutoInflateLayoutModule.class.getSimpleName()+" loaded!");
             modules.add(new AutoInflateLayoutModuleImpl(activity));
         }
         if (activity instanceof BundleExtrasModule) {
-            Log.d(TAG, "[initModules] BundleExtrasModule loaded!");
+            Log.d(TAG, "....."+BundleExtrasModule.class.getSimpleName()+" loaded!");
             modules.add(new BundleExtrasModuleImpl(activity));
         }
         if (activity instanceof LoaderViewModule) {
-            Log.d(TAG, "[initModules] LoaderViewModule loaded!");
+            Log.d(TAG, "....."+LoaderViewModule.class.getSimpleName()+" loaded!");
             modules.add(new LoaderViewModuleImpl(activity));
         }
         if (activity instanceof CheckPlayServicesModule) {
-            Log.d(TAG, "[initModules] CheckPlayServicesModule loaded!");
+            Log.d(TAG, "....."+CheckPlayServicesModule.class.getSimpleName()+" loaded!");
             modules.add(new CheckPlayServicesModuleImpl(activity));
         }
         if (activity instanceof GCMModule) {
-            Log.d(TAG, "[initModules] GCMModule loaded!");
+            Log.d(TAG, "....."+GCMModule.class.getSimpleName()+" loaded!");
             modules.add(new GCMModuleImpl(activity));
         }
         if (activity instanceof GCMessageModule) {
-            Log.d(TAG, "[initModules] GCMessageModule loaded!");
+            Log.d(TAG, "....."+GCMessageModule.class.getSimpleName()+" loaded!");
             modules.add(new GCMessageModuleImpl(activity));
         }
         if (activity instanceof FragmentContentModule) {
-            Log.d(TAG, "[initModules] FragmentContentModule loaded!");
+            Log.d(TAG, "....."+FragmentContentModule.class.getSimpleName()+" loaded!");
             modules.add(new FragmentContentModuleImpl(activity));
         }
         if (activity instanceof ToolbarModule) {
-            Log.d(TAG, "[initModules] ToolbarModule loaded!");
+            Log.d(TAG, "....."+ToolbarModule.class.getSimpleName()+" loaded!");
             modules.add(new ToolbarModuleImpl(activity));
         }
         if (activity instanceof NavigationDrawerModule) {
-            Log.d(TAG, "[initModules] NavigationDrawerModule loaded!");
+            Log.d(TAG, "....."+NavigationDrawerModule.class.getSimpleName()+" loaded!");
             modules.add(new NavigationDrawerModuleImpl(activity));
         }
         if (activity instanceof GoogleAnalyticsModule) {
-            Log.d(TAG, "[initModules] GoogleAnalyticsModule loaded!");
+            Log.d(TAG, "....."+GoogleAnalyticsModule.class.getSimpleName()+" loaded!");
             modules.add(new GoogleAnalyticsModuleImpl(activity));
         }
         if (activity instanceof FlurryModule) {
-            Log.d(TAG, "[initModules] FlurryModule loaded!");
+            Log.d(TAG, "....."+FlurryModule.class.getSimpleName()+" loaded!");
             modules.add(new FlurryModuleImpl(activity));
         }
         if (activity instanceof CountBackModule) {
-            Log.d(TAG, "[initModules] CountBackModule loaded!");
+            Log.d(TAG, "....."+CountBackModule.class.getSimpleName()+" loaded!");
             modules.add(new CountBackModuleImpl(activity));
         }
         if (activity instanceof NetworkModule) {
-            Log.d(TAG, "[initModules] NetworkModule loaded!");
+            Log.d(TAG, "....."+NetworkModule.class.getSimpleName()+" loaded!");
             modules.add(new NetworkModuleImpl(activity));
         }
         if (activity instanceof OpenHelperModule) {
-            Log.d(TAG, "[initModules] OpenHelperModule loaded!");
+            Log.d(TAG, "....."+OpenHelperModule.class.getSimpleName()+" loaded!");
             modules.add(new OpenHelperModuleImpl(activity));
         }
         if (activity instanceof RaterModule) {
-            Log.d(TAG, "[initModules] RaterModule loaded!");
+            Log.d(TAG, "....."+RaterModule.class.getSimpleName()+" loaded!");
             modules.add(new RaterModuleImpl(activity));
         }
         if (activity instanceof ShakeDetectorModule) {
-            Log.d(TAG, "[initModules] ShakeDetectorModule loaded!");
+            Log.d(TAG, "....."+ShakeDetectorModule.class.getSimpleName()+" loaded!");
             modules.add(new ShakeDetectorModuleImpl(activity));
         }
         if (activity instanceof SplashTimerModule) {
-            Log.d(TAG, "[initModules] SplashTimerModule loaded!");
+            Log.d(TAG, "....."+SplashTimerModule.class.getSimpleName()+" loaded!");
             modules.add(new SplashTimerModuleImpl(activity));
         }
+        Log.d(TAG, "======================================================");
     }
 
 }

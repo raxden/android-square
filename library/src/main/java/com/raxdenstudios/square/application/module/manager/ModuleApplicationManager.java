@@ -59,19 +59,23 @@ public class ModuleApplicationManager {
 
 
     private void initModules(ModularApplication application) {
-        modules = new ArrayList<ModuleApplication>();
+        Log.d(TAG, "========== Prepare to init application modules ==========");
+        modules = new ArrayList<>();
         if (application instanceof LocaleModule) {
-            Log.d(TAG, "[initModules] LocaleModule loaded!");
+            Log.d(TAG, "....."+LocaleModule.class.getSimpleName()+" loaded!");
             modules.add(new LocaleModuleImpl(application));
         }
+        Log.d(TAG, "=========================================================");
     }
 
     private void initModules(ModularMultiDexApplication application) {
-        modules = new ArrayList<ModuleApplication>();
+        Log.d(TAG, "========== Prepare to init application modules ==========");
+        modules = new ArrayList<>();
         if (application instanceof LocaleModule) {
-            Log.d(TAG, "[initModules] LocaleModule loaded!");
+            Log.d(TAG, "....."+LocaleModule.class.getSimpleName()+" loaded!");
             modules.add(new LocaleModuleImpl(application));
         }
+        Log.d(TAG, "=========================================================");
     }
 
 }

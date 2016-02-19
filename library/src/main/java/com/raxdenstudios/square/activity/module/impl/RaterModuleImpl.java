@@ -32,7 +32,7 @@ public class RaterModuleImpl extends ModuleActivityImpl implements RaterModule.R
         super.onModuleCreate(context, savedInstanceState);
 
         mRaterManager = new RaterManager(context);
-        if (mCallbacks != null) mCallbacks.onRaterModuleLoaded(this);
+        if (mCallbacks != null) mCallbacks.onModuleLoaded(this);
     }
 
     @Override

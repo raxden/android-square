@@ -58,7 +58,7 @@ public class CountBackModuleImpl extends ModuleActivityImpl implements CountBack
     public void onModuleCreate(Context context, Bundle savedInstanceState) {
         super.onModuleCreate(context, savedInstanceState);
         mConfig = new DefaultCountBackConfiguration(context);
-        mCallbacks.onCountBackModuleLoaded(this);
+        mCallbacks.onModuleLoaded(this);
     }
 
     @Override

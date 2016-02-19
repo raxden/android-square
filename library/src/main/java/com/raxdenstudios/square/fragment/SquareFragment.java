@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 /**
  * Created by agomez on 18/02/2015.
  */
-public abstract class ImprovedFragment extends Fragment
+public abstract class SquareFragment extends Fragment
         implements OnContentListener, OnProgressListener, OnBackPressedListener, OnNoticeListener {
 
-    private static final String TAG = ImprovedFragment.class.getSimpleName();
+    private static final String TAG = SquareFragment.class.getSimpleName();
 
     private OnProgressListener onProgressListener;
     private OnNoticeListener onNoticeListener;

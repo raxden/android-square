@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by agomez on 19/03/2015.
  */
-public abstract class ViewPagerFragment<T> extends ImprovedFragment implements
+public abstract class ViewPagerFragment<T> extends SquareFragment implements
         ViewPagerAdapter.ViewPagerAdapterCallbacks<T>, ViewPager.OnPageChangeListener {
 
     private static final String TAG = ViewPagerFragment.class.getSimpleName();

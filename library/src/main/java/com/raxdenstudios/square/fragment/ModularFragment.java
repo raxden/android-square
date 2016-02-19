@@ -14,7 +14,7 @@ import com.raxdenstudios.square.fragment.module.manager.ModuleFragmentManager;
 /**
  * Created by agomez on 29/05/2015.
  */
-public abstract class ModularFragment extends ImprovedFragment {
+public abstract class ModularFragment extends SquareFragment {
 
     private static final String TAG = ModularFragment.class.getSimpleName();
 

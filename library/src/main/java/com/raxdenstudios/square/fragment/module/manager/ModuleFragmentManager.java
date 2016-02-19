@@ -121,30 +121,32 @@ public class ModuleFragmentManager extends ModuleActivityManager {
 
     private void initModules(ModularFragment fragment) {
         modules = new ArrayList<>();
+        Log.d(TAG, "========== Prepare to init fragment modules ==========");
         if (fragment instanceof BundleArgumentsModule) {
-            Log.d(TAG, "[initModules] BundleArgumentsModule loaded!");
+            Log.d(TAG, "....."+BundleArgumentsModule.class.getSimpleName()+" loaded!");
             modules.add(new BundleArgumentsModuleImpl(fragment));
         }
         if (fragment instanceof AutoInflateViewModule) {
-            Log.d(TAG, "[initModules] AutoInflateLayoutModule loaded!");
+            Log.d(TAG, "....."+AutoInflateViewModule.class.getSimpleName()+" loaded!");
             modules.add(new AutoInflateViewModuleImpl(fragment));
         }
         if (fragment instanceof FlurryModule) {
-            Log.d(TAG, "[initModules] FlurryModule loaded!");
+            Log.d(TAG, "....."+FlurryModule.class.getSimpleName()+" loaded!");
             modules.add(new FlurryModuleImpl(fragment));
         }
         if (fragment instanceof GoogleAnalyticsModule) {
-            Log.d(TAG, "[initModules] GoogleAnalyticsModule loaded!");
+            Log.d(TAG, "....."+GoogleAnalyticsModule.class.getSimpleName()+" loaded!");
             modules.add(new GoogleAnalyticsModuleImpl(fragment));
         }
         if (fragment instanceof ListViewModule) {
-            Log.d(TAG, "[initModules] ListViewModule loaded!");
+            Log.d(TAG, "....."+ListViewModule.class.getSimpleName()+" loaded!");
             modules.add(new ListViewModuleImpl(fragment));
         }
         if (fragment instanceof ZXingScannerModule) {
-            Log.d(TAG, "[initModules] ZXingScannerModule loaded!");
+            Log.d(TAG, "....."+ZXingScannerModule.class.getSimpleName()+" loaded!");
             modules.add(new ZXingScannerModuleImpl(fragment));
         }
+        Log.d(TAG, "======================================================");
     }
 
 }

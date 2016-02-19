@@ -37,29 +37,30 @@ public class GCMModuleImpl extends ModuleActivityImpl {
 
     private void registerGCM(Context context) {
         Log.d(TAG, "[registerGCM] Try to register GCM...");
-        if (Utils.checkPlayServices(context)) {
-            if (mCallbacks != null && mCallbacks.onLoadSenderId() != null) {
-                GCMHelper.getInstance().registerPlayServices(context, mCallbacks.onLoadSenderId(), new GCMHelper.OnGCMRegisterListener() {
-                    @Override
-                    public void onGooglePlayServicesNotSupported() {
-                        Log.e(TAG, "[onModuleCreate]["+this.getClass().getSimpleName()+"] PlayServices not supported");
-                    }
+        if (!Utils.checkPlayServices(context)) {
+            Log.e(TAG, "[registerGCM][onGooglePlayServicesNotSupported] PlayServices not supported");
+            if (mCallbacks != null) mCallbacks.onDeviceNotRegisteredOnGCM("PlayServices not supported");
+        }
+        if (mCallbacks != null && mCallbacks.onLoadSenderId() != null) {
+            GCMHelper.getInstance().registerPlayServices(context, mCallbacks.onLoadSenderId(), new GCMHelper.OnGCMRegisterListener() {
+                @Override
+                public void onGooglePlayServicesNotSupported() {
+                    Log.e(TAG, "[registerGCM][onGooglePlayServicesNotSupported] PlayServices not supported");
+                    if (mCallbacks != null) mCallbacks.onDeviceNotRegisteredOnGCM("PlayServices not supported");
+                }
 
-                    @Override
-                    public void onDeviceRegistered(String registrationId) {
-                        Log.e(TAG, "[onModuleCreate]["+this.getClass().getSimpleName()+"] Device registered with this registrationId: "+registrationId);
-                        if (mCallbacks != null) mCallbacks.onDeviceRegisteredOnGCM(registrationId);
-                    }
+                @Override
+                public void onDeviceRegistered(String registrationId) {
+                    Log.d(TAG, "[registerGCM][onDeviceRegistered] Device registered with this registrationId: "+registrationId);
+                    if (mCallbacks != null) mCallbacks.onDeviceRegisteredOnGCM(registrationId);
+                }
 
-                    @Override
-                    public void onDeviceNotRegistered(String message) {
-                        Log.e(TAG, "[onModuleCreate]["+this.getClass().getSimpleName()+"] Device not registered");
-                        if (mCallbacks != null) mCallbacks.onDeviceNotRegisteredOnGCM(message);
-                    }
-                });
-            }
-        } else {
-            Log.e(TAG, "[onModuleCreate]["+this.getClass().getSimpleName()+"] PlayServices not supported");
+                @Override
+                public void onDeviceNotRegistered(String message) {
+                    Log.e(TAG, "[registerGCM][onDeviceNotRegistered] Device not registered");
+                    if (mCallbacks != null) mCallbacks.onDeviceNotRegisteredOnGCM(message);
+                }
+            });
         }
     }
 }

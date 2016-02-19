@@ -5,7 +5,7 @@ package com.raxdenstudios.square.activity.module;
  */
 public interface CountBackModule {
 
-    void onCountBackModuleLoaded(CountBackModuleListener module);
+    void onModuleLoaded(CountBackModuleListener module);
 
     interface CountBackModuleListener {
 

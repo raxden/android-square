@@ -15,6 +15,7 @@ import java.util.Map;
 /**
  * Created by agomez on 03/08/2015.
  */
+@Deprecated
 public class SectionedExpandableAdapter<O, T> extends BaseExpandableListAdapter {
 
     private static final String TAG = SectionedExpandableAdapter.class.getSimpleName();

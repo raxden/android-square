@@ -10,7 +10,7 @@ import com.raxdenstudios.square.activity.module.manager.ModuleActivityManager;
 /**
  * Created by agomez on 22/05/2015.
  */
-public class ModularActivity extends ImprovedActivity {
+public class ModularActivity extends SquareActivity {
 
     private static final String TAG = ModularActivity.class.getSimpleName();
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Deprecated
 public class SectionedAdapter<O, T> extends BaseAdapter {
 
 	private static int TYPE_SECTION_HEADER = 0;
