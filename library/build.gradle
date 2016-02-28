@@ -42,8 +42,6 @@ dependencies {
     compile 'me.dm7.barcodescanner:zxing:1.8.3'
 
     compile 'com.github.raxden:AndroidCommons:v2.2.4@aar'
-    compile 'com.github.raxden:AndroidPreferences:v2.2.2@aar'
-    compile 'com.github.raxden:AndroidRecycler:v2.2.3@aar'
     compile 'com.github.raxden:AndroidRater:v2.2.0@aar'
     compile 'com.github.raxden:AndroidGCM:v2.2.0@aar'
     compile 'com.github.raxden:AndroidAnalytics:v2.2.0@aar'
