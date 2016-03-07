@@ -17,12 +17,14 @@ import com.raxdenstudios.square.fragment.module.BundleArgumentsModule;
 import com.raxdenstudios.square.fragment.module.FlurryModule;
 import com.raxdenstudios.square.fragment.module.GoogleAnalyticsModule;
 import com.raxdenstudios.square.fragment.module.ListViewModule;
+import com.raxdenstudios.square.fragment.module.SplashTimerModule;
 import com.raxdenstudios.square.fragment.module.ZXingScannerModule;
 import com.raxdenstudios.square.fragment.module.impl.AutoInflateViewModuleImpl;
 import com.raxdenstudios.square.fragment.module.impl.BundleArgumentsModuleImpl;
 import com.raxdenstudios.square.fragment.module.impl.FlurryModuleImpl;
 import com.raxdenstudios.square.fragment.module.impl.GoogleAnalyticsModuleImpl;
 import com.raxdenstudios.square.fragment.module.impl.ListViewModuleImpl;
+import com.raxdenstudios.square.fragment.module.impl.SplashTimerModuleImpl;
 import com.raxdenstudios.square.fragment.module.impl.ZXingScannerModuleImpl;
 
 import java.util.ArrayList;
@@ -122,6 +124,10 @@ public class ModuleFragmentManager extends ModuleActivityManager {
     private void initModules(ModularFragment fragment) {
         modules = new ArrayList<>();
         Log.d(TAG, "========== Prepare to init fragment modules ==========");
+        if (fragment instanceof SplashTimerModule) {
+            Log.d(TAG, "....."+SplashTimerModule.class.getSimpleName()+" loaded!");
+            modules.add(new SplashTimerModuleImpl(fragment));
+        }
         if (fragment instanceof BundleArgumentsModule) {
             Log.d(TAG, "....."+BundleArgumentsModule.class.getSimpleName()+" loaded!");
             modules.add(new BundleArgumentsModuleImpl(fragment));

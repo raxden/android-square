@@ -3,8 +3,8 @@ package com.raxdenstudios.square.fragment.module.impl;
 import android.content.Context;
 
 import com.raxdenstudios.analytics.FlurryHelper;
-import com.raxdenstudios.square.fragment.module.FlurryModule;
 import com.raxdenstudios.square.fragment.ModularFragment;
+import com.raxdenstudios.square.fragment.module.FlurryModule;
 import com.raxdenstudios.square.fragment.module.manager.ModuleFragmentImpl;
 
 /**

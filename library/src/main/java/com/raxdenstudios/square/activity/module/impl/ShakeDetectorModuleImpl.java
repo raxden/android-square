@@ -3,10 +3,10 @@ package com.raxdenstudios.square.activity.module.impl;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.raxdenstudios.shake.ShakeDetectorHelper;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.ShakeDetectorModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.shake.ShakeDetectorHelper;
 
 /**
  * Detects phone shaking. If > 75% of the samples taken in the past 0.5s are

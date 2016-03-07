@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.commons.util.ResourceUtils;
+import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.fragment.ModularFragment;
 import com.raxdenstudios.square.fragment.module.AutoInflateViewModule;
 import com.raxdenstudios.square.fragment.module.manager.ModuleFragmentImpl;
-import com.raxdenstudios.commons.util.ResourceUtils;
-import com.raxdenstudios.commons.util.StringUtils;
 
 import java.util.Locale;
 

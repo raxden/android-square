@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.raxdenstudios.commons.util.ResourceUtils;
+import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.AutoInflateLayoutModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.commons.util.ResourceUtils;
-import com.raxdenstudios.commons.util.StringUtils;
 
 import java.util.Locale;
 

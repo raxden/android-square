@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.R;
 import com.raxdenstudios.commons.util.ResourceUtils;
 import com.raxdenstudios.commons.util.StringUtils;
+import com.raxdenstudios.square.R;
 
 import java.util.Locale;
 

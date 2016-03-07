@@ -3,11 +3,11 @@ package com.raxdenstudios.square.activity.module.impl;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.raxdenstudios.rater.RaterHelper;
+import com.raxdenstudios.rater.RaterManager;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.RaterModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.rater.RaterHelper;
-import com.raxdenstudios.rater.RaterManager;
 
 /**
  * Created by agomez on 06/05/2015.

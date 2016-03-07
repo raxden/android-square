@@ -7,10 +7,10 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 
+import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.NetworkModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.commons.util.NetworkUtils;
 
 /**
  * Created by agomez on 08/05/2015.

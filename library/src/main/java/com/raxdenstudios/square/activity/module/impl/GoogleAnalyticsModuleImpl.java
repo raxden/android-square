@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.raxdenstudios.analytics.GoogleAnalyticsHelper;
+import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.GoogleAnalyticsModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.commons.util.Utils;
 
 /**
  * Created by agomez on 06/05/2015.

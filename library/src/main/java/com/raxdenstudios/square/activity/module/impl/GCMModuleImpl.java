@@ -4,11 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.raxdenstudios.commons.util.Utils;
+import com.raxdenstudios.gcm.GCMHelper;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.GCMModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.commons.util.Utils;
-import com.raxdenstudios.gcm.GCMHelper;
 
 /**
  * Created by agomez on 06/05/2015.

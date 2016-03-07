@@ -3,10 +3,10 @@ package com.raxdenstudios.square.activity.module.impl;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.activity.ModularActivity;
 import com.raxdenstudios.square.activity.module.CheckPlayServicesModule;
 import com.raxdenstudios.square.activity.module.manager.ModuleActivityImpl;
-import com.raxdenstudios.commons.util.Utils;
 
 /**
  * Created by agomez on 06/05/2015.

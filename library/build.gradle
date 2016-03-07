@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.raxdenstudios'
-version = '2.2.5'
+version = '2.2.6'
 
 android {
     compileSdkVersion 23
@@ -36,8 +36,8 @@ dependencies {
 
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:recyclerview-v7:23.2.0'
 
     compile 'me.dm7.barcodescanner:zxing:1.8.3'
 

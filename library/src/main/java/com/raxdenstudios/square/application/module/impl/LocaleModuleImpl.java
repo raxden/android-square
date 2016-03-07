@@ -5,11 +5,11 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
+import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.application.ModularApplication;
 import com.raxdenstudios.square.application.ModularMultiDexApplication;
 import com.raxdenstudios.square.application.module.LocaleModule;
 import com.raxdenstudios.square.application.module.manager.ModuleApplicationImpl;
-import com.raxdenstudios.commons.util.Utils;
 
 import java.util.Locale;
 
