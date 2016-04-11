@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.raxdenstudios.square.R;
@@ -16,6 +17,8 @@ import com.raxdenstudios.square.fragment.OnBackPressedListener;
  * Created by agomez on 02/06/2015.
  */
 public class FragmentContentModuleImpl extends ModuleActivityImpl implements FragmentContentModule.FragmentContentModuleListener {
+
+    private static String TAG = FragmentContentModuleImpl.class.getSimpleName();
 
     private View mContentFragmentView;
     private FragmentContentModule mCallbacks;
@@ -75,7 +78,11 @@ public class FragmentContentModuleImpl extends ModuleActivityImpl implements Fra
     @Override
     public void replaceFragment(Fragment fragment, FragmentTransaction fragmentTransaction) {
         if (fragment != null && fragmentTransaction != null) {
-            fragmentTransaction.replace(mContentFragmentView.getId(), fragment).commit();
+            try {
+                fragmentTransaction.replace(mContentFragmentView.getId(), fragment).commit();
+            } catch (IllegalStateException e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
         }
     }
 
