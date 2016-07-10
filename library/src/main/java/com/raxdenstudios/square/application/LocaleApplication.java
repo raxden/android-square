@@ -1,21 +1,21 @@
 package com.raxdenstudios.square.application;
 
-import com.raxdenstudios.square.application.module.LocaleModule;
+import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
 
 /**
  * Created by agomez on 14/08/2015.
  */
-public class LocaleApplication extends ModularApplication implements LocaleModule {
+public class LocaleApplication extends InterceptorApplication implements LocaleInterceptor {
 
-    private LocaleModuleListener mLocaleModule;
+    private LocaleInterceptorListener mLocaleInterceptor;
 
     @Override
-    public void onLocaleModuleLoaded(LocaleModuleListener module) {
-        mLocaleModule = module;
+    public void onLocaleInterceptorLoaded(LocaleInterceptorListener interceptor) {
+        mLocaleInterceptor = interceptor;
     }
 
-    public LocaleModuleListener getLocaleModule() {
-        return mLocaleModule;
+    public LocaleInterceptorListener getLocaleInterceptor() {
+        return mLocaleInterceptor;
     }
 
 }

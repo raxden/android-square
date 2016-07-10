@@ -5,9 +5,10 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 
@@ -20,3 +21,61 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// Define versions in a single place
+ext {
+    // Sdk and tools
+    minSdkVersion = 16
+    targetSdkVersion = 24
+    compileSdkVersion = 24
+    buildToolsVersion = '24.0.0'
+
+    // App dependencies
+    multidexVersion = '1.0.1'
+    supportLibraryVersion = '24.0.0'
+    firebaseVersion = '9.0.2'
+    androidMVPVersion = '1.0.3@aar'         // https://github.com/raxden/AndroidMVP
+    androidCommonsVersion = '2.3.0@aar'     // https://github.com/raxden/AndroidCommons
+    androidPreferencesVersion = '2.2.4@aar' // https://github.com/raxden/AndroidPreferences
+    androidRaterVersion = '2.2.4@aar'       // https://github.com/raxden/AndroidRater
+    androidRecyclerVersion = '2.2.4@aar'    // https://github.com/raxden/AndroidRecycler
+    androidCronsVersion = '2.5.8@aar'       // https://github.com/raxden/AndroidCrons
+    androidShakeVersion = '2.2.1@aar'       // https://github.com/raxden/AndroidShakeDetector
+    zxingVersion = '1.8.3'
+
+    // Test dependencies
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.0'
+    roboelectricVersion = '3.0'
+}
+
+ext.deps = [
+        // Android
+        muldidex:           "com.android.support:multidex:${multidexVersion}",
+        androidv7:          "com.android.support:appcompat-v7:$supportLibraryVersion",
+        androidDesign:      "com.android.support:design:$supportLibraryVersion",
+        androidRecycler:    "com.android.support:recyclerview-v7:$supportLibraryVersion",
+
+        // Firebase
+        firebaseCore:       "com.google.firebase:firebase-core:${firebaseVersion}",
+        firabaseAds:        "com.google.firebase:firebase-ads:${firebaseVersion}",
+        firebaseCrash:      "com.google.firebase:firebase-crash:${firebaseVersion}",
+        firebaseMessaging:  "com.google.firebase:firebase-messaging:${firebaseVersion}",
+
+        // RaxdenStudios
+        rsMVP:              "com.github.raxden:AndroidMVP:${androidMVPVersion}",
+        rsCommons:          "com.github.raxden:AndroidCommons:${androidCommonsVersion}",
+        rsPreferences:      "com.github.raxden:AndroidPreferences:${androidPreferencesVersion}",
+        rsRater:            "com.github.raxden:AndroidRater:${androidRaterVersion}",
+        rsRecycler:         "com.github.raxden:AndroidRecycler:${androidRecyclerVersion}",
+        rsCrons:            "com.github.raxden:AndroidCrons:${androidCronsVersion}",
+        rsShake:            "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}",
+
+        // Third Parties
+        zxing:              "me.dm7.barcodescanner:zxing:${zxingVersion}",
+
+        // Testing
+        junit:                  "junit:junit:${jUnitVersion}",
+        asserj:                 "org.assertj:assertj-core:${assertJVersion}",
+        robolectric:            "org.robolectric:robolectric:${roboelectricVersion}"
+]
