@@ -22,7 +22,7 @@ public abstract class InterceptorActivity extends MVPActivity {
     private InterceptorActivityManager mInterceptorManager;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getInterceptorManager().onCreateInterceptors(this, savedInstanceState);
     }
