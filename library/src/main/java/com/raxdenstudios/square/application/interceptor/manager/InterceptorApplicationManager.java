@@ -18,7 +18,7 @@ public class InterceptorApplicationManager {
 
     private static final String TAG = InterceptorApplicationManager.class.getSimpleName();
 
-    protected List<InterceptorApplication> interceptors;
+    protected List<IInterceptorApplication> interceptors;
 
     public InterceptorApplicationManager(com.raxdenstudios.square.application.InterceptorApplication application) {
         if (application != null) initInterceptors(application);
@@ -30,7 +30,7 @@ public class InterceptorApplicationManager {
 
     public void onConfigurationChanged(Context context, Configuration newConfig) {
         if (interceptors != null) {
-            for (InterceptorApplication interceptor : interceptors) {
+            for (IInterceptorApplication interceptor : interceptors) {
                 interceptor.onConfigurationChanged(context, newConfig);
             }
         }
@@ -38,21 +38,21 @@ public class InterceptorApplicationManager {
 
     public void onCreateInterceptors(Context context) {
         if (interceptors != null) {
-            for (InterceptorApplication interceptor : interceptors) {
+            for (IInterceptorApplication interceptor : interceptors) {
                 interceptor.onCreate(context);
             }
         }
     }
 
-    public void addInterceptor(InterceptorApplication interceptor) {
+    public void addInterceptor(IInterceptorApplication interceptor) {
         interceptors.add(interceptor);
     }
 
-    public List<InterceptorApplication> getInterceptors() {
+    public List<IInterceptorApplication> getInterceptors() {
         return interceptors;
     }
 
-    public void setInterceptors(List<InterceptorApplication> interceptors) {
+    public void setInterceptors(List<IInterceptorApplication> interceptors) {
         this.interceptors = interceptors;
     }
 

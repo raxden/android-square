@@ -34,7 +34,7 @@ ext {
     multidexVersion = '1.0.1'
     supportLibraryVersion = '24.0.0'
     firebaseVersion = '9.0.2'
-    androidMVPVersion = '1.0.3@aar'         // https://github.com/raxden/AndroidMVP
+    androidMVPVersion = '1.0.4@aar'         // https://github.com/raxden/AndroidMVP
     androidCommonsVersion = '2.3.0@aar'     // https://github.com/raxden/AndroidCommons
     androidPreferencesVersion = '2.2.4@aar' // https://github.com/raxden/AndroidPreferences
     androidRaterVersion = '2.2.4@aar'       // https://github.com/raxden/AndroidRater

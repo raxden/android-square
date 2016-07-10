@@ -6,7 +6,7 @@ import android.content.res.Configuration;
 /**
  * Created by agomez on 13/07/2015.
  */
-public class InterceptorApplicationImpl implements InterceptorApplication {
+public class InterceptorApplicationImpl implements IInterceptorApplication {
 
     private static final String TAG = InterceptorApplicationImpl.class.getSimpleName();
 
