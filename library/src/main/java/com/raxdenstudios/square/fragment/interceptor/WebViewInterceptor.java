@@ -4,13 +4,12 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.InterceptorCallback;
-
 /**
  * Created by agomez on 16/07/2015.
  */
-public interface WebViewInterceptor extends Interceptor<WebViewInterceptor.WebViewInterceptorCallback> {
+public interface WebViewInterceptor {
+
+    void onInterceptorLoaded(WebViewInterceptorCallback callback);
 
     void onConfigureWebSettings(WebSettings settings);
 
@@ -20,7 +19,7 @@ public interface WebViewInterceptor extends Interceptor<WebViewInterceptor.WebVi
 
     void onProgressHide();
 
-    interface WebViewInterceptorCallback extends InterceptorCallback {
+    interface WebViewInterceptorCallback {
         WebView getWebView();
 
         void onProgressChanged(WebView view, int newProgress);

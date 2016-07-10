@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 public interface IInterceptorApplication {
 
     void onConfigurationChanged(Context context, Configuration newConfig);
+
     void onCreate(Context context);
 
 }

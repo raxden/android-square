@@ -1,23 +1,22 @@
 package com.raxdenstudios.square.activity.interceptor;
 
-import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.view.View;
-
-import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.InterceptorCallback;
 
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface FragmentContentInterceptor extends Interceptor<FragmentContentInterceptor.FragmentContentInterceptorCallback> {
+public interface FragmentContentInterceptor {
+
+    void onInterceptorLoaded(FragmentContentInterceptorCallback callback);
 
     View onCreateContentFragmentView(Bundle savedInstanceState);
 
     Fragment initContentFragment();
 
-    interface FragmentContentInterceptorCallback extends InterceptorCallback {
+    interface FragmentContentInterceptorCallback {
 
         void replaceFragment(Fragment fragment);
 

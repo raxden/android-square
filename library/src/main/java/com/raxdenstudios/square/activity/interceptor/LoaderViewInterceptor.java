@@ -4,17 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.InterceptorCallback;
-
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface LoaderViewInterceptor extends Interceptor<LoaderViewInterceptor.LoaderViewInterceptorCallback> {
+public interface LoaderViewInterceptor {
+
+    void onInterceptorLoaded(LoaderViewInterceptorCallback callback);
 
     View onCreateLoaderView(Bundle savedInstanceState);
 
-    interface LoaderViewInterceptorCallback extends InterceptorCallback {
+    interface LoaderViewInterceptorCallback {
         void show(Context context);
 
         void show(Context context, String loaderLabel);
