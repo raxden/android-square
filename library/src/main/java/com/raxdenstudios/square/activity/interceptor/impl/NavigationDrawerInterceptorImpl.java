@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,7 +21,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl implements NavigationDrawerInterceptor.NavigationDrawerInterceptorListener {
+public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl implements NavigationDrawerInterceptor.NavigationDrawerInterceptorCallback {
 
     private static final String TAG = NavigationDrawerInterceptorImpl.class.getSimpleName();
 
@@ -58,13 +58,13 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
                 if (mDrawerToggle != null) {
                     mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(View view) {
                             if (mDrawerToggle != null && !mDrawerToggle.isDrawerIndicatorEnabled()) {
                                 if (mCallbacks != null) ((InterceptorActivity)mCallbacks).onBackPressed();
                             }
                         }
                     });
-                    mDrawerLayout.setDrawerListener(mDrawerToggle);
+                    mDrawerLayout.addDrawerListener(mDrawerToggle);
                 }
                 if (savedInstanceState == null) {
                     replaceFragment(mCallbacks.initContentDrawerFragment());
@@ -84,7 +84,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     @Override
     public void onInterceptorPrepareOptionsMenu(Context context, Menu menu) {
         if (mCallbacks != null && mDrawerToggle != null && mDrawerLayout != null) {
-            if (((InterceptorActivity)mCallbacks).getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            if (((InterceptorActivity)mCallbacks).getFragmentManager().getBackStackEntryCount() > 0) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
                 mDrawerToggle.setHomeAsUpIndicator(((InterceptorActivity)mCallbacks).getDrawerToggleDelegate().getThemeUpIndicator());
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -148,9 +148,11 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     @Override
     public void replaceFragment(Fragment fragment, boolean addToBackStack) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getSupportFragmentManager().beginTransaction() : null;
+            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getFragmentManager().beginTransaction() : null;
             if (fragmentTransaction != null) {
-                fragmentTransaction.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
+                int fadeIn = android.R.animator.fade_in;
+                int fadeOut = android.R.animator.fade_out;
+                fragmentTransaction.setCustomAnimations(fadeIn, fadeOut, fadeIn, fadeOut);
                 if (addToBackStack) fragmentTransaction.addToBackStack(Fragment.class.getSimpleName());
                 replaceFragment(fragment, fragmentTransaction);
             }
@@ -177,7 +179,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     public Fragment getFragment() {
         Fragment fragment = null;
         if (mContentDrawerView != null && mCallbacks != null) {
-            fragment = ((InterceptorActivity)mCallbacks).getSupportFragmentManager().findFragmentById(mContentDrawerView.getId());
+            fragment = ((InterceptorActivity)mCallbacks).getFragmentManager().findFragmentById(mContentDrawerView.getId());
         }
         return fragment;
     }

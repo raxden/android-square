@@ -16,7 +16,7 @@ import java.util.Locale;
 /**
  * Created by agomez on 22/05/2015.
  */
-public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl implements AutoInflateLayoutInterceptor.AutoInflateLayoutInterceptorListener {
+public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl implements AutoInflateLayoutInterceptor.AutoInflateLayoutInterceptorCallback {
 
     private static final String TAG = AutoInflateLayoutInterceptorImpl.class.getSimpleName();
 

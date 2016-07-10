@@ -15,9 +15,11 @@ import com.raxdenstudios.square.fragment.InterceptorDialogFragment;
 import com.raxdenstudios.square.fragment.InterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.ZXingScannerInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.impl.AutoInflateViewInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.impl.BundleArgumentsInterceptorImpl;
+import com.raxdenstudios.square.fragment.interceptor.impl.WebViewInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.impl.ZXingScannerInterceptorImpl;
 
 import java.util.ArrayList;
@@ -186,6 +188,10 @@ public class InterceptorFragmentManager {
         if (fragment instanceof AutoInflateViewInterceptor) {
             Log.d(TAG, "....."+AutoInflateViewInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new AutoInflateViewInterceptorImpl(fragment));
+        }
+        if (fragment instanceof WebViewInterceptor) {
+            Log.d(TAG, "....."+WebViewInterceptor.class.getSimpleName()+" loaded!");
+            interceptors.add(new WebViewInterceptorImpl(fragment));
         }
         if (fragment instanceof ZXingScannerInterceptor) {
             Log.d(TAG, "....."+ZXingScannerInterceptor.class.getSimpleName()+" loaded!");

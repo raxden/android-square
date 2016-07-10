@@ -2,6 +2,7 @@ package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -12,7 +13,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 21/05/2015.
  */
-public class ToolbarInterceptorImpl extends InterceptorActivityImpl implements ToolbarInterceptor.ToolbarInterceptorListener {
+public class ToolbarInterceptorImpl extends InterceptorActivityImpl implements ToolbarInterceptor.ToolbarInterceptorCallback {
 
     private static final String TAG = ToolbarInterceptorImpl.class.getSimpleName();
 
@@ -35,11 +36,14 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl implements T
             if (mCallbacks != null) mToolbar = mCallbacks.onCreateToolbarView(savedInstanceState);
             if (mToolbar != null) {
                 ((InterceptorActivity)context).setSupportActionBar(mToolbar);
-                ((InterceptorActivity)context).getSupportActionBar().setDisplayShowTitleEnabled(false);
+                ActionBar actionBar = ((InterceptorActivity)context).getSupportActionBar();
+                if (actionBar != null) {
+                    actionBar.setDisplayShowTitleEnabled(false);
+                }
                 mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        return ((InterceptorActivity)context).onOptionsItemSelected(menuItem);
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return ((InterceptorActivity)context).onOptionsItemSelected(item);
                     }
                 });
                 if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);

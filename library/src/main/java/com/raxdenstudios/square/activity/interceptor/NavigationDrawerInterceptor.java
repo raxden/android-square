@@ -1,18 +1,19 @@
 package com.raxdenstudios.square.activity.interceptor;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.raxdenstudios.square.Interceptor;
+import com.raxdenstudios.square.InterceptorCallback;
+
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptor {
-
-    void onInterceptorLoaded(NavigationDrawerInterceptorListener interceptor);
+public interface NavigationDrawerInterceptor extends Interceptor<NavigationDrawerInterceptor.NavigationDrawerInterceptorCallback> {
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
     DrawerLayout onCreateDrawerLayout(Bundle savedInstanceState);
@@ -24,7 +25,7 @@ public interface NavigationDrawerInterceptor {
     void onDrawerSlide(View drawerView, float slideOffset);
     void onDrawerStateChanged(int newState);
 
-    interface NavigationDrawerInterceptorListener {
+    interface NavigationDrawerInterceptorCallback extends InterceptorCallback {
         void open();
         void close();
         boolean isOpen();

@@ -18,7 +18,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by agomez on 24/12/2015.
  */
-public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl implements ZXingScannerInterceptor.ZXingScannerInterceptorListener, ZXingScannerView.ResultHandler {
+public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl implements ZXingScannerInterceptor.ZXingScannerInterceptorCallback, ZXingScannerView.ResultHandler {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 

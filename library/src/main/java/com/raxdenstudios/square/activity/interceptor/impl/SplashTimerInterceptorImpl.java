@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 11/05/2105.
  */
-public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implements SplashTimerInterceptor.SplashTimerInterceptorListener {
+public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implements SplashTimerInterceptor.SplashTimerInterceptorCallback {
 
     private static final String TAG = SplashTimerInterceptorImpl.class.getSimpleName();
 

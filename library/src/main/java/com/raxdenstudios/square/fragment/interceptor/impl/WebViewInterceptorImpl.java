@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,20 +13,19 @@ import android.webkit.WebViewClient;
 import android.widget.ScrollView;
 
 import com.raxdenstudios.square.R;
-import com.raxdenstudios.square.fragment.InterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptor.WebViewInterceptorListener {
+public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptor.WebViewInterceptorCallback {
 
     private WebViewInterceptor mCallbacks;
     private ViewGroup mContainer;
     private WebView mWebView;
 
-    public WebViewInterceptorImpl(InterceptorFragment fragment) {
+    public WebViewInterceptorImpl(Fragment fragment) {
         if (!(fragment instanceof WebViewInterceptor)) {
             throw new IllegalStateException("Fragment must implement WebViewInterceptor.");
         }
@@ -66,7 +66,7 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
             mWebView.setWebViewClient(webviewClient);
             mWebView.setWebChromeClient(webChromeClient);
         }
-        if (mCallbacks != null) mCallbacks.onWebViewInterceptorLoaded(this);
+        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

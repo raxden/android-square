@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl {
+public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl implements BundleExtrasInterceptor.BundleExtrasInterceptorCallback {
 
     private static final String TAG = BundleExtrasInterceptorImpl.class.getSimpleName();
 
@@ -22,6 +22,7 @@ public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl {
             throw new IllegalStateException("Activity must implement BundleExtrasInterceptor.");
         }
         mCallbacks = (BundleExtrasInterceptor)activity;
+        mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

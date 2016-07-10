@@ -16,7 +16,7 @@ import java.util.Locale;
 /**
  * Created by agomez on 13/07/2015.
  */
-public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptor.LocaleInterceptorListener {
+public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptor.LocaleInterceptorCallback {
 
     public static final String APP_LANGUAGE = "app_language";
 
@@ -48,7 +48,12 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
         super.onCreate(context);
         initLocalization(context);
 
-        if (mCallbacks != null) mCallbacks.onLocaleInterceptorLoaded(this);
+        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
+    }
+
+    @Override
+    public Locale getLocale() {
+        return appLocale;
     }
 
     @Override

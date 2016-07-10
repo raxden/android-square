@@ -19,7 +19,7 @@ import java.util.Locale;
 /**
  * Created by agomez on 02/06/2015.
  */
-public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl implements AutoInflateViewInterceptor.AutoInflateViewInterceptorListener {
+public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl implements AutoInflateViewInterceptor.AutoInflateViewInterceptorCallback {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 

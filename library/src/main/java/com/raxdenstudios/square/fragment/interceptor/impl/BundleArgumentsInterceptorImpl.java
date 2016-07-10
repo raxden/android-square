@@ -11,7 +11,7 @@ import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragment
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl {
+public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl implements BundleArgumentsInterceptor.BundleArgumentsInterceptorCallback {
 
     private static final String TAG = BundleArgumentsInterceptorImpl.class.getSimpleName();
 
@@ -33,7 +33,10 @@ public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl {
             arguments = ((InterceptorFragment)mCallbacks).getArguments();
         }
 
-        if (mCallbacks != null) mCallbacks.onHandleArguments(savedInstanceState, arguments);
+        if (mCallbacks != null) {
+            mCallbacks.onHandleArguments(savedInstanceState, arguments);
+            mCallbacks.onInterceptorLoaded(this);
+        }
     }
 
 }

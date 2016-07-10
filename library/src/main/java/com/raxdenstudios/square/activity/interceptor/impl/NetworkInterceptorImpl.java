@@ -15,7 +15,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 08/05/2015.
  */
-public class NetworkInterceptorImpl extends InterceptorActivityImpl {
+public class NetworkInterceptorImpl extends InterceptorActivityImpl implements NetworkInterceptor.NetworkInterfaceCallback {
 
     private static final String TAG = NetworkInterceptorImpl.class.getSimpleName();
 
@@ -44,6 +44,7 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl {
         super.onInterceptorCreate(context, bundle);
 
         if (mNetworkReceiver != null) context.registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

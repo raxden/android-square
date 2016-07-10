@@ -13,7 +13,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class CountBackInterceptorImpl extends InterceptorActivityImpl implements CountBackInterceptor.CountBackInterceptorListener {
+public class CountBackInterceptorImpl extends InterceptorActivityImpl implements CountBackInterceptor.CountBackInterceptorCallback {
 
     private static final String TAG = CountBackInterceptor.class.getSimpleName();
 
@@ -64,7 +64,7 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
     @Override
     public boolean onInterceptorBackPressed(Context context) {
         if (context instanceof InterceptorActivity) {
-            if (((InterceptorActivity) context).getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            if (((InterceptorActivity) context).getFragmentManager().getBackStackEntryCount() > 0) {
                 return false;
             }
         }

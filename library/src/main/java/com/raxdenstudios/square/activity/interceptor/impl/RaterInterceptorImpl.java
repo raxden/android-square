@@ -12,7 +12,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class RaterInterceptorImpl extends InterceptorActivityImpl implements RaterInterceptor.RaterInterceptorListener {
+public class RaterInterceptorImpl extends InterceptorActivityImpl implements RaterInterceptor.RaterInterceptorCallback {
 
     private static final String TAG = RaterInterceptor.class.getSimpleName();
 

@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl {
+public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl implements CheckPlayServicesInterceptor.CheckPlayServicesInterceptorCallback {
 
     private static final String TAG = CheckPlayServicesInterceptorImpl.class.getSimpleName();
 
@@ -29,7 +29,10 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl {
         super.onInterceptorCreate(context, bundle);
         if (!Utils.checkPlayServices(context)) {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesNotSupported();
+        } else {
+            if (mCallbacks != null) mCallbacks.onGooglePlayServicesSupported();
         }
+        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override
@@ -37,6 +40,8 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl {
         super.onInterceptorResume(context);
         if (!Utils.checkPlayServices(context)) {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesNotSupported();
+        } else {
+            if (mCallbacks != null) mCallbacks.onGooglePlayServicesSupported();
         }
     }
 }

@@ -6,12 +6,13 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.raxdenstudios.square.InterceptorCallback;
 import com.raxdenstudios.square.activity.InterceptorActivity;
 
 /**
  * Created by agomez on 21/04/2015.
  */
-public class InterceptorActivityImpl implements IInterceptorActivity {
+public class InterceptorActivityImpl implements IInterceptorActivity, InterceptorCallback {
 
     private static final String TAG = InterceptorActivityImpl.class.getSimpleName();
 

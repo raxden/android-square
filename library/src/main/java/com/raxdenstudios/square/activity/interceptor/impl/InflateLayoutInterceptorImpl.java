@@ -13,7 +13,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 25/05/2015.
  */
-public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implements InflateLayoutInterceptor.InflateLayoutInterceptorListener {
+public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implements InflateLayoutInterceptor.InflateLayoutInterceptorCallback {
 
     private static final String TAG = InflateLayoutInterceptorImpl.class.getSimpleName();
 

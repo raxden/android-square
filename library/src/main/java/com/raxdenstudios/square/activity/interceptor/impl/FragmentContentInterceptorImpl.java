@@ -2,8 +2,8 @@ package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
@@ -15,7 +15,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 02/06/2015.
  */
-public class FragmentContentInterceptorImpl extends InterceptorActivityImpl implements FragmentContentInterceptor.FragmentContentInterceptorListener {
+public class FragmentContentInterceptorImpl extends InterceptorActivityImpl implements FragmentContentInterceptor.FragmentContentInterceptorCallback {
 
     private static String TAG = FragmentContentInterceptorImpl.class.getSimpleName();
 
@@ -55,7 +55,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     @Override
     public void replaceFragment(Fragment fragment, boolean addToBackStack) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getSupportFragmentManager().beginTransaction() : null;
+            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getFragmentManager().beginTransaction() : null;
             if (fragmentTransaction != null) {
                 fragmentTransaction.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
                 if (addToBackStack) fragmentTransaction.addToBackStack(Fragment.class.getSimpleName());
@@ -78,7 +78,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     @Override
     public void removeFragment(Fragment fragment) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getSupportFragmentManager().beginTransaction() : null;
+            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getFragmentManager().beginTransaction() : null;
             if (fragmentTransaction != null) {
                 fragmentTransaction.remove(fragment).commit();
             }
@@ -94,7 +94,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     public Fragment getFragment() {
         Fragment fragment = null;
         if (mContentFragmentView != null && mCallbacks != null) {
-            fragment = ((InterceptorActivity) mCallbacks).getSupportFragmentManager().findFragmentById(mContentFragmentView.getId());
+            fragment = ((InterceptorActivity) mCallbacks).getFragmentManager().findFragmentById(mContentFragmentView.getId());
         }
         return fragment;
     }

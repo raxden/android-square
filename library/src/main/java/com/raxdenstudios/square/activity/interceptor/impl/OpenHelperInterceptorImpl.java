@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 08/05/2015.
  */
-public class OpenHelperInterceptorImpl extends InterceptorActivityImpl {
+public class OpenHelperInterceptorImpl extends InterceptorActivityImpl implements OpenHelperInterceptor.OpenHelperInterfaceptorCallback {
 
     private static final String TAG = OpenHelperInterceptorImpl.class.getSimpleName();
 
@@ -31,6 +31,7 @@ public class OpenHelperInterceptorImpl extends InterceptorActivityImpl {
 
         if (mCallbacks != null) {
             mOpenHelper = mCallbacks.initOpenHelper(context, bundle);
+            mCallbacks.onInterceptorLoaded(this);
         }
     }
 
