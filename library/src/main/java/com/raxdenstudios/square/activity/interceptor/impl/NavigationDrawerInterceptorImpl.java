@@ -71,7 +71,6 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
                 }
             }
         }
-        mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

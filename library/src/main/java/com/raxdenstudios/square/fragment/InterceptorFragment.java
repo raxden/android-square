@@ -131,4 +131,8 @@ public abstract class InterceptorFragment<TPresenter extends IPresenter> extends
 
     }
 
+    protected List<IInterceptorFragment> getInterceptors() {
+        return mInterceptorManager.getInterceptors();
+    }
+
 }

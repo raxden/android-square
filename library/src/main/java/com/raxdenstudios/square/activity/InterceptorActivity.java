@@ -107,4 +107,8 @@ public abstract class InterceptorActivity<TPresenter extends IPresenter> extends
 
     }
 
+    protected List<IInterceptorActivity> getInterceptors() {
+        return mInterceptorManager.getInterceptors();
+    }
+
 }

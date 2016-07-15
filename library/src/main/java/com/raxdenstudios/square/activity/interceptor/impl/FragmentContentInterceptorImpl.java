@@ -36,7 +36,6 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
         if (mContentFragmentView != null && savedInstanceState == null) {
             replaceFragment(mCallbacks.initContentFragment());
         }
-        mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

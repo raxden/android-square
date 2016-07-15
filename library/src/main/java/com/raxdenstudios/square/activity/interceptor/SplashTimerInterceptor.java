@@ -1,13 +1,12 @@
 package com.raxdenstudios.square.activity.interceptor;
 
+import com.raxdenstudios.square.Interceptor;
 import com.raxdenstudios.square.activity.interceptor.impl.SplashTimerInterceptorImpl;
 
 /**
  * Created by agomez on 11/05/2015.
  */
-public interface SplashTimerInterceptor {
-
-    void onInterceptorLoaded(SplashTimerInterceptorCallback callback);
+public interface SplashTimerInterceptor extends Interceptor {
 
     void onSplashTimerEnd();
 

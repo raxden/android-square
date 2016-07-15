@@ -46,7 +46,6 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl implements T
                         return ((InterceptorActivity)context).onOptionsItemSelected(item);
                     }
                 });
-                if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
             }
         }
     }

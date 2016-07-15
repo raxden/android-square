@@ -4,12 +4,12 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.raxdenstudios.square.Interceptor;
+
 /**
  * Created by agomez on 16/07/2015.
  */
-public interface WebViewInterceptor {
-
-    void onInterceptorLoaded(WebViewInterceptorCallback callback);
+public interface WebViewInterceptor extends Interceptor {
 
     void onConfigureWebSettings(WebSettings settings);
 

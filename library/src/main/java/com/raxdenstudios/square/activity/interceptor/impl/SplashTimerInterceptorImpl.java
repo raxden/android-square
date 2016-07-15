@@ -61,8 +61,6 @@ public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implemen
             mConfig = new DefaultSplashTimerConfiguration();
         }
 
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
-
         removeRunnable();
         postRunnable();
     }

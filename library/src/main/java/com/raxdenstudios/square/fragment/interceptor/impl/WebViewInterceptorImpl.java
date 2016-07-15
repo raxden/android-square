@@ -66,7 +66,6 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
             mWebView.setWebViewClient(webviewClient);
             mWebView.setWebChromeClient(webChromeClient);
         }
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

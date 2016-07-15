@@ -36,7 +36,6 @@ public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl impl
     @Override
     public View onInterceptorCreateView(Context context, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mInflateView =  inflateLayout(context, inflater);
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
         return mInflateView;
     }
 

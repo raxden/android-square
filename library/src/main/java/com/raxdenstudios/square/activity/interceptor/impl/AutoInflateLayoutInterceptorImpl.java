@@ -38,7 +38,6 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl im
             mInflateLayout = onCreateView(context, ((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
             if (mInflateLayout != null) {
                 ((InterceptorActivity)mCallbacks).setContentView(mInflateLayout);
-                mCallbacks.onInterceptorLoaded(this);
             }
         }
 

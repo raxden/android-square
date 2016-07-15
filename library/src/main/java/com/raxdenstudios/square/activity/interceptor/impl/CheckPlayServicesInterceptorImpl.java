@@ -32,7 +32,6 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl im
         } else {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesSupported();
         }
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

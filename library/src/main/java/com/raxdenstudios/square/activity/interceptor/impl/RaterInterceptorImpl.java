@@ -32,7 +32,6 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
         super.onInterceptorCreate(context, savedInstanceState);
 
         mRaterManager = new RaterManager(context);
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

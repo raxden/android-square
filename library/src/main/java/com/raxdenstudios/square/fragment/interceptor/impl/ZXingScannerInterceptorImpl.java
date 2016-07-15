@@ -49,9 +49,6 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
             mCameraId = -1;
             setupFormats();
         }
-        if (mCallbacks != null) {
-            mCallbacks.onInterceptorLoaded(this);
-        }
     }
 
     @Override

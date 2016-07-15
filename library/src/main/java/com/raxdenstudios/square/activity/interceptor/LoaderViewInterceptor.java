@@ -4,12 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
+import com.raxdenstudios.square.Interceptor;
+
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface LoaderViewInterceptor {
-
-    void onInterceptorLoaded(LoaderViewInterceptorCallback callback);
+public interface LoaderViewInterceptor extends Interceptor {
 
     View onCreateLoaderView(Bundle savedInstanceState);
 

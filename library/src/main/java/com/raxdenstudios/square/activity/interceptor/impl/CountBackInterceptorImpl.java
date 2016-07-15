@@ -58,7 +58,6 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
     public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
         super.onInterceptorCreate(context, savedInstanceState);
         mConfig = new DefaultCountBackConfiguration(context);
-        mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

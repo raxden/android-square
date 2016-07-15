@@ -35,7 +35,6 @@ public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl impl
 
         if (mCallbacks != null) {
             mCallbacks.onHandleArguments(savedInstanceState, arguments);
-            mCallbacks.onInterceptorLoaded(this);
         }
     }
 

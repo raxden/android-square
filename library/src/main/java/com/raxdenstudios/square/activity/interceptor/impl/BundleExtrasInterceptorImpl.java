@@ -22,7 +22,6 @@ public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl impleme
             throw new IllegalStateException("Activity must implement BundleExtrasInterceptor.");
         }
         mCallbacks = (BundleExtrasInterceptor)activity;
-        mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

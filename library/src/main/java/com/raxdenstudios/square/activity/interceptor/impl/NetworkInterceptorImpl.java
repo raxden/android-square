@@ -44,7 +44,6 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl implements N
         super.onInterceptorCreate(context, bundle);
 
         if (mNetworkReceiver != null) context.registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

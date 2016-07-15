@@ -31,7 +31,6 @@ public class OpenHelperInterceptorImpl extends InterceptorActivityImpl implement
 
         if (mCallbacks != null) {
             mOpenHelper = mCallbacks.initOpenHelper(context, bundle);
-            mCallbacks.onInterceptorLoaded(this);
         }
     }
 

@@ -7,12 +7,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.raxdenstudios.square.Interceptor;
+
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptor {
-
-    void onInterceptorLoaded(NavigationDrawerInterceptorCallback callback);
+public interface NavigationDrawerInterceptor extends Interceptor {
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 

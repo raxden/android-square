@@ -34,7 +34,6 @@ public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implem
             mInflateLayout = onCreateView(context, ((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
             if (mInflateLayout != null) {
                 ((InterceptorActivity)mCallbacks).setContentView(mInflateLayout);
-                mCallbacks.onInterceptorLoaded(this);
             }
         }
     }

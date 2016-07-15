@@ -47,8 +47,6 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
     public void onCreate(Context context) {
         super.onCreate(context);
         initLocalization(context);
-
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override

@@ -34,7 +34,6 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implem
                 if (mCallbacks != null) mCallbacks.shakeDetected();
             }
         });
-        if (mCallbacks != null) mCallbacks.onInterceptorLoaded(this);
     }
 
     @Override
