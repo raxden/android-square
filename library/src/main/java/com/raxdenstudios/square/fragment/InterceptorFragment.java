@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.raxdenstudios.mvp.MVPFragment;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.fragment.interceptor.manager.IInterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentManager;
 
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by agomez on 29/05/2015.
  */
-public abstract class InterceptorFragment extends MVPFragment {
+public abstract class InterceptorFragment<TPresenter extends IPresenter> extends MVPFragment<TPresenter> {
 
     private static final String TAG = InterceptorFragment.class.getSimpleName();
 

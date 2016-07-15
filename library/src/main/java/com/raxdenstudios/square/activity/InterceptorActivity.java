@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.raxdenstudios.mvp.MVPActivity;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.activity.interceptor.manager.IInterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityManager;
 
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by agomez on 22/05/2015.
  */
-public abstract class InterceptorActivity extends MVPActivity {
+public abstract class InterceptorActivity<TPresenter extends IPresenter> extends MVPActivity<TPresenter> {
 
     private static final String TAG = InterceptorActivity.class.getSimpleName();
 
