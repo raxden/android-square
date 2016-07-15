@@ -1,13 +1,16 @@
 package com.raxdenstudios.square.activity.interceptor.manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 
 import com.raxdenstudios.square.activity.InterceptorActivity;
+import com.raxdenstudios.square.activity.InterceptorMVPActivity;
 import com.raxdenstudios.square.activity.interceptor.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.activity.interceptor.BundleExtrasInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
@@ -48,6 +51,10 @@ public class InterceptorActivityManager {
     protected List<IInterceptorActivity> interceptors;
 
     public InterceptorActivityManager(InterceptorActivity activity) {
+        if (activity != null) initInterceptors(activity);
+    }
+
+    public InterceptorActivityManager(InterceptorMVPActivity activity) {
         if (activity != null) initInterceptors(activity);
     }
 
@@ -154,7 +161,7 @@ public class InterceptorActivityManager {
         this.interceptors = interceptors;
     }
 
-    private void initInterceptors(InterceptorActivity activity) {
+    private void initInterceptors(Activity activity) {
         Log.d(TAG, "========== Prepare to init activity interceptors ==========");
         interceptors = new ArrayList<>();
         if (activity instanceof InflateLayoutInterceptor) {

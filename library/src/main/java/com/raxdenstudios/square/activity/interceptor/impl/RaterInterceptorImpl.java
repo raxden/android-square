@@ -1,11 +1,11 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.rater.RaterHelper;
 import com.raxdenstudios.rater.RaterManager;
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.RaterInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -20,7 +20,7 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
     private RaterManager mRaterManager;
     public enum RaterOption {RATE, REMIND_LATER, DONT_SHOW_AGAIN}
 
-    public RaterInterceptorImpl(InterceptorActivity activity) {
+    public RaterInterceptorImpl(Activity activity) {
         if (!(activity instanceof RaterInterceptor)) {
             throw new IllegalStateException("Activity must implement RaterInterceptor.");
         }

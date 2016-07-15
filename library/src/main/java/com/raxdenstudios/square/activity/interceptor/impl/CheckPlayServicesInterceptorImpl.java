@@ -1,10 +1,10 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.Utils;
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -17,7 +17,7 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl im
 
     private CheckPlayServicesInterceptor mCallbacks;
 
-    public CheckPlayServicesInterceptorImpl(InterceptorActivity activity) {
+    public CheckPlayServicesInterceptorImpl(Activity activity) {
         if (!(activity instanceof CheckPlayServicesInterceptor)) {
             throw new IllegalStateException("Activity must implement CheckPlayServicesInterceptor.");
         }

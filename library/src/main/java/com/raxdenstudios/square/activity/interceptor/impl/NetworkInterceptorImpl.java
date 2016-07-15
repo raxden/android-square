@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.NetworkUtils;
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.NetworkInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -32,7 +32,7 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl implements N
         }
     };
 
-    public NetworkInterceptorImpl(InterceptorActivity activity) {
+    public NetworkInterceptorImpl(Activity activity) {
         if (!(activity instanceof NetworkInterceptor)) {
             throw new IllegalStateException("Activity must implement NetworkInterceptor.");
         }

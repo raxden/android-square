@@ -3,9 +3,10 @@ package com.raxdenstudios.square.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
+import com.raxdenstudios.mvp.MVPActivity;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.activity.interceptor.manager.IInterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityManager;
 
@@ -14,9 +15,9 @@ import java.util.List;
 /**
  * Created by agomez on 22/05/2015.
  */
-public abstract class InterceptorActivity extends AppCompatActivity {
+public abstract class InterceptorMVPActivity<TPresenter extends IPresenter> extends MVPActivity<TPresenter> {
 
-    private static final String TAG = InterceptorActivity.class.getSimpleName();
+    private static final String TAG = InterceptorMVPActivity.class.getSimpleName();
 
     /* Interceptor Manager */
     private InterceptorActivityManager mInterceptorManager;

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.BundleExtrasInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -17,7 +16,7 @@ public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl impleme
 
     private BundleExtrasInterceptor mCallbacks;
 
-    public BundleExtrasInterceptorImpl(InterceptorActivity activity) {
+    public BundleExtrasInterceptorImpl(Activity activity) {
         if (!(activity instanceof BundleExtrasInterceptor)) {
             throw new IllegalStateException("Activity must implement BundleExtrasInterceptor.");
         }

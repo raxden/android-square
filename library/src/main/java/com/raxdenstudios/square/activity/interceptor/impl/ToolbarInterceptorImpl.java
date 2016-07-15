@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -21,7 +22,7 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl implements T
 
     private ToolbarInterceptor mCallbacks;
 
-    public ToolbarInterceptorImpl(InterceptorActivity activity) {
+    public ToolbarInterceptorImpl(Activity activity) {
         if (!(activity instanceof ToolbarInterceptor)) {
             throw new IllegalStateException("Activity must implement ToolbarInterceptor.");
         }

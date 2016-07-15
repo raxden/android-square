@@ -1,10 +1,10 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.SplashTimerInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -46,7 +46,7 @@ public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implemen
         }
     }
 
-    public SplashTimerInterceptorImpl(InterceptorActivity activity) {
+    public SplashTimerInterceptorImpl(Activity activity) {
         if (!(activity instanceof SplashTimerInterceptor)) {
             throw new IllegalStateException("Activity must implement SplashTimerInterceptor.");
         }

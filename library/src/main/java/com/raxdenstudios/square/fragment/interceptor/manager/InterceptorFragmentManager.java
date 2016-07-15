@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.raxdenstudios.square.fragment.InterceptorDialogFragment;
+import com.raxdenstudios.square.fragment.InterceptorDialogMVPFragment;
 import com.raxdenstudios.square.fragment.InterceptorFragment;
+import com.raxdenstudios.square.fragment.InterceptorMVPFragment;
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
@@ -38,7 +40,15 @@ public class InterceptorFragmentManager {
         if (fragment != null) initInterceptors(fragment);
     }
 
+    public InterceptorFragmentManager(InterceptorMVPFragment fragment) {
+        if (fragment != null) initInterceptors(fragment);
+    }
+
     public InterceptorFragmentManager(InterceptorDialogFragment fragment) {
+        if (fragment != null) initInterceptors(fragment);
+    }
+
+    public InterceptorFragmentManager(InterceptorDialogMVPFragment fragment) {
         if (fragment != null) initInterceptors(fragment);
     }
 

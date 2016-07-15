@@ -1,8 +1,6 @@
 package com.raxdenstudios.square.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.mvp.MVPFragmentDialog;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.fragment.interceptor.manager.IInterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentManager;
 
@@ -19,9 +19,9 @@ import java.util.List;
 /**
  * Created by agomez on 29/05/2015.
  */
-public abstract class InterceptorFragment extends Fragment {
+public abstract class InterceptorDialogMVPFragment<TPresenter extends IPresenter> extends MVPFragmentDialog<TPresenter> {
 
-    private static final String TAG = InterceptorFragment.class.getSimpleName();
+    private static final String TAG = InterceptorDialogMVPFragment.class.getSimpleName();
 
     /* Interceptor Manager */
     private InterceptorFragmentManager mInterceptorManager;
@@ -30,11 +30,6 @@ public abstract class InterceptorFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         getInterceptorManager().onAttachInterceptors(activity);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        getInterceptorManager().onAttachInterceptors(context);
     }
 
     @Override
@@ -128,10 +123,6 @@ public abstract class InterceptorFragment extends Fragment {
 
     protected void addInterceptor(List<IInterceptorFragment> interceptors) {
 
-    }
-
-    protected List<IInterceptorFragment> getInterceptors() {
-        return mInterceptorManager.getInterceptors();
     }
 
 }

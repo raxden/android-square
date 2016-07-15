@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implem
     private InflateLayoutInterceptor mCallbacks;
     private View mInflateLayout;
 
-    public InflateLayoutInterceptorImpl(InterceptorActivity activity) {
+    public InflateLayoutInterceptorImpl(Activity activity) {
         if (!(activity instanceof InflateLayoutInterceptor)) {
             throw new IllegalStateException("Activity must implement InflateLayoutInterceptor.");
         }

@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -11,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.mvp.MVPFragment;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.fragment.interceptor.manager.IInterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentManager;
 
@@ -19,9 +20,9 @@ import java.util.List;
 /**
  * Created by agomez on 29/05/2015.
  */
-public abstract class InterceptorFragment extends Fragment {
+public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> extends MVPFragment<TPresenter> {
 
-    private static final String TAG = InterceptorFragment.class.getSimpleName();
+    private static final String TAG = InterceptorMVPFragment.class.getSimpleName();
 
     /* Interceptor Manager */
     private InterceptorFragmentManager mInterceptorManager;

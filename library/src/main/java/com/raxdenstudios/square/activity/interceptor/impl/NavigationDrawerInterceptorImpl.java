@@ -31,7 +31,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     private Toolbar mToolbar;
     private NavigationDrawerInterceptor mCallbacks;
 
-    public NavigationDrawerInterceptorImpl(InterceptorActivity activity) {
+    public NavigationDrawerInterceptorImpl(Activity activity) {
         if (!(activity instanceof NavigationDrawerInterceptor)) {
             throw new IllegalStateException("Activity must implement NavigationDrawerInterceptor.");
         }

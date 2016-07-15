@@ -1,13 +1,13 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
-import android.content.Context;
-import android.os.Bundle;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.FragmentContentInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
@@ -22,7 +22,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     private View mContentFragmentView;
     private FragmentContentInterceptor mCallbacks;
 
-    public FragmentContentInterceptorImpl(InterceptorActivity activity) {
+    public FragmentContentInterceptorImpl(Activity activity) {
         if (!(activity instanceof FragmentContentInterceptor)) {
             throw new IllegalStateException("Activity must implement FragmentContentInterceptor.");
         }
@@ -56,7 +56,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getFragmentManager().beginTransaction() : null;
             if (fragmentTransaction != null) {
-                fragmentTransaction.setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out, R.anim.abc_fade_in, R.anim.abc_fade_out);
+                fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out, android.R.animator.fade_in, android.R.animator.fade_out);
                 if (addToBackStack) fragmentTransaction.addToBackStack(Fragment.class.getSimpleName());
                 replaceFragment(fragment, fragmentTransaction);
             }

@@ -1,10 +1,10 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.shake.ShakeDetectorHelper;
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.ShakeDetectorInterceptor;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
@@ -17,7 +17,7 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implem
 
     private ShakeDetectorInterceptor mCallbacks;
 
-    public ShakeDetectorInterceptorImpl(InterceptorActivity activity) {
+    public ShakeDetectorInterceptorImpl(Activity activity) {
         if (!(activity instanceof ShakeDetectorInterceptor)) {
             throw new IllegalStateException("Activity must implement ShakeDetectorInterceptor.");
         }

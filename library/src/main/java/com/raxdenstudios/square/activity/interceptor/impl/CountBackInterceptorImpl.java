@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,7 +48,7 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
         }
     }
 
-    public CountBackInterceptorImpl(InterceptorActivity activity) {
+    public CountBackInterceptorImpl(Activity activity) {
         if (!(activity instanceof CountBackInterceptor)) {
             throw new IllegalStateException("Activity must implement CountBackInterceptor.");
         }
