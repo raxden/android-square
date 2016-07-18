@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -47,6 +46,7 @@ public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implemen
     }
 
     public SplashTimerInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof SplashTimerInterceptor)) {
             throw new IllegalStateException("Activity must implement SplashTimerInterceptor.");
         }
@@ -54,8 +54,8 @@ public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implemen
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
         if (mConfig == null) {
             mConfig = new DefaultSplashTimerConfiguration();
@@ -66,15 +66,15 @@ public class SplashTimerInterceptorImpl extends InterceptorActivityImpl implemen
     }
 
     @Override
-    public boolean onInterceptorBackPressed(Context context) {
+    public boolean onInterceptorBackPressed() {
         removeRunnable();
         if (mCallbacks != null) mCallbacks.onSplashTimerCancelled();
-        return super.onInterceptorBackPressed(context);
+        return super.onInterceptorBackPressed();
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
         synchronized (o) {
             if (!isSplashEnded) {

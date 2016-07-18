@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.application.interceptor.manager;
 
-import android.content.Context;
 import android.content.res.Configuration;
 
 /**
@@ -8,8 +7,8 @@ import android.content.res.Configuration;
  */
 public interface IInterceptorApplication {
 
-    void onConfigurationChanged(Context context, Configuration newConfig);
+    void onConfigurationChanged(Configuration newConfig);
 
-    void onCreate(Context context);
+    void onCreate();
 
 }

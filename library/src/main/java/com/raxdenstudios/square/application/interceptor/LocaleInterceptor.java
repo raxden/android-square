@@ -1,7 +1,5 @@
 package com.raxdenstudios.square.application.interceptor;
 
-import android.content.Context;
-
 import com.raxdenstudios.square.Interceptor;
 
 import java.util.Locale;
@@ -14,8 +12,8 @@ public interface LocaleInterceptor extends Interceptor {
     interface LocaleInterceptorCallback {
         Locale getLocale();
 
-        String getLanguage(Context context);
+        String getLanguage();
 
-        void setLanguage(Context context, String language);
+        void setLanguage(String language);
     }
 }

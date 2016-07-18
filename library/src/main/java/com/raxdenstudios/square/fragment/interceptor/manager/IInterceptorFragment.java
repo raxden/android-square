@@ -14,20 +14,35 @@ import android.view.ViewGroup;
  */
 public interface IInterceptorFragment {
 
-    void onInterceptorAttach(Activity activity);
-    void onInterceptorAttach(Context context);
-    void onInterceptorCreate(Context context, Bundle savedInstanceState);
-    View onInterceptorCreateView(Context context, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-    void onInterceptorViewCreated(Context context, View view, Bundle savedInstanceState);
-    void onInterceptorActivityCreated(Context context, Bundle savedInstanceState);
-    void onInterceptorStart(Context context);
-    void onInterceptorResume(Context context);
-    void onInterceptorPause(Context context);
-    void onInterceptorStop(Context context);
-    void onInterceptorDestroy(Context context);
-    void onInterceptorDestroyView(Context context);
-    void onInterceptorDetach(Context context);
+    void onInterceptorSaveInstanceState(Bundle outState);
 
-    void onInterceptorActivityResult(Context context, int requestCode, int resultCode, Intent data);
-    void onInterceptorConfigurationChanged(Context context, Configuration configuration);
+    void onInterceptorAttach(Activity activity);
+
+    void onInterceptorAttach(Context context);
+
+    void onInterceptorCreate(Bundle savedInstanceState);
+
+    View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+
+    void onInterceptorViewCreated(View view, Bundle savedInstanceState);
+
+    void onInterceptorActivityCreated(Bundle savedInstanceState);
+
+    void onInterceptorStart();
+
+    void onInterceptorResume();
+
+    void onInterceptorPause();
+
+    void onInterceptorStop();
+
+    void onInterceptorDestroy();
+
+    void onInterceptorDestroyView();
+
+    void onInterceptorDetach();
+
+    void onInterceptorActivityResult(int requestCode, int resultCode, Intent data);
+
+    void onInterceptorConfigurationChanged(Configuration configuration);
 }

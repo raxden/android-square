@@ -22,51 +22,57 @@ public abstract class InterceptorActivity extends AppCompatActivity {
     private InterceptorActivityManager mInterceptorManager;
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getInterceptorManager().onSaveInstanceStateInterceptors(outState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getInterceptorManager().onCreateInterceptors(this, savedInstanceState);
+        getInterceptorManager().onCreateInterceptors(savedInstanceState);
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        getInterceptorManager().onPostCreateInterceptors(this, savedInstanceState);
+        getInterceptorManager().onPostCreateInterceptors(savedInstanceState);
     }
 
-    @Override /* Called whenever we call ActivityCompat.invalidateOptionsMenu(this); */
+    @Override /* Called whenever we call ActivityCompat.invalidateOptionsMenu(); */
     public boolean onPrepareOptionsMenu(Menu menu) {
-        getInterceptorManager().onPrepareOptionsMenuInterceptors(this, menu);
+        getInterceptorManager().onPrepareOptionsMenuInterceptors(menu);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getInterceptorManager().onResumeInterceptors(this);
+        getInterceptorManager().onResumeInterceptors();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getInterceptorManager().onStartInterceptors(this);
+        getInterceptorManager().onStartInterceptors();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        getInterceptorManager().onPauseInterceptors(this);
+        getInterceptorManager().onPauseInterceptors();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        getInterceptorManager().onStopInterceptors(this);
+        getInterceptorManager().onStopInterceptors();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getInterceptorManager().onDestroyInterceptors(this);
+        getInterceptorManager().onDestroyInterceptors();
     }
 
     /* Callbacks */
@@ -74,18 +80,18 @@ public abstract class InterceptorActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getInterceptorManager().onActivityResultInterceptors(this, requestCode, resultCode, data);
+        getInterceptorManager().onActivityResultInterceptors(requestCode, resultCode, data);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getInterceptorManager().onConfigurationChangedInterceptors(this, newConfig);
+        getInterceptorManager().onConfigurationChangedInterceptors(newConfig);
     }
 
     @Override
     public void onBackPressed() {
-        if (getInterceptorManager().onBackPressedInterceptors(this)) {
+        if (getInterceptorManager().onBackPressedInterceptors()) {
             return;
         } else {
             super.onBackPressed();

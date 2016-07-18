@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -31,6 +30,7 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
     private int mCameraId = -1;
 
     public ZXingScannerInterceptorImpl(Fragment fragment) {
+        super(fragment);
         if (!(fragment instanceof ZXingScannerInterceptor)) {
             throw new IllegalStateException("Fragment must implement ZXingScannerInterceptor.");
         }
@@ -38,8 +38,8 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
     }
 
     @Override
-    public void onInterceptorViewCreated(Context context, View view, Bundle savedInstanceState) {
-        super.onInterceptorViewCreated(context, view, savedInstanceState);
+    public void onInterceptorViewCreated(View view, Bundle savedInstanceState) {
+        super.onInterceptorViewCreated(view, savedInstanceState);
 
         mScannerView = mCallbacks != null ? mCallbacks.onLoadZXingScannerView() : null;
         if (mScannerView != null) {
@@ -52,8 +52,8 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
     }
 
     @Override
-    public void onInterceptorResume(Context context) {
-        super.onInterceptorResume(context);
+    public void onInterceptorResume() {
+        super.onInterceptorResume();
 
         if (mScannerView != null) {
             mScannerView.setResultHandler(this);
@@ -64,8 +64,8 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
     }
 
     @Override
-    public void onInterceptorPause(Context context) {
-        super.onInterceptorPause(context);
+    public void onInterceptorPause() {
+        super.onInterceptorPause();
 
         if (mScannerView != null) {
             mScannerView.stopCamera();

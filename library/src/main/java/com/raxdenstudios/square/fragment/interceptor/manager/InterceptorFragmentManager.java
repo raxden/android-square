@@ -11,10 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.fragment.InterceptorDialogFragment;
-import com.raxdenstudios.square.fragment.InterceptorDialogMVPFragment;
-import com.raxdenstudios.square.fragment.InterceptorFragment;
-import com.raxdenstudios.square.fragment.InterceptorMVPFragment;
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
@@ -34,36 +30,32 @@ public class InterceptorFragmentManager {
 
     private static final String TAG = InterceptorFragmentManager.class.getSimpleName();
 
-    protected List<IInterceptorFragment> interceptors;
+    private List<IInterceptorFragment> interceptors;
     
-    public InterceptorFragmentManager(InterceptorFragment fragment) {
+    public InterceptorFragmentManager(Fragment fragment) {
         if (fragment != null) initInterceptors(fragment);
     }
 
-    public InterceptorFragmentManager(InterceptorMVPFragment fragment) {
-        if (fragment != null) initInterceptors(fragment);
-    }
-
-    public InterceptorFragmentManager(InterceptorDialogFragment fragment) {
-        if (fragment != null) initInterceptors(fragment);
-    }
-
-    public InterceptorFragmentManager(InterceptorDialogMVPFragment fragment) {
-        if (fragment != null) initInterceptors(fragment);
-    }
-
-    public void onActivityResultInterceptors(Context context, int requestCode, int resultCode, Intent data) {
+    public void onSaveInstanceStateInterceptors(Bundle outState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorActivityResult(context, requestCode, resultCode, data);
+                interceptor.onInterceptorSaveInstanceState(outState);
             }
         }
     }
 
-    public void onConfigurationChangedInterceptors(Context context, Configuration configuration) {
+    public void onActivityResultInterceptors(int requestCode, int resultCode, Intent data) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorConfigurationChanged(context, configuration);
+                interceptor.onInterceptorActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
+
+    public void onConfigurationChangedInterceptors(Configuration configuration) {
+        if (interceptors != null) {
+            for (IInterceptorFragment interceptor : interceptors) {
+                interceptor.onInterceptorConfigurationChanged(configuration);
             }
         }
     }
@@ -84,18 +76,18 @@ public class InterceptorFragmentManager {
         }
     }
 
-    public void onCreateInterceptors(Context context, Bundle savedInstanceState) {
+    public void onCreateInterceptors(Bundle savedInstanceState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorCreate(context, savedInstanceState);
+                interceptor.onInterceptorCreate(savedInstanceState);
             }
         }
     }
 
-    public View onCreateViewInterceptors(Context context, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateViewInterceptors(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                View view = interceptor.onInterceptorCreateView(context, inflater, container, savedInstanceState);
+                View view = interceptor.onInterceptorCreateView(inflater, container, savedInstanceState);
                 if (view != null) {
                     return view;
                 }
@@ -104,74 +96,74 @@ public class InterceptorFragmentManager {
         return null;
     }
 
-    public void onViewCreatedInterceptors(Context context, View view, Bundle savedInstanceState) {
+    public void onViewCreatedInterceptors(View view, Bundle savedInstanceState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorViewCreated(context, view, savedInstanceState);
+                interceptor.onInterceptorViewCreated(view, savedInstanceState);
             }
         }
     }
 
-    public void onActivityCreatedInterceptors(Context context, Bundle savedInstanceState) {
+    public void onActivityCreatedInterceptors(Bundle savedInstanceState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorActivityCreated(context, savedInstanceState);
+                interceptor.onInterceptorActivityCreated(savedInstanceState);
             }
         }
     }
 
-    public void onResumeInterceptors(Context context) {
+    public void onResumeInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorResume(context);
+                interceptor.onInterceptorResume();
             }
         }
     }
 
-    public void onStartInterceptors(Context context) {
+    public void onStartInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorStart(context);
+                interceptor.onInterceptorStart();
             }
         }
     }
 
-    public void onStopInterceptors(Context context) {
+    public void onStopInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorStop(context);
+                interceptor.onInterceptorStop();
             }
         }
     }
 
-    public void onPauseInterceptors(Context context) {
+    public void onPauseInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorPause(context);
+                interceptor.onInterceptorPause();
             }
         }
     }
 
-    public void onDestroyViewInterceptors(Context context) {
+    public void onDestroyViewInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorDestroyView(context);
+                interceptor.onInterceptorDestroyView();
             }
         }
     }
 
-    public void onDestroyInterceptors(Context context) {
+    public void onDestroyInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorDestroy(context);
+                interceptor.onInterceptorDestroy();
             }
         }
     }
 
-    public void onDetachInterceptors(Context context) {
+    public void onDetachInterceptors() {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                interceptor.onInterceptorDetach(context);
+                interceptor.onInterceptorDetach();
             }
         }
     }

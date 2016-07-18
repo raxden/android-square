@@ -1,11 +1,10 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,6 +31,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     private NavigationDrawerInterceptor mCallbacks;
 
     public NavigationDrawerInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof NavigationDrawerInterceptor)) {
             throw new IllegalStateException("Activity must implement NavigationDrawerInterceptor.");
         }
@@ -39,13 +39,13 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     @Override
-    public void onInterceptorConfigurationChanged(Context context, Configuration configuration) {
+    public void onInterceptorConfigurationChanged(Configuration configuration) {
         if (mDrawerToggle != null) mDrawerToggle.onConfigurationChanged(configuration);
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
         mContentDrawerView = mCallbacks.onCreateContentDrawerView(savedInstanceState);
         if (mContentDrawerView != null) {
             mDrawerLayout = mCallbacks.onCreateDrawerLayout(savedInstanceState);
@@ -54,7 +54,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
                 // set a custom shadow that overlays the main content when the drawer opens
                 mDrawerLayout.setDrawerShadow(R.drawable.app__drawer_shadow, GravityCompat.START);
                 // ActionBarDrawerToggle ties together the the proper interactions between the sliding drawer and the action bar app icon
-                mDrawerToggle = mToolbar != null ? initActionBarDrawerToogle(context, mToolbar) : initActionBarDrawerToogle(context);
+                mDrawerToggle = mToolbar != null ? initActionBarDrawerToogle(mToolbar) : initActionBarDrawerToogle();
                 if (mDrawerToggle != null) {
                     mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
                         @Override
@@ -74,14 +74,14 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     @Override
-    public void onInterceptorPostCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorPostCreate(context, savedInstanceState);
+    public void onInterceptorPostCreate(Bundle savedInstanceState) {
+        super.onInterceptorPostCreate(savedInstanceState);
 
         if (mDrawerToggle != null) mDrawerToggle.syncState();
     }
 
     @Override
-    public void onInterceptorPrepareOptionsMenu(Context context, Menu menu) {
+    public void onInterceptorPrepareOptionsMenu(Menu menu) {
         if (mCallbacks != null && mDrawerToggle != null && mDrawerLayout != null) {
             if (((InterceptorActivity)mCallbacks).getFragmentManager().getBackStackEntryCount() > 0) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
@@ -95,7 +95,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     @Override
-    public boolean onInterceptorBackPressed(Context context) {
+    public boolean onInterceptorBackPressed() {
         if (isOpen()) {
             close();
             return true;
@@ -104,8 +104,8 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
         mCallbacks = null;
     }
 
@@ -183,8 +183,8 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
         return fragment;
     }
 
-    private ActionBarDrawerToggle initActionBarDrawerToogle(Context context) {
-        return new ActionBarDrawerToggle((Activity)context, mDrawerLayout, R.string.app__drawer_open, R.string.app__drawer_close) {
+    private ActionBarDrawerToggle initActionBarDrawerToogle() {
+        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, R.string.app__drawer_open, R.string.app__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -212,8 +212,8 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
         };
     }
 
-    private ActionBarDrawerToggle initActionBarDrawerToogle(Context context, Toolbar toolbar) {
-        return new ActionBarDrawerToggle((Activity)context, mDrawerLayout, toolbar, R.string.app__drawer_open, R.string.app__drawer_close) {
+    private ActionBarDrawerToggle initActionBarDrawerToogle(Toolbar toolbar) {
+        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, toolbar, R.string.app__drawer_open, R.string.app__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {

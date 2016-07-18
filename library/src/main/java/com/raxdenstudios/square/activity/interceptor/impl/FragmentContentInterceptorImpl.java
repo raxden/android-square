@@ -3,7 +3,6 @@ package com.raxdenstudios.square.activity.interceptor.impl;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +22,7 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     private FragmentContentInterceptor mCallbacks;
 
     public FragmentContentInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof FragmentContentInterceptor)) {
             throw new IllegalStateException("Activity must implement FragmentContentInterceptor.");
         }
@@ -30,8 +30,8 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
         mContentFragmentView = mCallbacks.onCreateContentFragmentView(savedInstanceState);
         if (mContentFragmentView != null && savedInstanceState == null) {
             replaceFragment(mCallbacks.initContentFragment());
@@ -39,8 +39,8 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl impl
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
         mCallbacks = null;
     }
 

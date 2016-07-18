@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
@@ -19,6 +18,7 @@ public class OpenHelperInterceptorImpl extends InterceptorActivityImpl implement
     private SQLiteOpenHelper mOpenHelper;
 
     public OpenHelperInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof OpenHelperInterceptor)) {
             throw new IllegalStateException("Activity must implement OpenHelperInterceptor.");
         }
@@ -26,17 +26,17 @@ public class OpenHelperInterceptorImpl extends InterceptorActivityImpl implement
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle bundle) {
-        super.onInterceptorCreate(context, bundle);
+    public void onInterceptorCreate(Bundle bundle) {
+        super.onInterceptorCreate(bundle);
 
         if (mCallbacks != null) {
-            mOpenHelper = mCallbacks.initOpenHelper(context, bundle);
+            mOpenHelper = mCallbacks.initOpenHelper(getContext(), bundle);
         }
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
         if (mOpenHelper != null) {
             mOpenHelper.close();

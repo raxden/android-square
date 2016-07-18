@@ -33,6 +33,7 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl implements N
     };
 
     public NetworkInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof NetworkInterceptor)) {
             throw new IllegalStateException("Activity must implement NetworkInterceptor.");
         }
@@ -40,17 +41,17 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl implements N
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle bundle) {
-        super.onInterceptorCreate(context, bundle);
+    public void onInterceptorCreate(Bundle bundle) {
+        super.onInterceptorCreate(bundle);
 
-        if (mNetworkReceiver != null) context.registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        if (mNetworkReceiver != null) mActivity.registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
-        if (mNetworkReceiver != null) context.unregisterReceiver(mNetworkReceiver);
+        if (mNetworkReceiver != null) mActivity.unregisterReceiver(mNetworkReceiver);
     }
 
 }

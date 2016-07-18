@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.square.fragment.InterceptorFragment;
@@ -18,6 +17,7 @@ public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl impl
     private BundleArgumentsInterceptor mCallbacks;
 
     public BundleArgumentsInterceptorImpl(Fragment fragment) {
+        super(fragment);
         if (!(fragment instanceof BundleArgumentsInterceptor)) {
             throw new IllegalStateException("Fragment must implement BundleArgumentsInterceptor.");
         }
@@ -25,8 +25,8 @@ public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl impl
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
         Bundle arguments = null;
         if (mCallbacks instanceof InterceptorFragment) {

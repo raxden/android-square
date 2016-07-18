@@ -1,7 +1,5 @@
 package com.raxdenstudios.square.activity.interceptor;
 
-import android.content.Context;
-
 import com.raxdenstudios.square.Interceptor;
 import com.raxdenstudios.square.activity.interceptor.impl.RaterInterceptorImpl;
 
@@ -13,18 +11,18 @@ public interface RaterInterceptor extends Interceptor {
     void onRaterInterceptorClick(RaterInterceptorImpl.RaterOption optionSelected);
 
     interface RaterInterceptorCallback {
-        void showRaterDialog(Context context);
+        void showRaterDialog();
 
-        boolean isDontShowAgain(Context context);
+        boolean isDontShowAgain();
 
-        void setDontShowAgain(Context context, boolean dontShowAgain);
+        void setDontShowAgain(boolean dontShowAgain);
 
-        long getLaunchCounter(Context context);
+        long getLaunchCounter();
 
-        void setLaunchCounter(Context context, long launchCount);
+        void setLaunchCounter(long launchCount);
 
-        void setFirstLaunch(Context context, long firstLaunch);
+        void setFirstLaunch(long firstLaunch);
 
-        long getFirstLaunch(Context context);
+        long getFirstLaunch();
     }
 }

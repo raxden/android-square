@@ -16,13 +16,13 @@ public class InterceptorMultiDexApplication extends MultiDexApplication {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getInterceptorManager().onConfigurationChanged(getApplicationContext(), newConfig);
+        getInterceptorManager().onConfigurationChanged(newConfig);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        getInterceptorManager().onCreateInterceptors(getApplicationContext());
+        getInterceptorManager().onCreateInterceptors();
     }
 
     private InterceptorApplicationManager getInterceptorManager() {

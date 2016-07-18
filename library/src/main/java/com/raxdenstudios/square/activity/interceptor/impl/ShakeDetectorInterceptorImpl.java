@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.shake.ShakeDetectorHelper;
@@ -18,6 +17,7 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implem
     private ShakeDetectorInterceptor mCallbacks;
 
     public ShakeDetectorInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof ShakeDetectorInterceptor)) {
             throw new IllegalStateException("Activity must implement ShakeDetectorInterceptor.");
         }
@@ -25,10 +25,10 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implem
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
-        ShakeDetectorHelper.getInstance().startShakeDetector(context, new ShakeDetectorHelper.ShakeDetectorListener() {
+        ShakeDetectorHelper.getInstance().startShakeDetector(getContext(), new ShakeDetectorHelper.ShakeDetectorListener() {
             @Override
             public void shakeDetected() {
                 if (mCallbacks != null) mCallbacks.shakeDetected();
@@ -37,8 +37,8 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implem
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
         ShakeDetectorHelper.getInstance().stopShakeDetector();
     }

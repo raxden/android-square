@@ -1,13 +1,11 @@
 package com.raxdenstudios.square.application.interceptor.impl;
 
-import android.content.Context;
+import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
 import com.raxdenstudios.commons.util.Utils;
-import com.raxdenstudios.square.application.InterceptorApplication;
-import com.raxdenstudios.square.application.InterceptorMultiDexApplication;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
 import com.raxdenstudios.square.application.interceptor.manager.InterceptorApplicationImpl;
 
@@ -23,30 +21,24 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
     private LocaleInterceptor mCallbacks;
     private Locale appLocale;
 
-    public LocaleInterceptorImpl(InterceptorApplication application) {
+    public LocaleInterceptorImpl(Application application) {
+        super(application);
         if (!(application instanceof LocaleInterceptor)) {
             throw new IllegalStateException("Application must implement LocaleInterceptor.");
         }
         mCallbacks = (LocaleInterceptor)application;
     }
-
-    public LocaleInterceptorImpl(InterceptorMultiDexApplication application) {
-        if (!(application instanceof LocaleInterceptor)) {
-            throw new IllegalStateException("Application must implement LocaleInterceptor.");
-        }
-        mCallbacks = (LocaleInterceptor)application;
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initLocalization();
     }
 
     @Override
-    public void onConfigurationChanged(Context context, Configuration newConfig) {
-        super.onConfigurationChanged(context, newConfig);
-        initLocalization(context);
-    }
-
-    @Override
-    public void onCreate(Context context) {
-        super.onCreate(context);
-        initLocalization(context);
+    public void onCreate() {
+        super.onCreate();
+        initLocalization();
     }
 
     @Override
@@ -55,8 +47,8 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
     }
 
     @Override
-    public String getLanguage(Context context) {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+    public String getLanguage() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         String language = settings.getString(APP_LANGUAGE, "");
         if (appLocale == null) {
             appLocale = initLocale(language);
@@ -65,24 +57,24 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
     }
 
     @Override
-    public void setLanguage(Context context, String language) {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+    public void setLanguage(String language) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(APP_LANGUAGE, language);
         editor.commit();
         appLocale = initLocale(language);
     }
 
-    private void initLocalization(Context context) {
-        String appLanguage = getLanguage(context);
+    private void initLocalization() {
+        String appLanguage = getLanguage();
         if (Utils.hasValue(appLanguage)) {
             Locale appLocale = initLocale(appLanguage);
             Locale.setDefault(appLocale);
-            Configuration config = context.getResources().getConfiguration() != null ? context.getResources().getConfiguration() : new Configuration();
+            Configuration config = getContext().getResources().getConfiguration() != null ? getContext().getResources().getConfiguration() : new Configuration();
             config.locale = appLocale;
-            context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+            getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
         } else {
-            setLanguage(context, Locale.getDefault().toString());
+            setLanguage(Locale.getDefault().toString());
         }
     }
 

@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     private WebView mWebView;
 
     public WebViewInterceptorImpl(Fragment fragment) {
+        super(fragment);
         if (!(fragment instanceof WebViewInterceptor)) {
             throw new IllegalStateException("Fragment must implement WebViewInterceptor.");
         }
@@ -33,12 +33,12 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
         mContainer = mCallbacks != null ? mCallbacks.onLoadWebViewContainer() : null;
         if (mContainer != null) {
-            mWebView = new WebView(context);
+            mWebView = new WebView(getContext());
             mWebView.setId(R.id.app__webview);
 
             mContainer.removeAllViews();
@@ -69,20 +69,20 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     }
 
     @Override
-    public void onInterceptorResume(Context context) {
-        super.onInterceptorResume(context);
+    public void onInterceptorResume() {
+        super.onInterceptorResume();
         if (mWebView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) mWebView.onResume();
     }
 
     @Override
-    public void onInterceptorPause(Context context) {
-        super.onInterceptorPause(context);
+    public void onInterceptorPause() {
+        super.onInterceptorPause();
         if (mWebView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) mWebView.onPause();
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
         if (mWebView != null) {
             mWebView.destroy();

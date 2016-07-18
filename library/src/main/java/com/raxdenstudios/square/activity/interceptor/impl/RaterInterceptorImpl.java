@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.rater.RaterHelper;
@@ -21,6 +20,7 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
     public enum RaterOption {RATE, REMIND_LATER, DONT_SHOW_AGAIN}
 
     public RaterInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof RaterInterceptor)) {
             throw new IllegalStateException("Activity must implement RaterInterceptor.");
         }
@@ -28,17 +28,17 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
-        mRaterManager = new RaterManager(context);
+        mRaterManager = new RaterManager(getContext());
     }
 
     @Override
-    public void onInterceptorPostCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorPostCreate(context, savedInstanceState);
+    public void onInterceptorPostCreate(Bundle savedInstanceState) {
+        super.onInterceptorPostCreate(savedInstanceState);
 
-        mRaterManager.showRaterDialogIfNecessary(context, new RaterManager.AppRaterCallbacks() {
+        mRaterManager.showRaterDialogIfNecessary(getContext(), new RaterManager.AppRaterCallbacks() {
             @Override
             public void onDialogClickRate() {
                 if (mCallbacks != null) mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
@@ -59,8 +59,8 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
     }
 
     @Override
-    public void showRaterDialog(Context context) {
-        mRaterManager.showRaterDialog(context, new RaterManager.AppRaterCallbacks() {
+    public void showRaterDialog() {
+        mRaterManager.showRaterDialog(getContext(), new RaterManager.AppRaterCallbacks() {
             @Override
             public void onDialogClickRate() {
                 if (mCallbacks != null) mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
@@ -81,33 +81,33 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
     }
 
     @Override
-    public boolean isDontShowAgain(Context context) {
-        return RaterHelper.getInstance().isDontShowAgain(context);
+    public boolean isDontShowAgain() {
+        return RaterHelper.getInstance().isDontShowAgain(getContext());
     }
 
     @Override
-    public void setDontShowAgain(Context context, boolean dontShowAgain) {
-        RaterHelper.getInstance().setDontShowAgain(context, dontShowAgain);
+    public void setDontShowAgain(boolean dontShowAgain) {
+        RaterHelper.getInstance().setDontShowAgain(getContext(), dontShowAgain);
     }
 
     @Override
-    public long getLaunchCounter(Context context) {
-        return RaterHelper.getInstance().getLaunchCounter(context);
+    public long getLaunchCounter() {
+        return RaterHelper.getInstance().getLaunchCounter(getContext());
     }
 
     @Override
-    public void setLaunchCounter(Context context, long launchCount) {
-        RaterHelper.getInstance().setLaunchCounter(context, launchCount);
+    public void setLaunchCounter(long launchCount) {
+        RaterHelper.getInstance().setLaunchCounter(getContext(), launchCount);
     }
 
     @Override
-    public void setFirstLaunch(Context context, long firstLaunch) {
-        RaterHelper.getInstance().setFirstLaunch(context, firstLaunch);
+    public void setFirstLaunch(long firstLaunch) {
+        RaterHelper.getInstance().setFirstLaunch(getContext(), firstLaunch);
     }
 
     @Override
-    public long getFirstLaunch(Context context) {
-        return RaterHelper.getInstance().getFirstLaunch(context);
+    public long getFirstLaunch() {
+        return RaterHelper.getInstance().getFirstLaunch(getContext());
     }
 
 }

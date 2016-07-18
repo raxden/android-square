@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,7 @@ public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl impl
     private View mInflateView;
 
     public AutoInflateViewInterceptorImpl(Fragment fragment) {
+        super(fragment);
         if (!(fragment instanceof AutoInflateViewInterceptor)) {
             throw new IllegalStateException("Fragment must implement AutoInflateViewInterceptor.");
         }
@@ -34,20 +34,18 @@ public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl impl
     }
 
     @Override
-    public View onInterceptorCreateView(Context context, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mInflateView =  inflateLayout(context, inflater);
+    public View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mInflateView =  inflateLayout(inflater);
         return mInflateView;
     }
 
-    private View inflateLayout(Context context, LayoutInflater inflater) {
-        if (context != null) {
-            String layoutToSearch = StringUtils.join(StringUtils.uncapitalize(((InterceptorFragment)mCallbacks).getClass().getSimpleName()).split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
-            int layoutId = ResourceUtils.getLayoutId(context, layoutToSearch);
-            if (layoutId > 0) {
-                return inflater.inflate(layoutId, null);
-            } else {
-                Log.w(TAG, layoutToSearch+" not found!");
-            }
+    private View inflateLayout(LayoutInflater inflater) {
+        String layoutToSearch = StringUtils.join(StringUtils.uncapitalize(((InterceptorFragment)mCallbacks).getClass().getSimpleName()).split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
+        int layoutId = ResourceUtils.getLayoutId(getContext(), layoutToSearch);
+        if (layoutId > 0) {
+            return inflater.inflate(layoutId, null);
+        } else {
+            Log.w(TAG, layoutToSearch+" not found!");
         }
         return null;
     }

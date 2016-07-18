@@ -28,6 +28,12 @@ public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> exte
     private InterceptorFragmentManager mInterceptorManager;
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getInterceptorManager().onSaveInstanceStateInterceptors(outState);
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         getInterceptorManager().onAttachInterceptors(activity);
@@ -41,66 +47,66 @@ public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> exte
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getInterceptorManager().onCreateInterceptors(getActivity(), savedInstanceState);
+        getInterceptorManager().onCreateInterceptors(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getInterceptorManager().onCreateViewInterceptors(getActivity(), inflater, container, savedInstanceState);
+        return getInterceptorManager().onCreateViewInterceptors(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getInterceptorManager().onViewCreatedInterceptors(getActivity(), view, savedInstanceState);
+        getInterceptorManager().onViewCreatedInterceptors(view, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getInterceptorManager().onActivityCreatedInterceptors(getActivity(), savedInstanceState);
+        getInterceptorManager().onActivityCreatedInterceptors(savedInstanceState);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getInterceptorManager().onResumeInterceptors(getActivity());
+        getInterceptorManager().onResumeInterceptors();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        getInterceptorManager().onStartInterceptors(getActivity());
+        getInterceptorManager().onStartInterceptors();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        getInterceptorManager().onStopInterceptors(getActivity());
+        getInterceptorManager().onStopInterceptors();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getInterceptorManager().onPauseInterceptors(getActivity());
+        getInterceptorManager().onPauseInterceptors();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        getInterceptorManager().onDestroyViewInterceptors(getActivity());
+        getInterceptorManager().onDestroyViewInterceptors();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getInterceptorManager().onDestroyInterceptors(getActivity());
+        getInterceptorManager().onDestroyInterceptors();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        getInterceptorManager().onDetachInterceptors(getActivity());
+        getInterceptorManager().onDetachInterceptors();
     }
 
     /* Callbacks */
@@ -108,13 +114,13 @@ public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> exte
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getInterceptorManager().onActivityResultInterceptors(getActivity(), requestCode, resultCode, data);
+        getInterceptorManager().onActivityResultInterceptors(requestCode, resultCode, data);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getInterceptorManager().onConfigurationChangedInterceptors(getActivity(), newConfig);
+        getInterceptorManager().onConfigurationChangedInterceptors(newConfig);
     }
 
     /* Support methods */

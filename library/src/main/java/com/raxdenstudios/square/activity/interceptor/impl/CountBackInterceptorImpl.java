@@ -38,17 +38,17 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
 
     public static class CountBackConfiguration {
         public String exitMessage;
-        public CountBackConfiguration(Context context) {}
+        public CountBackConfiguration() {}
     }
 
     public static class DefaultCountBackConfiguration extends CountBackConfiguration {
         public DefaultCountBackConfiguration(Context context) {
-            super(context);
             this.exitMessage = context.getString(R.string.app__count_back_exit_message);
         }
     }
 
     public CountBackInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof CountBackInterceptor)) {
             throw new IllegalStateException("Activity must implement CountBackInterceptor.");
         }
@@ -56,21 +56,21 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
-        mConfig = new DefaultCountBackConfiguration(context);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
+        mConfig = new DefaultCountBackConfiguration(getContext());
     }
 
     @Override
-    public boolean onInterceptorBackPressed(Context context) {
-        if (context instanceof InterceptorActivity) {
-            if (((InterceptorActivity) context).getFragmentManager().getBackStackEntryCount() > 0) {
+    public boolean onInterceptorBackPressed() {
+        if (mActivity instanceof InterceptorActivity) {
+            if (mActivity.getFragmentManager().getBackStackEntryCount() > 0) {
                 return false;
             }
         }
 
         if (exitToast == null) {
-            exitToast = Toast.makeText(context, mConfig.exitMessage, Toast.LENGTH_SHORT);
+            exitToast = Toast.makeText(getContext(), mConfig.exitMessage, Toast.LENGTH_SHORT);
         }
 
         if (countBackToExit > 0) {
@@ -86,8 +86,8 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl implements
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
-        super.onInterceptorDestroy(context);
+    public void onInterceptorDestroy() {
+        super.onInterceptorDestroy();
 
         removeCallbacks();
         destroyToast();

@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,7 @@ public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implem
     private View mInflateLayout;
 
     public InflateLayoutInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof InflateLayoutInterceptor)) {
             throw new IllegalStateException("Activity must implement InflateLayoutInterceptor.");
         }
@@ -29,17 +29,17 @@ public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl implem
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
         if (mCallbacks != null) {
-            mInflateLayout = onCreateView(context, ((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
+            mInflateLayout = onCreateView(((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
             if (mInflateLayout != null) {
                 ((InterceptorActivity)mCallbacks).setContentView(mInflateLayout);
             }
         }
     }
 
-    private View onCreateView(Context context, LayoutInflater inflater, Bundle savedInstanceState) {
+    private View onCreateView(LayoutInflater inflater, Bundle savedInstanceState) {
         View view = null;
         if (mCallbacks != null) {
             view = mCallbacks.onCreateLayout(inflater, (ViewGroup) view, savedInstanceState);

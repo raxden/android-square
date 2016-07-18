@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +24,7 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl im
     private View mInflateLayout;
 
     public AutoInflateLayoutInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof AutoInflateLayoutInterceptor)) {
             throw new IllegalStateException("Activity must implement AutoInflateLayoutInterceptor.");
         }
@@ -32,11 +32,11 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl im
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        super.onInterceptorCreate(context, savedInstanceState);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
         if (mCallbacks != null && mCallbacks instanceof InterceptorActivity) {
-            mInflateLayout = onCreateView(context, ((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
+            mInflateLayout = onCreateView(((InterceptorActivity)mCallbacks).getLayoutInflater(), savedInstanceState);
             if (mInflateLayout != null) {
                 ((InterceptorActivity)mCallbacks).setContentView(mInflateLayout);
             }
@@ -44,17 +44,17 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl im
 
     }
 
-    private View onCreateView(Context context, LayoutInflater inflater, Bundle savedInstanceState) {
+    private View onCreateView(LayoutInflater inflater, Bundle savedInstanceState) {
         View view = null;
         if (mCallbacks != null) {
-            view = inflateLayout(context, inflater);
+            view = inflateLayout(inflater);
         }
         return view;
     }
 
-    private View inflateLayout(Context context, LayoutInflater inflater) {
-        String layoutToSearch = StringUtils.join(StringUtils.uncapitalize(context.getClass().getSimpleName()).split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
-        int layoutId = ResourceUtils.getLayoutId(context, layoutToSearch);
+    private View inflateLayout(LayoutInflater inflater) {
+        String layoutToSearch = StringUtils.join(StringUtils.uncapitalize(mActivity.getClass().getSimpleName()).split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
+        int layoutId = ResourceUtils.getLayoutId(getContext(), layoutToSearch);
         if (layoutId > 0) {
             return inflater.inflate(layoutId, null);
         }

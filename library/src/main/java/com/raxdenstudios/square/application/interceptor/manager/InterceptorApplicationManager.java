@@ -1,10 +1,9 @@
 package com.raxdenstudios.square.application.interceptor.manager;
 
-import android.content.Context;
+import android.app.Application;
 import android.content.res.Configuration;
 import android.util.Log;
 
-import com.raxdenstudios.square.application.InterceptorMultiDexApplication;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
 import com.raxdenstudios.square.application.interceptor.impl.LocaleInterceptorImpl;
 
@@ -20,26 +19,22 @@ public class InterceptorApplicationManager {
 
     protected List<IInterceptorApplication> interceptors;
 
-    public InterceptorApplicationManager(com.raxdenstudios.square.application.InterceptorApplication application) {
+    public InterceptorApplicationManager(Application application) {
         if (application != null) initInterceptors(application);
     }
 
-    public InterceptorApplicationManager(InterceptorMultiDexApplication application) {
-        if (application != null) initInterceptors(application);
-    }
-
-    public void onConfigurationChanged(Context context, Configuration newConfig) {
+    public void onConfigurationChanged(Configuration newConfig) {
         if (interceptors != null) {
             for (IInterceptorApplication interceptor : interceptors) {
-                interceptor.onConfigurationChanged(context, newConfig);
+                interceptor.onConfigurationChanged(newConfig);
             }
         }
     }
 
-    public void onCreateInterceptors(Context context) {
+    public void onCreateInterceptors() {
         if (interceptors != null) {
             for (IInterceptorApplication interceptor : interceptors) {
-                interceptor.onCreate(context);
+                interceptor.onCreate();
             }
         }
     }
@@ -57,17 +52,7 @@ public class InterceptorApplicationManager {
     }
 
 
-    private void initInterceptors(com.raxdenstudios.square.application.InterceptorApplication application) {
-        Log.d(TAG, "========== Prepare to init application interceptors ==========");
-        interceptors = new ArrayList<>();
-        if (application instanceof LocaleInterceptor) {
-            Log.d(TAG, "....."+LocaleInterceptor.class.getSimpleName()+" loaded!");
-            interceptors.add(new LocaleInterceptorImpl(application));
-        }
-        Log.d(TAG, "=========================================================");
-    }
-
-    private void initInterceptors(InterceptorMultiDexApplication application) {
+    private void initInterceptors(Application application) {
         Log.d(TAG, "========== Prepare to init application interceptors ==========");
         interceptors = new ArrayList<>();
         if (application instanceof LocaleInterceptor) {

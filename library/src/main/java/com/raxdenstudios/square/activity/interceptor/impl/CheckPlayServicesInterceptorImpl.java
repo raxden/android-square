@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.Utils;
@@ -18,6 +17,7 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl im
     private CheckPlayServicesInterceptor mCallbacks;
 
     public CheckPlayServicesInterceptorImpl(Activity activity) {
+        super(activity);
         if (!(activity instanceof CheckPlayServicesInterceptor)) {
             throw new IllegalStateException("Activity must implement CheckPlayServicesInterceptor.");
         }
@@ -25,9 +25,9 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl im
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle bundle) {
-        super.onInterceptorCreate(context, bundle);
-        if (!Utils.checkPlayServices(context)) {
+    public void onInterceptorCreate(Bundle bundle) {
+        super.onInterceptorCreate(bundle);
+        if (!Utils.checkPlayServices(getContext())) {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesNotSupported();
         } else {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesSupported();
@@ -35,9 +35,9 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl im
     }
 
     @Override
-    public void onInterceptorResume(Context context) {
-        super.onInterceptorResume(context);
-        if (!Utils.checkPlayServices(context)) {
+    public void onInterceptorResume() {
+        super.onInterceptorResume();
+        if (!Utils.checkPlayServices(getContext())) {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesNotSupported();
         } else {
             if (mCallbacks != null) mCallbacks.onGooglePlayServicesSupported();

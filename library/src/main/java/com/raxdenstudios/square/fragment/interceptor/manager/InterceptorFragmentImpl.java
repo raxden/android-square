@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.fragment.interceptor.manager;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,10 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.square.fragment.InterceptorFragment;
+
 /**
  * Created by agomez on 02/06/2015.
  */
 public class InterceptorFragmentImpl implements IInterceptorFragment {
+
+    protected Fragment mFragment;
+
+    public InterceptorFragmentImpl(Fragment fragment) {
+        mFragment = fragment;
+        checkContextIfInterceptorFragmentInstance(fragment);
+    }
+
+    @Override
+    public void onInterceptorSaveInstanceState(Bundle outState) {
+
+    }
 
     @Override
     public void onInterceptorAttach(Activity activity) {
@@ -25,68 +40,82 @@ public class InterceptorFragmentImpl implements IInterceptorFragment {
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
+    public void onInterceptorCreate(Bundle savedInstanceState) {
 
     }
 
     @Override
-    public View onInterceptorCreateView(Context context, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return null;
     }
 
     @Override
-    public void onInterceptorViewCreated(Context context, View view, Bundle savedInstanceState) {
+    public void onInterceptorViewCreated(View view, Bundle savedInstanceState) {
 
     }
 
     @Override
-    public void onInterceptorActivityCreated(Context context, Bundle savedInstanceState) {
+    public void onInterceptorActivityCreated(Bundle savedInstanceState) {
 
     }
 
     @Override
-    public void onInterceptorStart(Context context) {
+    public void onInterceptorStart() {
 
     }
 
     @Override
-    public void onInterceptorResume(Context context) {
+    public void onInterceptorResume() {
 
     }
 
     @Override
-    public void onInterceptorPause(Context context) {
+    public void onInterceptorPause() {
 
     }
 
     @Override
-    public void onInterceptorStop(Context context) {
+    public void onInterceptorStop() {
 
     }
 
     @Override
-    public void onInterceptorDestroyView(Context context) {
+    public void onInterceptorDestroyView() {
 
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
+    public void onInterceptorDestroy() {
 
     }
 
     @Override
-    public void onInterceptorDetach(Context context) {
+    public void onInterceptorDetach() {
 
     }
 
     @Override
-    public void onInterceptorActivityResult(Context context, int requestCode, int resultCode, Intent data) {
+    public void onInterceptorActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
 
     @Override
-    public void onInterceptorConfigurationChanged(Context context, Configuration configuration) {
+    public void onInterceptorConfigurationChanged(Configuration configuration) {
 
+    }
+
+    public Activity getActivity() {
+        return mFragment.getActivity();
+    }
+
+    public Context getContext() {
+        return mFragment.getActivity();
+    }
+
+    private void checkContextIfInterceptorFragmentInstance(Fragment fragment) {
+        if (!(fragment instanceof InterceptorFragment)) {
+            throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorFragment");
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -15,64 +16,81 @@ public class InterceptorActivityImpl implements IInterceptorActivity {
 
     private static final String TAG = InterceptorActivityImpl.class.getSimpleName();
 
+    protected Activity mActivity;
+
+    public InterceptorActivityImpl(Activity activity) {
+        mActivity = activity;
+        checkContextIfInterceptorActivityInstance(activity);
+    }
+
     @Override
-    public void onInterceptorActivityResult(Context context, int requestCode, int resultCode, Intent data) {
+    public void onInterceptorSaveInstanceState(Bundle outState) {
 
     }
 
     @Override
-    public void onInterceptorConfigurationChanged(Context context, Configuration configuration) {
+    public void onInterceptorActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
 
     @Override
-    public void onInterceptorCreate(Context context, Bundle savedInstanceState) {
-        checkContextIfModularActivityInstance(context);
-    }
-
-    @Override
-    public void onInterceptorPostCreate(Context context, Bundle savedInstanceState) {
+    public void onInterceptorConfigurationChanged(Configuration configuration) {
 
     }
 
     @Override
-    public void onInterceptorPrepareOptionsMenu(Context context, Menu menu) {
+    public void onInterceptorCreate(Bundle savedInstanceState) {
 
     }
 
     @Override
-    public void onInterceptorResume(Context context) {
+    public void onInterceptorPostCreate(Bundle savedInstanceState) {
 
     }
 
     @Override
-    public void onInterceptorStart(Context context) {
+    public void onInterceptorPrepareOptionsMenu(Menu menu) {
 
     }
 
     @Override
-    public void onInterceptorStop(Context context) {
+    public void onInterceptorResume() {
 
     }
 
     @Override
-    public void onInterceptorPause(Context context) {
+    public void onInterceptorStart() {
 
     }
 
     @Override
-    public boolean onInterceptorBackPressed(Context context) {
+    public void onInterceptorStop() {
+
+    }
+
+    @Override
+    public void onInterceptorPause() {
+
+    }
+
+    @Override
+    public boolean onInterceptorBackPressed() {
         return false;
     }
 
     @Override
-    public void onInterceptorDestroy(Context context) {
+    public void onInterceptorDestroy() {
 
     }
 
-    protected void checkContextIfModularActivityInstance(Context context) {
-        if (!(context instanceof InterceptorActivity)) {
+    public Context getContext() {
+        return mActivity;
+    }
+
+    private void checkContextIfInterceptorActivityInstance(Activity activity) {
+        if (!(activity instanceof InterceptorActivity)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorActivity");
         }
     }
+
 }
