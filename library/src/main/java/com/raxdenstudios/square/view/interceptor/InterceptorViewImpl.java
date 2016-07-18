@@ -2,6 +2,7 @@ package com.raxdenstudios.square.view.interceptor;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Parcelable;
 import android.view.View;
 
 import com.raxdenstudios.square.view.InterceptorView;
@@ -16,6 +17,16 @@ public class InterceptorViewImpl implements IInterceptorView {
     public InterceptorViewImpl(View view) {
         mView = view;
         checkContextIfInterceptorViewInstance(view);
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        return null;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+
     }
 
     @Override

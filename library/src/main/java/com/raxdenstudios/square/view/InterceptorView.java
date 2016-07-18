@@ -2,6 +2,7 @@ package com.raxdenstudios.square.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -30,6 +31,18 @@ public class InterceptorView extends View {
 
     public InterceptorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        super.onSaveInstanceState();
+        return getInterceptorManager().onSaveInstanceStateInterceptors();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        super.onRestoreInstanceState(state);
+        getInterceptorManager().onRestoreInstanceStateInterceptors(state);
     }
 
     @Override

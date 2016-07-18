@@ -2,6 +2,7 @@ package com.raxdenstudios.square.view.interceptor.manager;
 
 
 import android.graphics.Canvas;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -21,6 +22,26 @@ public class InterceptorViewManager {
 
     public InterceptorViewManager(View view) {
         if (view != null) initInterceptors(view);
+    }
+
+    public Parcelable onSaveInstanceStateInterceptors() {
+        if (interceptors != null) {
+            for (IInterceptorView interceptor : interceptors) {
+                Parcelable parcelable = interceptor.onSaveInstanceState();
+                if (parcelable != null) {
+                    return parcelable;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void onRestoreInstanceStateInterceptors(Parcelable state) {
+        if (interceptors != null) {
+            for (IInterceptorView interceptor : interceptors) {
+                interceptor.onRestoreInstanceState(state);
+            }
+        }
     }
 
     public void onAttachedToWindowInterceptors() {

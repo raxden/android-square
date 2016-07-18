@@ -1,11 +1,16 @@
 package com.raxdenstudios.square.view.interceptor;
 
 import android.graphics.Canvas;
+import android.os.Parcelable;
 
 /**
  * Created by Raxden on 18/07/2016.
  */
 public interface IInterceptorView {
+
+    Parcelable onSaveInstanceState();
+
+    void onRestoreInstanceState(Parcelable state);
 
     void onAttachedToWindow();
 
