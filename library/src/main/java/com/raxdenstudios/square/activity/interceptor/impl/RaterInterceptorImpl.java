@@ -12,16 +12,20 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class RaterInterceptorImpl extends InterceptorActivityImpl<RaterInterceptor>
+public class RaterInterceptorImpl extends InterceptorActivityImpl
         implements RaterInterceptorCallback {
 
     private static final String TAG = RaterInterceptor.class.getSimpleName();
 
-    private RaterManager mRaterManager;
     public enum RaterOption {RATE, REMIND_LATER, DONT_SHOW_AGAIN}
+
+    private RaterInterceptor mCallbacks;
+    private RaterManager mRaterManager;
 
     public RaterInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (RaterInterceptor)activity;
     }
 
     @Override

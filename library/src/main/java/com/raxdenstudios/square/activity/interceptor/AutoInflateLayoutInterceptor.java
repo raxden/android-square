@@ -9,7 +9,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.AutoInflateLayoutI
 /**
  * Created by agomez on 22/05/2015.
  */
-public interface AutoInflateLayoutInterceptor extends Interceptor<AutoInflateLayoutInterceptorCallback> {
+public interface AutoInflateLayoutInterceptor extends Interceptor {
+
+    void onInterceptorCreated(AutoInflateLayoutInterceptorCallback callback);
 
     void onViewCreated(View view, Bundle savedInstanceState);
 

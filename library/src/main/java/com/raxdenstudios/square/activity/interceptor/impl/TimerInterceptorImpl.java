@@ -11,13 +11,14 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 11/05/2105.
  */
-public class TimerInterceptorImpl extends InterceptorActivityImpl<TimerInterceptor>
+public class TimerInterceptorImpl extends InterceptorActivityImpl
         implements TimerInterceptorCallback {
 
     private static final String TAG = TimerInterceptorImpl.class.getSimpleName();
 
     private final static int DEFAULT_TIME_MS = 3000;
 
+    private TimerInterceptor mCallbacks;
     private Handler mHandler = new Handler();
     private long defaultTime;
     private long time;
@@ -39,6 +40,8 @@ public class TimerInterceptorImpl extends InterceptorActivityImpl<TimerIntercept
 
     public TimerInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (TimerInterceptor)activity;
 
         if (defaultTime == 0) {
             defaultTime = DEFAULT_TIME_MS;

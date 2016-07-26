@@ -17,15 +17,18 @@ import java.util.Locale;
 /**
  * Created by agomez on 02/06/2015.
  */
-public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl<AutoInflateViewInterceptor>
-        implements AutoInflateViewInterceptorCallback {
+public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl implements AutoInflateViewInterceptorCallback {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 
+    private AutoInflateViewInterceptor mCallbacks;
     private View mInflateView;
 
     public AutoInflateViewInterceptorImpl(Fragment fragment) {
         super(fragment);
+
+        mCallbacks = (AutoInflateViewInterceptor)fragment;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
@@ -45,7 +48,7 @@ public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl<Auto
     public String getLayoutName() {
         return StringUtils
                 .join(StringUtils
-                        .uncapitalize(mFragment.getClass().getSimpleName())
+                        .uncapitalize(getFragment().getClass().getSimpleName())
                         .split("(?=\\p{Upper})"), "_")
                 .toLowerCase(Locale.getDefault());
     }

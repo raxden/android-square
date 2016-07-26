@@ -10,7 +10,9 @@ import com.raxdenstudios.square.fragment.interceptor.callback.WebViewInterceptor
 /**
  * Created by agomez on 16/07/2015.
  */
-public interface WebViewInterceptor extends Interceptor<WebViewInterceptorCallback> {
+public interface WebViewInterceptor extends Interceptor {
+
+    void onInterceptorCreated(WebViewInterceptorCallback callback);
 
     void onConfigureWebSettings(WebSettings settings);
 

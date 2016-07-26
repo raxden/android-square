@@ -10,7 +10,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.FragmentContentInt
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface FragmentContentInterceptor<T extends Fragment> extends Interceptor<FragmentContentInterceptorCallback> {
+public interface FragmentContentInterceptor<T extends Fragment> extends Interceptor {
+
+    void onInterceptorCreated(FragmentContentInterceptorCallback callback);
 
     View onCreateContentFragmentView(Bundle savedInstanceState);
 

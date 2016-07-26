@@ -6,7 +6,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.ShakeDetectorInter
 /**
  * Created by agomez on 06/05/2015.
  */
-public interface ShakeDetectorInterceptor extends Interceptor<ShakeDetectorInterceptorCallback> {
+public interface ShakeDetectorInterceptor extends Interceptor {
+
+    void onInterceptorCreated(ShakeDetectorInterceptorCallback callback);
 
     void shakeDetected();
 

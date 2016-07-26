@@ -6,6 +6,8 @@ import com.raxdenstudios.square.activity.interceptor.callback.CountBackIntercept
 /**
  * Created by agomez on 06/05/2015.
  */
-public interface CountBackInterceptor extends Interceptor<CountBackInterceptorCallback> {
+public interface CountBackInterceptor extends Interceptor {
+
+    void onInterceptorCreated(CountBackInterceptorCallback callback);
 
 }

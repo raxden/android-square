@@ -10,29 +10,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.InterceptorCallback;
 import com.raxdenstudios.square.fragment.InterceptorFragment;
 
 /**
  * Created by agomez on 02/06/2015.
  */
-public class InterceptorFragmentImpl<I extends Interceptor>
-        implements IInterceptorFragment, InterceptorCallback {
+public class InterceptorFragmentImpl implements IInterceptorFragment {
 
     private static final String TAG = InterceptorFragmentImpl.class.getSimpleName();
 
-    protected Fragment mFragment;
-    protected I mCallbacks;
+    private Fragment mFragment;
 
     public InterceptorFragmentImpl(Fragment fragment) {
         if (!(fragment instanceof InterceptorFragment)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorFragment");
         }
         mFragment = fragment;
-
-        mCallbacks = (I)mFragment;
-        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
@@ -113,6 +106,10 @@ public class InterceptorFragmentImpl<I extends Interceptor>
     @Override
     public void onInterceptorConfigurationChanged(Configuration configuration) {
 
+    }
+
+    public Fragment getFragment() {
+        return mFragment;
     }
 
     public Activity getActivity() {

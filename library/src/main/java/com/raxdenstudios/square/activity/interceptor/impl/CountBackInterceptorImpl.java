@@ -13,12 +13,14 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class CountBackInterceptorImpl extends InterceptorActivityImpl<CountBackInterceptor>
+public class CountBackInterceptorImpl extends InterceptorActivityImpl
         implements CountBackInterceptorCallback {
 
     private static final String TAG = CountBackInterceptor.class.getSimpleName();
 
     private static final int DEFAULT_NUM_COUNT_BACK = 1;
+
+    private CountBackInterceptor mCallbacks;
 
     /* Variables to handle the exit */
     private Toast exitToast;
@@ -38,6 +40,8 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl<CountBackI
 
     public CountBackInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (CountBackInterceptor)activity;
 
         if (!StringUtils.hasText(mMessage)) {
             mMessage = getContext().getString(R.string.app__count_back_exit_message);
@@ -50,7 +54,7 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl<CountBackI
 
     @Override
     public boolean onInterceptorBackPressed() {
-        if (mActivity.getFragmentManager().getBackStackEntryCount() > 0) {
+        if (getActivity().getFragmentManager().getBackStackEntryCount() > 0) {
             return false;
         }
         if (exitToast == null) {

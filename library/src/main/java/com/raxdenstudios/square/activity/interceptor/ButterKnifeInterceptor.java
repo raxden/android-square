@@ -6,5 +6,8 @@ import com.raxdenstudios.square.activity.interceptor.callback.ButterKnifeInterce
 /**
  * Created by Raxden on 23/07/2016.
  */
-public interface ButterKnifeInterceptor extends Interceptor<ButterKnifeInterceptorCallback> {
+public interface ButterKnifeInterceptor extends Interceptor {
+
+    void onInterceptorCreated(ButterKnifeInterceptorCallback callback);
+
 }

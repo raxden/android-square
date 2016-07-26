@@ -13,7 +13,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.NavigationDrawerIn
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptor<T extends Fragment> extends Interceptor<NavigationDrawerInterceptorCallback> {
+public interface NavigationDrawerInterceptor<T extends Fragment> extends Interceptor {
+
+    void onInterceptorCreated(NavigationDrawerInterceptorCallback callback);
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 

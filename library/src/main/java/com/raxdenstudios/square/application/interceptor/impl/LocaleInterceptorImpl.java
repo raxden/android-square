@@ -17,15 +17,19 @@ import java.util.Locale;
 /**
  * Created by agomez on 13/07/2015.
  */
-public class LocaleInterceptorImpl extends InterceptorApplicationImpl<LocaleInterceptor>
-        implements LocaleInterceptorCallback {
+public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptorCallback {
+
+    private static final String TAG = LocaleInterceptorImpl.class.getSimpleName();
 
     public static final String APP_LANGUAGE = "app_language";
 
+    private LocaleInterceptor mCallbacks;
     private Locale appLocale;
 
     public LocaleInterceptorImpl(Application application) {
         super(application);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (LocaleInterceptor)application;
     }
 
     @Override

@@ -1,35 +1,30 @@
 package com.raxdenstudios.square.activity.interceptor.manager;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
-import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.InterceptorCallback;
 import com.raxdenstudios.square.activity.InterceptorActivity;
 
 /**
  * Created by agomez on 21/04/2015.
  */
-public class InterceptorActivityImpl<I extends Interceptor>
-        implements IInterceptorActivity, InterceptorCallback {
+public class InterceptorActivityImpl implements IInterceptorActivity {
 
     private static final String TAG = InterceptorActivityImpl.class.getSimpleName();
 
-    protected Activity mActivity;
-    protected I mCallbacks;
+    private Activity mActivity;
 
     public InterceptorActivityImpl(Activity activity) {
         if (!(activity instanceof InterceptorActivity)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorActivity");
         }
         mActivity = activity;
-
-        mCallbacks = (I)activity;
-        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
@@ -100,6 +95,22 @@ public class InterceptorActivityImpl<I extends Interceptor>
 
     public Context getContext() {
         return mActivity;
+    }
+
+    public Activity getActivity() {
+        return mActivity;
+    }
+
+    public FragmentManager getFragmentManager() {
+        return mActivity.getFragmentManager();
+    }
+
+    public FragmentTransaction getFragmentTransaction() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            return fragmentManager.beginTransaction();
+        }
+        return null;
     }
 
 }

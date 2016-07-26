@@ -12,24 +12,27 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 25/05/2015.
  */
-public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl<InflateLayoutInterceptor>
+public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl
         implements InflateLayoutInterceptorCallback {
 
     private static final String TAG = InflateLayoutInterceptorImpl.class.getSimpleName();
 
+    private InflateLayoutInterceptor mCallbacks;
     private View mInflateLayout;
 
     public InflateLayoutInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (InflateLayoutInterceptor)activity;
     }
 
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
 
-        mInflateLayout = onCreateView(mActivity.getLayoutInflater(), savedInstanceState);
+        mInflateLayout = onCreateView(getActivity().getLayoutInflater(), savedInstanceState);
         if (mInflateLayout != null) {
-            mActivity.setContentView(mInflateLayout);
+            getActivity().setContentView(mInflateLayout);
             mCallbacks.onViewCreated(mInflateLayout, savedInstanceState);
         }
     }

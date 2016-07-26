@@ -16,10 +16,12 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 08/05/2015.
  */
-public class NetworkInterceptorImpl extends InterceptorActivityImpl<NetworkInterceptor>
+public class NetworkInterceptorImpl extends InterceptorActivityImpl
         implements NetworkInterceptorCallback {
 
     private static final String TAG = NetworkInterceptorImpl.class.getSimpleName();
+
+    private NetworkInterceptor mCallbacks;
 
     protected BroadcastReceiver mNetworkReceiver = new BroadcastReceiver() {
 
@@ -34,6 +36,8 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl<NetworkInter
 
     public NetworkInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (NetworkInterceptor)activity;
     }
 
     @Override

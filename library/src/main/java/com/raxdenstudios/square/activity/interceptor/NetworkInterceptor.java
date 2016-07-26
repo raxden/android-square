@@ -10,7 +10,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.NetworkInterceptor
 /**
  * Created by agomez on 08/05/2015.
  */
-public interface NetworkInterceptor extends Interceptor<NetworkInterceptorCallback> {
+public interface NetworkInterceptor extends Interceptor {
+
+    void onInterceptorCreated(NetworkInterceptorCallback callback);
 
     Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter);
 

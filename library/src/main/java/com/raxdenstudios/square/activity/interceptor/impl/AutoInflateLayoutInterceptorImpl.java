@@ -16,24 +16,27 @@ import java.util.Locale;
 /**
  * Created by agomez on 22/05/2015.
  */
-public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl<AutoInflateLayoutInterceptor>
+public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl
         implements AutoInflateLayoutInterceptorCallback {
 
     private static final String TAG = AutoInflateLayoutInterceptorImpl.class.getSimpleName();
 
+    private AutoInflateLayoutInterceptor mCallbacks;
     private View mInflateLayout;
 
     public AutoInflateLayoutInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (AutoInflateLayoutInterceptor)activity;
     }
 
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
 
-        mInflateLayout = onCreateView(mActivity.getLayoutInflater());
+        mInflateLayout = onCreateView(getActivity().getLayoutInflater());
         if (mInflateLayout != null) {
-            mActivity.setContentView(mInflateLayout);
+            getActivity().setContentView(mInflateLayout);
             mCallbacks.onViewCreated(mInflateLayout, savedInstanceState);
         }
     }
@@ -53,7 +56,7 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl<Au
     public String getLayoutName() {
         return StringUtils
                 .join(StringUtils
-                        .uncapitalize(mActivity.getClass().getSimpleName())
+                        .uncapitalize(getActivity().getClass().getSimpleName())
                         .split("(?=\\p{Upper})"), "_")
                 .toLowerCase(Locale.getDefault());
     }

@@ -6,6 +6,8 @@ import com.raxdenstudios.square.fragment.interceptor.callback.AutoInflateViewInt
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface AutoInflateViewInterceptor extends Interceptor<AutoInflateViewInterceptorCallback> {
+public interface AutoInflateViewInterceptor extends Interceptor {
+
+    void onInterceptorCreated(AutoInflateViewInterceptorCallback callback);
 
 }

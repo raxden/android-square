@@ -10,19 +10,23 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl<BundleExtrasInterceptor>
+public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl
         implements BundleExtrasInterceptorCallback {
 
     private static final String TAG = BundleExtrasInterceptorImpl.class.getSimpleName();
 
+    private BundleExtrasInterceptor mCallbacks;
+
     public BundleExtrasInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (BundleExtrasInterceptor)activity;
     }
 
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
-        Bundle extras = mActivity.getIntent() != null ? mActivity.getIntent().getExtras() : null;
+        Bundle extras = getActivity().getIntent() != null ? getActivity().getIntent().getExtras() : null;
         mCallbacks.onHandleExtras(savedInstanceState, extras);
     }
 

@@ -15,11 +15,12 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 02/06/2015.
  */
-public class FragmentContentInterceptorImpl extends InterceptorActivityImpl<FragmentContentInterceptor>
+public class FragmentContentInterceptorImpl extends InterceptorActivityImpl
         implements FragmentContentInterceptorCallback {
 
     private static String TAG = FragmentContentInterceptorImpl.class.getSimpleName();
 
+    private FragmentContentInterceptor mCallbacks;
     private View mContentFragmentView;
     private int[] animations = new int[] {
             android.R.animator.fade_in,
@@ -30,6 +31,8 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl<Frag
 
     public FragmentContentInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (FragmentContentInterceptor)activity;
     }
 
     @Override
@@ -145,18 +148,6 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl<Frag
             return fragmentManager.findFragmentById(getFragmentView().getId());
         }
         return null;
-    }
-
-    private FragmentTransaction getFragmentTransaction() {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            return fragmentManager.beginTransaction();
-        }
-        return null;
-    }
-
-    private FragmentManager getFragmentManager() {
-        return mActivity.getFragmentManager();
     }
 
     private void setAnimations(FragmentTransaction fragmentTransaction, int[] animations) {

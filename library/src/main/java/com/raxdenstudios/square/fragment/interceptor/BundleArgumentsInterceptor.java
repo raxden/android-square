@@ -8,7 +8,9 @@ import com.raxdenstudios.square.fragment.interceptor.callback.BundleArgumentsInt
 /**
  * Created by agomez on 22/05/2015.
  */
-public interface BundleArgumentsInterceptor extends Interceptor<BundleArgumentsInterceptorCallback> {
+public interface BundleArgumentsInterceptor extends Interceptor {
+
+    void onInterceptorCreated(BundleArgumentsInterceptorCallback callback);
 
     void onHandleArguments(Bundle savedInstanceState, Bundle arguments);
 

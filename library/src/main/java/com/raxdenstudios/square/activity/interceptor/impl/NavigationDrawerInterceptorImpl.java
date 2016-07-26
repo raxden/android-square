@@ -23,11 +23,12 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl<NavigationDrawerInterceptor>
+public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl
         implements NavigationDrawerInterceptorCallback {
 
     private static final String TAG = NavigationDrawerInterceptorImpl.class.getSimpleName();
 
+    private NavigationDrawerInterceptor mCallbacks;
     private AppCompatActivity mCompatActivity;
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
@@ -42,6 +43,8 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl<Nav
 
     public NavigationDrawerInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (NavigationDrawerInterceptor)activity;
         mCompatActivity = (AppCompatActivity)activity;
     }
 
@@ -323,19 +326,6 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl<Nav
 
     private void onDrawerStateChanged(int newState) {
         if (mCallbacks != null) mCallbacks.onDrawerStateChanged(newState);
-    }
-
-
-    private FragmentTransaction getFragmentTransaction() {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            return fragmentManager.beginTransaction();
-        }
-        return null;
-    }
-
-    private FragmentManager getFragmentManager() {
-        return mActivity.getFragmentManager();
     }
 
     private void setAnimations(FragmentTransaction fragmentTransaction, int[] animations) {

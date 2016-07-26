@@ -11,11 +11,16 @@ import timber.log.Timber;
 /**
  * Created by Raxden on 24/07/2016.
  */
-public class TimberInterceptorImpl extends InterceptorApplicationImpl<TimberInterceptor>
-        implements TimberInterceptorCallback {
+public class TimberInterceptorImpl extends InterceptorApplicationImpl implements TimberInterceptorCallback {
+
+    private static final String TAG = TimberInterceptorImpl.class.getSimpleName();
+
+    private TimberInterceptor mCallbacks;
 
     public TimberInterceptorImpl(Application application) {
         super(application);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (TimberInterceptor)application;
     }
 
     @Override

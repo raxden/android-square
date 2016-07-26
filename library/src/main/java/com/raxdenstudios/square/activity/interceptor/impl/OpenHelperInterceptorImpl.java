@@ -11,15 +11,18 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 08/05/2015.
  */
-public class OpenHelperInterceptorImpl extends InterceptorActivityImpl<OpenHelperInterceptor>
+public class OpenHelperInterceptorImpl extends InterceptorActivityImpl
         implements OpenHelperInterceptorCallback {
 
     private static final String TAG = OpenHelperInterceptorImpl.class.getSimpleName();
 
+    private OpenHelperInterceptor mCallbacks;
     private SQLiteOpenHelper mOpenHelper;
 
     public OpenHelperInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (OpenHelperInterceptor)activity;
     }
 
     @Override

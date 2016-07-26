@@ -10,20 +10,24 @@ import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragment
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl<BundleArgumentsInterceptor>
-        implements BundleArgumentsInterceptorCallback {
+public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl implements BundleArgumentsInterceptorCallback {
 
     private static final String TAG = BundleArgumentsInterceptorImpl.class.getSimpleName();
 
+    private BundleArgumentsInterceptor mCallbacks;
+
     public BundleArgumentsInterceptorImpl(Fragment fragment) {
         super(fragment);
+
+        mCallbacks = (BundleArgumentsInterceptor)fragment;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
 
-        mCallbacks.onHandleArguments(savedInstanceState, mFragment.getArguments());
+        mCallbacks.onHandleArguments(savedInstanceState, getFragment().getArguments());
     }
 
 }

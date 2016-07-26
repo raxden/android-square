@@ -10,7 +10,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.InflateLayoutInter
 /**
  * Created by agomez on 25/05/2015.
  */
-public interface InflateLayoutInterceptor extends Interceptor<InflateLayoutInterceptorCallback> {
+public interface InflateLayoutInterceptor extends Interceptor {
+
+    void onInterceptorCreated(InflateLayoutInterceptorCallback callback);
 
     View onCreateView(LayoutInflater inflater, Bundle savedInstanceState);
 

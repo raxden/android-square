@@ -18,13 +18,13 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by agomez on 24/12/2015.
  */
-public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl<ZXingScannerInterceptor>
+public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl
         implements ZXingScannerInterceptorCallback, ZXingScannerView.ResultHandler {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 
+    private ZXingScannerInterceptor mCallbacks;
     private ZXingScannerView mScannerView;
-
     private boolean mFlash;
     private boolean mAutoFocus;
     private ArrayList<Integer> mSelectedIndices;
@@ -32,6 +32,9 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl<ZXingSc
 
     public ZXingScannerInterceptorImpl(Fragment fragment) {
         super(fragment);
+
+        mCallbacks = (ZXingScannerInterceptor)fragment;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

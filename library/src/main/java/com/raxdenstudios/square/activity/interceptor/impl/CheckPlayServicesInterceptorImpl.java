@@ -11,12 +11,17 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 06/05/2015.
  */
-public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl<CheckPlayServicesInterceptor> implements CheckPlayServicesInterceptorCallback {
+public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl
+        implements CheckPlayServicesInterceptorCallback {
 
     private static final String TAG = CheckPlayServicesInterceptorImpl.class.getSimpleName();
 
+    private CheckPlayServicesInterceptor mCallbacks;
+
     public CheckPlayServicesInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (CheckPlayServicesInterceptor)activity;
     }
 
     @Override

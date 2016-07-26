@@ -8,7 +8,9 @@ import com.raxdenstudios.square.activity.interceptor.callback.BundleExtrasInterc
 /**
  * Created by agomez on 22/05/2015.
  */
-public interface BundleExtrasInterceptor extends Interceptor<BundleExtrasInterceptorCallback> {
+public interface BundleExtrasInterceptor extends Interceptor {
+
+    void onInterceptorCreated(BundleExtrasInterceptorCallback callback);
 
     void onHandleExtras(Bundle savedInstanceState, Bundle extras);
 

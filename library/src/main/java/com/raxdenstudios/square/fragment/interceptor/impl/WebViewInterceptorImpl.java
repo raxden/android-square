@@ -19,14 +19,17 @@ import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragment
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewInterceptorImpl extends InterceptorFragmentImpl<WebViewInterceptor>
-        implements WebViewInterceptorCallback {
+public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptorCallback {
 
+    private WebViewInterceptor mCallbacks;
     private ViewGroup mContainer;
     private WebView mWebView;
 
     public WebViewInterceptorImpl(Fragment fragment) {
         super(fragment);
+
+        mCallbacks = (WebViewInterceptor)fragment;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

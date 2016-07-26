@@ -14,15 +14,18 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
 /**
  * Created by agomez on 21/05/2015.
  */
-public class ToolbarInterceptorImpl extends InterceptorActivityImpl<ToolbarInterceptor>
+public class ToolbarInterceptorImpl extends InterceptorActivityImpl
         implements ToolbarInterceptorCallback {
 
     private static final String TAG = ToolbarInterceptorImpl.class.getSimpleName();
 
+    private ToolbarInterceptor mCallbacks;
     private Toolbar mToolbar;
 
     public ToolbarInterceptorImpl(Activity activity) {
         super(activity);
+        mCallbacks.onInterceptorCreated(this);
+        mCallbacks = (ToolbarInterceptor)activity;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl<ToolbarInter
 
         mToolbar = mCallbacks.onCreateToolbarView(savedInstanceState);
         if (mToolbar != null) {
-            AppCompatActivity compatActivity = ((AppCompatActivity)mActivity);
+            AppCompatActivity compatActivity = ((AppCompatActivity)getActivity());
             compatActivity.setSupportActionBar(mToolbar);
             ActionBar actionBar = compatActivity.getSupportActionBar();
             if (actionBar != null) {
@@ -40,7 +43,7 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl<ToolbarInter
             mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    return mActivity.onOptionsItemSelected(item);
+                    return getActivity().onOptionsItemSelected(item);
                 }
             });
             mCallbacks.onToolbarViewCreated(mToolbar, savedInstanceState);
