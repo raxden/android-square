@@ -14,6 +14,7 @@ import com.raxdenstudios.square.activity.interceptor.ButterKnifeInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CountBackInterceptor;
 import com.raxdenstudios.square.activity.interceptor.FragmentContentInterceptor;
+import com.raxdenstudios.square.activity.interceptor.IcepickInterceptor;
 import com.raxdenstudios.square.activity.interceptor.InflateLayoutInterceptor;
 import com.raxdenstudios.square.activity.interceptor.NavigationDrawerInterceptor;
 import com.raxdenstudios.square.activity.interceptor.NetworkInterceptor;
@@ -28,6 +29,7 @@ import com.raxdenstudios.square.activity.interceptor.impl.ButterKnifeInterceptor
 import com.raxdenstudios.square.activity.interceptor.impl.CheckPlayServicesInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.CountBackInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.FragmentContentInterceptorImpl;
+import com.raxdenstudios.square.activity.interceptor.impl.IcepickInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.InflateLayoutInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.NavigationDrawerInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.NetworkInterceptorImpl;
@@ -186,6 +188,10 @@ public class InterceptorActivityManager {
         if (activity instanceof ButterKnifeInterceptor) {
             Log.d(TAG, "....." + ButterKnifeInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new ButterKnifeInterceptorImpl(activity));
+        }
+        if (activity instanceof IcepickInterceptor) {
+            Log.d(TAG, "....." + IcepickInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new IcepickInterceptorImpl(activity));
         }
         if (activity instanceof BundleExtrasInterceptor) {
             Log.d(TAG, "....." + BundleExtrasInterceptor.class.getSimpleName() + " loaded!");
