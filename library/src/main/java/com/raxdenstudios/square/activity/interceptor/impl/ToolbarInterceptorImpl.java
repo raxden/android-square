@@ -8,14 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.raxdenstudios.square.activity.interceptor.ToolbarInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.ToolbarInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.ToolbarInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 21/05/2015.
  */
 public class ToolbarInterceptorImpl extends InterceptorActivityImpl
-        implements ToolbarInterceptorCallback {
+        implements ToolbarInterceptorDelegate {
 
     private static final String TAG = ToolbarInterceptorImpl.class.getSimpleName();
 

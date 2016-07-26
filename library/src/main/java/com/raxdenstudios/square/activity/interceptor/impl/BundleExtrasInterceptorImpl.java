@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.raxdenstudios.square.activity.interceptor.BundleExtrasInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.BundleExtrasInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.BundleExtrasInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 22/05/2015.
  */
 public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl
-        implements BundleExtrasInterceptorCallback {
+        implements BundleExtrasInterceptorDelegate {
 
     private static final String TAG = BundleExtrasInterceptorImpl.class.getSimpleName();
 

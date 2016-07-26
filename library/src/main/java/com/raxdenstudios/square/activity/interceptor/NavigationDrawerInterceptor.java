@@ -8,14 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.NavigationDrawerInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.NavigationDrawerInterceptorDelegate;
 
 /**
  * Created by agomez on 21/05/2015.
  */
 public interface NavigationDrawerInterceptor<T extends Fragment> extends Interceptor {
 
-    void onInterceptorCreated(NavigationDrawerInterceptorCallback callback);
+    void onInterceptorCreated(NavigationDrawerInterceptorDelegate callback);
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 

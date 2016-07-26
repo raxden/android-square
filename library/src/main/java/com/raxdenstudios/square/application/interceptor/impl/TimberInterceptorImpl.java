@@ -3,7 +3,7 @@ package com.raxdenstudios.square.application.interceptor.impl;
 import android.app.Application;
 
 import com.raxdenstudios.square.application.interceptor.TimberInterceptor;
-import com.raxdenstudios.square.application.interceptor.callback.TimberInterceptorCallback;
+import com.raxdenstudios.square.application.interceptor.delegate.TimberInterceptorDelegate;
 import com.raxdenstudios.square.application.interceptor.manager.InterceptorApplicationImpl;
 
 import timber.log.Timber;
@@ -11,7 +11,7 @@ import timber.log.Timber;
 /**
  * Created by Raxden on 24/07/2016.
  */
-public class TimberInterceptorImpl extends InterceptorApplicationImpl implements TimberInterceptorCallback {
+public class TimberInterceptorImpl extends InterceptorApplicationImpl implements TimberInterceptorDelegate {
 
     private static final String TAG = TimberInterceptorImpl.class.getSimpleName();
 

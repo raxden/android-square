@@ -7,7 +7,7 @@ import android.view.View;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.raxdenstudios.square.fragment.interceptor.ZXingScannerInterceptor;
-import com.raxdenstudios.square.fragment.interceptor.callback.ZXingScannerInterceptorCallback;
+import com.raxdenstudios.square.fragment.interceptor.delegate.ZXingScannerInterceptorDelegate;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * Created by agomez on 24/12/2015.
  */
 public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl
-        implements ZXingScannerInterceptorCallback, ZXingScannerView.ResultHandler {
+        implements ZXingScannerInterceptorDelegate, ZXingScannerView.ResultHandler {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 

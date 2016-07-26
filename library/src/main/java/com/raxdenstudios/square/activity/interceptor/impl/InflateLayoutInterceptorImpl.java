@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.raxdenstudios.square.activity.interceptor.InflateLayoutInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.InflateLayoutInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.InflateLayoutInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 25/05/2015.
  */
 public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl
-        implements InflateLayoutInterceptorCallback {
+        implements InflateLayoutInterceptorDelegate {
 
     private static final String TAG = InflateLayoutInterceptorImpl.class.getSimpleName();
 

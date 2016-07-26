@@ -7,14 +7,14 @@ import android.widget.Toast;
 import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.activity.interceptor.CountBackInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.CountBackInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.CountBackInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 06/05/2015.
  */
 public class CountBackInterceptorImpl extends InterceptorActivityImpl
-        implements CountBackInterceptorCallback {
+        implements CountBackInterceptorDelegate {
 
     private static final String TAG = CountBackInterceptor.class.getSimpleName();
 

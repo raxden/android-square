@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.raxdenstudios.shake.ShakeDetectorHelper;
 import com.raxdenstudios.square.activity.interceptor.ShakeDetectorInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.ShakeDetectorInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.ShakeDetectorInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
@@ -14,7 +14,7 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
  * 1/2*g*t^2*3/4).
  */
 public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl
-        implements ShakeDetectorInterceptorCallback {
+        implements ShakeDetectorInterceptorDelegate {
 
     private ShakeDetectorInterceptor mCallbacks;
 

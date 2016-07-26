@@ -1,14 +1,14 @@
 package com.raxdenstudios.square.activity.interceptor;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.CheckPlayServicesInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.CheckPlayServicesInterceptorDelegate;
 
 /**
  * Created by agomez on 06/05/2015.
  */
 public interface CheckPlayServicesInterceptor extends Interceptor {
 
-    void onInterceptorCreated(CheckPlayServicesInterceptorCallback callback);
+    void onInterceptorCreated(CheckPlayServicesInterceptorDelegate callback);
 
     void onGooglePlayServicesSupported();
 

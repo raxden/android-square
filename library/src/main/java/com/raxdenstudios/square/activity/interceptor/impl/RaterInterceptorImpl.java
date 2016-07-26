@@ -6,14 +6,14 @@ import android.os.Bundle;
 import com.raxdenstudios.rater.RaterHelper;
 import com.raxdenstudios.rater.RaterManager;
 import com.raxdenstudios.square.activity.interceptor.RaterInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.RaterInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.RaterInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 06/05/2015.
  */
 public class RaterInterceptorImpl extends InterceptorActivityImpl
-        implements RaterInterceptorCallback {
+        implements RaterInterceptorDelegate {
 
     private static final String TAG = RaterInterceptor.class.getSimpleName();
 

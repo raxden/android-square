@@ -17,14 +17,14 @@ import android.view.View;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.activity.interceptor.NavigationDrawerInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.NavigationDrawerInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.NavigationDrawerInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 21/05/2015.
  */
 public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl
-        implements NavigationDrawerInterceptorCallback {
+        implements NavigationDrawerInterceptorDelegate {
 
     private static final String TAG = NavigationDrawerInterceptorImpl.class.getSimpleName();
 

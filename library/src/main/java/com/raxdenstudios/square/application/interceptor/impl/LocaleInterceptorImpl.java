@@ -9,7 +9,7 @@ import android.util.DisplayMetrics;
 
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
-import com.raxdenstudios.square.application.interceptor.callback.LocaleInterceptorCallback;
+import com.raxdenstudios.square.application.interceptor.delegate.LocaleInterceptorDelegate;
 import com.raxdenstudios.square.application.interceptor.manager.InterceptorApplicationImpl;
 
 import java.util.Locale;
@@ -17,7 +17,7 @@ import java.util.Locale;
 /**
  * Created by agomez on 13/07/2015.
  */
-public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptorCallback {
+public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptorDelegate {
 
     private static final String TAG = LocaleInterceptorImpl.class.getSimpleName();
 

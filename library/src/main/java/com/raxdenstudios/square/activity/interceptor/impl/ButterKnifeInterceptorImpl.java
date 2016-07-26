@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.raxdenstudios.square.activity.interceptor.ButterKnifeInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.ButterKnifeInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.ButterKnifeInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 import butterknife.ButterKnife;
@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
  * Created by Raxden on 23/07/2016.
  */
 public class ButterKnifeInterceptorImpl extends InterceptorActivityImpl
-        implements ButterKnifeInterceptorCallback {
+        implements ButterKnifeInterceptorDelegate {
 
     private ButterKnifeInterceptor mCallbacks;
 

@@ -5,14 +5,14 @@ import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.CheckPlayServicesInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.CheckPlayServicesInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 06/05/2015.
  */
 public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl
-        implements CheckPlayServicesInterceptorCallback {
+        implements CheckPlayServicesInterceptorDelegate {
 
     private static final String TAG = CheckPlayServicesInterceptorImpl.class.getSimpleName();
 

@@ -9,14 +9,14 @@ import android.util.Log;
 import android.view.View;
 
 import com.raxdenstudios.square.activity.interceptor.FragmentContentInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.FragmentContentInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.FragmentContentInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 02/06/2015.
  */
 public class FragmentContentInterceptorImpl extends InterceptorActivityImpl
-        implements FragmentContentInterceptorCallback {
+        implements FragmentContentInterceptorDelegate {
 
     private static String TAG = FragmentContentInterceptorImpl.class.getSimpleName();
 

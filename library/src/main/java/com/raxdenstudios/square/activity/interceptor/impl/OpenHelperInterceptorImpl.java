@@ -5,14 +5,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import com.raxdenstudios.square.activity.interceptor.OpenHelperInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.OpenHelperInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.OpenHelperInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 08/05/2015.
  */
 public class OpenHelperInterceptorImpl extends InterceptorActivityImpl
-        implements OpenHelperInterceptorCallback {
+        implements OpenHelperInterceptorDelegate {
 
     private static final String TAG = OpenHelperInterceptorImpl.class.getSimpleName();
 

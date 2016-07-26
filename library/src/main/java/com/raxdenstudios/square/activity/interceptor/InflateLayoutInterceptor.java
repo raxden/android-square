@@ -5,14 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.InflateLayoutInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.InflateLayoutInterceptorDelegate;
 
 /**
  * Created by agomez on 25/05/2015.
  */
 public interface InflateLayoutInterceptor extends Interceptor {
 
-    void onInterceptorCreated(InflateLayoutInterceptorCallback callback);
+    void onInterceptorCreated(InflateLayoutInterceptorDelegate callback);
 
     View onCreateView(LayoutInflater inflater, Bundle savedInstanceState);
 

@@ -1,7 +1,7 @@
 package com.raxdenstudios.square.application.interceptor;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.application.interceptor.callback.TimberInterceptorCallback;
+import com.raxdenstudios.square.application.interceptor.delegate.TimberInterceptorDelegate;
 
 import timber.log.Timber;
 
@@ -10,7 +10,7 @@ import timber.log.Timber;
  */
 public interface TimberInterceptor extends Interceptor {
 
-    void onInterceptorCreated(TimberInterceptorCallback callback);
+    void onInterceptorCreated(TimberInterceptorDelegate callback);
 
     Timber.Tree onCreateTimberTree();
 

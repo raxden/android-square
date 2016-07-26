@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.NetworkInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.NetworkInterceptorDelegate;
 
 /**
  * Created by agomez on 08/05/2015.
  */
 public interface NetworkInterceptor extends Interceptor {
 
-    void onInterceptorCreated(NetworkInterceptorCallback callback);
+    void onInterceptorCreated(NetworkInterceptorDelegate callback);
 
     Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter);
 

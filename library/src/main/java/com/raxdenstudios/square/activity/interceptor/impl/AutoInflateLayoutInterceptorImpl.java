@@ -8,7 +8,7 @@ import android.view.View;
 import com.raxdenstudios.commons.util.ResourceUtils;
 import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.activity.interceptor.AutoInflateLayoutInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.AutoInflateLayoutInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.AutoInflateLayoutInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 import java.util.Locale;
@@ -17,7 +17,7 @@ import java.util.Locale;
  * Created by agomez on 22/05/2015.
  */
 public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl
-        implements AutoInflateLayoutInterceptorCallback {
+        implements AutoInflateLayoutInterceptorDelegate {
 
     private static final String TAG = AutoInflateLayoutInterceptorImpl.class.getSimpleName();
 

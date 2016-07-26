@@ -13,13 +13,13 @@ import android.widget.ScrollView;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
-import com.raxdenstudios.square.fragment.interceptor.callback.WebViewInterceptorCallback;
+import com.raxdenstudios.square.fragment.interceptor.delegate.WebViewInterceptorDelegate;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptorCallback {
+public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptorDelegate {
 
     private WebViewInterceptor mCallbacks;
     private ViewGroup mContainer;

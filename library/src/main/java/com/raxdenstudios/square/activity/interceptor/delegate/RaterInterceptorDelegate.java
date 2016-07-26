@@ -1,11 +1,11 @@
-package com.raxdenstudios.square.activity.interceptor.callback;
+package com.raxdenstudios.square.activity.interceptor.delegate;
 
-import com.raxdenstudios.square.InterceptorCallback;
+import com.raxdenstudios.square.InterceptorDelegate;
 
 /**
  * Created by Raxden on 23/07/2016.
  */
-public interface RaterInterceptorCallback extends InterceptorCallback {
+public interface RaterInterceptorDelegate extends InterceptorDelegate {
 
     void showRaterDialog();
 

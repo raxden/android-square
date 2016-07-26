@@ -4,13 +4,13 @@ import android.app.Fragment;
 import android.os.Bundle;
 
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
-import com.raxdenstudios.square.fragment.interceptor.callback.BundleArgumentsInterceptorCallback;
+import com.raxdenstudios.square.fragment.interceptor.delegate.BundleArgumentsInterceptorDelegate;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl implements BundleArgumentsInterceptorCallback {
+public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl implements BundleArgumentsInterceptorDelegate {
 
     private static final String TAG = BundleArgumentsInterceptorImpl.class.getSimpleName();
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.raxdenstudios.commons.util.ResourceUtils;
 import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
-import com.raxdenstudios.square.fragment.interceptor.callback.AutoInflateViewInterceptorCallback;
+import com.raxdenstudios.square.fragment.interceptor.delegate.AutoInflateViewInterceptorDelegate;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 import java.util.Locale;
@@ -17,7 +17,7 @@ import java.util.Locale;
 /**
  * Created by agomez on 02/06/2015.
  */
-public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl implements AutoInflateViewInterceptorCallback {
+public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl implements AutoInflateViewInterceptorDelegate {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 

@@ -1,15 +1,21 @@
-package com.raxdenstudios.square.activity.interceptor.callback;
+package com.raxdenstudios.square.activity.interceptor.delegate;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.view.View;
 
-import com.raxdenstudios.square.InterceptorCallback;
+import com.raxdenstudios.square.InterceptorDelegate;
 
 /**
- * Created by Raxden on 22/07/2016.
+ * Created by Raxden on 23/07/2016.
  */
-public interface FragmentContentInterceptorCallback extends InterceptorCallback {
+public interface NavigationDrawerInterceptorDelegate extends InterceptorDelegate {
+
+    void open();
+
+    void close();
+
+    boolean isOpen();
 
     int addFragment(Fragment fragment);
 

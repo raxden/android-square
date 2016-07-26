@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.raxdenstudios.square.activity.interceptor.TimerInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.TimerInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.TimerInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 11/05/2105.
  */
 public class TimerInterceptorImpl extends InterceptorActivityImpl
-        implements TimerInterceptorCallback {
+        implements TimerInterceptorDelegate {
 
     private static final String TAG = TimerInterceptorImpl.class.getSimpleName();
 

@@ -10,14 +10,14 @@ import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.activity.interceptor.NetworkInterceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.NetworkInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.NetworkInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 08/05/2015.
  */
 public class NetworkInterceptorImpl extends InterceptorActivityImpl
-        implements NetworkInterceptorCallback {
+        implements NetworkInterceptorDelegate {
 
     private static final String TAG = NetworkInterceptorImpl.class.getSimpleName();
 

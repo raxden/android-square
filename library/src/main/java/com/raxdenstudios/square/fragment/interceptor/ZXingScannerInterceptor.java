@@ -2,7 +2,7 @@ package com.raxdenstudios.square.fragment.interceptor;
 
 import com.google.zxing.Result;
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.fragment.interceptor.callback.ZXingScannerInterceptorCallback;
+import com.raxdenstudios.square.fragment.interceptor.delegate.ZXingScannerInterceptorDelegate;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -11,7 +11,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  */
 public interface ZXingScannerInterceptor extends Interceptor {
 
-    void onInterceptorCreated(ZXingScannerInterceptorCallback callback);
+    void onInterceptorCreated(ZXingScannerInterceptorDelegate callback);
 
     ZXingScannerView onLoadZXingScannerView();
 

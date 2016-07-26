@@ -1,7 +1,7 @@
 package com.raxdenstudios.square.activity.interceptor;
 
 import com.raxdenstudios.square.Interceptor;
-import com.raxdenstudios.square.activity.interceptor.callback.RaterInterceptorCallback;
+import com.raxdenstudios.square.activity.interceptor.delegate.RaterInterceptorDelegate;
 import com.raxdenstudios.square.activity.interceptor.impl.RaterInterceptorImpl;
 
 /**
@@ -9,7 +9,7 @@ import com.raxdenstudios.square.activity.interceptor.impl.RaterInterceptorImpl;
  */
 public interface RaterInterceptor extends Interceptor {
 
-    void onInterceptorCreated(RaterInterceptorCallback callback);
+    void onInterceptorCreated(RaterInterceptorDelegate callback);
 
     void onRaterInterceptorClick(RaterInterceptorImpl.RaterOption optionSelected);
 
