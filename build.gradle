@@ -1,4 +1,4 @@
-apply from: 'buildsystem/dependencies.gradle'
+apply from: 'dependencies.gradle'
 
 buildscript {
     repositories {
