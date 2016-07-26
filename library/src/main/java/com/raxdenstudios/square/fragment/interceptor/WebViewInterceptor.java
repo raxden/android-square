@@ -5,11 +5,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.raxdenstudios.square.Interceptor;
+import com.raxdenstudios.square.fragment.interceptor.callback.WebViewInterceptorCallback;
 
 /**
  * Created by agomez on 16/07/2015.
  */
-public interface WebViewInterceptor extends Interceptor {
+public interface WebViewInterceptor extends Interceptor<WebViewInterceptorCallback> {
 
     void onConfigureWebSettings(WebSettings settings);
 
