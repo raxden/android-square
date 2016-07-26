@@ -5,7 +5,9 @@ import android.content.res.Configuration;
 import android.util.Log;
 
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
+import com.raxdenstudios.square.application.interceptor.TimberInterceptor;
 import com.raxdenstudios.square.application.interceptor.impl.LocaleInterceptorImpl;
+import com.raxdenstudios.square.application.interceptor.impl.TimberInterceptorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,10 @@ public class InterceptorApplicationManager {
         if (application instanceof LocaleInterceptor) {
             Log.d(TAG, "....."+LocaleInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new LocaleInterceptorImpl(application));
+        }
+        if (application instanceof TimberInterceptor) {
+            Log.d(TAG, "....."+TimberInterceptor.class.getSimpleName()+" loaded!");
+            interceptors.add(new TimberInterceptorImpl(application));
         }
         Log.d(TAG, "=========================================================");
     }

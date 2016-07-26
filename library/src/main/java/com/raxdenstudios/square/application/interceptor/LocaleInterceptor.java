@@ -1,19 +1,11 @@
 package com.raxdenstudios.square.application.interceptor;
 
 import com.raxdenstudios.square.Interceptor;
-
-import java.util.Locale;
+import com.raxdenstudios.square.application.interceptor.callback.LocaleInterceptorCallback;
 
 /**
  * Created by agomez on 13/07/2015.
  */
-public interface LocaleInterceptor extends Interceptor {
+public interface LocaleInterceptor extends Interceptor<LocaleInterceptorCallback> {
 
-    interface LocaleInterceptorCallback {
-        Locale getLocale();
-
-        String getLanguage();
-
-        void setLanguage(String language);
-    }
 }

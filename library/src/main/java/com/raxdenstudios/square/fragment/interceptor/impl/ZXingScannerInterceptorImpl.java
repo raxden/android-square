@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.raxdenstudios.square.fragment.interceptor.ZXingScannerInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.callback.ZXingScannerInterceptorCallback;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by agomez on 24/12/2015.
  */
-public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl implements ZXingScannerInterceptor.ZXingScannerInterceptorCallback, ZXingScannerView.ResultHandler {
+public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl<ZXingScannerInterceptor>
+        implements ZXingScannerInterceptorCallback, ZXingScannerView.ResultHandler {
 
     private static final String TAG = AutoInflateViewInterceptorImpl.class.getSimpleName();
 
-    private ZXingScannerInterceptor mCallbacks;
     private ZXingScannerView mScannerView;
 
     private boolean mFlash;
@@ -31,10 +32,6 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl impleme
 
     public ZXingScannerInterceptorImpl(Fragment fragment) {
         super(fragment);
-        if (!(fragment instanceof ZXingScannerInterceptor)) {
-            throw new IllegalStateException("Fragment must implement ZXingScannerInterceptor.");
-        }
-        mCallbacks = (ZXingScannerInterceptor)fragment;
     }
 
     @Override

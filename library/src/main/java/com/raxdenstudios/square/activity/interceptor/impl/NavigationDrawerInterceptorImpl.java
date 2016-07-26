@@ -2,40 +2,47 @@ package com.raxdenstudios.square.activity.interceptor.impl;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
 import com.raxdenstudios.square.R;
-import com.raxdenstudios.square.activity.InterceptorActivity;
 import com.raxdenstudios.square.activity.interceptor.NavigationDrawerInterceptor;
+import com.raxdenstudios.square.activity.interceptor.callback.NavigationDrawerInterceptorCallback;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl implements NavigationDrawerInterceptor.NavigationDrawerInterceptorCallback {
+public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl<NavigationDrawerInterceptor>
+        implements NavigationDrawerInterceptorCallback {
 
     private static final String TAG = NavigationDrawerInterceptorImpl.class.getSimpleName();
 
+    private AppCompatActivity mCompatActivity;
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
-    private NavigationDrawerInterceptor mCallbacks;
+    private int[] animations = new int[] {
+            android.R.animator.fade_in,
+            android.R.animator.fade_out,
+            android.R.animator.fade_in,
+            android.R.animator.fade_out
+    };
 
     public NavigationDrawerInterceptorImpl(Activity activity) {
         super(activity);
-        if (!(activity instanceof NavigationDrawerInterceptor)) {
-            throw new IllegalStateException("Activity must implement NavigationDrawerInterceptor.");
-        }
-        mCallbacks = (NavigationDrawerInterceptor)activity;
+        mCompatActivity = (AppCompatActivity)activity;
     }
 
     @Override
@@ -46,6 +53,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
+
         mContentDrawerView = mCallbacks.onCreateContentDrawerView(savedInstanceState);
         if (mContentDrawerView != null) {
             mDrawerLayout = mCallbacks.onCreateDrawerLayout(savedInstanceState);
@@ -60,16 +68,22 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
                         @Override
                         public void onClick(View view) {
                             if (mDrawerToggle != null && !mDrawerToggle.isDrawerIndicatorEnabled()) {
-                                if (mCallbacks != null) ((InterceptorActivity)mCallbacks).onBackPressed();
+                                mCompatActivity.onBackPressed();
                             }
                         }
                     });
                     mDrawerLayout.addDrawerListener(mDrawerToggle);
-                }
-                if (savedInstanceState == null) {
-                    replaceFragment(mCallbacks.initContentDrawerFragment());
+                    mCallbacks.onActionBarDrawerToggleCreated(mDrawerToggle, savedInstanceState);
                 }
             }
+            if (savedInstanceState == null) {
+                Fragment contentFragment = mCallbacks.onCreateContentDrawerFragment();
+                replaceFragment(contentFragment);
+                mCallbacks.onContentDrawerFragmentCreated(contentFragment);
+            }
+            mCallbacks.onToolbarViewCreated(mToolbar, savedInstanceState);
+            mCallbacks.onDrawerLayoutCreated(mDrawerLayout, savedInstanceState);
+            mCallbacks.onContentDrawerViewCreated(mContentDrawerView, savedInstanceState);
         }
     }
 
@@ -83,9 +97,9 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     @Override
     public void onInterceptorPrepareOptionsMenu(Menu menu) {
         if (mCallbacks != null && mDrawerToggle != null && mDrawerLayout != null) {
-            if (((InterceptorActivity)mCallbacks).getFragmentManager().getBackStackEntryCount() > 0) {
+            if (mCompatActivity.getFragmentManager().getBackStackEntryCount() > 0) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
-                mDrawerToggle.setHomeAsUpIndicator(((InterceptorActivity)mCallbacks).getDrawerToggleDelegate().getThemeUpIndicator());
+                mDrawerToggle.setHomeAsUpIndicator(mCompatActivity.getDrawerToggleDelegate().getThemeUpIndicator());
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             } else {
                 mDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -118,16 +132,14 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
 
     @Override
     public void close() {
-        if (mCallbacks != null) {
-            ((InterceptorActivity)mCallbacks).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (mDrawerLayout != null && mContentDrawerView != null) {
-                        mDrawerLayout.closeDrawer(mContentDrawerView);
-                    }
+        mCompatActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mDrawerLayout != null && mContentDrawerView != null) {
+                    mDrawerLayout.closeDrawer(mContentDrawerView);
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override
@@ -140,29 +152,87 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
 
 
     @Override
-    public void replaceFragment(Fragment fragment) {
-        replaceFragment(fragment, false);
+    public int addFragment(Fragment fragment) {
+        if (fragment != null) {
+            return addFragment(fragment, animations);
+        }
+        return 0;
     }
 
     @Override
-    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
+    public int addFragment(Fragment fragment, int[] animations) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = mCallbacks != null ? ((InterceptorActivity)mCallbacks).getFragmentManager().beginTransaction() : null;
+            FragmentTransaction fragmentTransaction = getFragmentTransaction();
+            setAnimations(fragmentTransaction, animations);
+            return addFragment(fragment, fragmentTransaction);
+        }
+        return 0;
+    }
+
+    @Override
+    public int addFragment(Fragment fragment, FragmentTransaction fragmentTransaction) {
+        if (fragment != null && fragmentTransaction != null) {
+            fragmentTransaction = fragmentTransaction.add(getFragmentView().getId(), fragment);
+            return performTransaction(fragmentTransaction);
+        }
+        return 0;
+    }
+
+    @Override
+    public int replaceFragment(Fragment fragment) {
+        if (fragment != null) {
+            return replaceFragment(fragment, false);
+        }
+        return 0;
+    }
+
+    @Override
+    public int replaceFragment(Fragment fragment, boolean addToBackStack) {
+        if (fragment != null) {
+            return replaceFragment(fragment, addToBackStack, animations);
+        }
+        return 0;
+    }
+
+    @Override
+    public int replaceFragment(Fragment fragment, boolean addToBackStack, int[] animations) {
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getFragmentTransaction();
             if (fragmentTransaction != null) {
-                int fadeIn = android.R.animator.fade_in;
-                int fadeOut = android.R.animator.fade_out;
-                fragmentTransaction.setCustomAnimations(fadeIn, fadeOut, fadeIn, fadeOut);
-                if (addToBackStack) fragmentTransaction.addToBackStack(Fragment.class.getSimpleName());
-                replaceFragment(fragment, fragmentTransaction);
+                setAnimations(fragmentTransaction, animations);
+                if (addToBackStack)
+                    fragmentTransaction.addToBackStack(Fragment.class.getSimpleName());
+                return replaceFragment(fragment, fragmentTransaction);
             }
         }
+        return 0;
     }
 
     @Override
-    public void replaceFragment(Fragment fragment, FragmentTransaction fragmentTransaction) {
+    public int replaceFragment(Fragment fragment, FragmentTransaction fragmentTransaction) {
         if (fragment != null && fragmentTransaction != null) {
-            fragmentTransaction.replace(mContentDrawerView.getId(), fragment).commit();
+            fragmentTransaction = fragmentTransaction.replace(getFragmentView().getId(), fragment);
+            return performTransaction(fragmentTransaction);
         }
+        return 0;
+    }
+
+    @Override
+    public int removeFragment(Fragment fragment) {
+        if (fragment != null) {
+            return removeFragment(fragment, getFragmentTransaction());
+        }
+        return 0;
+    }
+
+    @Override
+    public int removeFragment(Fragment fragment, FragmentTransaction fragmentTransaction) {
+        if (fragment != null && fragmentTransaction != null) {
+            fragmentTransaction = fragmentTransaction.remove(fragment);
+            fragmentTransaction.addToBackStack(null);
+            return performTransaction(fragmentTransaction);
+        }
+        return 0;
     }
 
     @Override
@@ -171,20 +241,16 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     @Override
-    public View getDrawerLayout() {
-        return mDrawerLayout;
-    }
-
     public Fragment getFragment() {
-        Fragment fragment = null;
-        if (mContentDrawerView != null && mCallbacks != null) {
-            fragment = ((InterceptorActivity)mCallbacks).getFragmentManager().findFragmentById(mContentDrawerView.getId());
+        FragmentManager fragmentManager = getFragmentManager();
+        if (getFragmentView() != null && fragmentManager != null) {
+            return fragmentManager.findFragmentById(getFragmentView().getId());
         }
-        return fragment;
+        return null;
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle() {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, R.string.app__drawer_open, R.string.app__drawer_close) {
+        return new ActionBarDrawerToggle(mCompatActivity, mDrawerLayout, R.string.app__drawer_open, R.string.app__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -213,7 +279,7 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle(Toolbar toolbar) {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, toolbar, R.string.app__drawer_open, R.string.app__drawer_close) {
+        return new ActionBarDrawerToggle(mCompatActivity, mDrawerLayout, toolbar, R.string.app__drawer_open, R.string.app__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -242,12 +308,12 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
     }
 
     private void onDrawerClosed(View drawerView) {
-        if (mCallbacks != null) ((InterceptorActivity)mCallbacks).supportInvalidateOptionsMenu();
+        if (mCallbacks != null) mCompatActivity.supportInvalidateOptionsMenu();
         if (mCallbacks != null) mCallbacks.onDrawerClosed(drawerView);
     }
 
     private void onDrawerOpened(View drawerView) {
-        if (mCallbacks != null) ((InterceptorActivity)mCallbacks).supportInvalidateOptionsMenu();
+        if (mCallbacks != null) mCompatActivity.supportInvalidateOptionsMenu();
         if (mCallbacks != null) mCallbacks.onDrawerOpened(drawerView);
     }
 
@@ -257,6 +323,38 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl imp
 
     private void onDrawerStateChanged(int newState) {
         if (mCallbacks != null) mCallbacks.onDrawerStateChanged(newState);
+    }
+
+
+    private FragmentTransaction getFragmentTransaction() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            return fragmentManager.beginTransaction();
+        }
+        return null;
+    }
+
+    private FragmentManager getFragmentManager() {
+        return mActivity.getFragmentManager();
+    }
+
+    private void setAnimations(FragmentTransaction fragmentTransaction, int[] animations) {
+        if (fragmentTransaction != null) {
+            if (animations.length == 2) {
+                fragmentTransaction.setCustomAnimations(animations[0], animations[1]);
+            } else if (animations.length == 4) {
+                fragmentTransaction.setCustomAnimations(animations[0], animations[1], animations[2], animations[3]);
+            }
+        }
+    }
+
+    private int performTransaction(FragmentTransaction fragmentTransaction) {
+        try {
+            return fragmentTransaction.commit();
+        } catch (IllegalStateException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        return 0;
     }
 
 }

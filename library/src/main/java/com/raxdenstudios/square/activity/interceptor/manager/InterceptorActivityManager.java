@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.activity.interceptor.manager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.Menu;
 
 import com.raxdenstudios.square.activity.interceptor.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.activity.interceptor.BundleExtrasInterceptor;
+import com.raxdenstudios.square.activity.interceptor.ButterKnifeInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CountBackInterceptor;
 import com.raxdenstudios.square.activity.interceptor.FragmentContentInterceptor;
@@ -18,10 +20,11 @@ import com.raxdenstudios.square.activity.interceptor.NetworkInterceptor;
 import com.raxdenstudios.square.activity.interceptor.OpenHelperInterceptor;
 import com.raxdenstudios.square.activity.interceptor.RaterInterceptor;
 import com.raxdenstudios.square.activity.interceptor.ShakeDetectorInterceptor;
-import com.raxdenstudios.square.activity.interceptor.SplashTimerInterceptor;
+import com.raxdenstudios.square.activity.interceptor.TimerInterceptor;
 import com.raxdenstudios.square.activity.interceptor.ToolbarInterceptor;
 import com.raxdenstudios.square.activity.interceptor.impl.AutoInflateLayoutInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.BundleExtrasInterceptorImpl;
+import com.raxdenstudios.square.activity.interceptor.impl.ButterKnifeInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.CheckPlayServicesInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.CountBackInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.FragmentContentInterceptorImpl;
@@ -31,7 +34,7 @@ import com.raxdenstudios.square.activity.interceptor.impl.NetworkInterceptorImpl
 import com.raxdenstudios.square.activity.interceptor.impl.OpenHelperInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.RaterInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.ShakeDetectorInterceptorImpl;
-import com.raxdenstudios.square.activity.interceptor.impl.SplashTimerInterceptorImpl;
+import com.raxdenstudios.square.activity.interceptor.impl.TimerInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.ToolbarInterceptorImpl;
 
 import java.util.ArrayList;
@@ -54,6 +57,14 @@ public class InterceptorActivityManager {
         if (interceptors != null) {
             for (IInterceptorActivity interceptor : interceptors) {
                 interceptor.onInterceptorSaveInstanceState(outState);
+            }
+        }
+    }
+
+    public void attachBaseContextInterceptors(Context newBase) {
+        if (interceptors != null) {
+            for (IInterceptorActivity interceptor : interceptors) {
+                interceptor.onInterceptorAttachBaseContextInterceptors(newBase);
             }
         }
     }
@@ -172,6 +183,10 @@ public class InterceptorActivityManager {
             Log.d(TAG, "....." + AutoInflateLayoutInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new AutoInflateLayoutInterceptorImpl(activity));
         }
+        if (activity instanceof ButterKnifeInterceptor) {
+            Log.d(TAG, "....." + ButterKnifeInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new ButterKnifeInterceptorImpl(activity));
+        }
         if (activity instanceof BundleExtrasInterceptor) {
             Log.d(TAG, "....." + BundleExtrasInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new BundleExtrasInterceptorImpl(activity));
@@ -212,9 +227,9 @@ public class InterceptorActivityManager {
             Log.d(TAG, "....." + ShakeDetectorInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new ShakeDetectorInterceptorImpl(activity));
         }
-        if (activity instanceof SplashTimerInterceptor) {
-            Log.d(TAG, "....." + SplashTimerInterceptor.class.getSimpleName() + " loaded!");
-            interceptors.add(new SplashTimerInterceptorImpl(activity));
+        if (activity instanceof TimerInterceptor) {
+            Log.d(TAG, "....." + TimerInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new TimerInterceptorImpl(activity));
         }
         Log.d(TAG, "======================================================");
     }

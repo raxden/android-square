@@ -15,16 +15,10 @@ public interface WebViewInterceptor extends Interceptor {
 
     ViewGroup onLoadWebViewContainer();
 
+    void onWebViewCreate(WebView webView);
+
     void onProgressShow(String progressLabel);
 
     void onProgressHide();
-
-    interface WebViewInterceptorCallback {
-        WebView getWebView();
-
-        void onProgressChanged(WebView view, int newProgress);
-
-        void onPageFinished(WebView view, String url);
-    }
 
 }

@@ -11,7 +11,4 @@ public interface BundleArgumentsInterceptor extends Interceptor {
 
     void onHandleArguments(Bundle savedInstanceState, Bundle arguments);
 
-    interface BundleArgumentsInterceptorCallback {
-
-    }
 }

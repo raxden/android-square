@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.raxdenstudios.shake.ShakeDetectorHelper;
 import com.raxdenstudios.square.activity.interceptor.ShakeDetectorInterceptor;
+import com.raxdenstudios.square.activity.interceptor.callback.ShakeDetectorInterceptorCallback;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
@@ -12,16 +13,13 @@ import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivity
  * accelerating, the device is a) shaking, or b) free falling 1.84m (h =
  * 1/2*g*t^2*3/4).
  */
-public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl implements ShakeDetectorInterceptor.ShakeDetectorInterceptorCallback {
+public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl<ShakeDetectorInterceptor>
+        implements ShakeDetectorInterceptorCallback {
 
     private ShakeDetectorInterceptor mCallbacks;
 
     public ShakeDetectorInterceptorImpl(Activity activity) {
         super(activity);
-        if (!(activity instanceof ShakeDetectorInterceptor)) {
-            throw new IllegalStateException("Activity must implement ShakeDetectorInterceptor.");
-        }
-        mCallbacks = (ShakeDetectorInterceptor)activity;
     }
 
     @Override

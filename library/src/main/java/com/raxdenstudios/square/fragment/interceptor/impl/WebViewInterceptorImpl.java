@@ -13,23 +13,20 @@ import android.widget.ScrollView;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.callback.WebViewInterceptorCallback;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements WebViewInterceptor.WebViewInterceptorCallback {
+public class WebViewInterceptorImpl extends InterceptorFragmentImpl<WebViewInterceptor>
+        implements WebViewInterceptorCallback {
 
-    private WebViewInterceptor mCallbacks;
     private ViewGroup mContainer;
     private WebView mWebView;
 
     public WebViewInterceptorImpl(Fragment fragment) {
         super(fragment);
-        if (!(fragment instanceof WebViewInterceptor)) {
-            throw new IllegalStateException("Fragment must implement WebViewInterceptor.");
-        }
-        mCallbacks = (WebViewInterceptor)fragment;
     }
 
     @Override
@@ -61,10 +58,12 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
 
             CookieManager.getInstance().setAcceptCookie(true);
 
-            if (mCallbacks != null) mCallbacks.onConfigureWebSettings(mWebView.getSettings());
+            mCallbacks.onConfigureWebSettings(mWebView.getSettings());
 
             mWebView.setWebViewClient(webviewClient);
             mWebView.setWebChromeClient(webChromeClient);
+
+            mCallbacks.onWebViewCreate(mWebView);
         }
     }
 
@@ -89,11 +88,6 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
             mWebView = null;
         }
         if (mContainer != null) mContainer.removeAllViews();
-    }
-
-    @Override
-    public WebView getWebView() {
-        return mWebView;
     }
 
     @Override

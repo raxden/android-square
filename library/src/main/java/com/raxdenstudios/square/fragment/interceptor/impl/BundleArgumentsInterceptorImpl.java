@@ -3,39 +3,27 @@ package com.raxdenstudios.square.fragment.interceptor.impl;
 import android.app.Fragment;
 import android.os.Bundle;
 
-import com.raxdenstudios.square.fragment.InterceptorFragment;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.callback.BundleArgumentsInterceptorCallback;
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 /**
  * Created by agomez on 22/05/2015.
  */
-public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl implements BundleArgumentsInterceptor.BundleArgumentsInterceptorCallback {
+public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl<BundleArgumentsInterceptor>
+        implements BundleArgumentsInterceptorCallback {
 
     private static final String TAG = BundleArgumentsInterceptorImpl.class.getSimpleName();
 
-    private BundleArgumentsInterceptor mCallbacks;
-
     public BundleArgumentsInterceptorImpl(Fragment fragment) {
         super(fragment);
-        if (!(fragment instanceof BundleArgumentsInterceptor)) {
-            throw new IllegalStateException("Fragment must implement BundleArgumentsInterceptor.");
-        }
-        mCallbacks = (BundleArgumentsInterceptor)fragment;
     }
 
     @Override
     public void onInterceptorCreate(Bundle savedInstanceState) {
         super.onInterceptorCreate(savedInstanceState);
 
-        Bundle arguments = null;
-        if (mCallbacks instanceof InterceptorFragment) {
-            arguments = ((InterceptorFragment)mCallbacks).getArguments();
-        }
-
-        if (mCallbacks != null) {
-            mCallbacks.onHandleArguments(savedInstanceState, arguments);
-        }
+        mCallbacks.onHandleArguments(savedInstanceState, mFragment.getArguments());
     }
 
 }

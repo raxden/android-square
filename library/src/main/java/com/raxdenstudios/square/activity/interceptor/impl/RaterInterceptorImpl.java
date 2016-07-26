@@ -6,25 +6,22 @@ import android.os.Bundle;
 import com.raxdenstudios.rater.RaterHelper;
 import com.raxdenstudios.rater.RaterManager;
 import com.raxdenstudios.square.activity.interceptor.RaterInterceptor;
+import com.raxdenstudios.square.activity.interceptor.callback.RaterInterceptorCallback;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 06/05/2015.
  */
-public class RaterInterceptorImpl extends InterceptorActivityImpl implements RaterInterceptor.RaterInterceptorCallback {
+public class RaterInterceptorImpl extends InterceptorActivityImpl<RaterInterceptor>
+        implements RaterInterceptorCallback {
 
     private static final String TAG = RaterInterceptor.class.getSimpleName();
 
-    private RaterInterceptor mCallbacks;
     private RaterManager mRaterManager;
     public enum RaterOption {RATE, REMIND_LATER, DONT_SHOW_AGAIN}
 
     public RaterInterceptorImpl(Activity activity) {
         super(activity);
-        if (!(activity instanceof RaterInterceptor)) {
-            throw new IllegalStateException("Activity must implement RaterInterceptor.");
-        }
-        mCallbacks = (RaterInterceptor)activity;
     }
 
     @Override
@@ -41,19 +38,17 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
         mRaterManager.showRaterDialogIfNecessary(getContext(), new RaterManager.AppRaterCallbacks() {
             @Override
             public void onDialogClickRate() {
-                if (mCallbacks != null) mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
+                mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
             }
 
             @Override
             public void onDialogClickRemindLater() {
-                if (mCallbacks != null)
-                    mCallbacks.onRaterInterceptorClick(RaterOption.REMIND_LATER);
+                mCallbacks.onRaterInterceptorClick(RaterOption.REMIND_LATER);
             }
 
             @Override
             public void onDialogClickDontShowAgain() {
-                if (mCallbacks != null)
-                    mCallbacks.onRaterInterceptorClick(RaterOption.DONT_SHOW_AGAIN);
+                mCallbacks.onRaterInterceptorClick(RaterOption.DONT_SHOW_AGAIN);
             }
         });
     }
@@ -63,19 +58,17 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl implements Rat
         mRaterManager.showRaterDialog(getContext(), new RaterManager.AppRaterCallbacks() {
             @Override
             public void onDialogClickRate() {
-                if (mCallbacks != null) mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
+                mCallbacks.onRaterInterceptorClick(RaterOption.RATE);
             }
 
             @Override
             public void onDialogClickRemindLater() {
-                if (mCallbacks != null)
-                    mCallbacks.onRaterInterceptorClick(RaterOption.REMIND_LATER);
+                mCallbacks.onRaterInterceptorClick(RaterOption.REMIND_LATER);
             }
 
             @Override
             public void onDialogClickDontShowAgain() {
-                if (mCallbacks != null)
-                    mCallbacks.onRaterInterceptorClick(RaterOption.DONT_SHOW_AGAIN);
+                mCallbacks.onRaterInterceptorClick(RaterOption.DONT_SHOW_AGAIN);
             }
         });
     }

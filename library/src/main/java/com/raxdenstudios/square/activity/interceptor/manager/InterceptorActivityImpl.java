@@ -7,26 +7,36 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.raxdenstudios.square.Interceptor;
+import com.raxdenstudios.square.InterceptorCallback;
 import com.raxdenstudios.square.activity.InterceptorActivity;
 
 /**
  * Created by agomez on 21/04/2015.
  */
-public class InterceptorActivityImpl implements IInterceptorActivity {
+public class InterceptorActivityImpl<I extends Interceptor>
+        implements IInterceptorActivity, InterceptorCallback {
 
     private static final String TAG = InterceptorActivityImpl.class.getSimpleName();
 
     protected Activity mActivity;
+    protected I mCallbacks;
 
     public InterceptorActivityImpl(Activity activity) {
+        if (!(activity instanceof InterceptorActivity)) {
+            throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorActivity");
+        }
         mActivity = activity;
-        checkContextIfInterceptorActivityInstance(activity);
+
+        mCallbacks = (I)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
     public void onInterceptorSaveInstanceState(Bundle outState) {
 
     }
+
 
     @Override
     public void onInterceptorActivityResult(int requestCode, int resultCode, Intent data) {
@@ -35,6 +45,11 @@ public class InterceptorActivityImpl implements IInterceptorActivity {
 
     @Override
     public void onInterceptorConfigurationChanged(Configuration configuration) {
+
+    }
+
+    @Override
+    public void onInterceptorAttachBaseContextInterceptors(Context newBase) {
 
     }
 
@@ -85,12 +100,6 @@ public class InterceptorActivityImpl implements IInterceptorActivity {
 
     public Context getContext() {
         return mActivity;
-    }
-
-    private void checkContextIfInterceptorActivityInstance(Activity activity) {
-        if (!(activity instanceof InterceptorActivity)) {
-            throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorActivity");
-        }
     }
 
 }

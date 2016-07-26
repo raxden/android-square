@@ -3,10 +3,13 @@ package com.raxdenstudios.square.application.interceptor.impl;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
+import com.raxdenstudios.square.application.interceptor.callback.LocaleInterceptorCallback;
 import com.raxdenstudios.square.application.interceptor.manager.InterceptorApplicationImpl;
 
 import java.util.Locale;
@@ -14,77 +17,88 @@ import java.util.Locale;
 /**
  * Created by agomez on 13/07/2015.
  */
-public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements LocaleInterceptor.LocaleInterceptorCallback {
+public class LocaleInterceptorImpl extends InterceptorApplicationImpl<LocaleInterceptor>
+        implements LocaleInterceptorCallback {
 
     public static final String APP_LANGUAGE = "app_language";
 
-    private LocaleInterceptor mCallbacks;
     private Locale appLocale;
 
     public LocaleInterceptorImpl(Application application) {
         super(application);
-        if (!(application instanceof LocaleInterceptor)) {
-            throw new IllegalStateException("Application must implement LocaleInterceptor.");
-        }
-        mCallbacks = (LocaleInterceptor)application;
     }
-    
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        initLocalization();
+        initLocale();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        initLocalization();
+        initLocale();
     }
 
     @Override
-    public Locale getLocale() {
+    public Locale getAppLocale() {
+        if (appLocale == null) {
+            String language = getLanguage();
+            if (Utils.hasValue(language)) {
+                appLocale = new Locale(language);
+            } else {
+                appLocale = Locale.getDefault();
+                setLanguage(appLocale.getLanguage());
+            }
+        }
         return appLocale;
     }
 
     @Override
-    public String getLanguage() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String language = settings.getString(APP_LANGUAGE, "");
-        if (appLocale == null) {
-            appLocale = initLocale(language);
-        }
-        return language;
+    public void setAppLocale(Locale locale) {
+        appLocale = locale;
+        setLanguage(appLocale.getLanguage());
     }
 
-    @Override
-    public void setLanguage(String language) {
+    private String getLanguage() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        return settings.getString(APP_LANGUAGE, "");
+    }
+
+    private void setLanguage(String language) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(APP_LANGUAGE, language);
         editor.commit();
-        appLocale = initLocale(language);
     }
 
-    private void initLocalization() {
-        String appLanguage = getLanguage();
-        if (Utils.hasValue(appLanguage)) {
-            Locale appLocale = initLocale(appLanguage);
-            Locale.setDefault(appLocale);
-            Configuration config = getContext().getResources().getConfiguration() != null ? getContext().getResources().getConfiguration() : new Configuration();
-            config.locale = appLocale;
-            getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
-        } else {
-            setLanguage(Locale.getDefault().toString());
+    private void initLocale() {
+        Locale appLocale = getAppLocale();
+        Locale.setDefault(appLocale);
+        Configuration config = getConfiguration();
+        config.locale = appLocale;
+        setConfiguration(config);
+    }
+
+    private DisplayMetrics getDisplayMetrics() {
+        Resources resources = getContext().getResources();
+        return resources.getDisplayMetrics();
+    }
+
+    private Configuration getConfiguration() {
+        Resources resources = getContext().getResources();
+        Configuration configuration = resources.getConfiguration();
+        if (configuration == null) {
+            configuration = new Configuration();
+        }
+        return configuration;
+    }
+
+    private void setConfiguration(Configuration configuration) {
+        if (configuration != null) {
+            Resources resources = getContext().getResources();
+            resources.updateConfiguration(configuration, getDisplayMetrics());
         }
     }
 
-    private Locale initLocale(String language) {
-        Locale locale = null;
-        if (language != null && language.contains("_") && language.split("_").length > 0) {
-            locale = new Locale(language.split("_")[0], language.split("_")[1]);
-        } else {
-            locale = new Locale(language);
-        }
-        return locale;
-    }
 }

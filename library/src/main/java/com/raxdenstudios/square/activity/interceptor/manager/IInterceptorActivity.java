@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity.interceptor.manager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.Menu;
 public interface IInterceptorActivity {
 
     void onInterceptorSaveInstanceState(Bundle outState);
+
+    void onInterceptorAttachBaseContextInterceptors(Context newBase);
 
     void onInterceptorCreate(Bundle savedInstanceState);
 

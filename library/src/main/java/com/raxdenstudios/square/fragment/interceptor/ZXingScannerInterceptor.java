@@ -14,8 +14,4 @@ public interface ZXingScannerInterceptor extends Interceptor {
 
     void handleZXingScannerResult(Result result);
 
-    interface ZXingScannerInterceptorCallback {
-
-    }
-
 }

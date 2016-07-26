@@ -10,16 +10,16 @@ import android.os.Bundle;
 
 import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.activity.interceptor.NetworkInterceptor;
+import com.raxdenstudios.square.activity.interceptor.callback.NetworkInterceptorCallback;
 import com.raxdenstudios.square.activity.interceptor.manager.InterceptorActivityImpl;
 
 /**
  * Created by agomez on 08/05/2015.
  */
-public class NetworkInterceptorImpl extends InterceptorActivityImpl implements NetworkInterceptor.NetworkInterfaceCallback {
+public class NetworkInterceptorImpl extends InterceptorActivityImpl<NetworkInterceptor>
+        implements NetworkInterceptorCallback {
 
     private static final String TAG = NetworkInterceptorImpl.class.getSimpleName();
-
-    private NetworkInterceptor mCallbacks;
 
     protected BroadcastReceiver mNetworkReceiver = new BroadcastReceiver() {
 
@@ -34,24 +34,21 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl implements N
 
     public NetworkInterceptorImpl(Activity activity) {
         super(activity);
-        if (!(activity instanceof NetworkInterceptor)) {
-            throw new IllegalStateException("Activity must implement NetworkInterceptor.");
-        }
-        mCallbacks = (NetworkInterceptor)activity;
     }
 
     @Override
-    public void onInterceptorCreate(Bundle bundle) {
-        super.onInterceptorCreate(bundle);
+    public void onInterceptorCreate(Bundle savedInstanceState) {
+        super.onInterceptorCreate(savedInstanceState);
 
-        if (mNetworkReceiver != null) mActivity.registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mCallbacks.registerReceiver(mNetworkReceiver, intentFilter);
     }
 
     @Override
     public void onInterceptorDestroy() {
         super.onInterceptorDestroy();
 
-        if (mNetworkReceiver != null) mActivity.unregisterReceiver(mNetworkReceiver);
+        mCallbacks.unregisterReceiver(mNetworkReceiver);
     }
 
 }

@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
 
 group = GROUP_NAME
 version = LIBRARY_VERSION
@@ -17,33 +19,45 @@ android {
 
 repositories {
     maven { url "https://jitpack.io" }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://clojars.org/repo/" }
 }
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    testCompile deps.junit
-    testCompile deps.asserj
-    testCompile deps.robolectric
 
-    compile deps.muldidex
-    compile deps.androidv7
-    compile deps.androidDesign
-    compile deps.androidRecycler
-    compile deps.firebaseCore
-//    compile deps.firabaseAds
-//    compile deps.firebaseCrash
-//    compile deps.firebaseMessaging
+    compile libDependencies.muldidex
+    compile libDependencies.androidv7
+    compile libDependencies.design
+    compile libDependencies.recycler
 
-    compile deps.rsMVP
-    compile deps.rsCommons
-    compile deps.rsPreferences
-    compile deps.rsRater
-    compile deps.rsRecycler
-    compile deps.rsCrons
-    compile deps.rsShake
+    compile libDependencies.androidCommons
+    compile libDependencies.androidResources
+    compile libDependencies.androidPreferences
+    compile libDependencies.androidRater
+    compile libDependencies.androidRecycler
+    compile libDependencies.androidMVP
+    compile libDependencies.androidCrons
+    compile libDependencies.androidShake
 
-    compile deps.zxing
+    compile libDependencies.firebaseCore
+    compile libDependencies.firebaseAds
+    compile libDependencies.firebaseMessaging
+
+    compile libDependencies.timber
+    compile (libDependencies.crashlytics) { transitive = true; }
+    compile libDependencies.calligraphy
+    compile libDependencies.zxing
+
+    compile libDependencies.icepick
+    provided libDependencies.icepickProcessor
+
+    compile libDependencies.butterKnife
+    apt     libDependencies.butterKnifeAPT
+
+    testCompile libTestDependencies.junit
+    testCompile libTestDependencies.assertj
+    testCompile libTestDependencies.mockito
+    testCompile libTestDependencies.robolectric
 
 }
-
-//apply plugin: 'com.google.gms.google-services'

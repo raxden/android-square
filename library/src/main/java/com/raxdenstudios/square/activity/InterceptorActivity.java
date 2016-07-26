@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -25,6 +26,12 @@ public abstract class InterceptorActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getInterceptorManager().onSaveInstanceStateInterceptors(outState);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        getInterceptorManager().attachBaseContextInterceptors(newBase);
     }
 
     @Override

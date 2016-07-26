@@ -1,26 +1,37 @@
 package com.raxdenstudios.square.activity.interceptor;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.raxdenstudios.square.Interceptor;
+import com.raxdenstudios.square.activity.interceptor.callback.NavigationDrawerInterceptorCallback;
 
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptor extends Interceptor {
+public interface NavigationDrawerInterceptor<T extends Fragment> extends Interceptor<NavigationDrawerInterceptorCallback> {
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 
+    void onContentDrawerViewCreated(View view, Bundle savedInstanceState);
+
     DrawerLayout onCreateDrawerLayout(Bundle savedInstanceState);
+
+    void onDrawerLayoutCreated(DrawerLayout drawerLayout, Bundle savedInstanceState);
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
-    Fragment initContentDrawerFragment();
+    void onToolbarViewCreated(Toolbar toolbar, Bundle savedInstanceState);
+
+    void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle, Bundle savedInstanceState);
+
+    T onCreateContentDrawerFragment();
+
+    void onContentDrawerFragmentCreated(T fragment);
 
     void onDrawerClosed(View drawerView);
 
@@ -30,23 +41,4 @@ public interface NavigationDrawerInterceptor extends Interceptor {
 
     void onDrawerStateChanged(int newState);
 
-    interface NavigationDrawerInterceptorCallback {
-        void open();
-
-        void close();
-
-        boolean isOpen();
-
-        void replaceFragment(Fragment fragment);
-
-        void replaceFragment(Fragment fragment, boolean addToBackStack);
-
-        void replaceFragment(Fragment fragment, FragmentTransaction fragmentTransaction);
-
-        View getFragmentView();
-
-        View getDrawerLayout();
-
-        Fragment getFragment();
-    }
 }
