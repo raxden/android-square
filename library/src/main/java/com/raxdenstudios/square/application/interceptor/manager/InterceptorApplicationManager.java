@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.res.Configuration;
 import android.util.Log;
 
+import com.raxdenstudios.square.application.interceptor.FabricInterceptor;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
 import com.raxdenstudios.square.application.interceptor.TimberInterceptor;
+import com.raxdenstudios.square.application.interceptor.impl.FabricInterceptorImpl;
 import com.raxdenstudios.square.application.interceptor.impl.LocaleInterceptorImpl;
 import com.raxdenstudios.square.application.interceptor.impl.TimberInterceptorImpl;
 
@@ -64,6 +66,10 @@ public class InterceptorApplicationManager {
         if (application instanceof TimberInterceptor) {
             Log.d(TAG, "....."+TimberInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new TimberInterceptorImpl(application));
+        }
+        if (application instanceof FabricInterceptor) {
+            Log.d(TAG, "....."+FabricInterceptor.class.getSimpleName()+" loaded!");
+            interceptors.add(new FabricInterceptorImpl(application));
         }
         Log.d(TAG, "=========================================================");
     }

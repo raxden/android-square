@@ -12,7 +12,7 @@ import com.raxdenstudios.square.fragment.interceptor.delegate.WebViewInterceptor
  */
 public interface WebViewInterceptor extends Interceptor {
 
-    void onInterceptorCreated(WebViewInterceptorDelegate callback);
+    void onInterceptorCreated(WebViewInterceptorDelegate delegate);
 
     void onConfigureWebSettings(WebSettings settings);
 

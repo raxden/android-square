@@ -10,7 +10,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.BundleExtrasInterc
  */
 public interface BundleExtrasInterceptor extends Interceptor {
 
-    void onInterceptorCreated(BundleExtrasInterceptorDelegate callback);
+    void onInterceptorCreated(BundleExtrasInterceptorDelegate delegate);
 
     void onHandleExtras(Bundle savedInstanceState, Bundle extras);
 

@@ -15,7 +15,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.NavigationDrawerIn
  */
 public interface NavigationDrawerInterceptor<T extends Fragment> extends Interceptor {
 
-    void onInterceptorCreated(NavigationDrawerInterceptorDelegate callback);
+    void onInterceptorCreated(NavigationDrawerInterceptorDelegate delegate);
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 

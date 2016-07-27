@@ -8,6 +8,6 @@ import com.raxdenstudios.square.activity.interceptor.delegate.CountBackIntercept
  */
 public interface CountBackInterceptor extends Interceptor {
 
-    void onInterceptorCreated(CountBackInterceptorDelegate callback);
+    void onInterceptorCreated(CountBackInterceptorDelegate delegate);
 
 }

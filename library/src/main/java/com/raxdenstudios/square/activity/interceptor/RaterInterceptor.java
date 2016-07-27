@@ -9,7 +9,7 @@ import com.raxdenstudios.square.activity.interceptor.impl.RaterInterceptorImpl;
  */
 public interface RaterInterceptor extends Interceptor {
 
-    void onInterceptorCreated(RaterInterceptorDelegate callback);
+    void onInterceptorCreated(RaterInterceptorDelegate delegate);
 
     void onRaterInterceptorClick(RaterInterceptorImpl.RaterOption optionSelected);
 

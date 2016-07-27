@@ -8,6 +8,6 @@ import com.raxdenstudios.square.application.interceptor.delegate.LocaleIntercept
  */
 public interface LocaleInterceptor extends Interceptor {
 
-    void onInterceptorCreated(LocaleInterceptorDelegate callback);
+    void onInterceptorCreated(LocaleInterceptorDelegate delegate);
 
 }

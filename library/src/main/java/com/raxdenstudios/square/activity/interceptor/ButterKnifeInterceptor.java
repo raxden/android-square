@@ -8,6 +8,6 @@ import com.raxdenstudios.square.activity.interceptor.delegate.ButterKnifeInterce
  */
 public interface ButterKnifeInterceptor extends Interceptor {
 
-    void onInterceptorCreated(ButterKnifeInterceptorDelegate callback);
+    void onInterceptorCreated(ButterKnifeInterceptorDelegate delegate);
 
 }

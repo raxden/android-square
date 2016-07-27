@@ -10,7 +10,7 @@ import com.raxdenstudios.square.fragment.interceptor.delegate.BundleArgumentsInt
  */
 public interface BundleArgumentsInterceptor extends Interceptor {
 
-    void onInterceptorCreated(BundleArgumentsInterceptorDelegate callback);
+    void onInterceptorCreated(BundleArgumentsInterceptorDelegate delegate);
 
     void onHandleArguments(Bundle savedInstanceState, Bundle arguments);
 

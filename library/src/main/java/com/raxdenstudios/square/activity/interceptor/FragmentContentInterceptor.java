@@ -12,7 +12,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.FragmentContentInt
  */
 public interface FragmentContentInterceptor<T extends Fragment> extends Interceptor {
 
-    void onInterceptorCreated(FragmentContentInterceptorDelegate callback);
+    void onInterceptorCreated(FragmentContentInterceptorDelegate delegate);
 
     View onCreateContentFragmentView(Bundle savedInstanceState);
 

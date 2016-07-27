@@ -14,6 +14,7 @@ import com.raxdenstudios.square.activity.interceptor.ButterKnifeInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CheckPlayServicesInterceptor;
 import com.raxdenstudios.square.activity.interceptor.CountBackInterceptor;
 import com.raxdenstudios.square.activity.interceptor.FragmentContentInterceptor;
+import com.raxdenstudios.square.activity.interceptor.HockeyAppInterceptor;
 import com.raxdenstudios.square.activity.interceptor.IcepickInterceptor;
 import com.raxdenstudios.square.activity.interceptor.InflateLayoutInterceptor;
 import com.raxdenstudios.square.activity.interceptor.NavigationDrawerInterceptor;
@@ -29,6 +30,7 @@ import com.raxdenstudios.square.activity.interceptor.impl.ButterKnifeInterceptor
 import com.raxdenstudios.square.activity.interceptor.impl.CheckPlayServicesInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.CountBackInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.FragmentContentInterceptorImpl;
+import com.raxdenstudios.square.activity.interceptor.impl.HockeyAppInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.IcepickInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.InflateLayoutInterceptorImpl;
 import com.raxdenstudios.square.activity.interceptor.impl.NavigationDrawerInterceptorImpl;
@@ -177,6 +179,10 @@ public class InterceptorActivityManager {
     private void initInterceptors(Activity activity) {
         Log.d(TAG, "========== Prepare to init activity interceptors ==========");
         interceptors = new ArrayList<>();
+        if (activity instanceof HockeyAppInterceptor) {
+            Log.d(TAG, "....." + HockeyAppInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new HockeyAppInterceptorImpl(activity));
+        }
         if (activity instanceof InflateLayoutInterceptor) {
             Log.d(TAG, "....." + InflateLayoutInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new InflateLayoutInterceptorImpl(activity));

@@ -12,7 +12,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.NetworkInterceptor
  */
 public interface NetworkInterceptor extends Interceptor {
 
-    void onInterceptorCreated(NetworkInterceptorDelegate callback);
+    void onInterceptorCreated(NetworkInterceptorDelegate delegate);
 
     Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter);
 

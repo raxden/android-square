@@ -36,6 +36,7 @@ ext {
     crashlyticsVersion = '2.6.0@aar'
     calligraphyVersion = '2.2.0'            // https://github.com/chrisjenx/Calligraphy
     zxingVersion = '1.8.3'
+    hockeyAppVersion = '4.0.1'              // https://www.hockeyapp.net/features/
 
     // Testing
     jUnitVersion = '4.12'
@@ -67,6 +68,8 @@ ext {
             timber:             "com.jakewharton.timber:timber:${timberVersion}",
 
             crashlytics:        "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}",
+
+            hockeyApp:          "net.hockeyapp.android:HockeySDK:${hockeyAppVersion}",
 
             calligraphy:        "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
 

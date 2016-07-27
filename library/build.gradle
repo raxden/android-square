@@ -47,6 +47,7 @@ dependencies {
     compile libDependencies.timber
     compile (libDependencies.crashlytics) { transitive = true; }
     compile libDependencies.calligraphy
+    compile libDependencies.hockeyApp
     compile libDependencies.zxing
 
     compile libDependencies.icepick

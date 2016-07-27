@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.AutoInflateLayoutI
  */
 public interface AutoInflateLayoutInterceptor extends Interceptor {
 
-    void onInterceptorCreated(AutoInflateLayoutInterceptorDelegate callback);
+    void onInterceptorCreated(AutoInflateLayoutInterceptorDelegate delegate);
 
     void onViewCreated(View view, Bundle savedInstanceState);
 

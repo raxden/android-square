@@ -8,7 +8,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.ShakeDetectorInter
  */
 public interface ShakeDetectorInterceptor extends Interceptor {
 
-    void onInterceptorCreated(ShakeDetectorInterceptorDelegate callback);
+    void onInterceptorCreated(ShakeDetectorInterceptorDelegate delegate);
 
     void shakeDetected();
 

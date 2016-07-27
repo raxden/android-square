@@ -8,6 +8,6 @@ import com.raxdenstudios.square.fragment.interceptor.delegate.AutoInflateViewInt
  */
 public interface AutoInflateViewInterceptor extends Interceptor {
 
-    void onInterceptorCreated(AutoInflateViewInterceptorDelegate callback);
+    void onInterceptorCreated(AutoInflateViewInterceptorDelegate delegate);
 
 }

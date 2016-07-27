@@ -11,7 +11,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  */
 public interface ZXingScannerInterceptor extends Interceptor {
 
-    void onInterceptorCreated(ZXingScannerInterceptorDelegate callback);
+    void onInterceptorCreated(ZXingScannerInterceptorDelegate delegate);
 
     ZXingScannerView onLoadZXingScannerView();
 

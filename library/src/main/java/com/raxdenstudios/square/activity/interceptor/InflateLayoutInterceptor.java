@@ -12,7 +12,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.InflateLayoutInter
  */
 public interface InflateLayoutInterceptor extends Interceptor {
 
-    void onInterceptorCreated(InflateLayoutInterceptorDelegate callback);
+    void onInterceptorCreated(InflateLayoutInterceptorDelegate delegate);
 
     View onCreateView(LayoutInflater inflater, Bundle savedInstanceState);
 

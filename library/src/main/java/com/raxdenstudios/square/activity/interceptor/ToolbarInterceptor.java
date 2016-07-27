@@ -11,7 +11,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.ToolbarInterceptor
  */
 public interface ToolbarInterceptor extends Interceptor {
 
-    void onInterceptorCreated(ToolbarInterceptorDelegate callback);
+    void onInterceptorCreated(ToolbarInterceptorDelegate delegate);
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 

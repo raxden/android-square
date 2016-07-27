@@ -10,7 +10,7 @@ import timber.log.Timber;
  */
 public interface TimberInterceptor extends Interceptor {
 
-    void onInterceptorCreated(TimberInterceptorDelegate callback);
+    void onInterceptorCreated(TimberInterceptorDelegate delegate);
 
     Timber.Tree onCreateTimberTree();
 

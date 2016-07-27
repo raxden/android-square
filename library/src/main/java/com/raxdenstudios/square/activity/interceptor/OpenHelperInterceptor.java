@@ -12,7 +12,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.OpenHelperIntercep
  */
 public interface OpenHelperInterceptor<T extends SQLiteOpenHelper> extends Interceptor {
 
-    void onInterceptorCreated(OpenHelperInterceptorDelegate callback);
+    void onInterceptorCreated(OpenHelperInterceptorDelegate delegate);
 
     T initOpenHelper(Context context, Bundle savedInstanceState);
 

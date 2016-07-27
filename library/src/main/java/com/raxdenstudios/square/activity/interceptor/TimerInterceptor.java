@@ -8,7 +8,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.TimerInterceptorDe
  */
 public interface TimerInterceptor extends Interceptor {
 
-    void onInterceptorCreated(TimerInterceptorDelegate callback);
+    void onInterceptorCreated(TimerInterceptorDelegate delegate);
 
     void onTimerEnd();
 

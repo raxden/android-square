@@ -8,7 +8,7 @@ import com.raxdenstudios.square.activity.interceptor.delegate.CheckPlayServicesI
  */
 public interface CheckPlayServicesInterceptor extends Interceptor {
 
-    void onInterceptorCreated(CheckPlayServicesInterceptorDelegate callback);
+    void onInterceptorCreated(CheckPlayServicesInterceptorDelegate delegate);
 
     void onGooglePlayServicesSupported();
 
