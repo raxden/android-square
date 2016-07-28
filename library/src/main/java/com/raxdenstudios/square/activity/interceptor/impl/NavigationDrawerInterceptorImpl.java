@@ -43,8 +43,8 @@ public class NavigationDrawerInterceptorImpl extends InterceptorActivityImpl
 
     public NavigationDrawerInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (NavigationDrawerInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
         mCompatActivity = (AppCompatActivity)activity;
     }
 

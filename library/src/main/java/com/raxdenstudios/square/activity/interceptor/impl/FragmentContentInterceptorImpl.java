@@ -31,8 +31,8 @@ public class FragmentContentInterceptorImpl extends InterceptorActivityImpl
 
     public FragmentContentInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (FragmentContentInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

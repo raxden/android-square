@@ -37,6 +37,7 @@ ext {
     calligraphyVersion = '2.2.0'            // https://github.com/chrisjenx/Calligraphy
     zxingVersion = '1.8.3'
     hockeyAppVersion = '4.0.1'              // https://www.hockeyapp.net/features/
+    jodaTimeVersion = '2.9.4.1'             // https://github.com/dlew/joda-time-android
 
     // Testing
     jUnitVersion = '4.12'
@@ -72,6 +73,8 @@ ext {
             hockeyApp:          "net.hockeyapp.android:HockeySDK:${hockeyAppVersion}",
 
             calligraphy:        "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
+
+            jodaTime:           "net.danlew:android.joda:${jodaTimeVersion}",
 
             icepick:            "frankiesardo:icepick:${icepickVersion}",
             icepickProcessor:   "frankiesardo:icepick-processor:${icepickVersion}",

@@ -18,7 +18,6 @@ public class BundleArgumentsInterceptorImpl extends InterceptorFragmentImpl impl
 
     public BundleArgumentsInterceptorImpl(Fragment fragment) {
         super(fragment);
-
         mCallbacks = (BundleArgumentsInterceptor)fragment;
         mCallbacks.onInterceptorCreated(this);
     }

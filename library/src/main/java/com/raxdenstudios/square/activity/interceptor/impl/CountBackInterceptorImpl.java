@@ -40,8 +40,8 @@ public class CountBackInterceptorImpl extends InterceptorActivityImpl
 
     public CountBackInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (CountBackInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
 
         if (!StringUtils.hasText(mMessage)) {
             mMessage = getContext().getString(R.string.app__count_back_exit_message);

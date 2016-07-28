@@ -26,7 +26,6 @@ public class AutoInflateViewInterceptorImpl extends InterceptorFragmentImpl impl
 
     public AutoInflateViewInterceptorImpl(Fragment fragment) {
         super(fragment);
-
         mCallbacks = (AutoInflateViewInterceptor)fragment;
         mCallbacks.onInterceptorCreated(this);
     }

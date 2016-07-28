@@ -21,8 +21,8 @@ public class OpenHelperInterceptorImpl extends InterceptorActivityImpl
 
     public OpenHelperInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (OpenHelperInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

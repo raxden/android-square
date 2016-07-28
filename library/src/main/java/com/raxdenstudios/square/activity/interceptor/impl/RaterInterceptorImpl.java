@@ -24,8 +24,8 @@ public class RaterInterceptorImpl extends InterceptorActivityImpl
 
     public RaterInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (RaterInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

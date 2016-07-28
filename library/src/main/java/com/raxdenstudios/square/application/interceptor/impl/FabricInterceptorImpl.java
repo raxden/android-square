@@ -18,8 +18,8 @@ public class FabricInterceptorImpl extends InterceptorApplicationImpl implements
 
     public FabricInterceptorImpl(Application application) {
         super(application);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (FabricInterceptor)application;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

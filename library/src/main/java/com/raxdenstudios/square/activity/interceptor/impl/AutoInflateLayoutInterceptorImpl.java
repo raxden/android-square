@@ -26,8 +26,8 @@ public class AutoInflateLayoutInterceptorImpl extends InterceptorActivityImpl
 
     public AutoInflateLayoutInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (AutoInflateLayoutInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

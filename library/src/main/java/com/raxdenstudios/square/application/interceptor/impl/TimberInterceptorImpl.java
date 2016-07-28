@@ -19,8 +19,8 @@ public class TimberInterceptorImpl extends InterceptorApplicationImpl implements
 
     public TimberInterceptorImpl(Application application) {
         super(application);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (TimberInterceptor)application;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

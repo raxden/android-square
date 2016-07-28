@@ -28,8 +28,8 @@ public class LocaleInterceptorImpl extends InterceptorApplicationImpl implements
 
     public LocaleInterceptorImpl(Application application) {
         super(application);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (LocaleInterceptor)application;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

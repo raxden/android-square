@@ -20,8 +20,8 @@ public class CheckPlayServicesInterceptorImpl extends InterceptorActivityImpl
 
     public CheckPlayServicesInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (CheckPlayServicesInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

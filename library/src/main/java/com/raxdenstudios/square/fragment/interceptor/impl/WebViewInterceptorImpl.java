@@ -27,7 +27,6 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
 
     public WebViewInterceptorImpl(Fragment fragment) {
         super(fragment);
-
         mCallbacks = (WebViewInterceptor)fragment;
         mCallbacks.onInterceptorCreated(this);
     }

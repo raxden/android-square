@@ -24,8 +24,8 @@ public class ToolbarInterceptorImpl extends InterceptorActivityImpl
 
     public ToolbarInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (ToolbarInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

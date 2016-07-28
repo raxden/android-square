@@ -20,8 +20,8 @@ public class ShakeDetectorInterceptorImpl extends InterceptorActivityImpl
 
     public ShakeDetectorInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (ShakeDetectorInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

@@ -49,6 +49,7 @@ dependencies {
     compile libDependencies.calligraphy
     compile libDependencies.hockeyApp
     compile libDependencies.zxing
+    compile libDependencies.jodaTime
 
     compile libDependencies.icepick
     provided libDependencies.icepickProcessor

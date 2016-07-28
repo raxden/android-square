@@ -5,9 +5,11 @@ import android.content.res.Configuration;
 import android.util.Log;
 
 import com.raxdenstudios.square.application.interceptor.FabricInterceptor;
+import com.raxdenstudios.square.application.interceptor.JodaTimeInterceptor;
 import com.raxdenstudios.square.application.interceptor.LocaleInterceptor;
 import com.raxdenstudios.square.application.interceptor.TimberInterceptor;
 import com.raxdenstudios.square.application.interceptor.impl.FabricInterceptorImpl;
+import com.raxdenstudios.square.application.interceptor.impl.JodaTimeInterceptorImpl;
 import com.raxdenstudios.square.application.interceptor.impl.LocaleInterceptorImpl;
 import com.raxdenstudios.square.application.interceptor.impl.TimberInterceptorImpl;
 
@@ -70,6 +72,10 @@ public class InterceptorApplicationManager {
         if (application instanceof FabricInterceptor) {
             Log.d(TAG, "....."+FabricInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new FabricInterceptorImpl(application));
+        }
+        if (application instanceof JodaTimeInterceptor) {
+            Log.d(TAG, "....."+JodaTimeInterceptor.class.getSimpleName()+" loaded!");
+            interceptors.add(new JodaTimeInterceptorImpl(application));
         }
         Log.d(TAG, "=========================================================");
     }

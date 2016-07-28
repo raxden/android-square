@@ -40,8 +40,8 @@ public class TimerInterceptorImpl extends InterceptorActivityImpl
 
     public TimerInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (TimerInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
 
         if (defaultTime == 0) {
             defaultTime = DEFAULT_TIME_MS;

@@ -19,8 +19,8 @@ public class BundleExtrasInterceptorImpl extends InterceptorActivityImpl
 
     public BundleExtrasInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (BundleExtrasInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

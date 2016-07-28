@@ -26,8 +26,8 @@ public class HockeyAppInterceptorImpl extends InterceptorActivityImpl
 
     public HockeyAppInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (HockeyAppInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

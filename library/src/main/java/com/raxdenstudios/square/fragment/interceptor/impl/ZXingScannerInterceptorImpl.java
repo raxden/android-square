@@ -32,7 +32,6 @@ public class ZXingScannerInterceptorImpl extends InterceptorFragmentImpl
 
     public ZXingScannerInterceptorImpl(Fragment fragment) {
         super(fragment);
-
         mCallbacks = (ZXingScannerInterceptor)fragment;
         mCallbacks.onInterceptorCreated(this);
     }

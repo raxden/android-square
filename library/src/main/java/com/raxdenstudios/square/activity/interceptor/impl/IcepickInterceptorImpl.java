@@ -19,8 +19,8 @@ public class IcepickInterceptorImpl extends InterceptorActivityImpl
 
     public IcepickInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (IcepickInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

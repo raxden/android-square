@@ -36,8 +36,8 @@ public class NetworkInterceptorImpl extends InterceptorActivityImpl
 
     public NetworkInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (NetworkInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override

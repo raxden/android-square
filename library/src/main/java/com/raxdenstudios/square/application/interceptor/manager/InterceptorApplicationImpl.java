@@ -36,7 +36,7 @@ public class InterceptorApplicationImpl implements IInterceptorApplication {
         return mApplication.getApplicationContext();
     }
 
-    public Application getmApplication() {
+    public Application getApplication() {
         return mApplication;
     }
 

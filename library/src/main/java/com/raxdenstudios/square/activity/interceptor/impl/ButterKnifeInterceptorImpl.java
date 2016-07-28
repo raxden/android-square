@@ -19,8 +19,8 @@ public class ButterKnifeInterceptorImpl extends InterceptorActivityImpl
 
     public ButterKnifeInterceptorImpl(Activity activity) {
         super(activity);
-        mCallbacks.onInterceptorCreated(this);
         mCallbacks = (ButterKnifeInterceptor)activity;
+        mCallbacks.onInterceptorCreated(this);
     }
 
     @Override
