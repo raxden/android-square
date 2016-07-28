@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.raxdenstudios.square.activity.InterceptorActivity;
+import com.raxdenstudios.square.activity.InterceptorMVPActivity;
 
 /**
  * Created by agomez on 21/04/2015.
@@ -21,7 +22,8 @@ public class InterceptorActivityImpl implements IInterceptorActivity {
     private Activity mActivity;
 
     public InterceptorActivityImpl(Activity activity) {
-        if (!(activity instanceof InterceptorActivity)) {
+        if (!(activity instanceof InterceptorActivity) &&
+                !(activity instanceof InterceptorMVPActivity)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorActivity");
         }
         mActivity = activity;

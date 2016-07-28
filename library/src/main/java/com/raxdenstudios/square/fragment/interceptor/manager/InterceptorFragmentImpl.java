@@ -10,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.square.fragment.InterceptorDialogFragment;
+import com.raxdenstudios.square.fragment.InterceptorDialogMVPFragment;
 import com.raxdenstudios.square.fragment.InterceptorFragment;
+import com.raxdenstudios.square.fragment.InterceptorMVPFragment;
 
 /**
  * Created by agomez on 02/06/2015.
@@ -22,7 +25,10 @@ public class InterceptorFragmentImpl implements IInterceptorFragment {
     private Fragment mFragment;
 
     public InterceptorFragmentImpl(Fragment fragment) {
-        if (!(fragment instanceof InterceptorFragment)) {
+        if (!(fragment instanceof InterceptorFragment) &&
+                !(fragment instanceof InterceptorMVPFragment) &&
+                !(fragment instanceof InterceptorDialogFragment) &&
+                !(fragment instanceof InterceptorDialogMVPFragment)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorFragment");
         }
         mFragment = fragment;

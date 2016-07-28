@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 
 import com.raxdenstudios.square.application.InterceptorApplication;
+import com.raxdenstudios.square.application.InterceptorMultiDexApplication;
 
 /**
  * Created by agomez on 13/07/2015.
@@ -16,7 +17,8 @@ public class InterceptorApplicationImpl implements IInterceptorApplication {
     private Application mApplication;
 
     public InterceptorApplicationImpl(Application application) {
-        if (!(application instanceof InterceptorApplication)) {
+        if (!(application instanceof InterceptorApplication) &&
+                !(application instanceof InterceptorMultiDexApplication)) {
             throw new IllegalStateException(this.getClass().getSimpleName()+" interceptor must be used just on IInterceptorApplication");
         }
         mApplication = application;
