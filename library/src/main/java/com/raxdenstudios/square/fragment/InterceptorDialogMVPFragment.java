@@ -69,27 +69,27 @@ public abstract class InterceptorDialogMVPFragment<TPresenter extends IPresenter
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        getInterceptorManager().onResumeInterceptors();
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         getInterceptorManager().onStartInterceptors();
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        getInterceptorManager().onStopInterceptors();
+    public void onResume() {
+        super.onResume();
+        getInterceptorManager().onResumeInterceptors();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         getInterceptorManager().onPauseInterceptors();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getInterceptorManager().onStopInterceptors();
     }
 
     @Override

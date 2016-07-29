@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.TimerInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.WebViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.ZXingScannerInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.impl.AutoInflateViewInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.impl.BundleArgumentsInterceptorImpl;
+import com.raxdenstudios.square.fragment.interceptor.impl.TimerInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.impl.WebViewInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.impl.ZXingScannerInterceptorImpl;
 
@@ -190,6 +192,10 @@ public class InterceptorFragmentManager {
         if (fragment instanceof AutoInflateViewInterceptor) {
             Log.d(TAG, "....."+AutoInflateViewInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new AutoInflateViewInterceptorImpl(fragment));
+        }
+        if (fragment instanceof TimerInterceptor) {
+            Log.d(TAG, "....."+TimerInterceptor.class.getSimpleName()+" loaded!");
+            interceptors.add(new TimerInterceptorImpl(fragment));
         }
         if (fragment instanceof WebViewInterceptor) {
             Log.d(TAG, "....."+WebViewInterceptor.class.getSimpleName()+" loaded!");
