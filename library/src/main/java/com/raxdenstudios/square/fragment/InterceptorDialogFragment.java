@@ -52,7 +52,7 @@ public abstract class InterceptorDialogFragment extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getInterceptorManager().onCreateViewInterceptors(inflater, container, savedInstanceState);
+        return getInterceptorManager().onCreateViewInterceptors(inflater, null, container, savedInstanceState);
     }
 
     @Override
@@ -80,15 +80,15 @@ public abstract class InterceptorDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        getInterceptorManager().onPauseInterceptors();
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
         getInterceptorManager().onStopInterceptors();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getInterceptorManager().onPauseInterceptors();
     }
 
     @Override

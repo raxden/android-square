@@ -55,7 +55,7 @@ public class InterceptorFragmentImpl implements IInterceptorFragment {
     }
 
     @Override
-    public View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onInterceptorCreateView(LayoutInflater inflater, View inflatedView, ViewGroup container, Bundle savedInstanceState) {
         return null;
     }
 

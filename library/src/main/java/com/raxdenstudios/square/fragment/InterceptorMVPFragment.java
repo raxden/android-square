@@ -53,7 +53,7 @@ public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> exte
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getInterceptorManager().onCreateViewInterceptors(inflater, container, savedInstanceState);
+        return getInterceptorManager().onCreateViewInterceptors(inflater, null, container, savedInstanceState);
     }
 
     @Override

@@ -22,7 +22,7 @@ public interface IInterceptorFragment {
 
     void onInterceptorCreate(Bundle savedInstanceState);
 
-    View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+    View onInterceptorCreateView(LayoutInflater inflater, View inflatedView, ViewGroup container, Bundle savedInstanceState);
 
     void onInterceptorViewCreated(View view, Bundle savedInstanceState);
 

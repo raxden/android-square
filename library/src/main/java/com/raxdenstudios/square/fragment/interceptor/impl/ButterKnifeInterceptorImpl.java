@@ -27,9 +27,9 @@ public class ButterKnifeInterceptorImpl extends InterceptorFragmentImpl
     }
 
     @Override
-    public View onInterceptorCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onInterceptorCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, view);
-        return view;
+    public View onInterceptorCreateView(LayoutInflater inflater, View inflatedView, ViewGroup container, Bundle savedInstanceState) {
+        ButterKnife.bind(this, inflatedView);
+        return inflatedView;
     }
+
 }

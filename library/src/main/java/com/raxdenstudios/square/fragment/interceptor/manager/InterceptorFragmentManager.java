@@ -88,16 +88,13 @@ public class InterceptorFragmentManager {
         }
     }
 
-    public View onCreateViewInterceptors(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateViewInterceptors(LayoutInflater inflater, View inflatedView, ViewGroup container, Bundle savedInstanceState) {
         if (interceptors != null) {
             for (IInterceptorFragment interceptor : interceptors) {
-                View view = interceptor.onInterceptorCreateView(inflater, container, savedInstanceState);
-                if (view != null) {
-                    return view;
-                }
+                inflatedView = interceptor.onInterceptorCreateView(inflater, inflatedView, container, savedInstanceState);
             }
         }
-        return null;
+        return inflatedView;
     }
 
     public void onViewCreatedInterceptors(View view, Bundle savedInstanceState) {
