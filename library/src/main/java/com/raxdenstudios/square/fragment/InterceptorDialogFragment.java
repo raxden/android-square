@@ -2,6 +2,7 @@ package com.raxdenstudios.square.fragment;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -35,6 +36,12 @@ public abstract class InterceptorDialogFragment extends DialogFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         getInterceptorManager().onAttachInterceptors(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        getInterceptorManager().onAttachInterceptors(context);
     }
 
     @Override

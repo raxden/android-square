@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -36,6 +37,12 @@ public abstract class InterceptorDialogMVPFragment<TPresenter extends IPresenter
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         getInterceptorManager().onAttachInterceptors(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        getInterceptorManager().onAttachInterceptors(context);
     }
 
     @Override

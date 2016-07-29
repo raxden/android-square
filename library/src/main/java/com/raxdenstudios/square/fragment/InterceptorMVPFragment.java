@@ -41,6 +41,7 @@ public abstract class InterceptorMVPFragment<TPresenter extends IPresenter> exte
 
     @Override
     public void onAttach(Context context) {
+        super.onAttach(context);
         getInterceptorManager().onAttachInterceptors(context);
     }
 
