@@ -59,7 +59,7 @@ public class InterceptorApplicationManager {
 
 
     private void initInterceptors(Application application) {
-        Log.d(TAG, "========== Prepare to init application interceptors ==========");
+        Log.d(TAG, "========== Prepare to init "+application.getClass().getSimpleName()+" application interceptors ==========");
         interceptors = new ArrayList<>();
         if (application instanceof LocaleInterceptor) {
             Log.d(TAG, "....."+LocaleInterceptor.class.getSimpleName()+" loaded!");

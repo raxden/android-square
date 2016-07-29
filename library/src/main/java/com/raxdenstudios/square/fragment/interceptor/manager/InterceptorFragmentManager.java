@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.square.fragment.interceptor.ButterKnifeInterceptor;
+import com.raxdenstudios.square.fragment.interceptor.impl.ButterKnifeInterceptorImpl;
 import com.raxdenstudios.square.fragment.interceptor.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.BundleArgumentsInterceptor;
 import com.raxdenstudios.square.fragment.interceptor.TimerInterceptor;
@@ -184,7 +186,7 @@ public class InterceptorFragmentManager {
 
     private void initInterceptors(Fragment fragment) {
         interceptors = new ArrayList<>();
-        Log.d(TAG, "========== Prepare to init fragment interceptors ==========");
+        Log.d(TAG, "========== Prepare to init "+fragment.getClass().getSimpleName()+" fragment interceptors ==========");
         if (fragment instanceof BundleArgumentsInterceptor) {
             Log.d(TAG, "....."+BundleArgumentsInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new BundleArgumentsInterceptorImpl(fragment));
@@ -192,6 +194,10 @@ public class InterceptorFragmentManager {
         if (fragment instanceof AutoInflateViewInterceptor) {
             Log.d(TAG, "....."+AutoInflateViewInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new AutoInflateViewInterceptorImpl(fragment));
+        }
+        if (fragment instanceof ButterKnifeInterceptor) {
+            Log.d(TAG, "....." + ButterKnifeInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new ButterKnifeInterceptorImpl(fragment));
         }
         if (fragment instanceof TimerInterceptor) {
             Log.d(TAG, "....."+TimerInterceptor.class.getSimpleName()+" loaded!");

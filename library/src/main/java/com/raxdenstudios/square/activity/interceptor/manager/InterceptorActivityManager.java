@@ -177,7 +177,7 @@ public class InterceptorActivityManager {
     }
 
     private void initInterceptors(Activity activity) {
-        Log.d(TAG, "========== Prepare to init activity interceptors ==========");
+        Log.d(TAG, "========== Prepare to init "+activity.getClass().getSimpleName()+" activity interceptors ==========");
         interceptors = new ArrayList<>();
         if (activity instanceof HockeyAppInterceptor) {
             Log.d(TAG, "....." + HockeyAppInterceptor.class.getSimpleName() + " loaded!");
