@@ -11,6 +11,7 @@ import com.raxdenstudios.square.fragment.interceptor.delegate.ButterKnifeInterce
 import com.raxdenstudios.square.fragment.interceptor.manager.InterceptorFragmentImpl;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by Raxden on 23/07/2016.
@@ -19,6 +20,7 @@ public class ButterKnifeInterceptorImpl extends InterceptorFragmentImpl
         implements ButterKnifeInterceptorDelegate {
 
     private ButterKnifeInterceptor mCallbacks;
+    private Unbinder unbinder;
 
     public ButterKnifeInterceptorImpl(Fragment fragment) {
         super(fragment);
@@ -28,8 +30,13 @@ public class ButterKnifeInterceptorImpl extends InterceptorFragmentImpl
 
     @Override
     public View onInterceptorCreateView(LayoutInflater inflater, View inflatedView, ViewGroup container, Bundle savedInstanceState) {
-        ButterKnife.bind(getFragment(), inflatedView);
+        unbinder = ButterKnife.bind(getFragment(), inflatedView);
         return inflatedView;
     }
 
+    @Override
+    public void onInterceptorDestroyView() {
+        super.onInterceptorDestroyView();
+        unbinder.unbind();
+    }
 }
