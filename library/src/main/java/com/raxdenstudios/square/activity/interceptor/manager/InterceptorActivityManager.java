@@ -179,6 +179,10 @@ public class InterceptorActivityManager {
     private void initInterceptors(Activity activity) {
         Log.d(TAG, "========== Prepare to init "+activity.getClass().getSimpleName()+" activity interceptors ==========");
         interceptors = new ArrayList<>();
+        if (activity instanceof BundleExtrasInterceptor) {
+            Log.d(TAG, "....." + BundleExtrasInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new BundleExtrasInterceptorImpl(activity));
+        }
         if (activity instanceof HockeyAppInterceptor) {
             Log.d(TAG, "....." + HockeyAppInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new HockeyAppInterceptorImpl(activity));
@@ -198,10 +202,6 @@ public class InterceptorActivityManager {
         if (activity instanceof IcepickInterceptor) {
             Log.d(TAG, "....." + IcepickInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new IcepickInterceptorImpl(activity));
-        }
-        if (activity instanceof BundleExtrasInterceptor) {
-            Log.d(TAG, "....." + BundleExtrasInterceptor.class.getSimpleName() + " loaded!");
-            interceptors.add(new BundleExtrasInterceptorImpl(activity));
         }
         if (activity instanceof CheckPlayServicesInterceptor) {
             Log.d(TAG, "....." + CheckPlayServicesInterceptor.class.getSimpleName() + " loaded!");
