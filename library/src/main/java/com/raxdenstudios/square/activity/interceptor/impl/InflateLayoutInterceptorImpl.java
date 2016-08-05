@@ -33,8 +33,13 @@ public class InflateLayoutInterceptorImpl extends InterceptorActivityImpl
         mInflateLayout = onCreateView(getActivity().getLayoutInflater(), savedInstanceState);
         if (mInflateLayout != null) {
             getActivity().setContentView(mInflateLayout);
-            mCallbacks.onViewCreated(mInflateLayout, savedInstanceState);
         }
+    }
+
+    @Override
+    public void onInterceptorPostCreate(Bundle savedInstanceState) {
+        super.onInterceptorPostCreate(savedInstanceState);
+        mCallbacks.onViewCreated(mInflateLayout, savedInstanceState);
     }
 
     private View onCreateView(LayoutInflater inflater, Bundle savedInstanceState) {
