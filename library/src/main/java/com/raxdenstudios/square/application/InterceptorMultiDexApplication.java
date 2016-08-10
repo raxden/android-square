@@ -3,7 +3,10 @@ package com.raxdenstudios.square.application;
 import android.content.res.Configuration;
 import android.support.multidex.MultiDexApplication;
 
+import com.raxdenstudios.square.application.interceptor.manager.IInterceptorApplication;
 import com.raxdenstudios.square.application.interceptor.manager.InterceptorApplicationManager;
+
+import java.util.List;
 
 /**
  * Created by agomez on 13/07/2015.
@@ -28,12 +31,12 @@ public class InterceptorMultiDexApplication extends MultiDexApplication {
     private InterceptorApplicationManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = new InterceptorApplicationManager(this);
-            initInterceptors(mInterceptorManager);
+            addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void initInterceptors(InterceptorApplicationManager interceptorManager) {
+    protected void addInterceptor(List<IInterceptorApplication> interceptors) {
 
     }
 
