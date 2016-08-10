@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
-import android.os.Bundle;
 import android.os.Handler;
 
 import com.raxdenstudios.square.fragment.interceptor.TimerInterceptor;
@@ -50,8 +49,8 @@ public class TimerInterceptorImpl extends InterceptorFragmentImpl
     }
 
     @Override
-    public void onInterceptorCreate(Bundle savedInstanceState) {
-        super.onInterceptorCreate(savedInstanceState);
+    public void onInterceptorResume() {
+        super.onInterceptorResume();
 
         removeRunnableIfExists();
         postRunnable();
