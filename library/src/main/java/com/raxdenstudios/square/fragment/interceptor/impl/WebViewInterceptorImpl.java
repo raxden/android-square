@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.fragment.interceptor.impl;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     private WebViewInterceptor mCallbacks;
     private ViewGroup mContainer;
     private WebView mWebView;
+    private boolean mPageFinished;
 
     public WebViewInterceptorImpl(Fragment fragment) {
         super(fragment);
@@ -95,7 +97,7 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
 
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
-        if (view != null) {
+        if (view != null && !mPageFinished) {
             if (mCallbacks != null) mCallbacks.onProgressShow(Integer.toString(newProgress) + "%");
         }
     }
@@ -119,8 +121,15 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     private WebViewClient webviewClient = new WebViewClient() {
 
         @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            mPageFinished = false;
+        }
+
+        @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mPageFinished = true;
             WebViewInterceptorImpl.this.onPageFinished(view, url);
         }
 
