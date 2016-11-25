@@ -97,9 +97,6 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     public void onProgressChanged(WebView view, int newProgress) {
         if (view != null) {
             if (mCallbacks != null) mCallbacks.onProgressShow(Integer.toString(newProgress) + "%");
-            if (newProgress == 100) {
-                if (mCallbacks != null) mCallbacks.onProgressShow(Integer.toString(newProgress));
-            }
         }
     }
 
