@@ -3,6 +3,7 @@ package com.raxdenstudios.square.fragment.interceptor.impl;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -32,8 +33,8 @@ public class WebViewInterceptorImpl extends InterceptorFragmentImpl implements W
     }
 
     @Override
-    public void onInterceptorCreate(Bundle savedInstanceState) {
-        super.onInterceptorCreate(savedInstanceState);
+    public void onInterceptorViewCreated(View view, Bundle savedInstanceState) {
+        super.onInterceptorViewCreated(view, savedInstanceState);
 
         mContainer = mCallbacks != null ? mCallbacks.onLoadWebViewContainer() : null;
         if (mContainer != null) {
