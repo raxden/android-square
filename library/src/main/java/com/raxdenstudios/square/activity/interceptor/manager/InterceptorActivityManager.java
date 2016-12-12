@@ -105,6 +105,14 @@ public class InterceptorActivityManager {
         }
     }
 
+    public void onInterceptorCreateOptionsMenu(Menu menu) {
+        if (interceptors != null) {
+            for (IInterceptorActivity interceptor : interceptors) {
+                interceptor.onInterceptorCreateOptionsMenu(menu);
+            }
+        }
+    }
+
     public void onPrepareOptionsMenuInterceptors(Menu menu) {
         if (interceptors != null) {
             for (IInterceptorActivity interceptor : interceptors) {

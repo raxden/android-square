@@ -46,6 +46,12 @@ public abstract class InterceptorActivity extends AppCompatActivity {
         getInterceptorManager().onPostCreateInterceptors(savedInstanceState);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getInterceptorManager().onInterceptorCreateOptionsMenu(menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override /* Called whenever we call ActivityCompat.invalidateOptionsMenu(); */
     public boolean onPrepareOptionsMenu(Menu menu) {
         getInterceptorManager().onPrepareOptionsMenuInterceptors(menu);

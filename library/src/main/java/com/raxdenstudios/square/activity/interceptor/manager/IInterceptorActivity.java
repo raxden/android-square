@@ -19,6 +19,8 @@ public interface IInterceptorActivity {
 
     void onInterceptorPostCreate(Bundle savedInstanceState);
 
+    void onInterceptorCreateOptionsMenu(Menu menu);
+
     void onInterceptorPrepareOptionsMenu(Menu menu);
 
     void onInterceptorStart();

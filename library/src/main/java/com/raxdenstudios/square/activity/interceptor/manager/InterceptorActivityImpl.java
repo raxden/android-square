@@ -61,6 +61,11 @@ public class InterceptorActivityImpl implements IInterceptorActivity {
     }
 
     @Override
+    public void onInterceptorCreateOptionsMenu(Menu menu) {
+
+    }
+
+    @Override
     public void onInterceptorPrepareOptionsMenu(Menu menu) {
 
     }
