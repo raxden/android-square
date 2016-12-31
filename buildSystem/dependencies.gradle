@@ -10,19 +10,20 @@ ext {
 
     // Sdk and tools
     minSdkVersion = 16
-    targetSdkVersion = 24
-    compileSdkVersion = 24
-    buildToolsVersion = '24.0.0'
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.0'
 
     // Android dependencies
     multidexVersion = '1.0.1'
-    supportLibraryVersion = '24.0.0'
-    firebaseVersion = '9.0.0'
+    supportLibraryVersion = '25.0.0'
+    servicesVersion = '9.8.0'
+    firebaseVersion = '9.8.0'
 
     // Raxden libraries
-    androidCommonsVersion = '2.3.0@aar'     // https://github.com/raxden/AndroidCommons
-    androidResourcesVersion = '1.0.0@aar'   // https://github.com/raxden/AndroidResources
-    androidMVPVersion= '1.0.7@aar'          // https://github.com/raxden/AndroidMVP
+    androidCommonsVersion = '2.3.7@aar'     // https://github.com/raxden/AndroidCommons
+    androidResourcesVersion = '1.0.3@aar'   // https://github.com/raxden/AndroidResources
+    androidMVPVersion= '1.0.10@aar'          // https://github.com/raxden/AndroidMVP
     androidPreferencesVersion = '2.2.4@aar' // https://github.com/raxden/AndroidPreferences
     androidRaterVersion = '2.2.4@aar'       // https://github.com/raxden/AndroidRater
     androidRecyclerVersion = '2.2.4@aar'    // https://github.com/raxden/AndroidRecycler
@@ -30,13 +31,14 @@ ext {
     androidShakeVersion = '2.2.1@aar'       // https://github.com/raxden/AndroidShakeDetector
 
     // Libraries
+    reactiveAndroidVersion = '1.2.1'        // https://github.com/ReactiveX/RxAndroid
+    reactiveJavaVersion = '1.1.6'           // https://github.com/ReactiveX/RxAndroid
     timberVersion = '4.1.1'                 // https://github.com/JakeWharton/timber
     butterknifeVersion = '8.0.1'            // https://github.com/JakeWharton/butterknife
     icepickVersion = '3.2.0'                // https://github.com/frankiesardo/icepick
     crashlyticsVersion = '2.6.0@aar'
     calligraphyVersion = '2.2.0'            // https://github.com/chrisjenx/Calligraphy
     zxingVersion = '1.8.3'
-    hockeyAppVersion = '4.0.1'              // https://www.hockeyapp.net/features/
     jodaTimeVersion = '2.9.4.1'             // https://github.com/dlew/joda-time-android
 
     // Testing
@@ -50,6 +52,7 @@ ext {
     libDependencies = [
             muldidex:           "com.android.support:multidex:${multidexVersion}",
             androidv7:          "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            mediarouterv7:      "com.android.support:mediarouter-v7:${supportLibraryVersion}",
             design:             "com.android.support:design:${supportLibraryVersion}",
             recycler:           "com.android.support:recyclerview-v7:${supportLibraryVersion}",
 
@@ -62,6 +65,9 @@ ext {
             androidCrons:       "com.github.raxden:AndroidCrons:${androidCronsVersion}",
             androidShake:       "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}",
 
+            googleAnalytics:    "com.google.android.gms:play-services-analytics:${servicesVersion}",
+            googleCast:         "com.google.android.gms:play-services-cast-framework:${servicesVersion}",
+
             firebaseCore:       "com.google.firebase:firebase-core:${firebaseVersion}",
             firebaseAds:        "com.google.firebase:firebase-ads:${firebaseVersion}",
             firebaseMessaging:  "com.google.firebase:firebase-messaging:${firebaseVersion}",
@@ -69,9 +75,6 @@ ext {
             timber:             "com.jakewharton.timber:timber:${timberVersion}",
 
             crashlytics:        "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}",
-
-            hockeyApp:          "net.hockeyapp.android:HockeySDK:${hockeyAppVersion}",
-
             calligraphy:        "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
 
             jodaTime:           "net.danlew:android.joda:${jodaTimeVersion}",
@@ -83,6 +86,9 @@ ext {
             butterKnifeAPT:     "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
 
             zxing:              "me.dm7.barcodescanner:zxing:${zxingVersion}",
+
+            reactiveAndroid:    "io.reactivex:rxandroid:${reactiveAndroidVersion}",
+            reactiveJava:       "io.reactivex:rxjava:${reactiveJavaVersion}",
     ]
 
     libTestDependencies = [

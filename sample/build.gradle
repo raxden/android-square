@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+
+    defaultConfig {
+        applicationId "com.raxdenstudios.square.sample"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://clojars.org/repo/" }
+}
+
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile project(':library')
+
+
+    compile libDependencies.muldidex
+    compile libDependencies.androidv7
+    compile libDependencies.design
+    compile libDependencies.recycler
+
+    compile libDependencies.androidCommons
+    compile libDependencies.androidResources
+    compile libDependencies.androidPreferences
+    compile libDependencies.androidRater
+    compile libDependencies.androidRecycler
+    compile libDependencies.androidMVP
+    compile libDependencies.androidCrons
+    compile libDependencies.androidShake
+
+    compile libDependencies.firebaseCore
+    compile libDependencies.firebaseAds
+    compile libDependencies.firebaseMessaging
+
+    compile libDependencies.timber
+    compile (libDependencies.crashlytics) { transitive = true; }
+    compile libDependencies.calligraphy
+    compile libDependencies.zxing
+    compile libDependencies.jodaTime
+
+    compile libDependencies.icepick
+    provided libDependencies.icepickProcessor
+
+    compile libDependencies.butterKnife
+    apt     libDependencies.butterKnifeAPT
+
+    compile libDependencies.reactiveAndroid
+    compile libDependencies.reactiveJava
+}

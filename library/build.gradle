@@ -28,6 +28,7 @@ dependencies {
 
     compile libDependencies.muldidex
     compile libDependencies.androidv7
+    compile libDependencies.mediarouterv7
     compile libDependencies.design
     compile libDependencies.recycler
 
@@ -40,6 +41,9 @@ dependencies {
     compile libDependencies.androidCrons
     compile libDependencies.androidShake
 
+    compile libDependencies.googleAnalytics
+    compile libDependencies.googleCast
+
     compile libDependencies.firebaseCore
     compile libDependencies.firebaseAds
     compile libDependencies.firebaseMessaging
@@ -47,7 +51,6 @@ dependencies {
     compile libDependencies.timber
     compile (libDependencies.crashlytics) { transitive = true; }
     compile libDependencies.calligraphy
-    compile libDependencies.hockeyApp
     compile libDependencies.zxing
     compile libDependencies.jodaTime
 
@@ -56,6 +59,9 @@ dependencies {
 
     compile libDependencies.butterKnife
     apt     libDependencies.butterKnifeAPT
+
+    compile libDependencies.reactiveAndroid
+    compile libDependencies.reactiveJava
 
     testCompile libTestDependencies.junit
     testCompile libTestDependencies.assertj
