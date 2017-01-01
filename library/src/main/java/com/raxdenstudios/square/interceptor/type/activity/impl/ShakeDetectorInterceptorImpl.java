@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.raxdenstudios.shake.ShakeDetectorHelper;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.ShakeDetectorInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.ShakeDetectorInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.ShakeDetectorInterceptorInteractor;
 
 /**
  * Detects phone shaking. If > 75% of the samples taken in the past 0.5s are
@@ -14,8 +14,8 @@ import com.raxdenstudios.square.interceptor.config.ShakeDetectorInterceptorConfi
  * 1/2*g*t^2*3/4).
  */
 public class ShakeDetectorInterceptorImpl
-        extends ActivityInterceptor<ShakeDetectorInterceptorConfig, ShakeDetectorInterceptorCallback>
-        implements ShakeDetectorInterceptorConfig {
+        extends ActivityInterceptor<ShakeDetectorInterceptorInteractor, ShakeDetectorInterceptorCallback>
+        implements ShakeDetectorInterceptorInteractor {
 
     public ShakeDetectorInterceptorImpl(Activity activity) {
         super(activity);

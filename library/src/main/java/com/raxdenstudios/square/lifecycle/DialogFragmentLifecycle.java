@@ -5,9 +5,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 /**
- * Created by Ángel Gómez on 31/12/2016.
+ * Created by Ángel Gómez
+ *
+ * Contract that defines the DialogFragment life cycle used by interceptors.
  */
-
 public interface DialogFragmentLifecycle extends FragmentLifecycle {
 
     Dialog onCreateDialog(Bundle savedInstanceState, Dialog createdDialog);

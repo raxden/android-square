@@ -6,14 +6,14 @@ import android.os.Bundle;
 
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.OpenHelperInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.OpenHelperInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.OpenHelperInterceptorInteractor;
 
 /**
  * Created by agomez on 08/05/2015.
  */
 public class OpenHelperInterceptorImpl<T extends SQLiteOpenHelper>
-        extends ActivityInterceptor<OpenHelperInterceptorConfig, OpenHelperInterceptorCallback<T>>
-        implements OpenHelperInterceptorConfig {
+        extends ActivityInterceptor<OpenHelperInterceptorInteractor, OpenHelperInterceptorCallback<T>>
+        implements OpenHelperInterceptorInteractor {
 
     private SQLiteOpenHelper mOpenHelper;
 

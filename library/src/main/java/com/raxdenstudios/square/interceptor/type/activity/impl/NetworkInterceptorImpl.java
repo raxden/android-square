@@ -11,14 +11,14 @@ import android.os.Bundle;
 import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.NetworkInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.NetworkInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.NetworkInterceptorInteractor;
 
 /**
  * Created by agomez on 08/05/2015.
  */
 public class NetworkInterceptorImpl
-        extends ActivityInterceptor<NetworkInterceptorConfig, NetworkInterceptorCallback>
-        implements NetworkInterceptorConfig {
+        extends ActivityInterceptor<NetworkInterceptorInteractor, NetworkInterceptorCallback>
+        implements NetworkInterceptorInteractor {
 
     private BroadcastReceiver mNetworkReceiver = new BroadcastReceiver() {
 

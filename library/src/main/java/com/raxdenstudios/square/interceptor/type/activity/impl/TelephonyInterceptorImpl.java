@@ -7,7 +7,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import com.raxdenstudios.square.interceptor.callback.TelephonyInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.TelephonyInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.TelephonyInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 /**
@@ -15,8 +15,8 @@ import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
  */
 
 public class TelephonyInterceptorImpl
-        extends ActivityInterceptor<TelephonyInterceptorConfig, TelephonyInterceptorCallback>
-        implements TelephonyInterceptorConfig {
+        extends ActivityInterceptor<TelephonyInterceptorInteractor, TelephonyInterceptorCallback>
+        implements TelephonyInterceptorInteractor {
 
     private TelephonyManager mTelephonyManager;
 

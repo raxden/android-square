@@ -4,13 +4,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CastInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CastInterceptorInteractor;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
 public interface CastInterceptorCallback
-        extends InterceptorCallback<CastInterceptorConfig> {
+        extends InterceptorCallback<CastInterceptorInteractor> {
 
     /**
      *  return menu.findItem(R.id.media_route_menu_item)

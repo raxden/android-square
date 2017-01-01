@@ -3,7 +3,7 @@ package com.raxdenstudios.square.interceptor.type.activity.impl;
 import android.app.Activity;
 
 import com.raxdenstudios.square.interceptor.callback.CompositeSubscriptionInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CompositeSubscriptionInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CompositeSubscriptionInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 import rx.Subscription;
@@ -14,8 +14,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class CompositeSubscriptionInterceptorImpl
-        extends ActivityInterceptor<CompositeSubscriptionInterceptorConfig, CompositeSubscriptionInterceptorCallback>
-        implements CompositeSubscriptionInterceptorConfig {
+        extends ActivityInterceptor<CompositeSubscriptionInterceptorInteractor, CompositeSubscriptionInterceptorCallback>
+        implements CompositeSubscriptionInterceptorInteractor {
 
     private CompositeSubscription mCompositeSubscription;
 
@@ -48,6 +48,22 @@ public class CompositeSubscriptionInterceptorImpl
             if (mCompositeSubscription != null) {
                 mCompositeSubscription.remove(subscription);
             }
+        }
+    }
+
+    @Override
+    public void removeAllSubscritions() {
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.clear();
+        }
+    }
+
+    @Override
+    public boolean hasSubscriptions() {
+        if (mCompositeSubscription != null) {
+            return mCompositeSubscription.hasSubscriptions();
+        } else {
+            return false;
         }
     }
 

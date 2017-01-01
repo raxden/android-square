@@ -10,7 +10,9 @@ import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquareApplication is an abstract class that adds interceptor functionality to the application.
  */
 public abstract class SquareApplication extends Application {
 

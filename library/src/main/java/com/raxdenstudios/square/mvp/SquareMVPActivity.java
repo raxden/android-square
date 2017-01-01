@@ -15,9 +15,11 @@ import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquareMVPActivity is an abstract class that adds interceptor functionality to the activity.
+ * Unlike SquareActivity this activity follows the MVP pattern, therefore has a presenter attached.
  */
-
 public abstract class SquareMVPActivity<TPresenter extends IPresenter> extends MVPActivity<TPresenter> {
 
     private ActivityInterceptorManager mInterceptorManager;

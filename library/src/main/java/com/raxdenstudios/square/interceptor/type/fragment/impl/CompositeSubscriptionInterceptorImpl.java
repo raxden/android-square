@@ -3,7 +3,7 @@ package com.raxdenstudios.square.interceptor.type.fragment.impl;
 import android.app.Fragment;
 
 import com.raxdenstudios.square.interceptor.callback.CompositeSubscriptionInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CompositeSubscriptionInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CompositeSubscriptionInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
 
 import rx.Subscription;
@@ -14,8 +14,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class CompositeSubscriptionInterceptorImpl
-        extends FragmentInterceptor<CompositeSubscriptionInterceptorConfig, CompositeSubscriptionInterceptorCallback>
-        implements CompositeSubscriptionInterceptorConfig {
+        extends FragmentInterceptor<CompositeSubscriptionInterceptorInteractor, CompositeSubscriptionInterceptorCallback>
+        implements CompositeSubscriptionInterceptorInteractor {
 
     private CompositeSubscription mCompositeSubscription;
 

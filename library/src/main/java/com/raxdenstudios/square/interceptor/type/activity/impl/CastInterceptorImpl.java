@@ -12,15 +12,15 @@ import com.google.android.gms.cast.framework.CastState;
 import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.raxdenstudios.square.interceptor.callback.CastInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CastInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CastInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
 public class CastInterceptorImpl
-        extends ActivityInterceptor<CastInterceptorConfig, CastInterceptorCallback>
-        implements CastInterceptorConfig {
+        extends ActivityInterceptor<CastInterceptorInteractor, CastInterceptorCallback>
+        implements CastInterceptorInteractor {
 
     private IntroductoryOverlay mIntroductoryOverlay;
     private CastStateListener mCastStateListener;

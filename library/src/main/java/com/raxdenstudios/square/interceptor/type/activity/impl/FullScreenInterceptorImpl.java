@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.raxdenstudios.square.interceptor.callback.FullScreenInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.FullScreenInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.FullScreenInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 /**
  * Created by Ángel Gómez on 26/12/2016.
  */
 public class FullScreenInterceptorImpl
-        extends ActivityInterceptor<FullScreenInterceptorConfig, FullScreenInterceptorCallback>
-        implements FullScreenInterceptorConfig {
+        extends ActivityInterceptor<FullScreenInterceptorInteractor, FullScreenInterceptorCallback>
+        implements FullScreenInterceptorInteractor {
 
     public FullScreenInterceptorImpl(Activity activity) {
         super(activity);

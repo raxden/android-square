@@ -8,7 +8,7 @@ import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.raxdenstudios.square.interceptor.callback.CastSessionInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CastSessionInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CastSessionInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 /**
@@ -16,8 +16,8 @@ import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
  */
 
 public class CastSessionInterceptorImpl
-        extends ActivityInterceptor<CastSessionInterceptorConfig, CastSessionInterceptorCallback>
-        implements CastSessionInterceptorConfig {
+        extends ActivityInterceptor<CastSessionInterceptorInteractor, CastSessionInterceptorCallback>
+        implements CastSessionInterceptorInteractor {
 
     private CastContext mCastContext;
     private CastSession mCastSession;

@@ -6,15 +6,16 @@ import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
 import com.raxdenstudios.square.interceptor.BaseInterceptor;
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.InterceptorConfig;
+import com.raxdenstudios.square.interceptor.InterceptorInteractor;
 import com.raxdenstudios.square.lifecycle.PresenterLifecycle;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * This abstract class defines the basis of an presenter interceptor.
  */
-
-public abstract class PresenterInterceptor<TView extends IView, TConfig extends InterceptorConfig, TCallback extends InterceptorCallback<TConfig>>
-        extends BaseInterceptor<TConfig, TCallback>
+public abstract class PresenterInterceptor<TView extends IView, TInteractor extends InterceptorInteractor, TCallback extends InterceptorCallback<TInteractor>>
+        extends BaseInterceptor<TInteractor, TCallback>
         implements PresenterLifecycle<TView> {
 
     protected Presenter mPresenter;

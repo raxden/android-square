@@ -6,15 +6,15 @@ import android.os.Handler;
 import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
 import com.raxdenstudios.square.interceptor.callback.TimerInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.TimerInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.TimerInterceptorInteractor;
 import com.raxdenstudios.square.interceptor.type.PresenterInterceptor;
 
 /**
  * Created by agomez on 11/05/2105.
  */
 public class TimerInterceptorImpl<TView extends IView>
-        extends PresenterInterceptor<TView, TimerInterceptorConfig, TimerInterceptorCallback>
-        implements TimerInterceptorConfig {
+        extends PresenterInterceptor<TView, TimerInterceptorInteractor, TimerInterceptorCallback>
+        implements TimerInterceptorInteractor {
 
     private final static int DEFAULT_TIME_MS = 3000;
 

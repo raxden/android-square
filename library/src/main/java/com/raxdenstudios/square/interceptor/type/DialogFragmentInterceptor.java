@@ -14,15 +14,16 @@ import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.BaseInterceptor;
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.InterceptorConfig;
+import com.raxdenstudios.square.interceptor.InterceptorInteractor;
 import com.raxdenstudios.square.lifecycle.DialogFragmentLifecycle;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * This abstract class defines the basis of an dialogFragment interceptor.
  */
-
-public abstract class DialogFragmentInterceptor<TConfig extends InterceptorConfig, TCallback extends InterceptorCallback<TConfig>>
-        extends BaseInterceptor<TConfig, TCallback>
+public abstract class DialogFragmentInterceptor<TInteractor extends InterceptorInteractor, TCallback extends InterceptorCallback<TInteractor>>
+        extends BaseInterceptor<TInteractor, TCallback>
         implements DialogFragmentLifecycle {
 
     protected DialogFragment mDialogFragment;

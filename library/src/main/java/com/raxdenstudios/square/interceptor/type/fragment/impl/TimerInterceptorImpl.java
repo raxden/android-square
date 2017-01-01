@@ -6,14 +6,14 @@ import android.os.Handler;
 
 import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
 import com.raxdenstudios.square.interceptor.callback.TimerInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.TimerInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.TimerInterceptorInteractor;
 
 /**
  * Created by agomez on 11/05/2105.
  */
 public class TimerInterceptorImpl
-        extends FragmentInterceptor<TimerInterceptorConfig, TimerInterceptorCallback>
-        implements TimerInterceptorConfig {
+        extends FragmentInterceptor<TimerInterceptorInteractor, TimerInterceptorCallback>
+        implements TimerInterceptorInteractor {
 
     private final static int DEFAULT_TIME_MS = 3000;
 

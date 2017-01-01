@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.FragmentContentInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.FragmentContentInterceptorInteractor;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
 public interface FragmentContentInterceptorCallback<T extends Fragment>
-        extends InterceptorCallback<FragmentContentInterceptorConfig> {
+        extends InterceptorCallback<FragmentContentInterceptorInteractor> {
 
     View onCreateContentFragmentView(Bundle savedInstanceState);
 

@@ -8,14 +8,14 @@ import android.view.View;
 import com.raxdenstudios.commons.util.FragmentUtils;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.FragmentContentInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.FragmentContentInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.FragmentContentInterceptorInteractor;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
 public class FragmentContentInterceptorImpl<TFragment extends Fragment>
-        extends ActivityInterceptor<FragmentContentInterceptorConfig, FragmentContentInterceptorCallback<TFragment>>
-        implements FragmentContentInterceptorConfig {
+        extends ActivityInterceptor<FragmentContentInterceptorInteractor, FragmentContentInterceptorCallback<TFragment>>
+        implements FragmentContentInterceptorInteractor {
 
     public FragmentContentInterceptorImpl(Activity activity) {
         super(activity);

@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * Contract that defines the Fragment life cycle used by interceptors.
  */
 public interface FragmentLifecycle {
 

@@ -10,7 +10,7 @@ import com.raxdenstudios.commons.util.ResourceUtils;
 import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
 import com.raxdenstudios.square.interceptor.callback.AutoInflateViewInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.AutoInflateViewInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.AutoInflateViewInterceptorInteractor;
 
 import java.util.Locale;
 
@@ -18,8 +18,10 @@ import java.util.Locale;
  * Created by agomez on 02/06/2015.
  */
 public class AutoInflateViewInterceptorImpl
-        extends FragmentInterceptor<AutoInflateViewInterceptorConfig, AutoInflateViewInterceptorCallback>
-        implements AutoInflateViewInterceptorConfig {
+        extends FragmentInterceptor<AutoInflateViewInterceptorInteractor, AutoInflateViewInterceptorCallback>
+        implements AutoInflateViewInterceptorInteractor {
+
+    private int mLayoutId;
 
     public AutoInflateViewInterceptorImpl(Fragment fragment) {
         super(fragment);
@@ -31,19 +33,28 @@ public class AutoInflateViewInterceptorImpl
     }
 
     private View inflateLayout(LayoutInflater inflater) {
-        int layoutId = ResourceUtils.getLayoutId(mContext, getLayoutName());
-        if (layoutId > 0) {
-            return inflater.inflate(layoutId, null);
+        if (mLayoutId != 0) {
+            return inflater.inflate(mLayoutId, null);
+        } else {
+            int layoutId = ResourceUtils.getLayoutId(mContext, getLayoutName());
+            if (layoutId > 0) {
+                return inflater.inflate(layoutId, null);
+            }
         }
         return null;
     }
 
-    public String getLayoutName() {
+    private String getLayoutName() {
         return StringUtils
                 .join(StringUtils
                         .uncapitalize(mFragment.getClass().getSimpleName())
                         .split("(?=\\p{Upper})"), "_")
                 .toLowerCase(Locale.getDefault());
+    }
+
+    @Override
+    public void setLayoutId(int layoutId) {
+        mLayoutId = layoutId;
     }
 
 }

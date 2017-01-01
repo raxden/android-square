@@ -8,8 +8,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
 import com.raxdenstudios.square.interceptor.callback.ZXingScannerInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.WebViewInterceptorConfig;
-import com.raxdenstudios.square.interceptor.config.ZXingScannerInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.WebViewInterceptorInteractor;
+import com.raxdenstudios.square.interceptor.interactor.ZXingScannerInterceptorInteractor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * Created by agomez on 24/12/2015.
  */
 public class ZXingScannerInterceptorImpl
-        extends FragmentInterceptor<ZXingScannerInterceptorConfig, ZXingScannerInterceptorCallback>
-        implements WebViewInterceptorConfig, ZXingScannerView.ResultHandler {
+        extends FragmentInterceptor<ZXingScannerInterceptorInteractor, ZXingScannerInterceptorCallback>
+        implements WebViewInterceptorInteractor, ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
     private boolean mFlash;

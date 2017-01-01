@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
 import com.raxdenstudios.square.interceptor.callback.ButterKnifeInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.ButterKnifeInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.ButterKnifeInterceptorInteractor;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -17,8 +17,8 @@ import butterknife.Unbinder;
  * Created by Raxden on 23/07/2016.
  */
 public class ButterKnifeInterceptorImpl
-        extends FragmentInterceptor<ButterKnifeInterceptorConfig, ButterKnifeInterceptorCallback>
-        implements ButterKnifeInterceptorConfig {
+        extends FragmentInterceptor<ButterKnifeInterceptorInteractor, ButterKnifeInterceptorCallback>
+        implements ButterKnifeInterceptorInteractor {
 
     private Unbinder unbinder;
 

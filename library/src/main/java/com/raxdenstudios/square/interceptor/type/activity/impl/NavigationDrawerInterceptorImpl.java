@@ -16,14 +16,14 @@ import com.raxdenstudios.commons.util.FragmentUtils;
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.NavigationDrawerInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.NavigationDrawerInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.NavigationDrawerInterceptorInteractor;
 
 /**
  * Created by agomez on 21/05/2015.
  */
 public class NavigationDrawerInterceptorImpl<TFragment extends Fragment>
-        extends ActivityInterceptor<NavigationDrawerInterceptorConfig, NavigationDrawerInterceptorCallback<TFragment>>
-        implements NavigationDrawerInterceptorConfig {
+        extends ActivityInterceptor<NavigationDrawerInterceptorInteractor, NavigationDrawerInterceptorCallback<TFragment>>
+        implements NavigationDrawerInterceptorInteractor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * Contract that defines the Activity life cycle used by interceptors.
  */
 public interface ActivityLifecycle {
 

@@ -1,7 +1,7 @@
 package com.raxdenstudios.square.interceptor.callback;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.TimberInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.TimberInterceptorInteractor;
 
 import timber.log.Timber;
 
@@ -9,7 +9,7 @@ import timber.log.Timber;
  * Created by Ángel Gómez on 24/07/2016.
  */
 public interface TimberInterceptorCallback
-        extends InterceptorCallback<TimberInterceptorConfig> {
+        extends InterceptorCallback<TimberInterceptorInteractor> {
 
     /**
      * Create your custom Timber.Tree like this:

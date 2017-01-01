@@ -21,9 +21,12 @@ import com.raxdenstudios.square.interceptor.type.DialogFragmentInterceptor;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquareMVPDialogFragment is an abstract class that adds interceptor functionality to the
+ * DialogFragment. Unlike SquareDialogFragment this activity follows the MVP pattern, therefore has
+ * a presenter attached.
  */
-
 public abstract class SquareMVPDialogFragment<TPresenter extends IPresenter> extends MVPDialogFragment<TPresenter> {
 
     private DialogFragmentInterceptorManager mInterceptorManager;

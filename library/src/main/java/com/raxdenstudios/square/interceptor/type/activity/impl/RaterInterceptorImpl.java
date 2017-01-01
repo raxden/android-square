@@ -7,7 +7,7 @@ import com.raxdenstudios.rater.RaterHelper;
 import com.raxdenstudios.rater.RaterManager;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.RaterInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.RaterInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.RaterInterceptorInteractor;
 
 import java.util.Calendar;
 
@@ -15,8 +15,8 @@ import java.util.Calendar;
  * Created by agomez on 06/05/2015.
  */
 public class RaterInterceptorImpl
-        extends ActivityInterceptor<RaterInterceptorConfig, RaterInterceptorCallback>
-        implements RaterInterceptorConfig {
+        extends ActivityInterceptor<RaterInterceptorInteractor, RaterInterceptorCallback>
+        implements RaterInterceptorInteractor, RaterManager.AppRaterCallbacks {
 
     private RaterManager mRaterManager;
 
@@ -35,22 +35,7 @@ public class RaterInterceptorImpl
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        mRaterManager.showRaterDialogIfNecessary(mActivity, new RaterManager.AppRaterCallbacks() {
-            @Override
-            public void onDialogClickRate() {
-                mCallback.onRaterClickRate();
-            }
-
-            @Override
-            public void onDialogClickRemindLater() {
-                mCallback.onRaterClickRemindLater();
-            }
-
-            @Override
-            public void onDialogClickDontShowAgain() {
-                mCallback.onRaterClickDontShowAgain();
-            }
-        });
+        mRaterManager.showRaterDialogIfNecessary(mActivity, this);
     }
 
     @Override
@@ -59,4 +44,28 @@ public class RaterInterceptorImpl
         RaterHelper.getInstance().setLaunchCounter(mContext, 0);
     }
 
+    @Override
+    public void showRaterDialog() {
+        mRaterManager.showRaterDialog(mActivity, this);
+    }
+
+    @Override
+    public void showRaterDialogIfNecessary() {
+        mRaterManager.showRaterDialogIfNecessary(mActivity, this);
+    }
+
+    @Override
+    public void onDialogClickRate() {
+        mCallback.onRaterClickRate();
+    }
+
+    @Override
+    public void onDialogClickRemindLater() {
+        mCallback.onRaterClickRemindLater();
+    }
+
+    @Override
+    public void onDialogClickDontShowAgain() {
+        mCallback.onRaterClickDontShowAgain();
+    }
 }

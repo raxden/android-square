@@ -4,7 +4,7 @@ import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
 import com.raxdenstudios.square.interceptor.type.PresenterInterceptor;
 import com.raxdenstudios.square.interceptor.callback.CompositeSubscriptionInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CompositeSubscriptionInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CompositeSubscriptionInterceptorInteractor;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -14,8 +14,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class CompositeSubscriptionInterceptorImpl<TView extends IView>
-        extends PresenterInterceptor<TView, CompositeSubscriptionInterceptorConfig, CompositeSubscriptionInterceptorCallback>
-        implements CompositeSubscriptionInterceptorConfig {
+        extends PresenterInterceptor<TView, CompositeSubscriptionInterceptorInteractor, CompositeSubscriptionInterceptorCallback>
+        implements CompositeSubscriptionInterceptorInteractor {
 
     private CompositeSubscription mCompositeSubscription;
 

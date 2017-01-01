@@ -64,10 +64,12 @@ import com.raxdenstudios.square.interceptor.type.presenter.TimerPresenterInterce
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Created by Ángel Gómez on 18/12/2016.
- */
 
+/**
+ * Created by Ángel Gómez
+ *
+ * Interceptor Factory
+ */
 public class InterceptorFactory {
 
     private static final String TAG = InterceptorFactory.class.getSimpleName();

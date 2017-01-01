@@ -12,9 +12,10 @@ import com.raxdenstudios.square.interceptor.manager.PresenterInterceptorManager;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquarePresenter is an abstract class that adds interceptor functionality to the presenter.
  */
-
 public abstract class SquarePresenter<TView extends IView> extends Presenter<TView> {
 
     private PresenterInterceptorManager<TView> mInterceptorManager;

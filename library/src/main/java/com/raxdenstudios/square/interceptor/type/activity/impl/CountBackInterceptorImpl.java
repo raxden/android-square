@@ -8,14 +8,14 @@ import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.CountBackInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.CountBackInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.CountBackInterceptorInteractor;
 
 /**
  * Created by Ángel Gómez on 06/05/2015.
  */
 public class CountBackInterceptorImpl
-        extends ActivityInterceptor<CountBackInterceptorConfig, CountBackInterceptorCallback>
-        implements CountBackInterceptorConfig {
+        extends ActivityInterceptor<CountBackInterceptorInteractor, CountBackInterceptorCallback>
+        implements CountBackInterceptorInteractor {
 
     private static final int DEFAULT_NUM_COUNT_BACK = 1;
 
@@ -40,8 +40,8 @@ public class CountBackInterceptorImpl
         }
         if (mDefaultCountBackToExit == 0) {
             mDefaultCountBackToExit = DEFAULT_NUM_COUNT_BACK;
-            mCountBackToExit = mDefaultCountBackToExit;
         }
+        mCountBackToExit = mDefaultCountBackToExit;
     }
 
     @Override
@@ -69,6 +69,16 @@ public class CountBackInterceptorImpl
         super.onDestroy();
         removeCallbacks();
         destroyToast();
+    }
+
+    @Override
+    public void setMessage(String message) {
+        mMessage = message;
+    }
+
+    @Override
+    public void setRetries(int retries) {
+        mDefaultCountBackToExit = retries;
     }
 
     private void removeCallbacks() {

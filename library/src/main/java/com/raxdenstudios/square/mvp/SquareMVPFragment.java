@@ -19,9 +19,12 @@ import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquareMVPFragment is an abstract class that adds interceptor functionality to the fragment.
+ * Unlike SquareFragment this activity follows the MVP pattern, therefore has a presenter
+ * attached.
  */
-
 public abstract class SquareMVPFragment<TPresenter extends IPresenter> extends MVPFragment<TPresenter> {
 
     private FragmentInterceptorManager mInterceptorManager;

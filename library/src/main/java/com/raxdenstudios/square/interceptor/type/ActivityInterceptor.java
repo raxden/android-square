@@ -9,15 +9,16 @@ import android.view.Menu;
 
 import com.raxdenstudios.square.interceptor.BaseInterceptor;
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.InterceptorConfig;
+import com.raxdenstudios.square.interceptor.InterceptorInteractor;
 import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * This abstract class defines the basis of an activity interceptor.
  */
-
-public abstract class ActivityInterceptor<TConfig extends InterceptorConfig, TCallback extends InterceptorCallback<TConfig>>
-        extends BaseInterceptor<TConfig, TCallback>
+public abstract class ActivityInterceptor<TInteractor extends InterceptorInteractor, TCallback extends InterceptorCallback<TInteractor>>
+        extends BaseInterceptor<TInteractor, TCallback>
         implements ActivityLifecycle {
 
     protected Activity mActivity;

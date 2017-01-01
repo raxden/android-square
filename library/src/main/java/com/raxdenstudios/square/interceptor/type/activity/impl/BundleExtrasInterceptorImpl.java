@@ -5,14 +5,14 @@ import android.os.Bundle;
 
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.BundleExtrasInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.BundleExtrasInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.BundleExtrasInterceptorInteractor;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
 public class BundleExtrasInterceptorImpl
-        extends ActivityInterceptor<BundleExtrasInterceptorConfig, BundleExtrasInterceptorCallback>
-        implements BundleExtrasInterceptorConfig {
+        extends ActivityInterceptor<BundleExtrasInterceptorInteractor, BundleExtrasInterceptorCallback>
+        implements BundleExtrasInterceptorInteractor {
 
     public BundleExtrasInterceptorImpl(Activity activity) {
         super(activity);

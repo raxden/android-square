@@ -9,14 +9,14 @@ import android.view.MenuItem;
 
 import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.ToolbarInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.ToolbarInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.ToolbarInterceptorInteractor;
 
 /**
  * Created by agomez on 21/05/2015.
  */
 public class ToolbarInterceptorImpl
-        extends ActivityInterceptor<ToolbarInterceptorConfig, ToolbarInterceptorCallback>
-        implements ToolbarInterceptorConfig {
+        extends ActivityInterceptor<ToolbarInterceptorInteractor, ToolbarInterceptorCallback>
+        implements ToolbarInterceptorInteractor {
 
     public ToolbarInterceptorImpl(Activity activity) {
         super(activity);

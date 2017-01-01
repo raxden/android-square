@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.raxdenstudios.commons.util.ResourceUtils;
 import com.raxdenstudios.commons.util.StringUtils;
-import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.callback.AutoInflateLayoutInterceptorCallback;
-import com.raxdenstudios.square.interceptor.config.AutoInflateLayoutInterceptorConfig;
+import com.raxdenstudios.square.interceptor.interactor.AutoInflateLayoutInterceptorInteractor;
+import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
 
 import java.util.Locale;
 
@@ -17,9 +17,10 @@ import java.util.Locale;
  * Created by Ángel Gómez on 22/05/2015.
  */
 public class AutoInflateLayoutInterceptorImpl
-        extends ActivityInterceptor<AutoInflateLayoutInterceptorConfig, AutoInflateLayoutInterceptorCallback>
-        implements AutoInflateLayoutInterceptorConfig {
+        extends ActivityInterceptor<AutoInflateLayoutInterceptorInteractor, AutoInflateLayoutInterceptorCallback>
+        implements AutoInflateLayoutInterceptorInteractor {
 
+    private int mLayoutId;
     private View mInflateLayout;
 
     public AutoInflateLayoutInterceptorImpl(Activity activity) {
@@ -46,9 +47,13 @@ public class AutoInflateLayoutInterceptorImpl
     }
 
     private View inflateLayout(LayoutInflater inflater) {
-        int layoutId = ResourceUtils.getLayoutId(mActivity, getLayoutName());
-        if (layoutId > 0) {
-            return inflater.inflate(layoutId, null);
+        if (mLayoutId != 0) {
+            return inflater.inflate(mLayoutId, null);
+        } else {
+            int layoutId = ResourceUtils.getLayoutId(mActivity, getLayoutName());
+            if (layoutId > 0) {
+                return inflater.inflate(layoutId, null);
+            }
         }
         return null;
     }
@@ -59,6 +64,11 @@ public class AutoInflateLayoutInterceptorImpl
                         .uncapitalize(mActivity.getClass().getSimpleName())
                         .split("(?=\\p{Upper})"), "_")
                 .toLowerCase(Locale.getDefault());
+    }
+
+    @Override
+    public void setLayoutId(int layoutId) {
+        mLayoutId = layoutId;
     }
 
 }

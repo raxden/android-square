@@ -33,12 +33,9 @@ dependencies {
     compile libDependencies.recycler
 
     compile libDependencies.androidCommons
-    compile libDependencies.androidResources
-    compile libDependencies.androidPreferences
     compile libDependencies.androidRater
     compile libDependencies.androidRecycler
     compile libDependencies.androidMVP
-    compile libDependencies.androidCrons
     compile libDependencies.androidShake
 
     compile libDependencies.googleAnalytics

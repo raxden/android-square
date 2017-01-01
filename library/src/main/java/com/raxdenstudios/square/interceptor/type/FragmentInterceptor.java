@@ -12,15 +12,16 @@ import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.BaseInterceptor;
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.InterceptorConfig;
+import com.raxdenstudios.square.interceptor.InterceptorInteractor;
 import com.raxdenstudios.square.lifecycle.FragmentLifecycle;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * This abstract class defines the basis of an fragment interceptor.
  */
-
-public abstract class FragmentInterceptor<TConfig extends InterceptorConfig, TCallback extends InterceptorCallback<TConfig>>
-        extends BaseInterceptor<TConfig, TCallback>
+public abstract class FragmentInterceptor<TInteractor extends InterceptorInteractor, TCallback extends InterceptorCallback<TInteractor>>
+        extends BaseInterceptor<TInteractor, TCallback>
         implements FragmentLifecycle {
 
     protected Fragment mFragment;

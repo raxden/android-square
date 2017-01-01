@@ -20,9 +20,11 @@ import com.raxdenstudios.square.interceptor.type.DialogFragmentInterceptor;
 import java.util.List;
 
 /**
- * Created by Ángel Gómez on 18/12/2016.
+ * Created by Ángel Gómez
+ *
+ * SquareDialogFragment is an abstract class that adds interceptor functionality to the
+ * DialogFragment.
  */
-
 public abstract class SquareDialogFragment extends DialogFragment {
 
     private DialogFragmentInterceptorManager mInterceptorManager;
