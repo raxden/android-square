@@ -50,7 +50,8 @@ ext {
 
     libDependencies = [
             muldidex:           "com.android.support:multidex:${multidexVersion}",
-            androidv7:          "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            androidSupportv13:  "com.android.support:support-v13:${supportLibraryVersion}",
+            androidCompatv7:    "com.android.support:appcompat-v7:${supportLibraryVersion}",
             mediarouterv7:      "com.android.support:mediarouter-v7:${supportLibraryVersion}",
             design:             "com.android.support:design:${supportLibraryVersion}",
             recycler:           "com.android.support:recyclerview-v7:${supportLibraryVersion}",

@@ -17,6 +17,7 @@ import com.raxdenstudios.square.interceptor.type.activity.CastSessionActivityInt
 import com.raxdenstudios.square.interceptor.type.activity.CompositeSubscriptionActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.CountBackActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.FragmentContentActivityInterceptor;
+import com.raxdenstudios.square.interceptor.type.activity.FragmentStatePagerActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.FullScreenInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.IcepickActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.NavigationDrawerActivityInterceptor;
@@ -33,6 +34,7 @@ import com.raxdenstudios.square.interceptor.type.activity.impl.CastInterceptorIm
 import com.raxdenstudios.square.interceptor.type.activity.impl.CastSessionInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.activity.impl.CountBackInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.activity.impl.FragmentContentInterceptorImpl;
+import com.raxdenstudios.square.interceptor.type.activity.impl.FragmentStatePagerInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.activity.impl.FullScreenInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.activity.impl.IcepickInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.activity.impl.NavigationDrawerInterceptorImpl;
@@ -124,6 +126,10 @@ public class InterceptorFactory {
         if (activity instanceof FragmentContentActivityInterceptor) {
             Log.d(TAG, "....." + FragmentContentActivityInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new FragmentContentInterceptorImpl(activity));
+        }
+        if (activity instanceof FragmentStatePagerActivityInterceptor) {
+            Log.d(TAG, "....." + FragmentStatePagerActivityInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new FragmentStatePagerInterceptorImpl(activity));
         }
         if (activity instanceof ToolbarActivityInterceptor) {
             Log.d(TAG, "....." + ToolbarActivityInterceptor.class.getSimpleName() + " loaded!");

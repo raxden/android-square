@@ -27,7 +27,8 @@ dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
     compile libDependencies.muldidex
-    compile libDependencies.androidv7
+    compile libDependencies.androidSupportv13
+    compile libDependencies.androidCompatv7
     compile libDependencies.mediarouterv7
     compile libDependencies.design
     compile libDependencies.recycler

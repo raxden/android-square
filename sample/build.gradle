@@ -35,7 +35,8 @@ dependencies {
 
 
     compile libDependencies.muldidex
-    compile libDependencies.androidv7
+    compile libDependencies.androidSupportv13
+    compile libDependencies.androidCompatv7
     compile libDependencies.design
     compile libDependencies.recycler
 
