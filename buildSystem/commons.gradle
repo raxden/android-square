@@ -1,0 +1,49 @@
+import java.util.regex.Pattern
+
+task incrementBuildVersion << {
+    println(":increaseVersion - Incrementing library version...")
+    def gradlePropsFile = file('../gradle.properties')
+    if (gradlePropsFile.canRead()) {
+
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(gradlePropsFile))
+
+        def versionName = versionProps['VERSION_NAME']
+        def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
+        def matcherVersionNumber = patternVersionNumber.matcher(versionName)
+        if (matcherVersionNumber.find()) {
+            def majorVersion = Integer.parseInt(matcherVersionNumber.group(1))
+            def minorVersion = Integer.parseInt(matcherVersionNumber.group(2))
+            def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
+            versionName = majorVersion + "." + minorVersion + "." + buildVersion
+            versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
+        }
+        versionProps.store(gradlePropsFile.newWriter(), null)
+    } else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}
+
+task incrementMinorVersion << {
+    println(":increaseVersion - Incrementing library version...")
+    def gradlePropsFile = file('../gradle.properties')
+    if (gradlePropsFile.canRead()) {
+
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(gradlePropsFile))
+
+        def versionName = versionProps['VERSION_NAME']
+        def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
+        def matcherVersionNumber = patternVersionNumber.matcher(versionName)
+        if (matcherVersionNumber.find()) {
+            def majorVersion = Integer.parseInt(matcherVersionNumber.group(1))
+            def minorVersion = Integer.parseInt(matcherVersionNumber.group(2)) + 1
+            def buildVersion = Integer.parseInt(matcherVersionNumber.group(3))
+            versionName = majorVersion + "." + minorVersion + "." + buildVersion
+            versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
+        }
+        versionProps.store(gradlePropsFile.newWriter(), null)
+    } else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}

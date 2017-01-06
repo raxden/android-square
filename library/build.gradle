@@ -4,8 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
 
-group = GROUP_NAME
-version = LIBRARY_VERSION
+group = "com.raxdenstudios"
+version = VERSION_NAME
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -14,13 +14,9 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-    }
-}
 
-repositories {
-    maven { url "https://jitpack.io" }
-    maven { url 'https://maven.fabric.io/public' }
-    maven { url "https://clojars.org/repo/" }
+        consumerProguardFiles 'proguard-rules.pro'
+    }
 }
 
 dependencies {
@@ -56,7 +52,7 @@ dependencies {
     provided libDependencies.icepickProcessor
 
     compile libDependencies.butterKnife
-    apt     libDependencies.butterKnifeAPT
+    annotationProcessor libDependencies.butterKnifeAPT
 
     compile libDependencies.reactiveAndroid
     compile libDependencies.reactiveJava
@@ -67,3 +63,5 @@ dependencies {
     testCompile libTestDependencies.robolectric
 
 }
+
+apply from: '../buildSystem/commons.gradle'
