@@ -50,7 +50,7 @@ def createUpdateReadmeFileTask(version) {
         def readmeTemplateFile = file('../README.template')
         if (readmeTemplateFile.canRead()) {
             def content = readmeTemplateFile.getText("UTF-8").replaceAll("\\{versionName\\}", version)
-            readmeFile = new File("../README.md")
+            readmeFile = new File("README.md")
             readmeFile.createNewFile()
             readmeFile.write(content, "UTF-8")
         }
