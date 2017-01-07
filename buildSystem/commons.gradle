@@ -20,10 +20,10 @@ task gitPush(type: Exec) {
     commandLine "git", "push"
 }
 
-def createTagOnGitTask(tag) {
-    return tasks.create(name: 'createTagOnGit', type: Exec) {
+def createGitTagTask(tag, message) {
+    return tasks.create(name: 'gitTag', type: Exec) {
         description 'Tag git.'
-        commandLine "git", "tag", "-a", tag, "-m 'releaseTest'"
+        commandLine "git", "tag", "-a", tag, "-m", message
     }
 }
 
@@ -31,8 +31,8 @@ task uploadLibrary << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
     tasks.gitCommit.execute()
-    createTagOnGitTask("3.0.0")
-    tasks.createTagOnGit.execute()
+    createGitTagTask("3.0.0", "releaseTest")
+    tasks.gitTag.execute()
     tasks.gitPush.execute()
 }
 
@@ -57,13 +57,12 @@ task incrementBuildVersion << {
             tasks.gitPull.execute()
             tasks.gitAdd.execute()
             tasks.gitCommit.execute()
-            createTagOnGitTask(versionName)
-            tasks.createTagOnGit.execute()
+            createGitTagTask(versionName, "releaseTest")
+            tasks.gitTag.execute()
             tasks.gitPush.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
     } else {
         throw new GradleException("Could not read version.properties!")
     }
-
 }
