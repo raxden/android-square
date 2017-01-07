@@ -29,17 +29,27 @@ def createGitTagTask(tag, message) {
     }
 }
 
-task uploadLibrary << {
+task uploadLibraryToGit << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
     createGitCommitTask("Update library")
     tasks.gitCommit.execute()
-    createGitTagTask(getVersion(), "Update library")
-    tasks.gitTag.execute()
     tasks.gitPush.execute()
 }
 
-task incrementBuildVersionAndUploadLibrary << {
+def createUploadLibraryAndCretateTagToGitTask(tag, message) {
+    return tasks.create(name: 'uploadLibraryAndCretateTagToGit') {
+        tasks.gitPull.execute()
+        tasks.gitAdd.execute()
+        createGitCommitTask(message)
+        tasks.gitCommit.execute()
+        createGitTagTask(tag, message)
+        tasks.gitTag.execute()
+        tasks.gitPush.execute()
+    }
+}
+
+task incrementBuildVersionAndUploadLibraryToGit << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
@@ -57,13 +67,8 @@ task incrementBuildVersionAndUploadLibrary << {
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
 
-            tasks.gitPull.execute()
-            tasks.gitAdd.execute()
-            createGitCommitTask("Update library")
-            tasks.gitCommit.execute()
-            createGitTagTask(versionName, "Update library")
-            tasks.gitTag.execute()
-            tasks.gitPush.execute()
+            createUploadLibraryAndCretateTagToGitTask(versionName, "Update library")
+            tasks.uploadLibraryAndCretateTagToGit.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
     } else {
