@@ -23,16 +23,9 @@ android {
     }
 }
 
-repositories {
-    maven { url "https://jitpack.io" }
-    maven { url 'https://maven.fabric.io/public' }
-    maven { url "https://clojars.org/repo/" }
-}
-
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':library')
-
 
     compile libDependencies.muldidex
     compile libDependencies.androidSupportv13

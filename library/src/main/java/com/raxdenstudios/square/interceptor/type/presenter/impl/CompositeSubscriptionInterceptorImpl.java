@@ -51,4 +51,20 @@ public class CompositeSubscriptionInterceptorImpl<TView extends IView>
         }
     }
 
+    @Override
+    public void removeAllSubscritions() {
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.clear();
+        }
+    }
+
+    @Override
+    public boolean hasSubscriptions() {
+        if (mCompositeSubscription != null) {
+            return mCompositeSubscription.hasSubscriptions();
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -43,7 +43,9 @@ dependencies {
     compile libDependencies.firebaseMessaging
 
     compile libDependencies.timber
-    compile (libDependencies.crashlytics) { transitive = true; }
+    compile (libDependencies.crashlytics) {
+        transitive = true;
+    }
     compile libDependencies.calligraphy
     compile libDependencies.zxing
     compile libDependencies.jodaTime
