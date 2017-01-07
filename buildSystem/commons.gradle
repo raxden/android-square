@@ -22,16 +22,10 @@ task gitPush(type: Exec) {
 
 def createTagOnGitTask(tag) {
     return tasks.create(name: 'createTagOnGit', type: Exec) {
-        println(":createTagOnGitTask - "+ tag)
-        description 'Create a tag on git.'
+        description 'Tag git.'
         commandLine "git", "tag", "-a", tag, "-m 'releaseTest'"
     }
 }
-
-//task gitTag(type: Exec) {
-//    description 'Tag git.'
-//    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
-//}
 
 task uploadLibrary << {
     tasks.gitPull.execute()
@@ -42,14 +36,10 @@ task uploadLibrary << {
     tasks.gitPush.execute()
 }
 
-
-
 task incrementBuildVersion << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
-
-        project.ext.set("variableName", "3.0.0")
 
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
@@ -63,8 +53,13 @@ task incrementBuildVersion << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
-            setVersion(versionName)
-            tasks.uploadLibrary.execute()
+
+            tasks.gitPull.execute()
+            tasks.gitAdd.execute()
+            tasks.gitCommit.execute()
+            createTagOnGitTask(versionName)
+            tasks.createTagOnGit.execute()
+            tasks.gitPush.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
     } else {
