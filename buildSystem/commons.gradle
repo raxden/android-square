@@ -20,10 +20,18 @@ task gitPush(type: Exec) {
     commandLine "git", "push"
 }
 
-task gitTag(type: Exec) {
-    description 'Tag git.'
-    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
+def createTagOnGitTask(tag) {
+    return tasks.create(name: 'createTagOnGit', type: Exec) {
+        println(":createTagOnGitTask - "+ tag)
+        description 'Create a tag on git.'
+        commandLine "git", "tag", "-a", "3.0.0", "-m 'releaseTest'"
+    }
 }
+
+//task gitTag(type: Exec) {
+//    description 'Tag git.'
+//    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
+//}
 
 task uploadLibrary << {
     tasks.gitPull.execute()
@@ -34,14 +42,7 @@ task uploadLibrary << {
     tasks.gitPush.execute()
 }
 
-def createTagOnGitTask(tag) {
-    return tasks.create(name: 'createTagOnGit', type: Exec) {
-        println(":createTagOnGitTask - "+ tag)
-        description 'Create a tag on git.'
-        commandLine "git", "pull"
-//        commandLine "git", "tag", "-a", "3.0.0", "-m 'releaseTest'"
-    }
-}
+
 
 task incrementBuildVersion << {
     println(":increaseVersion - Incrementing library version...")
