@@ -22,8 +22,8 @@ task gitPush(type: Exec) {
 
 task gitTag(type: Exec) {
     description 'Push git.'
-    def version = VERSION_NAME;
-    commandLine "git", "tag", "-a " + version + " -m 'release'"
+    def value = "-a " + VERSION_NAME +" -m 'release'"
+    commandLine "git", "tag", value
 }
 
 task uploadLibrary << {
