@@ -52,7 +52,7 @@ task incrementBuildVersion << {
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
-        uploadLibrary
+        tasks.uploadLibrary.execute()
     } else {
         throw new GradleException("Could not read version.properties!")
     }
