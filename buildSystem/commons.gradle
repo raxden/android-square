@@ -1,7 +1,5 @@
 import java.util.regex.Pattern
 
-project.ext.set("variableName", "3.0.0")
-
 task gitPull(type: Exec) {
     description 'Pulls git.'
     commandLine "git", "pull"
@@ -24,7 +22,7 @@ task gitPush(type: Exec) {
 
 task gitTag(type: Exec) {
     description 'Tag git.'
-    commandLine "git", "tag", "-a", project.ext.variableName, "-m 'releaseTest'"
+    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
 }
 
 task uploadLibrary << {
@@ -54,7 +52,7 @@ task incrementBuildVersion << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
-            project.ext.variableName = versionName
+            setVersion(versionName)
             tasks.uploadLibrary.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
