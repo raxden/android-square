@@ -1,6 +1,6 @@
 import java.util.regex.Pattern
 
-def versionName
+project.ext.set("variableName", "3.0.0")
 
 task gitPull(type: Exec) {
     description 'Pulls git.'
@@ -24,7 +24,7 @@ task gitPush(type: Exec) {
 
 task gitTag(type: Exec) {
     description 'Tag git.'
-    commandLine "git", "tag", "-a", versionName, "-m 'releaseTest'"
+    commandLine "git", "tag", "-a", project.ext.variableName, "-m 'releaseTest'"
 }
 
 task uploadLibrary << {
@@ -40,10 +40,12 @@ task incrementBuildVersion << {
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
 
+        project.ext.set("variableName", "3.0.0")
+
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
 
-        versionName = versionProps['VERSION_NAME']
+        def versionName = versionProps['VERSION_NAME']
         def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
         def matcherVersionNumber = patternVersionNumber.matcher(versionName)
         if (matcherVersionNumber.find()) {
@@ -52,34 +54,12 @@ task incrementBuildVersion << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
-        }
-        versionProps.store(gradlePropsFile.newWriter(), null)
-        tasks.uploadLibrary.execute()
-    } else {
-        throw new GradleException("Could not read version.properties!")
-    }
-}
-
-task incrementMinorVersion << {
-    println(":increaseVersion - Incrementing library version...")
-    def gradlePropsFile = file('../gradle.properties')
-    if (gradlePropsFile.canRead()) {
-
-        def Properties versionProps = new Properties()
-        versionProps.load(new FileInputStream(gradlePropsFile))
-
-        versionName = versionProps['VERSION_NAME']
-        def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
-        def matcherVersionNumber = patternVersionNumber.matcher(versionName)
-        if (matcherVersionNumber.find()) {
-            def majorVersion = Integer.parseInt(matcherVersionNumber.group(1))
-            def minorVersion = Integer.parseInt(matcherVersionNumber.group(2)) + 1
-            def buildVersion = Integer.parseInt(matcherVersionNumber.group(3))
-            versionName = majorVersion + "." + minorVersion + "." + buildVersion
-            versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
+            project.ext.variableName = versionName
+            tasks.uploadLibrary.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
     } else {
         throw new GradleException("Could not read version.properties!")
     }
+
 }
