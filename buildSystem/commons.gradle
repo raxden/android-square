@@ -20,11 +20,19 @@ task gitPush(type: Exec) {
     commandLine "git", "push"
 }
 
+task gitTag(type: Exec) {
+    description 'Push git.'
+    def version = VERSION_NAME;
+    commandLine "git", "tag", "-a " + version + " -m 'release'"
+}
+
 task uploadLibrary << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
     tasks.gitCommit.execute()
+    tasks.gitTag.execute()
     tasks.gitPush.execute()
+    tasks.replace()
 }
 
 task incrementBuildVersion << {
@@ -46,6 +54,13 @@ task incrementBuildVersion << {
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
+
+        tasks.gitPull.execute()
+        tasks.gitAdd.execute()
+        tasks.gitCommit.execute()
+        tasks.gitTag.execute()
+        tasks.gitPush.execute()
+
     } else {
         throw new GradleException("Could not read version.properties!")
     }
