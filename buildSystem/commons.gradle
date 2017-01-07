@@ -79,7 +79,7 @@ task incrementBuildVersionAndUploadLibrary << {
             tasks.updateReadmeFile.execute()
 
             createUploadLibraryTask(versionName, "Update library")
-            tasks.uploadLibraryAndCretateTagToGit.execute()
+            tasks.uploadLibrary.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
     } else {
