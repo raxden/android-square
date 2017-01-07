@@ -1,5 +1,7 @@
 import java.util.regex.Pattern
 
+def versionName
+
 task gitPull(type: Exec) {
     description 'Pulls git.'
     commandLine "git", "pull"
@@ -22,7 +24,7 @@ task gitPush(type: Exec) {
 
 task gitTag(type: Exec) {
     description 'Tag git.'
-    commandLine "git", "tag", "-a", version, "-m 'releaseTest'"
+    commandLine "git", "tag", "-a", versionName, "-m 'releaseTest'"
 }
 
 task uploadLibrary << {
@@ -41,7 +43,7 @@ task incrementBuildVersion << {
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
 
-        def versionName = versionProps['VERSION_NAME']
+        versionName = versionProps['VERSION_NAME']
         def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
         def matcherVersionNumber = patternVersionNumber.matcher(versionName)
         if (matcherVersionNumber.find()) {
@@ -50,7 +52,6 @@ task incrementBuildVersion << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
-            version = versionName
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
         tasks.uploadLibrary.execute()
@@ -67,7 +68,7 @@ task incrementMinorVersion << {
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
 
-        def versionName = versionProps['VERSION_NAME']
+        versionName = versionProps['VERSION_NAME']
         def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
         def matcherVersionNumber = patternVersionNumber.matcher(versionName)
         if (matcherVersionNumber.find()) {
