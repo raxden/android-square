@@ -21,9 +21,8 @@ task gitPush(type: Exec) {
 }
 
 task gitTag(type: Exec) {
-    description 'Push git.'
-    def value = "-a " + VERSION_NAME +" -m 'release'"
-    commandLine "git", "tag", value
+    description 'Tag git.'
+    commandLine "git", "tag", "-a test -m 'release'"
 }
 
 task uploadLibrary << {
@@ -32,7 +31,6 @@ task uploadLibrary << {
     tasks.gitCommit.execute()
     tasks.gitTag.execute()
     tasks.gitPush.execute()
-    tasks.replace()
 }
 
 task incrementBuildVersion << {
