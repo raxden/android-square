@@ -1,4 +1,3 @@
-apply from: 'buildsystem/ci.gradle'
 apply from: 'buildSystem/dependencies.gradle'
 
 buildscript {
