@@ -12,13 +12,13 @@ In order to use the library, there are 3 options:
 **1. Gradle dependency**
 
  - 	Add the following to your `build.gradle`:
- ```gradle∫
+ ```gradle¬∫
 repositories {
 	    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-	    compile 'com.github.raxden:AndroidSquare:3.0.8@aar'
+	    compile 'com.github.raxden:AndroidSquare:{versionName}@aar'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
 <dependency>
 	    <groupId>com.github.raxden</groupId>
 	    <artifactId>AndroidSquare</artifactId>
-	    <version>3.0.8</version>
+	    <version>{versionName}</version>
 </dependency>
 ```
 
@@ -43,11 +43,11 @@ dependencies {
 
 ### Documentation 
 
-For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/3.0.8/javadoc/).
+For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/{versionName}/javadoc/).
 
 ## LICENSE
 
-    Copyright 2015 ¡ngel GÛmez
+    Copyright 2015 √Ångel G√≥mez
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
