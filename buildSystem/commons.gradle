@@ -10,9 +10,11 @@ task gitAdd(type: Exec) {
     commandLine "git", "add", "-A"
 }
 
-task gitCommit(type: Exec) {
-    description 'Commit git.'
-    commandLine "git", "commit", "-m 'update library'"
+def createGitCommitTask(message) {
+    return tasks.create(name: 'gitCommit', type: Exec) {
+        description 'Commit git.'
+        commandLine "git", "commit", "-m", message
+    }
 }
 
 task gitPush(type: Exec) {
@@ -30,6 +32,7 @@ def createGitTagTask(tag, message) {
 task uploadLibrary << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
+    createGitCommitTask("update library")
     tasks.gitCommit.execute()
     createGitTagTask("3.0.0", "releaseTest")
     tasks.gitTag.execute()
@@ -56,6 +59,7 @@ task incrementBuildVersion << {
 
             tasks.gitPull.execute()
             tasks.gitAdd.execute()
+            createGitCommitTask("update library")
             tasks.gitCommit.execute()
             createGitTagTask(versionName, "releaseTest")
             tasks.gitTag.execute()
