@@ -1,5 +1,17 @@
 import java.util.regex.Pattern
 
+task gitPull(type: Exec) {
+    description 'Pulls git.'
+    commandLine "git", "pull"
+    commandLine "git", "add -A"
+    commandLine "git", "push"
+}
+
+task gitAdd(type: Exec) {
+    description 'Add git.'
+    commandLine "git", "add", "-A"
+}
+
 task incrementBuildVersion << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
