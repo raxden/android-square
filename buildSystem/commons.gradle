@@ -32,14 +32,14 @@ def createGitTagTask(tag, message) {
 task uploadLibrary << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
-    createGitCommitTask("update library")
+    createGitCommitTask("Update library")
     tasks.gitCommit.execute()
-    createGitTagTask("3.0.0", "releaseTest")
+    createGitTagTask(getVersion(), "Update library")
     tasks.gitTag.execute()
     tasks.gitPush.execute()
 }
 
-task incrementBuildVersion << {
+task incrementBuildVersionAndUploadLibrary << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
@@ -59,9 +59,9 @@ task incrementBuildVersion << {
 
             tasks.gitPull.execute()
             tasks.gitAdd.execute()
-            createGitCommitTask("update library")
+            createGitCommitTask("Update library")
             tasks.gitCommit.execute()
-            createGitTagTask(versionName, "releaseTest")
+            createGitTagTask(versionName, "Update library")
             tasks.gitTag.execute()
             tasks.gitPush.execute()
         }
