@@ -22,7 +22,7 @@ task gitPush(type: Exec) {
 
 task gitTag(type: Exec) {
     description 'Tag git.'
-    commandLine "git", "tag", "-a", VERSION_NAME, "-m 'releaseTest'"
+    commandLine "git", "tag", "-a", version, "-m 'releaseTest'"
 }
 
 task uploadLibrary << {
@@ -50,6 +50,7 @@ task incrementBuildVersion << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
+            version = versionName
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
         tasks.uploadLibrary.execute()
