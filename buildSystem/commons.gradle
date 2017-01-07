@@ -35,6 +35,7 @@ task uploadLibrary << {
 
 def createTagOnGitTask(tag) {
     return tasks.create("createTagOnGit", Exec) {
+        println(":createTagOnGitTask - "+ tag)
         description 'Create a tag on git.'
         commandLine "git", "tag", "-a", tag, "-m 'releaseTest'"
     }
