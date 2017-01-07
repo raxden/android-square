@@ -3,13 +3,39 @@ import java.util.regex.Pattern
 task gitPull(type: Exec) {
     description 'Pulls git.'
     commandLine "git", "pull"
-    commandLine "git", "add -A"
+    commandLine "git", "add", "-A"
+    commandLine "git", "commit", "-m 'update library'"
     commandLine "git", "push"
 }
 
 task gitAdd(type: Exec) {
     description 'Add git.'
     commandLine "git", "add", "-A"
+}
+
+task gitCommit(type: Exec) {
+    description 'Commit git.'
+    commandLine "git", "commit", "-m 'update library'"
+}
+
+task gitPush(type: Exec) {
+    description 'Push git.'
+    commandLine "git", "push"
+}
+
+task uploadLibrary << {
+    exec {
+        commandLine "git", "pull"
+    }
+    exec {
+        commandLine "git", "add", "-A"
+    }
+    exec {
+        commandLine "git", "commit", "-m 'update library'"
+    }
+    exec {
+        commandLine "git", "push"
+    }
 }
 
 task incrementBuildVersion << {
