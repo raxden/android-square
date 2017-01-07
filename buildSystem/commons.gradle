@@ -74,14 +74,15 @@ task incrementBuildVersionAndUploadLibrary << {
             def buildVersion = Integer.parseInt(matcherVersionNumber.group(3)) + 1
             versionName = majorVersion + "." + minorVersion + "." + buildVersion
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
-
-            createUpdateReadmeFileTask(versionName)
-            tasks.updateReadmeFile.execute()
-
-            createUploadLibraryTask(versionName, "Update library")
-            tasks.uploadLibrary.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
+
+        createUpdateReadmeFileTask(versionName)
+        tasks.updateReadmeFile.execute()
+
+        createUploadLibraryTask(versionName, "Update library")
+        tasks.uploadLibrary.execute()
+
     } else {
         throw new GradleException("Could not read version.properties!")
     }
