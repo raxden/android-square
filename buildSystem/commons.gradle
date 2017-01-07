@@ -20,17 +20,24 @@ task gitPush(type: Exec) {
     commandLine "git", "push"
 }
 
-task gitTag(type: Exec) {
-    description 'Tag git.'
-    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
-}
+//task gitTag(type: Exec) {
+//    description 'Tag git.'
+//    commandLine "git", "tag", "-a", getVersion(), "-m 'releaseTest'"
+//}
 
 task uploadLibrary << {
     tasks.gitPull.execute()
     tasks.gitAdd.execute()
     tasks.gitCommit.execute()
-    tasks.gitTag.execute()
+    createTagOnGitTask("hola")
     tasks.gitPush.execute()
+}
+
+def createTagOnGitTask(tag) {
+    return tasks.create("createTagOnGit", Exec) {
+        description 'Create a tag on git.'
+        commandLine "git", "tag", "-a", tag, "-m 'releaseTest'"
+    }
 }
 
 task incrementBuildVersion << {
