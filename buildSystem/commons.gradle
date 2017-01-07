@@ -52,10 +52,13 @@ def createUploadLibraryAndCretateTagToGitTask(tag, message) {
 def createUpdateReadmeFileTask(version) {
     return tasks.create(name: 'updateReadmeFile') {
         def readmeFile = file('../README.md')
+        if (readmeFile.exists()) {
+            readmeFile.delete()
+        }
         def readmeTemplateFile = file('../README.template')
         if (readmeTemplateFile.canRead()) {
             def content = readmeTemplateFile.getText().replaceAll("\\{versionName\\}", version)
-            readmeFile.write(content)
+            new File("../README.md").write(content)
         }
     }
 }
