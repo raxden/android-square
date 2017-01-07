@@ -89,6 +89,7 @@ task incrementBuildVersionAndUploadLibrary << {
         createUpdateReadmeFileTask(versionName)
         tasks.updateReadmeFile.execute()
 
+        sleep(5000)
         createUploadLibraryTask(versionName, "library update from gradle")
         tasks.uploadLibrary.execute()
 
