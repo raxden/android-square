@@ -29,16 +29,8 @@ def createGitTagTask(tag, message) {
     }
 }
 
-task uploadLibraryToGit << {
-    tasks.gitPull.execute()
-    tasks.gitAdd.execute()
-    createGitCommitTask("Update library")
-    tasks.gitCommit.execute()
-    tasks.gitPush.execute()
-}
-
-def createUploadLibraryAndCretateTagToGitTask(tag, message) {
-    return tasks.create(name: 'uploadLibraryAndCretateTagToGit') {
+def createUploadLibraryTask(tag, message) {
+    return tasks.create(name: 'uploadLibrary') {
         tasks.gitPull.execute()
         tasks.gitAdd.execute()
         createGitCommitTask(message)
@@ -65,7 +57,7 @@ def createUpdateReadmeFileTask(version) {
     }
 }
 
-task incrementBuildVersionAndUploadLibraryToGit << {
+task incrementBuildVersionAndUploadLibrary << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
@@ -86,7 +78,7 @@ task incrementBuildVersionAndUploadLibraryToGit << {
             createUpdateReadmeFileTask(versionName)
             tasks.updateReadmeFile.execute()
 
-            createUploadLibraryAndCretateTagToGitTask(versionName, "Update library")
+            createUploadLibraryTask(versionName, "Update library")
             tasks.uploadLibraryAndCretateTagToGit.execute()
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
