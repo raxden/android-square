@@ -12,7 +12,7 @@ In order to use the library, there are 3 options:
 **1. Gradle dependency**
 
  - 	Add the following to your `build.gradle`:
- ```gradleº
+ ```gradle
 repositories {
 	    maven { url "https://jitpack.io" }
 }
