@@ -22,48 +22,14 @@ android {
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
-    compile libDependencies.muldidex
-    compile libDependencies.androidSupportv13
-    compile libDependencies.androidCompatv7
-    compile libDependencies.mediarouterv7
-    compile libDependencies.design
-    compile libDependencies.recycler
-
-    compile libDependencies.androidCommons
-    compile libDependencies.androidRater
-    compile libDependencies.androidRecycler
-    compile libDependencies.androidMVP
-    compile libDependencies.androidShake
-
-    compile libDependencies.googleAnalytics
-    compile libDependencies.googleCast
-
-    compile libDependencies.firebaseCore
-    compile libDependencies.firebaseAds
-    compile libDependencies.firebaseMessaging
-
-    compile libDependencies.timber
-    compile (libDependencies.crashlytics) {
+    compile libraryDependencies.compile
+    compile (libraryDependencies.transitive) {
         transitive = true;
     }
-    compile libDependencies.calligraphy
-    compile libDependencies.zxing
-    compile libDependencies.jodaTime
-
-    compile libDependencies.icepick
-    provided libDependencies.icepickProcessor
-
-    compile libDependencies.butterKnife
-    annotationProcessor libDependencies.butterKnifeAPT
-
-    compile libDependencies.reactiveAndroid
-    compile libDependencies.reactiveJava
-
-    testCompile libTestDependencies.junit
-    testCompile libTestDependencies.assertj
-    testCompile libTestDependencies.mockito
-    testCompile libTestDependencies.robolectric
-
+    annotationProcessor libraryDependencies.apt
+    provided libraryDependencies.provided
+    testCompile libraryDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'
+apply from: 'build_javadoc.gradle'

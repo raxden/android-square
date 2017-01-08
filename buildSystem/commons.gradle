@@ -1,3 +1,5 @@
+// v1.0.0
+
 import java.util.regex.Pattern
 
 task pullToGit(type: Exec) {
