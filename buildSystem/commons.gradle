@@ -78,15 +78,23 @@ task uploadLibrary << {
     tasks.uploadLibraryToGit.execute()
 }
 
-task uploadRelease {
-    println(":increaseVersion - Incrementing library version...")
-    def gradlePropsFile = file('../gradle.properties')
-    if (gradlePropsFile.canRead()) {
+task uploadRelease << {
+    def versionName = increaseBuildVersion()
+    createUpdateReadmeFileTask(versionName)
+    tasks.updateReadmeFile.execute()
+    sleep(5000)
+    createUploadReleaseToGitTask(versionName, "library update from gradle")
+    tasks.uploadReleaseToGit.execute()
+}
 
+String increaseBuildVersion() {
+    println(":increaseBuildVersion - Incrementing build version...")
+    def versionName
+    def gradlePropsFile = file('../gradle.properties')
+    if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
-
-        def versionName = versionProps['VERSION_NAME']
+        versionName = versionProps['VERSION_NAME']
         def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
         def matcherVersionNumber = patternVersionNumber.matcher(versionName)
         if (matcherVersionNumber.find()) {
@@ -97,17 +105,9 @@ task uploadRelease {
             versionProps['VERSION_NAME'] = matcherVersionNumber.replaceAll(versionName)
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
-
-        doLast {
-            createUpdateReadmeFileTask(versionName)
-            tasks.updateReadmeFile.execute()
-
-            sleep(5000)
-            createUploadReleaseToGitTask(versionName, "library update from gradle")
-            tasks.uploadReleaseToGit.execute()
-        }
-
     } else {
-        throw new GradleException("Could not read version.properties!")
+        throw new GradleException(":increaseBuildVersion - Could not read version.properties!")
     }
+    println(":increaseBuildVersion - build version incremented to " + versionName)
+    return versionName
 }
