@@ -76,7 +76,6 @@ ext {
                     "com.jakewharton.timber:timber:${timberVersion}",
                     "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
                     "net.danlew:android.joda:${jodaTimeVersion}",
-                    "com.jakewharton:butterknife:${butterknifeVersion}",
                     "me.dm7.barcodescanner:zxing:${zxingVersion}",
                     "frankiesardo:icepick:${icepickVersion}",
                     "io.reactivex:rxandroid:${reactiveAndroidVersion}",
@@ -86,7 +85,6 @@ ext {
                     "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}"
             ],
             apt        : [
-                    "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
             ],
             provided   : [
                     "frankiesardo:icepick-processor:${icepickVersion}"
