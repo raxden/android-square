@@ -1,52 +1,59 @@
 import java.util.regex.Pattern
 
-task gitPull(type: Exec) {
+task pullToGit(type: Exec) {
     description 'Pulls git.'
     commandLine "git", "pull"
 }
 
-task gitAdd(type: Exec) {
+task addToGit(type: Exec) {
     description 'Add git.'
     commandLine "git", "add", "-A"
 }
 
-def createGitCommitTask(message) {
-    return tasks.create(name: 'gitCommit', type: Exec) {
+def createCommitToGitWithMessageTask(message) {
+    return tasks.create(name: 'commitToGit', type: Exec) {
         description 'Commit git.'
         commandLine "git", "commit", "-m", message
     }
 }
 
-task gitPush(type: Exec) {
+task pushToGit(type: Exec) {
     description 'Push git.'
     commandLine "git", "push"
 }
 
-def createGitPushTagTask(tag) {
-    return tasks.create(name: 'gitPushTag', type: Exec) {
-        description 'Push tag git.'
-        commandLine "git", "push", "origin", tag
-    }
-}
-
-def createGitTagTask(tag, message) {
-    return tasks.create(name: 'gitTag', type: Exec) {
+def createTagToGitTask(tag, message) {
+    return tasks.create(name: 'tagToGit', type: Exec) {
         description 'Tag git.'
         commandLine "git", "tag", "-a", tag, "-m", message
     }
 }
 
-def createUploadLibraryTask(tag, message) {
-    return tasks.create(name: 'uploadLibrary') {
-        tasks.gitPull.execute()
-        tasks.gitAdd.execute()
-        createGitCommitTask(message)
-        tasks.gitCommit.execute()
-        createGitTagTask(tag, message)
-        tasks.gitTag.execute()
-        tasks.gitPush.execute()
-        createGitPushTagTask(tag)
-        tasks.gitPushTag.execute()
+def createPushTagToGitTask(tag) {
+    return tasks.create(name: 'pushTagToGit', type: Exec) {
+        description 'Push tag git.'
+        commandLine "git", "push", "origin", tag
+    }
+}
+
+def createUploadLibraryToGitTask(message) {
+    return tasks.create(name: 'uploadLibraryToGit') {
+        tasks.pullToGit.execute()
+        tasks.addToGit.execute()
+        createCommitToGitWithMessageTask(message)
+        tasks.commitToGit.execute()
+        tasks.pushToGit.execute()
+    }
+}
+
+def createUploadReleaseToGitTask(tag, message) {
+    return tasks.create(name: 'uploadReleaseToGit') {
+        createUploadLibraryToGitTask(message)
+        tasks.uploadLibraryToGit.execute()
+        createTagToGitTask(tag, message)
+        tasks.tagToGit.execute()
+        createPushTagToGitTask(tag)
+        tasks.pushTagToGit.execute()
     }
 }
 
@@ -66,7 +73,12 @@ def createUpdateReadmeFileTask(version) {
     }
 }
 
-task incrementBuildVersionAndUploadLibrary << {
+task uploadLibrary << {
+    createUploadLibraryToGitTask("library update from gradle")
+    tasks.uploadLibraryToGit.execute()
+}
+
+task uploadRelease << {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
@@ -90,8 +102,8 @@ task incrementBuildVersionAndUploadLibrary << {
         tasks.updateReadmeFile.execute()
 
         sleep(5000)
-        createUploadLibraryTask(versionName, "library update from gradle")
-        tasks.uploadLibrary.execute()
+        createUploadReleaseToGitTask(versionName, "library update from gradle")
+        tasks.uploadReleaseToGit.execute()
 
     } else {
         throw new GradleException("Could not read version.properties!")
