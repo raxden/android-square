@@ -10,7 +10,6 @@ import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
 import com.raxdenstudios.square.interceptor.type.activity.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.BundleExtrasActivityInterceptor;
-import com.raxdenstudios.square.interceptor.type.activity.ButterKnifeActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.CalligraphyActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.CastActivityInterceptor;
 import com.raxdenstudios.square.interceptor.type.activity.CastSessionActivityInterceptor;
@@ -53,7 +52,6 @@ import com.raxdenstudios.square.interceptor.type.application.impl.JodaTimeInterc
 import com.raxdenstudios.square.interceptor.type.application.impl.TimberInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.fragment.AutoInflateViewFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.type.fragment.BundleArgumentsFragmentInterceptor;
-import com.raxdenstudios.square.interceptor.type.fragment.ButterKnifeFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.type.fragment.TimerFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.type.fragment.WebViewFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.type.fragment.ZXingScannerFragmentInterceptor;
@@ -115,9 +113,9 @@ public class InterceptorFactory {
             Log.d(TAG, "....." + AutoInflateLayoutActivityInterceptor.class.getSimpleName() + " loaded!");
             interceptors.add(new AutoInflateLayoutInterceptorImpl(activity));
         }
-        if (activity instanceof ButterKnifeActivityInterceptor) {
-            Log.d(TAG, "....." + ButterKnifeActivityInterceptor.class.getSimpleName() + " loaded!");
-            interceptors.add(new com.raxdenstudios.square.interceptor.type.activity.impl.ButterKnifeInterceptorImpl(activity));
+        if (activity instanceof com.raxdenstudios.square.butterknife.interceptor.type.activity.ButterKnifeActivityInterceptor) {
+            Log.d(TAG, "....." + com.raxdenstudios.square.butterknife.interceptor.type.activity.ButterKnifeActivityInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new com.raxdenstudios.square.butterknife.interceptor.type.activity.impl.ButterKnifeInterceptorImpl(activity));
         }
         if (activity instanceof IcepickActivityInterceptor) {
             Log.d(TAG, "....." + IcepickActivityInterceptor.class.getSimpleName() + " loaded!");
@@ -213,9 +211,9 @@ public class InterceptorFactory {
             Log.d(TAG, "....."+AutoInflateViewFragmentInterceptor.class.getSimpleName()+" loaded!");
             interceptors.add(new AutoInflateViewInterceptorImpl(fragment));
         }
-        if (fragment instanceof ButterKnifeFragmentInterceptor) {
-            Log.d(TAG, "....." + ButterKnifeFragmentInterceptor.class.getSimpleName() + " loaded!");
-            interceptors.add(new com.raxdenstudios.square.interceptor.type.fragment.impl.ButterKnifeInterceptorImpl(fragment));
+        if (fragment instanceof com.raxdenstudios.square.butterknife.interceptor.type.fragment.ButterKnifeFragmentInterceptor) {
+            Log.d(TAG, "....." + com.raxdenstudios.square.butterknife.interceptor.type.fragment.ButterKnifeFragmentInterceptor.class.getSimpleName() + " loaded!");
+            interceptors.add(new com.raxdenstudios.square.butterknife.interceptor.type.fragment.impl.ButterKnifeInterceptorImpl(fragment));
         }
         if (fragment instanceof CompositeSubscriptionActivityInterceptor) {
             Log.d(TAG, "....." + CompositeSubscriptionActivityInterceptor.class.getSimpleName() + " loaded!");

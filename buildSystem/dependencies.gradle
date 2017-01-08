@@ -30,6 +30,9 @@ ext {
     androidRecyclerVersion = '3.0.1@aar'    // https://github.com/raxden/AndroidRecycler
     androidShakeVersion = '3.0.1@aar'       // https://github.com/raxden/AndroidShakeDetector
 
+    // Square interceptors
+    androidSquareButterKnifeVersion = '3.0.3@aar'
+
     // Libraries
     reactiveAndroidVersion = '1.2.1'        // https://github.com/ReactiveX/RxAndroid
     reactiveJavaVersion = '1.1.6'           // https://github.com/ReactiveX/RxAndroid
@@ -61,6 +64,8 @@ ext {
                     "com.github.raxden:AndroidRater:${androidRaterVersion}",
                     "com.github.raxden:AndroidRecycler:${androidRecyclerVersion}",
                     "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}",
+
+                    "com.github.raxden:AndroidSquare-ButterKnife:${androidSquareButterKnifeVersion}",
 
                     "com.google.android.gms:play-services-analytics:${servicesVersion}",
                     "com.google.android.gms:play-services-cast-framework:${servicesVersion}",
