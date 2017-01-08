@@ -1,34 +1,29 @@
 import java.util.regex.Pattern
 
 task pullToGit(type: Exec) {
-    println(":pullToGit - Pull to Git...")
     description 'Pulls git.'
     commandLine "git", "pull"
 }
 
 task addToGit(type: Exec) {
-    println(":addToGit - Add to Git...")
     description 'Add git.'
     commandLine "git", "add", "-A"
 }
 
 def createCommitToGitWithMessageTask(message) {
     return tasks.create(name: 'commitToGit', type: Exec) {
-        println(":commitToGit - Commit to Git with message " + message)
         description 'Commit git.'
         commandLine "git", "commit", "-m", message
     }
 }
 
 task pushToGit(type: Exec) {
-    println(":pushToGit - Push to Git...")
     description 'Push git.'
     commandLine "git", "push"
 }
 
 def createTagToGitTask(tag, message) {
     return tasks.create(name: 'tagToGit', type: Exec) {
-        println(":tagToGit - Tag to Git with tag " + tag + " message " + message)
         description 'Tag git.'
         commandLine "git", "tag", "-a", tag, "-m", message
     }
@@ -36,7 +31,6 @@ def createTagToGitTask(tag, message) {
 
 def createPushTagToGitTask(tag) {
     return tasks.create(name: 'pushTagToGit', type: Exec) {
-        println(":pushTagToGit - Push tag to Git with tag " + tag)
         description 'Push tag git.'
         commandLine "git", "push", "origin", tag
     }
@@ -44,7 +38,6 @@ def createPushTagToGitTask(tag) {
 
 def createUploadLibraryToGitTask(message) {
     return tasks.create(name: 'uploadLibraryToGit') {
-        println(":uploadLibraryToGit - Upload library to Git")
         tasks.pullToGit.execute()
         tasks.addToGit.execute()
         createCommitToGitWithMessageTask(message)
@@ -55,7 +48,6 @@ def createUploadLibraryToGitTask(message) {
 
 def createUploadReleaseToGitTask(tag, message) {
     return tasks.create(name: 'uploadReleaseToGit') {
-        println(":uploadReleaseToGit - Upload library release to Git")
         createUploadLibraryToGitTask(message)
         tasks.uploadLibraryToGit.execute()
         createTagToGitTask(tag, message)
@@ -67,7 +59,6 @@ def createUploadReleaseToGitTask(tag, message) {
 
 def createUpdateReadmeFileTask(version) {
     return tasks.create(name: 'updateReadmeFile') {
-        println(":updateReadmeFile - Update readme file with version " + version)
         def readmeFile = file('../README.md')
         if (readmeFile.exists()) {
             readmeFile.delete()
@@ -82,6 +73,7 @@ def createUpdateReadmeFileTask(version) {
     }
 }
 
+// gradlew uploadLibrary -Pmessage=messageToUpload
 task uploadLibrary << {
     def message = "$message"
     createUploadLibraryToGitTask(message)
