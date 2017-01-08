@@ -78,7 +78,7 @@ task uploadLibrary << {
     tasks.uploadLibraryToGit.execute()
 }
 
-task uploadRelease << {
+task uploadRelease {
     println(":increaseVersion - Incrementing library version...")
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.canRead()) {
@@ -98,12 +98,14 @@ task uploadRelease << {
         }
         versionProps.store(gradlePropsFile.newWriter(), null)
 
-        createUpdateReadmeFileTask(versionName)
-        tasks.updateReadmeFile.execute()
+        doLast {
+            createUpdateReadmeFileTask(versionName)
+            tasks.updateReadmeFile.execute()
 
-        sleep(5000)
-        createUploadReleaseToGitTask(versionName, "library update from gradle")
-        tasks.uploadReleaseToGit.execute()
+            sleep(5000)
+            createUploadReleaseToGitTask(versionName, "library update from gradle")
+            tasks.uploadReleaseToGit.execute()
+        }
 
     } else {
         throw new GradleException("Could not read version.properties!")

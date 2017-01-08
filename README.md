@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	    compile 'com.github.raxden:AndroidSquare:3.1.4@aar'
+	    compile 'com.github.raxden:AndroidSquare:3.1.7@aar'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
 <dependency>
 	    <groupId>com.github.raxden</groupId>
 	    <artifactId>AndroidSquare</artifactId>
-	    <version>3.1.4</version>
+	    <version>3.1.7</version>
 </dependency>
 ```
 
@@ -43,7 +43,7 @@ dependencies {
 
 ### Documentation 
 
-For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/3.1.4/javadoc/).
+For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/3.1.7/javadoc/).
 
 ## LICENSE
 
