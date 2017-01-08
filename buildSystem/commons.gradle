@@ -1,6 +1,11 @@
-// v1.0.0
+// v1.0.1
 
 import java.util.regex.Pattern
+
+task fetchToGit(type: Exec) {
+    description 'Fetch git.'
+    commandLine "git", "fetch"
+}
 
 task pullToGit(type: Exec) {
     description 'Pulls git.'
@@ -83,6 +88,7 @@ task uploadLibrary << {
 }
 
 task uploadRelease << {
+    tasks.fetchToGit.execute()
     def versionName = increaseBuildVersion()
     createUpdateReadmeFileTask(versionName)
     tasks.updateReadmeFile.execute()
