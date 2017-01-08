@@ -1,0 +1,3 @@
+[submodule "square-interceptors/AndroidSquare-ButterKnife"]
+	path = square-interceptors/AndroidSquare-ButterKnife
+	url = git@github.com:raxden/AndroidSquare-ButterKnife.git
