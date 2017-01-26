@@ -61,6 +61,7 @@ import com.raxdenstudios.square.interceptor.type.fragment.impl.WebViewIntercepto
 import com.raxdenstudios.square.interceptor.type.fragment.impl.ZXingScannerInterceptorImpl;
 import com.raxdenstudios.square.interceptor.type.presenter.CompositeSubscriptionPresenterInterceptor;
 import com.raxdenstudios.square.interceptor.type.presenter.TimerPresenterInterceptor;
+import com.raxdenstudios.square.utils.LibraryHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +77,7 @@ public class InterceptorFactory {
 
     public static <T> List<Interceptor> buildInterceptors(T type) {
         List<Interceptor> interceptors = new ArrayList<>();
-        if (type instanceof MultiDexApplication) {
+        if (LibraryHelper.getInstance().isMultiDexLibraryAvailable() && type instanceof MultiDexApplication) {
             interceptors = buildInterceptors((MultiDexApplication) type);
         } else if (type instanceof Application) {
             interceptors = buildInterceptors((Application) type);

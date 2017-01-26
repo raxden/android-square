@@ -59,13 +59,13 @@ ext {
                     "com.android.support:design:${supportLibraryVersion}",
                     "com.android.support:recyclerview-v7:${supportLibraryVersion}",
 
-                    "com.github.raxden:AndroidCommons:${androidCommonsVersion}",
-                    "com.github.raxden:AndroidMVP:${androidMVPVersion}",
-                    "com.github.raxden:AndroidRater:${androidRaterVersion}",
-                    "com.github.raxden:AndroidRecycler:${androidRecyclerVersion}",
-                    "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}",
+                    "com.github.raxden:androidCommons:${androidCommonsVersion}",
+                    "com.github.raxden:androidMVP:${androidMVPVersion}",
+                    "com.github.raxden:androidRater:${androidRaterVersion}",
+                    "com.github.raxden:androidRecycler:${androidRecyclerVersion}",
+                    "com.github.raxden:androidShakeDetector:${androidShakeVersion}",
 
-                    "com.github.raxden:AndroidSquare-ButterKnife:${androidSquareButterKnifeVersion}",
+                    "com.github.raxden:androidSquare-ButterKnife:${androidSquareButterKnifeVersion}",
 
                     "com.google.android.gms:play-services-analytics:${servicesVersion}",
                     "com.google.android.gms:play-services-cast-framework:${servicesVersion}",
