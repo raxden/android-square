@@ -14,6 +14,11 @@ public class AutoInflateLayoutActivity extends SquareActivity implements AutoInf
     private View mView;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onContentViewCreated(View view, Bundle savedInstanceState) {
         mView = view;
     }

@@ -7,7 +7,7 @@ package com.raxdenstudios.square.utils;
 public class LibraryHelper {
 
     private static LibraryHelper instance = null;
-    private enum Status {NO_OK, OK}
+    private enum Status {NOT_AVAILABLE, AVAILABLE}
 
     private Status multiDexLibrary;
 
@@ -30,12 +30,12 @@ public class LibraryHelper {
         if (multiDexLibrary == null) {
             try {
                 Class.forName("android.support.multidex.MultiDexApplication");
-                multiDexLibrary = Status.OK;
+                multiDexLibrary = Status.AVAILABLE;
             } catch (ClassNotFoundException e) {
-                multiDexLibrary = Status.NO_OK;
+                multiDexLibrary = Status.NOT_AVAILABLE;
             }
         }
-        return multiDexLibrary == Status.OK;
+        return multiDexLibrary == Status.AVAILABLE;
     }
 
 
