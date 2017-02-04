@@ -53,6 +53,7 @@ ext {
     squareDependencies = [
             compile    : [
                     "com.android.support:multidex:${multidexVersion}",
+                    "com.android.support:appcompat-v7:${supportLibraryVersion}",
 
                     "com.github.raxden:androidCommons:${androidCommonsVersion}",
                     "com.github.raxden:androidMVP:${androidMVPVersion}"
