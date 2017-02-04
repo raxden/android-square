@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile reactiveDependencies.compile
-//    compile (reactiveDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor reactiveDependencies.apt
-//    provided reactiveDependencies.provided
-    testCompile reactiveDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

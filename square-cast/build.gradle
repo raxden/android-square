@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile castDependencies.compile
-//    compile (castDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor castDependencies.apt
-//    provided castDependencies.provided
-//    testCompile castDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

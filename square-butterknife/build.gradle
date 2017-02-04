@@ -21,12 +21,7 @@ dependencies {
     compile project(':square')
 
     compile butterknifeDependencies.compile
-//    compile (butterknifeDependencies.transitive) {
-//        transitive = true;
-//    }
     annotationProcessor butterknifeDependencies.apt
-//    provided butterknifeDependencies.provided
-    testCompile butterknifeDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

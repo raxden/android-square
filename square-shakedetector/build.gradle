@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile shakedetectorDependencies.compile
-//    compile (shakedetectorDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor shakedetectorDependencies.apt
-//    provided shakedetectorDependencies.provided
-    testCompile shakedetectorDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

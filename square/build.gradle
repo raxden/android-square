@@ -23,12 +23,6 @@ dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
     compile squareDependencies.compile
-//    compile (squareDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor squareDependencies.apt
-//    provided squareDependencies.provided
-    testCompile squareDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile zxingDependencies.compile
-//    compile (zxingDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor zxingDependencies.apt
-//    provided zxingDependencies.provided
-    testCompile zxingDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

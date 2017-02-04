@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile calligraphyDependencies.compile
-//    compile (calligraphyDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor calligraphyDependencies.apt
-//    provided calligraphyDependencies.provided
-    testCompile calligraphyDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

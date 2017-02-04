@@ -21,12 +21,7 @@ dependencies {
     compile project(':square')
 
     compile icepickDependencies.compile
-//    compile (icepickDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor icepickDependencies.apt
     provided icepickDependencies.provided
-    testCompile icepickDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

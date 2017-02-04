@@ -20,13 +20,9 @@ dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':square')
 
-//    compile fabricDependencies.compile
     compile (fabricDependencies.transitive) {
         transitive = true;
     }
-//    annotationProcessor fabricDependencies.apt
-//    provided fabricDependencies.provided
-    testCompile fabricDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

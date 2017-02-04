@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile jodatimeDependencies.compile
-//    compile (jodatimeDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor jodatimeDependencies.apt
-//    provided jodatimeDependencies.provided
-    testCompile jodatimeDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.raxdenstudios.commons.util.StringUtils;
+import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 /**

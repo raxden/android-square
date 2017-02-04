@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile raterDependencies.compile
-//    compile (raterDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor raterDependencies.apt
-//    provided raterDependencies.provided
-    testCompile raterDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

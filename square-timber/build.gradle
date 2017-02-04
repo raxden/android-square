@@ -21,12 +21,6 @@ dependencies {
     compile project(':square')
 
     compile timberDependencies.compile
-//    compile (timberDependencies.transitive) {
-//        transitive = true;
-//    }
-//    annotationProcessor timberDependencies.apt
-//    provided timberDependencies.provided
-    testCompile timberDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

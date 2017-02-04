@@ -69,10 +69,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -90,10 +87,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -111,10 +105,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -132,10 +123,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -153,10 +141,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -174,10 +159,7 @@ ext {
                     "frankiesardo:icepick-processor:${icepickVersion}"
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -195,10 +177,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -216,10 +195,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -238,10 +214,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -259,10 +232,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -280,10 +250,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 
@@ -301,10 +268,7 @@ ext {
 
             ],
             testCompile: [
-                    "junit:junit:${jUnitVersion}",
-                    "org.assertj:assertj-core:${assertJVersion}",
-                    "org.mockito:mockito-core:${mockitoVersion}",
-                    "org.robolectric:robolectric:${robolectricVersion}"
+
             ]
     ]
 }
