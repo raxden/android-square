@@ -34,7 +34,7 @@ dependencies {
     //    compile 'com.jakewharton:butterknife:8.0.1'
     compile project(':square')
     compile project(':square-butterknife')
-//    compile project(':square-calligraphy')
+    compile project(':square-calligraphy')
     compile project(':square-cast')
     compile project(':square-fabric')
     compile project(':square-icepick')

@@ -2,7 +2,6 @@ package com.raxdenstudios.square.interceptor.calligraphy;
 
 import android.app.Application;
 
-import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
