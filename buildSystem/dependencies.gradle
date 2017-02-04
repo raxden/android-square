@@ -50,43 +50,123 @@ ext {
     robolectricVersion = '3.0'
     mockitoVersion = '1.10.19'
 
-    libraryDependencies = [
+    squareDependencies = [
             compile    : [
                     "com.android.support:multidex:${multidexVersion}",
-                    "com.android.support:support-v13:${supportLibraryVersion}",
-                    "com.android.support:appcompat-v7:${supportLibraryVersion}",
-                    "com.android.support:mediarouter-v7:${supportLibraryVersion}",
-                    "com.android.support:design:${supportLibraryVersion}",
-                    "com.android.support:recyclerview-v7:${supportLibraryVersion}",
 
                     "com.github.raxden:androidCommons:${androidCommonsVersion}",
-                    "com.github.raxden:androidMVP:${androidMVPVersion}",
-                    "com.github.raxden:androidRater:${androidRaterVersion}",
-                    "com.github.raxden:androidRecycler:${androidRecyclerVersion}",
-                    "com.github.raxden:androidShakeDetector:${androidShakeVersion}",
+                    "com.github.raxden:androidMVP:${androidMVPVersion}"
+            ],
+            transitive : [
 
-                    "com.github.raxden:androidSquare-ButterKnife:${androidSquareButterKnifeVersion}",
+            ],
+            apt        : [
 
-                    "com.google.android.gms:play-services-analytics:${servicesVersion}",
-                    "com.google.android.gms:play-services-cast-framework:${servicesVersion}",
-                    "com.google.firebase:firebase-core:${servicesVersion}",
-                    "com.google.firebase:firebase-ads:${servicesVersion}",
-                    "com.google.firebase:firebase-messaging:${servicesVersion}",
+            ],
+            provided   : [
 
-                    "com.jakewharton.timber:timber:${timberVersion}",
-                    "uk.co.chrisjenx:calligraphy:${calligraphyVersion}",
-                    "net.danlew:android.joda:${jodaTimeVersion}",
-                    "com.jakewharton:butterknife:${butterknifeVersion}",
-                    "me.dm7.barcodescanner:zxing:${zxingVersion}",
-                    "frankiesardo:icepick:${icepickVersion}",
-                    "io.reactivex:rxandroid:${reactiveAndroidVersion}",
-                    "io.reactivex:rxjava:${reactiveJavaVersion}"
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    butterknifeDependencies = [
+            compile    : [
+                    "com.jakewharton:butterknife:${butterknifeVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+                    "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    calligraphyDependencies = [
+            compile    : [
+                    "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    castDependencies = [
+            compile    : [
+                    "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    fabricDependencies = [
+            compile    : [
+
             ],
             transitive : [
                     "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}"
             ],
             apt        : [
-                    "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    icepickDependencies = [
+            compile    : [
+                    "frankiesardo:icepick:${icepickVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
             ],
             provided   : [
                     "frankiesardo:icepick-processor:${icepickVersion}"
@@ -99,4 +179,130 @@ ext {
             ]
     ]
 
+    jodatimeDependencies = [
+            compile    : [
+                    "net.danlew:android.joda:${jodaTimeVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    raterDependencies = [
+            compile    : [
+                    "com.github.raxden:androidRater:${androidRaterVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    reactiveDependencies = [
+            compile    : [
+                    "io.reactivex:rxandroid:${reactiveAndroidVersion}",
+                    "io.reactivex:rxjava:${reactiveJavaVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    shakedetectorDependencies = [
+            compile    : [
+                    "com.github.raxden:androidShakeDetector:${androidShakeVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    timberDependencies = [
+            compile    : [
+                    "com.jakewharton.timber:timber:${timberVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
+
+    zxingDependencies = [
+            compile    : [
+                    "me.dm7.barcodescanner:zxing:${zxingVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+                    "junit:junit:${jUnitVersion}",
+                    "org.assertj:assertj-core:${assertJVersion}",
+                    "org.mockito:mockito-core:${mockitoVersion}",
+                    "org.robolectric:robolectric:${robolectricVersion}"
+            ]
+    ]
 }

@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
-import com.raxdenstudios.square.interceptor.type.ActivityInterceptor;
-import com.raxdenstudios.square.interceptor.manager.ActivityInterceptorManager;
-import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
+import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.manager.ActivityInterceptorManager;
+import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.List;
 
@@ -116,13 +116,11 @@ public abstract class SquareActivity extends AppCompatActivity {
     private ActivityInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = (ActivityInterceptorManager) InterceptorManagerFactory.buildManager(this);
-            addCustomInterceptorToStack(mInterceptorManager.getInterceptors());
+            addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void addCustomInterceptorToStack(List<ActivityInterceptor> interceptors) {
-
-    }
+    protected abstract void addInterceptor(List<ActivityInterceptor> interceptors);
 
 }

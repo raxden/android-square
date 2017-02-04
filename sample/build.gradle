@@ -26,12 +26,13 @@ android {
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.0.0'
-
-    compile 'com.github.raxden:androidcommons:3.0.3@aar'
-    compile 'com.github.raxden:androidsquare:3.0.13@aar'
-
-    // Butterknife interceptor
-    compile 'com.github.raxden:androidsquare-butterknife:3.0.9@aar'
-    compile 'com.jakewharton:butterknife:8.0.1'
-
+    //    compile 'com.github.raxden:androidcommons:3.0.3@aar'
+    //    compile 'com.github.raxden:androidsquare:3.0.14@aar'
+    //
+    //    // Butterknife interceptor
+    //    compile 'com.github.raxden:androidsquare-butterknife:3.0.9@aar'
+    //    compile 'com.jakewharton:butterknife:8.0.1'
+    compile project(':square')
+    compile project(':square-butterknife')
+    compile project(':square-calligraphy')
 }

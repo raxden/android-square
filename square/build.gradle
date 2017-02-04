@@ -22,13 +22,13 @@ android {
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
-    compile libraryDependencies.compile
-    compile (libraryDependencies.transitive) {
-        transitive = true;
-    }
-    annotationProcessor libraryDependencies.apt
-    provided libraryDependencies.provided
-    testCompile libraryDependencies.testCompile
+    compile squareDependencies.compile
+//    compile (squareDependencies.transitive) {
+//        transitive = true;
+//    }
+//    annotationProcessor squareDependencies.apt
+//    provided squareDependencies.provided
+    testCompile squareDependencies.testCompile
 }
 
 apply from: '../buildSystem/commons.gradle'

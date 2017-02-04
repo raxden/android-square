@@ -13,9 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.interceptor.manager.DialogFragmentInterceptorManager;
-import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
-import com.raxdenstudios.square.interceptor.type.DialogFragmentInterceptor;
+import com.raxdenstudios.square.manager.DialogFragmentInterceptorManager;
+import com.raxdenstudios.square.manager.InterceptorManagerFactory;
+import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 
 import java.util.List;
 
@@ -149,12 +149,12 @@ public abstract class SquareDialogFragment extends DialogFragment {
     private DialogFragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = (DialogFragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
-            addCustomInterceptorToStack(mInterceptorManager.getInterceptors());
+            addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void addCustomInterceptorToStack(List<DialogFragmentInterceptor> interceptors) {
+    protected void addInterceptor(List<DialogFragmentInterceptor> interceptors) {
 
     }
 

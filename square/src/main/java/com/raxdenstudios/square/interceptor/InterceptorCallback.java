@@ -5,8 +5,8 @@ package com.raxdenstudios.square.interceptor;
  *
  * Interceptor callback
  */
-public interface InterceptorCallback<TInteractor extends InterceptorInteractor> {
+public interface InterceptorCallback<TInteractor extends Interactor> {
 
-    void onInterceptorAttached(TInteractor interceptor);
+    void onInterceptorAttached(TInteractor interactor);
 
 }

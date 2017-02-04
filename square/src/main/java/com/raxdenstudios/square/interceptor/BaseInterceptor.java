@@ -11,10 +11,10 @@ import com.raxdenstudios.mvp.presenter.Presenter;
 
 /**
  * Created by Ángel Gómez
- *
+ * <p>
  * This abstract class defines the basis of an interceptor.
  */
-public abstract class BaseInterceptor<TInteractor extends InterceptorInteractor, TCallback extends InterceptorCallback<TInteractor>>
+public abstract class BaseInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
         implements Interceptor {
 
     private static final String TAG = BaseInterceptor.class.getSimpleName();
@@ -24,61 +24,46 @@ public abstract class BaseInterceptor<TInteractor extends InterceptorInteractor,
     protected TInteractor mInteractor;
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Application application) {
-        if (application instanceof InterceptorInteractor) {
-            mInteractor = (TInteractor) application;
-        }
-        if (application instanceof InterceptorCallback) {
-            mCallback = (TCallback) application;
-            mCallback.onInterceptorAttached(mInteractor);
+    public BaseInterceptor(Application application, TCallback callback) {
+        mCallback = callback;
+        if (mCallback != null) {
+            mCallback.onInterceptorAttached((TInteractor) this);
         }
         mContext = application.getApplicationContext();
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Activity activity) {
-        if (activity instanceof InterceptorInteractor) {
-            mInteractor = (TInteractor) activity;
-        }
-        if (activity instanceof InterceptorCallback) {
-            mCallback = (TCallback) activity;
-            mCallback.onInterceptorAttached(mInteractor);
+    public BaseInterceptor(Activity activity, TCallback callback) {
+        mCallback = callback;
+        if (mCallback != null) {
+            mCallback.onInterceptorAttached((TInteractor) this);
         }
         mContext = activity;
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Fragment fragment) {
-        if (fragment instanceof InterceptorInteractor) {
-            mInteractor = (TInteractor) fragment;
-        }
-        if (fragment instanceof InterceptorCallback) {
-            mCallback = (TCallback) fragment;
-            mCallback.onInterceptorAttached(mInteractor);
+    public BaseInterceptor(Fragment fragment, TCallback callback) {
+        mCallback = callback;
+        if (mCallback != null) {
+            mCallback.onInterceptorAttached((TInteractor) this);
         }
         mContext = fragment.getActivity();
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(DialogFragment dialogFragment) {
-        if (dialogFragment instanceof InterceptorInteractor) {
-            mInteractor = (TInteractor) dialogFragment;
-        }
-        if (dialogFragment instanceof InterceptorCallback) {
-            mCallback = (TCallback) dialogFragment;
-            mCallback.onInterceptorAttached(mInteractor);
+    public BaseInterceptor(DialogFragment dialogFragment, TCallback callback) {
+        mCallback = callback;
+        if (mCallback != null) {
+            mCallback.onInterceptorAttached((TInteractor) this);
         }
         mContext = dialogFragment.getActivity();
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Presenter presenter) {
-        if (presenter instanceof InterceptorInteractor) {
-            mInteractor = (TInteractor) presenter;
-        }
-        if (presenter instanceof InterceptorCallback) {
-            mCallback = (TCallback) presenter;
-            mCallback.onInterceptorAttached(mInteractor);
+    public BaseInterceptor(Presenter presenter, TCallback callback) {
+        mCallback = callback;
+        if (mCallback != null) {
+            mCallback.onInterceptorAttached((TInteractor) this);
         }
         mContext = presenter.mContext;
     }

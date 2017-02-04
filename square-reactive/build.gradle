@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = "com.raxdenstudios.square.interceptor.reactive"
+version = VERSION_NAME
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile project(':square')
+
+    compile reactiveDependencies.compile
+//    compile (reactiveDependencies.transitive) {
+//        transitive = true;
+//    }
+//    annotationProcessor reactiveDependencies.apt
+//    provided reactiveDependencies.provided
+    testCompile reactiveDependencies.testCompile
+}
+
+apply from: '../buildSystem/commons.gradle'
+apply from: 'build_javadoc.gradle'

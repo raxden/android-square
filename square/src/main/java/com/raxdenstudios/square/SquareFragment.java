@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.interceptor.type.FragmentInterceptor;
-import com.raxdenstudios.square.interceptor.manager.FragmentInterceptorManager;
-import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
+import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+import com.raxdenstudios.square.manager.FragmentInterceptorManager;
+import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.List;
 
@@ -128,12 +128,12 @@ public abstract class SquareFragment extends Fragment {
     private FragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
-            addCustomInterceptorToStack(mInterceptorManager.getInterceptors());
+            addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void addCustomInterceptorToStack(List<FragmentInterceptor> interceptors) {
+    protected void addInterceptor(List<FragmentInterceptor> interceptors) {
 
     }
 

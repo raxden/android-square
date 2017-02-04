@@ -3,9 +3,9 @@ package com.raxdenstudios.square;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import com.raxdenstudios.square.interceptor.type.ApplicationInterceptor;
-import com.raxdenstudios.square.interceptor.manager.ApplicationInterceptorManager;
-import com.raxdenstudios.square.interceptor.manager.InterceptorManagerFactory;
+import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
+import com.raxdenstudios.square.manager.ApplicationInterceptorManager;
+import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.List;
 
@@ -35,12 +35,12 @@ public abstract class SquareApplication extends Application {
     private ApplicationInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = (ApplicationInterceptorManager) InterceptorManagerFactory.buildManager(this);
-            addCustomInterceptorToStack(mInterceptorManager.getInterceptors());
+            addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void addCustomInterceptorToStack(List<ApplicationInterceptor> interceptors) {
+    protected void addInterceptor(List<ApplicationInterceptor> interceptors) {
 
     }
 
