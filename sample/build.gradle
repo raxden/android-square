@@ -32,6 +32,9 @@ dependencies {
     //    // Butterknife interceptor
     //    compile 'com.github.raxden:androidsquare-butterknife:3.0.9@aar'
     //    compile 'com.jakewharton:butterknife:8.0.1'
+
+
+
     compile project(':square')
     compile project(':square-butterknife')
     compile project(':square-calligraphy')

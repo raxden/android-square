@@ -1,10 +1,7 @@
 package com.raxdenstudios.square;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,21 +10,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.manager.DialogFragmentInterceptorManager;
+import com.raxdenstudios.mvp.MVPFragment;
+import com.raxdenstudios.mvp.presenter.IPresenter;
+import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+import com.raxdenstudios.square.manager.FragmentInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
-import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 
 import java.util.List;
 
 /**
  * Created by Ángel Gómez
  *
- * SquareDialogFragment is an abstract class that adds interceptor functionality to the
- * DialogFragment.
+ * SquareMVPFragment is an abstract class that adds interceptor functionality to the fragment.
+ * Unlike SquareFragment this activity follows the MVP pattern, therefore has a presenter
+ * attached.
  */
-public abstract class SquareDialogFragment extends DialogFragment {
+public abstract class SquareMVPFragment<TPresenter extends IPresenter>
+        extends MVPFragment<TPresenter> {
 
-    private DialogFragmentInterceptorManager mInterceptorManager;
+    private FragmentInterceptorManager mInterceptorManager;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -113,24 +114,6 @@ public abstract class SquareDialogFragment extends DialogFragment {
         getInterceptorManager().onDetach();
     }
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        return getInterceptorManager().onCreateDialog(savedInstanceState, dialog);
-    }
-
-    @Override
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
-        getInterceptorManager().onCancel(dialog);
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        getInterceptorManager().onDismiss(dialog);
-    }
-
     /* Callbacks */
 
     @Override
@@ -147,15 +130,15 @@ public abstract class SquareDialogFragment extends DialogFragment {
 
     /* Support methods */
 
-    private DialogFragmentInterceptorManager getInterceptorManager() {
+    private FragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (DialogFragmentInterceptorManager) InterceptorManagerFactory
-                    .buildManager(this);
+            mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory
+                            .buildManager(this);
             addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected abstract void addInterceptor(List<DialogFragmentInterceptor> interceptors);
+    protected abstract void addInterceptor(List<FragmentInterceptor> interceptors);
 
 }

@@ -51,7 +51,8 @@ public abstract class SquareFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return getInterceptorManager().onCreateView(inflater, null, container, savedInstanceState);
     }
 
@@ -127,14 +128,13 @@ public abstract class SquareFragment extends Fragment {
 
     private FragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
+            mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory
+                    .buildManager(this);
             addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;
     }
 
-    protected void addInterceptor(List<FragmentInterceptor> interceptors) {
-
-    }
+    protected abstract void addInterceptor(List<FragmentInterceptor> interceptors);
 
 }

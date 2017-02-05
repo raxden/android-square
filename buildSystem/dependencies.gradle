@@ -201,6 +201,7 @@ ext {
 
     reactiveDependencies = [
             compile    : [
+                    "com.github.raxden:androidMVP:${androidMVPVersion}",
                     "io.reactivex:rxandroid:${reactiveAndroidVersion}",
                     "io.reactivex:rxjava:${reactiveJavaVersion}"
             ],

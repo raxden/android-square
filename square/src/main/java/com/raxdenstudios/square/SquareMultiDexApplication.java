@@ -1,10 +1,10 @@
 package com.raxdenstudios.square;
 
-import android.app.Application;
 import android.content.res.Configuration;
+import android.support.multidex.MultiDexApplication;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
-import com.raxdenstudios.square.manager.ApplicationInterceptorManager;
+import com.raxdenstudios.square.manager.ApplicationMultiDexInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.List;
@@ -12,11 +12,12 @@ import java.util.List;
 /**
  * Created by Ángel Gómez
  *
- * SquareApplication is an abstract class that adds interceptor functionality to the application.
+ * SquareMultiDexApplication is an abstract class that adds interceptor functionality to the
+ * MultiDexApplication.
  */
-public abstract class SquareApplication extends Application {
+public abstract class SquareMultiDexApplication extends MultiDexApplication {
 
-    private ApplicationInterceptorManager mInterceptorManager;
+    private ApplicationMultiDexInterceptorManager mInterceptorManager;
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -32,9 +33,9 @@ public abstract class SquareApplication extends Application {
 
     /* Support methods */
 
-    private ApplicationInterceptorManager getInterceptorManager() {
+    private ApplicationMultiDexInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (ApplicationInterceptorManager) InterceptorManagerFactory
+            mInterceptorManager = (ApplicationMultiDexInterceptorManager) InterceptorManagerFactory
                     .buildManager(this);
             addInterceptor(mInterceptorManager.getInterceptors());
         }

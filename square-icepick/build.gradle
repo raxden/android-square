@@ -24,5 +24,4 @@ dependencies {
     provided icepickDependencies.provided
 }
 
-apply from: '../buildSystem/commons.gradle'
 apply from: 'build_javadoc.gradle'

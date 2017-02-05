@@ -24,5 +24,4 @@ dependencies {
     annotationProcessor butterknifeDependencies.apt
 }
 
-apply from: '../buildSystem/commons.gradle'
 apply from: 'build_javadoc.gradle'

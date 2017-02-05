@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
+import com.raxdenstudios.mvp.MVPActivity;
+import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.manager.ActivityInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
@@ -16,9 +17,11 @@ import java.util.List;
 /**
  * Created by Ángel Gómez
  *
- * SquareActivity is an abstract class that adds interceptor functionality to the activity.
+ * SquareMVPActivity is an abstract class that adds interceptor functionality to the activity.
+ * Unlike SquareActivity this activity follows the MVP pattern, therefore has a presenter attached.
  */
-public abstract class SquareActivity extends AppCompatActivity {
+public abstract class SquareMVPActivity<TPresenter extends IPresenter>
+        extends MVPActivity<TPresenter> {
 
     private ActivityInterceptorManager mInterceptorManager;
 
@@ -30,8 +33,8 @@ public abstract class SquareActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        getInterceptorManager().attachBaseContext(newBase);
         super.attachBaseContext(newBase);
+        getInterceptorManager().attachBaseContext(newBase);
     }
 
     @Override

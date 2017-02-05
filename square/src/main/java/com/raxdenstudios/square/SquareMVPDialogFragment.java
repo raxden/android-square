@@ -2,7 +2,6 @@ package com.raxdenstudios.square;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,19 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raxdenstudios.mvp.MVPDialogFragment;
+import com.raxdenstudios.mvp.presenter.IPresenter;
+import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 import com.raxdenstudios.square.manager.DialogFragmentInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
-import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 
 import java.util.List;
 
 /**
  * Created by Ángel Gómez
  *
- * SquareDialogFragment is an abstract class that adds interceptor functionality to the
- * DialogFragment.
+ * SquareMVPDialogFragment is an abstract class that adds interceptor functionality to the
+ * DialogFragment. Unlike SquareDialogFragment this activity follows the MVP pattern, therefore has
+ * a presenter attached.
  */
-public abstract class SquareDialogFragment extends DialogFragment {
+public abstract class SquareMVPDialogFragment<TPresenter extends IPresenter>
+        extends MVPDialogFragment<TPresenter> {
 
     private DialogFragmentInterceptorManager mInterceptorManager;
 
@@ -54,8 +57,7 @@ public abstract class SquareDialogFragment extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return getInterceptorManager().onCreateView(inflater, null, container, savedInstanceState);
     }
 
@@ -149,8 +151,7 @@ public abstract class SquareDialogFragment extends DialogFragment {
 
     private DialogFragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (DialogFragmentInterceptorManager) InterceptorManagerFactory
-                    .buildManager(this);
+            mInterceptorManager = (DialogFragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
             addInterceptor(mInterceptorManager.getInterceptors());
         }
         return mInterceptorManager;

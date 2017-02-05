@@ -23,5 +23,4 @@ dependencies {
     compile timberDependencies.compile
 }
 
-apply from: '../buildSystem/commons.gradle'
 apply from: 'build_javadoc.gradle'

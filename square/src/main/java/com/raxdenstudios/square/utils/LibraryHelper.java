@@ -10,6 +10,7 @@ public class LibraryHelper {
     private enum Status {NOT_AVAILABLE, AVAILABLE}
 
     private Status multiDexLibrary;
+    private Status mvpLibrary;
 
     private LibraryHelper() {
 
@@ -38,5 +39,15 @@ public class LibraryHelper {
         return multiDexLibrary == Status.AVAILABLE;
     }
 
-
+    public boolean isMVPLibraryAvailable() {
+        if (mvpLibrary == null) {
+            try {
+                Class.forName("com.raxdenstudios.mvp.MVPActivity");
+                mvpLibrary = Status.AVAILABLE;
+            } catch (ClassNotFoundException e) {
+                mvpLibrary = Status.NOT_AVAILABLE;
+            }
+        }
+        return mvpLibrary == Status.AVAILABLE;
+    }
 }

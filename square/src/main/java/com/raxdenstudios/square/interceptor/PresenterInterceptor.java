@@ -4,9 +4,6 @@ import android.os.Bundle;
 
 import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
-import com.raxdenstudios.square.interceptor.BaseInterceptor;
-import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.Interactor;
 import com.raxdenstudios.square.lifecycle.PresenterLifecycle;
 
 /**

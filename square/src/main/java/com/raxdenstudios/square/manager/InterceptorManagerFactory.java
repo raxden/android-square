@@ -27,7 +27,7 @@ public class InterceptorManagerFactory {
             interceptorManager = new DialogFragmentInterceptorManager((DialogFragment)type);
         } else if (type instanceof Fragment) {
             interceptorManager = new FragmentInterceptorManager((Fragment)type);
-        } else if (type instanceof Presenter) {
+        } else if (LibraryHelper.getInstance().isMVPLibraryAvailable() && type instanceof Presenter) {
             interceptorManager = new PresenterInterceptorManager<>((Presenter)type);
         }
         return interceptorManager;
