@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.timer;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
@@ -34,7 +35,7 @@ public class TimerPresenterInterceptor<TView extends IView>
         }
     };
 
-    public TimerPresenterInterceptor(Presenter presenter, TimerInterceptorCallback callback) {
+    public TimerPresenterInterceptor(@NonNull Presenter presenter, @NonNull TimerInterceptorCallback callback) {
         super(presenter, callback);
 
         if (time == 0) {

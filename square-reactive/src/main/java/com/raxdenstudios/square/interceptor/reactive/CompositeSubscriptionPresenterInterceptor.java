@@ -17,7 +17,7 @@ public class CompositeSubscriptionPresenterInterceptor<TView extends IView>
 
     private CompositeSubscription mCompositeSubscription;
 
-    public CompositeSubscriptionPresenterInterceptor(Presenter presenter, CompositeSubscriptionInterceptorCallback callback) {
+    public CompositeSubscriptionPresenterInterceptor(Presenter<TView> presenter, CompositeSubscriptionInterceptorCallback callback) {
         super(presenter, callback);
         mCompositeSubscription = new CompositeSubscription();
     }

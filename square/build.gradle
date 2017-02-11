@@ -1,10 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
 
-group = "com.raxdenstudios"
+group = "com.raxdenstudios.square"
 version = VERSION_NAME
 
 android {

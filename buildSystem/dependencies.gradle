@@ -14,11 +14,11 @@ ext {
     minSdkVersion = 16
     targetSdkVersion = 25
     compileSdkVersion = 25
-    buildToolsVersion = '25.0.0'
+    buildToolsVersion = '25.0.2'
 
     // Android dependencies
     multidexVersion = '1.0.1'
-    supportLibraryVersion = '25.0.0'
+    supportLibraryVersion = '25.0.1'
     servicesVersion = '9.8.0'
 
     // Raxden libraries
@@ -37,7 +37,7 @@ ext {
     reactiveAndroidVersion = '1.2.1'        // https://github.com/ReactiveX/RxAndroid
     reactiveJavaVersion = '1.1.6'           // https://github.com/ReactiveX/RxAndroid
     timberVersion = '4.1.1'                 // https://github.com/JakeWharton/timber
-    butterknifeVersion = '8.0.1'            // https://github.com/JakeWharton/butterknife
+    butterknifeVersion = '8.5.1'            // https://github.com/JakeWharton/butterknife
     icepickVersion = '3.2.0'                // https://github.com/frankiesardo/icepick
     crashlyticsVersion = '2.6.0@aar'
     calligraphyVersion = '2.2.0'            // https://github.com/chrisjenx/Calligraphy
@@ -166,6 +166,24 @@ ext {
     jodatimeDependencies = [
             compile    : [
                     "net.danlew:android.joda:${jodaTimeVersion}"
+            ],
+            transitive : [
+
+            ],
+            apt        : [
+
+            ],
+            provided   : [
+
+            ],
+            testCompile: [
+
+            ]
+    ]
+
+    multidexDependencies = [
+            compile    : [
+                    "com.android.support:multidex:${multidexVersion}"
             ],
             transitive : [
 

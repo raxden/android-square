@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.telephony;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
@@ -18,7 +19,7 @@ public class TelephonyActivityInterceptor
 
     private TelephonyManager mTelephonyManager;
 
-    public TelephonyActivityInterceptor(Activity activity, TelephonyInterceptorCallback callback) {
+    public TelephonyActivityInterceptor(@NonNull Activity activity, @NonNull TelephonyInterceptorCallback callback) {
         super(activity, callback);
     }
 

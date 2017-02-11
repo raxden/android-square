@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.butterknife;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class ButterKnifeFragmentInterceptor
 
     private Unbinder unbinder;
 
-    public ButterKnifeFragmentInterceptor(Fragment fragment, ButterKnifeInterceptorCallback callback) {
+    public ButterKnifeFragmentInterceptor(@NonNull Fragment fragment, @NonNull ButterKnifeInterceptorCallback callback) {
         super(fragment, callback);
     }
 

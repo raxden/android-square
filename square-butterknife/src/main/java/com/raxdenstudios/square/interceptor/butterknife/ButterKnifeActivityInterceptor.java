@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.butterknife;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -14,8 +15,8 @@ public class ButterKnifeActivityInterceptor
         extends ActivityInterceptor<ButterKnifeInterceptorInteractor, ButterKnifeInterceptorCallback>
         implements ButterKnifeInterceptorInteractor {
 
-    public ButterKnifeActivityInterceptor(Activity activity, ButterKnifeInterceptorCallback callback) {
-        super(activity, callback);
+    public ButterKnifeActivityInterceptor(@NonNull Activity activity) {
+        super(activity, null);
     }
 
     @Override

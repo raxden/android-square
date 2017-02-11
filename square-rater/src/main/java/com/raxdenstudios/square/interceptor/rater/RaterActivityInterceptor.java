@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.rater;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.rater.RaterHelper;
 import com.raxdenstudios.rater.RaterManager;
@@ -18,7 +19,7 @@ public class RaterActivityInterceptor
 
     private RaterManager mRaterManager;
 
-    public RaterActivityInterceptor(Activity activity, RaterInterceptorCallback callback) {
+    public RaterActivityInterceptor(@NonNull Activity activity, @NonNull RaterInterceptorCallback callback) {
         super(activity, callback);
     }
 

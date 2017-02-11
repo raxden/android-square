@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.autoinflatelayout;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -21,7 +22,7 @@ public class AutoInflateLayoutActivityInterceptor
     private int mLayoutId;
     private View mInflateLayout;
 
-    public AutoInflateLayoutActivityInterceptor(Activity activity, AutoInflateLayoutInterceptorCallback callback) {
+    public AutoInflateLayoutActivityInterceptor(@NonNull Activity activity, @NonNull AutoInflateLayoutInterceptorCallback callback) {
         super(activity, callback);
     }
 

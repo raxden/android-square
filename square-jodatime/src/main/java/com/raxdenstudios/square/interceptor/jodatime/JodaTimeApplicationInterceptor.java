@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.jodatime;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
 
@@ -13,7 +14,7 @@ public class JodaTimeApplicationInterceptor
         extends ApplicationInterceptor<JodaTimeInteractor, JodaTimeInterceptorCallback>
         implements JodaTimeInteractor {
 
-    public JodaTimeApplicationInterceptor(Application application, JodaTimeInterceptorCallback callback) {
+    public JodaTimeApplicationInterceptor(@NonNull Application application, @NonNull JodaTimeInterceptorCallback callback) {
         super(application, callback);
     }
 

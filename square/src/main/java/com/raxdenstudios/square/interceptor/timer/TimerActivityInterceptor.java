@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.timer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -33,7 +34,7 @@ public class TimerActivityInterceptor
         }
     };
 
-    public TimerActivityInterceptor(Activity activity, TimerInterceptorCallback callback) {
+    public TimerActivityInterceptor(@NonNull Activity activity, @NonNull TimerInterceptorCallback callback) {
         super(activity, callback);
 
         if (time == 0) {

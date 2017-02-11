@@ -10,8 +10,8 @@ import java.util.List;
  */
 public abstract class InterceptorManager<T, I extends Interceptor> {
 
-    T type;
-    List<I> interceptors;
+    protected T type;
+    protected List<I> interceptors;
 
     public InterceptorManager(T type) {
         this.type = type;

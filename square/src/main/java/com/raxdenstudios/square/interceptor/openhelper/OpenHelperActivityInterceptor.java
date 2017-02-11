@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.openhelper;
 import android.app.Activity;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -15,7 +16,7 @@ public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper>
 
     private SQLiteOpenHelper mOpenHelper;
 
-    public OpenHelperActivityInterceptor(Activity activity, OpenHelperInterceptorCallback<T> callback) {
+    public OpenHelperActivityInterceptor(@NonNull Activity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
         super(activity, callback);
     }
 

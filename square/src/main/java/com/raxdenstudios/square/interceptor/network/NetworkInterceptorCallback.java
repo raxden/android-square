@@ -1,9 +1,5 @@
 package com.raxdenstudios.square.interceptor.network;
 
-import android.content.BroadcastReceiver;
-import android.content.Intent;
-import android.content.IntentFilter;
-
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
 
 /**
@@ -11,10 +7,6 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
  */
 public interface NetworkInterceptorCallback
         extends InterceptorCallback<NetworkInteractor> {
-
-    Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter);
-
-    void unregisterReceiver(BroadcastReceiver receiver);
 
     void onWifiAvailable(boolean available);
 

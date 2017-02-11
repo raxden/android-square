@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.cast;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.cast.framework.CastContext;
@@ -21,7 +22,7 @@ public class CastSessionActivityInterceptor
     private CastSession mCastSession;
     private SessionManagerListener<CastSession> mSessionManagerListener;
 
-    public CastSessionActivityInterceptor(Activity activity, CastSessionInterceptorCallback callback) {
+    public CastSessionActivityInterceptor(@NonNull Activity activity, @NonNull CastSessionInterceptorCallback callback) {
         super(activity, callback);
     }
 

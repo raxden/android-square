@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.timber;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
 
@@ -13,7 +14,7 @@ public class TimberApplicationInterceptor
         extends ApplicationInterceptor<TimberInteractor, TimberInterceptorCallback>
         implements TimberInteractor {
 
-    public TimberApplicationInterceptor(Application application, TimberInterceptorCallback callback) {
+    public TimberApplicationInterceptor(@NonNull Application application, @NonNull TimberInterceptorCallback callback) {
         super(application, callback);
     }
 

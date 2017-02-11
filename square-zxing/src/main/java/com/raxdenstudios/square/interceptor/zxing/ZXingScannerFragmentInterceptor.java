@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.zxing;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.google.zxing.BarcodeFormat;
@@ -27,7 +28,7 @@ public class ZXingScannerFragmentInterceptor
     private ArrayList<Integer> mSelectedIndices;
     private int mCameraId = -1;
 
-    public ZXingScannerFragmentInterceptor(Fragment fragment, ZXingScannerInterceptorCallback callback) {
+    public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment, @NonNull ZXingScannerInterceptorCallback callback) {
         super(fragment, callback);
     }
 

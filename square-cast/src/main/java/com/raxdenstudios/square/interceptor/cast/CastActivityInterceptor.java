@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.cast;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,7 +26,7 @@ public class CastActivityInterceptor
     private CastContext mCastContext;
     private MenuItem mMediaRouteMenuItem;
 
-    public CastActivityInterceptor(Activity activity, CastInterceptorCallback callback) {
+    public CastActivityInterceptor(@NonNull Activity activity, @NonNull CastInterceptorCallback callback) {
         super(activity, callback);
     }
 

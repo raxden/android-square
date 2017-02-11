@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.timer;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 
@@ -33,7 +34,7 @@ public class TimerFragmentInterceptor
         }
     };
 
-    public TimerFragmentInterceptor(Fragment fragment, TimerInterceptorCallback callback) {
+    public TimerFragmentInterceptor(@NonNull Fragment fragment, @NonNull TimerInterceptorCallback callback) {
         super(fragment, callback);
 
         if (time == 0) {

@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.shakedetector;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.shake.ShakeDetectorHelper;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
@@ -15,7 +16,7 @@ public class ShakeDetectorActivityInterceptor
         extends ActivityInterceptor<ShakeDetectorInteractor, ShakeDetectorInterceptorCallback>
         implements ShakeDetectorInteractor {
 
-    public ShakeDetectorActivityInterceptor(Activity activity, ShakeDetectorInterceptorCallback callback) {
+    public ShakeDetectorActivityInterceptor(@NonNull Activity activity, @NonNull ShakeDetectorInterceptorCallback callback) {
         super(activity, callback);
     }
 

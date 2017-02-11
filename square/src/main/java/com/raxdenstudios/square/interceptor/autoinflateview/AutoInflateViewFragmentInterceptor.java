@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.autoinflateview;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class AutoInflateViewFragmentInterceptor
 
     private int mLayoutId;
 
-    public AutoInflateViewFragmentInterceptor(Fragment fragment, AutoInflateViewInterceptorCallback callback) {
+    public AutoInflateViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull AutoInflateViewInterceptorCallback callback) {
         super(fragment, callback);
     }
 

@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.toolbar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +17,7 @@ public class ToolbarActivityInterceptor
         extends ActivityInterceptor<ToolbarInteractor, ToolbarInterceptorCallback>
         implements ToolbarInteractor {
 
-    public ToolbarActivityInterceptor(Activity activity, ToolbarInterceptorCallback callback) {
+    public ToolbarActivityInterceptor(@NonNull Activity activity, @NonNull ToolbarInterceptorCallback callback) {
         super(activity, callback);
     }
 

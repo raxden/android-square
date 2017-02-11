@@ -7,11 +7,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 /**
+ * This interceptor requires the following permissions:
+ * + android.permission.ACCESS_NETWORK_STATE
+ *
  * Created by agomez on 08/05/2015.
  */
 public class NetworkActivityInterceptor
@@ -29,7 +33,7 @@ public class NetworkActivityInterceptor
         }
     };
 
-    public NetworkActivityInterceptor(Activity activity, NetworkInterceptorCallback callback) {
+    public NetworkActivityInterceptor(@NonNull Activity activity, @NonNull NetworkInterceptorCallback callback) {
         super(activity, callback);
     }
 
@@ -38,14 +42,14 @@ public class NetworkActivityInterceptor
         super.onCreate(savedInstanceState);
 
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        mCallback.registerReceiver(mNetworkReceiver, intentFilter);
+        mActivity.registerReceiver(mNetworkReceiver, intentFilter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        mCallback.unregisterReceiver(mNetworkReceiver);
+        mActivity.unregisterReceiver(mNetworkReceiver);
     }
 
 }

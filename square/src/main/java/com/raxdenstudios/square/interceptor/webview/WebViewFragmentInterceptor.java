@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -27,7 +28,7 @@ public class WebViewFragmentInterceptor
     private WebView mWebView;
     private boolean mPageFinished;
 
-    public WebViewFragmentInterceptor(Fragment fragment, WebViewInterceptorCallback callback) {
+    public WebViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {
         super(fragment, callback);
     }
 

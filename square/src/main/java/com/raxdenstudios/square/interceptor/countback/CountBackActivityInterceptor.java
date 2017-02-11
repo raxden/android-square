@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.countback;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.raxdenstudios.commons.util.StringUtils;
@@ -30,7 +31,7 @@ public class CountBackActivityInterceptor
         }
     };
 
-    public CountBackActivityInterceptor(Activity activity, CountBackInterceptorCallback callback) {
+    public CountBackActivityInterceptor(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
         super(activity, callback);
 
         if (!StringUtils.hasText(mMessage)) {

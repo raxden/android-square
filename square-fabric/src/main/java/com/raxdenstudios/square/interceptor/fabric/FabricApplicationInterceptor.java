@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.fabric;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.crashlytics.android.Crashlytics;
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
@@ -14,7 +15,7 @@ public class FabricApplicationInterceptor
         extends ApplicationInterceptor<FabricInteractor, FabricInterceptorCallback>
         implements FabricInteractor {
 
-    public FabricApplicationInterceptor(Application application, FabricInterceptorCallback callback) {
+    public FabricApplicationInterceptor(@NonNull Application application, @NonNull FabricInterceptorCallback callback) {
         super(application, callback);
     }
 

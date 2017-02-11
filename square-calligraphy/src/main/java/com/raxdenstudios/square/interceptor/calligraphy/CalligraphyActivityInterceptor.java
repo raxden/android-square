@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.calligraphy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.interceptor.Interactor;
@@ -16,7 +17,7 @@ public class CalligraphyActivityInterceptor
         extends ActivityInterceptor<Interactor, InterceptorCallback<Interactor>>
         implements Interactor {
 
-    public CalligraphyActivityInterceptor(Activity activity, InterceptorCallback callback) {
+    public CalligraphyActivityInterceptor(@NonNull Activity activity, @NonNull InterceptorCallback callback) {
         super(activity, callback);
     }
 

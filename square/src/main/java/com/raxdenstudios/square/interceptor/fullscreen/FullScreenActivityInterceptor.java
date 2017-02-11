@@ -2,6 +2,7 @@ package com.raxdenstudios.square.interceptor.fullscreen;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.WindowManager;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
@@ -13,7 +14,7 @@ public class FullScreenActivityInterceptor
         extends ActivityInterceptor<FullScreenInteractor, FullScreenInterceptorCallback>
         implements FullScreenInteractor {
 
-    public FullScreenActivityInterceptor(Activity activity, FullScreenInterceptorCallback callback) {
+    public FullScreenActivityInterceptor(@NonNull Activity activity, @NonNull FullScreenInterceptorCallback callback) {
         super(activity, callback);
     }
 

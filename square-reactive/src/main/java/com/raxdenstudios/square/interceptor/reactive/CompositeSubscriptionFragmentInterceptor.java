@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.reactive;
 
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 
@@ -17,7 +18,7 @@ public class CompositeSubscriptionFragmentInterceptor
 
     private CompositeSubscription mCompositeSubscription;
 
-    public CompositeSubscriptionFragmentInterceptor(Fragment fragment, CompositeSubscriptionInterceptorCallback callback) {
+    public CompositeSubscriptionFragmentInterceptor(@NonNull Fragment fragment, @NonNull CompositeSubscriptionInterceptorCallback callback) {
         super(fragment, callback);
         mCompositeSubscription = new CompositeSubscription();
     }

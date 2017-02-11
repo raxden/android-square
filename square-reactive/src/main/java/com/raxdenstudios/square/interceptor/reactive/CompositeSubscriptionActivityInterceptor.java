@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.reactive;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -17,7 +18,7 @@ public class CompositeSubscriptionActivityInterceptor
 
     private CompositeSubscription mCompositeSubscription;
 
-    public CompositeSubscriptionActivityInterceptor(Activity activity, CompositeSubscriptionInterceptorCallback callback) {
+    public CompositeSubscriptionActivityInterceptor(@NonNull Activity activity, @NonNull CompositeSubscriptionInterceptorCallback callback) {
         super(activity, callback);
         mCompositeSubscription = new CompositeSubscription();
     }
