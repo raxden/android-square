@@ -201,7 +201,7 @@ ext {
 
     raterDependencies = [
             compile    : [
-                    "com.github.raxden:androidRater:${androidRaterVersion}"
+                    "com.github.raxden:AndroidRater:${androidRaterVersion}"
             ],
             transitive : [
 
