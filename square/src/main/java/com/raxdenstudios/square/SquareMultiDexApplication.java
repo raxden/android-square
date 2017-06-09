@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.support.multidex.MultiDexApplication;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
+import com.raxdenstudios.square.manager.ApplicationMultiDexInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.List;
