@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -34,7 +33,7 @@ public class CountBackActivityInterceptor
     public CountBackActivityInterceptor(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
         super(activity, callback);
 
-        if (!StringUtils.hasText(mMessage)) {
+        if (mMessage != null && mMessage.length() > 0) {
             mMessage = mActivity.getString(R.string.app__count_back_exit_message);
         }
         if (mDefaultCountBackToExit == 0) {

@@ -56,7 +56,6 @@ ext {
                     "com.android.support:support-v13:${supportLibraryVersion}",
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
 
-                    "com.github.raxden:AndroidCommons:${androidCommonsVersion}",
                     "com.github.raxden:AndroidMVP:${androidMVPVersion}"
             ],
             transitive : [

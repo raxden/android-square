@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.raxdenstudios.commons.util.ResourceUtils;
-import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.utils.ResourceUtils;
+import com.raxdenstudios.square.utils.StringUtils;
 
 import java.util.Locale;
 
@@ -58,11 +58,8 @@ public class AutoInflateLayoutActivityInterceptor
     }
 
     private String getLayoutName() {
-        return StringUtils
-                .join(StringUtils
-                        .uncapitalize(mActivity.getClass().getSimpleName())
-                        .split("(?=\\p{Upper})"), "_")
-                .toLowerCase(Locale.getDefault());
+        String className = StringUtils.uncapitalize(mActivity.getClass().getSimpleName());
+        return StringUtils.join(className.split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
     }
 
     @Override

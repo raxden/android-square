@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.commons.util.ResourceUtils;
-import com.raxdenstudios.commons.util.StringUtils;
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+import com.raxdenstudios.square.utils.ResourceUtils;
+import com.raxdenstudios.square.utils.StringUtils;
 
 import java.util.Locale;
 
@@ -44,11 +44,8 @@ public class AutoInflateViewFragmentInterceptor
     }
 
     private String getLayoutName() {
-        return StringUtils
-                .join(StringUtils
-                        .uncapitalize(mFragment.getClass().getSimpleName())
-                        .split("(?=\\p{Upper})"), "_")
-                .toLowerCase(Locale.getDefault());
+        String className = StringUtils.uncapitalize(mFragment.getClass().getSimpleName());
+        return StringUtils.join(className.split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
     }
 
     @Override

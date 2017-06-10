@@ -13,9 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
-import com.raxdenstudios.commons.util.FragmentUtils;
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.utils.FragmentUtils;
 
 /**
  * Created by agomez on 21/05/2015.
@@ -65,9 +65,9 @@ public class NavigationDrawerActivityInterceptor<TFragment extends Fragment>
             TFragment contentDrawerFragment;
             if (savedInstanceState == null) {
                 contentDrawerFragment = mCallback.onCreateContentDrawerFragment();
-                FragmentUtils.loadFragment(mActivity, mContentDrawerView.getId(), contentDrawerFragment);
+                FragmentUtils.loadFragment(mActivity.getFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
             } else {
-                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity, mContentDrawerView.getId());
+                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), mContentDrawerView.getId());
             }
             mCallback.onContentDrawerFragmentCreated(contentDrawerFragment);
         }

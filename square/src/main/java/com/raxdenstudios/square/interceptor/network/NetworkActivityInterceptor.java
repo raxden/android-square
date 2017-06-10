@@ -9,8 +9,8 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.raxdenstudios.commons.util.NetworkUtils;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.utils.NetworkUtils;
 
 /**
  * This interceptor requires the following permissions:

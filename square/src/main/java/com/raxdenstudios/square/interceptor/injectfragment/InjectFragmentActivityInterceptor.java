@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.raxdenstudios.commons.util.FragmentUtils;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.utils.FragmentUtils;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.
@@ -30,12 +30,13 @@ public class InjectFragmentActivityInterceptor<TFragment extends Fragment>
             TFragment contentFragment;
             if (savedInstanceState == null) {
                 contentFragment = mCallback.onCreateFragment();
-                FragmentUtils.loadFragment(mActivity, mContentView.getId(), contentFragment);
+                FragmentUtils.loadFragment(mActivity.getFragmentManager(), mContentView.getId(), contentFragment);
             } else {
-                contentFragment = (TFragment) FragmentUtils.getFragment(mActivity, mContentView.getId());
+                contentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), mContentView.getId());
             }
             mCallback.onFragmentLoaded(contentFragment);
         }
     }
+
 
 }
