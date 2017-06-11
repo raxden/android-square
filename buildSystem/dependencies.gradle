@@ -17,9 +17,9 @@ ext {
     buildToolsVersion = '25.0.2'
 
     // Android dependencies
-    multidexVersion = '1.0.1'
-    supportLibraryVersion = '25.0.1'
-    servicesVersion = '9.8.0'
+    supportLibraryVersion = '25.2.0'
+    servicesVersion = '10.0.0'
+    multidexVersion = '1.0.0'
 
     // Raxden libraries
     androidCommonsVersion = '3.0.7@aar'     // https://github.com/raxden/AndroidCommons

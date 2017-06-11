@@ -15,18 +15,18 @@ public class SampleActivity extends SquareActivity {
 
     @Override
     protected void addInterceptor(List<ActivityInterceptor> interceptors) {
-        interceptors.add(
-                new AutoInflateLayoutActivityInterceptor(this, new AutoInflateLayoutInterceptorCallback() {
-                    @Override
-                    public void onContentViewCreated(View view, Bundle savedInstanceState) {
+        AutoInflateLayoutActivityInterceptor interceptor = new AutoInflateLayoutActivityInterceptor(this, new AutoInflateLayoutInterceptorCallback() {
+            @Override
+            public void onContentViewCreated(View view, Bundle savedInstanceState) {
 
-                    }
+            }
 
-                    @Override
-                    public void onInterceptorAttached(AutoInflateLayoutInteractor interactor) {
+            @Override
+            public void onInterceptorAttached(AutoInflateLayoutInteractor interactor) {
 
-                    }
-                }));
+            }
+        });
+        interceptors.add(interceptor);
     }
 
 }
