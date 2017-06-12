@@ -28,6 +28,10 @@ public class NavigationDrawerActivityInterceptor<TFragment extends Fragment>
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    public NavigationDrawerActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public NavigationDrawerActivityInterceptor(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }

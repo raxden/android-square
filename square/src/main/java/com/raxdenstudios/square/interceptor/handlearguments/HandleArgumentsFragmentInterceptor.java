@@ -13,6 +13,10 @@ public class HandleArgumentsFragmentInterceptor
         extends FragmentInterceptor<HandleArgumentsInteractor, HandleArgumentsInterceptorCallback>
         implements HandleArgumentsInteractor {
 
+    public HandleArgumentsFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     public HandleArgumentsFragmentInterceptor(@NonNull Fragment fragment, @NonNull HandleArgumentsInterceptorCallback callback) {
         super(fragment, callback);
     }

@@ -18,11 +18,10 @@ public class IcepickPresenterInterceptor<TView extends IView>
         implements IcepickInteractor {
 
     public IcepickPresenterInterceptor(@NonNull Presenter<TView> presenter) {
-        super(presenter, null);
+        super(presenter);
     }
 
-    public IcepickPresenterInterceptor(@NonNull Presenter<TView> presenter,
-                                       @NonNull IcepickInterceptorCallback callback) {
+    public IcepickPresenterInterceptor(@NonNull Presenter<TView> presenter, @NonNull IcepickInterceptorCallback callback) {
         super(presenter, callback);
     }
 

@@ -17,6 +17,10 @@ public class ToolbarActivityInterceptor
         extends ActivityInterceptor<ToolbarInteractor, ToolbarInterceptorCallback>
         implements ToolbarInteractor {
 
+    public ToolbarActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public ToolbarActivityInterceptor(@NonNull Activity activity, @NonNull ToolbarInterceptorCallback callback) {
         super(activity, callback);
     }

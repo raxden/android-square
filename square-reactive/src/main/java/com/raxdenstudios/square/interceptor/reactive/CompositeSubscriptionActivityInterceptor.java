@@ -18,6 +18,11 @@ public class CompositeSubscriptionActivityInterceptor
 
     private CompositeSubscription mCompositeSubscription;
 
+    public CompositeSubscriptionActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+        mCompositeSubscription = new CompositeSubscription();
+    }
+
     public CompositeSubscriptionActivityInterceptor(@NonNull Activity activity, @NonNull CompositeSubscriptionInterceptorCallback callback) {
         super(activity, callback);
         mCompositeSubscription = new CompositeSubscription();

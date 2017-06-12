@@ -11,7 +11,7 @@ public abstract class ActivitySimpleInterceptor
         extends ActivityInterceptor<Interactor, InterceptorCallback<Interactor>> {
 
     public ActivitySimpleInterceptor(Activity activity) {
-        super(activity, null);
+        super(activity);
     }
 
 }

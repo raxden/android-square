@@ -14,6 +14,10 @@ public class JodaTimeApplicationInterceptor
         extends ApplicationInterceptor<JodaTimeInteractor, JodaTimeInterceptorCallback>
         implements JodaTimeInteractor {
 
+    public JodaTimeApplicationInterceptor(@NonNull Application application) {
+        super(application);
+    }
+
     public JodaTimeApplicationInterceptor(@NonNull Application application, @NonNull JodaTimeInterceptorCallback callback) {
         super(application, callback);
     }

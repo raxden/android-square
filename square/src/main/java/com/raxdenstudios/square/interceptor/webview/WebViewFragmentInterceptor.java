@@ -28,6 +28,10 @@ public class WebViewFragmentInterceptor
     private WebView mWebView;
     private boolean mPageFinished;
 
+    public WebViewFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     public WebViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {
         super(fragment, callback);
     }

@@ -17,11 +17,10 @@ public class IcepickFragmentInterceptor
         implements IcepickInteractor {
 
     public IcepickFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment, null);
+        super(fragment);
     }
 
-    public IcepickFragmentInterceptor(@NonNull Fragment fragment,
-                                      @NonNull IcepickInterceptorCallback callback) {
+    public IcepickFragmentInterceptor(@NonNull Fragment fragment, @NonNull IcepickInterceptorCallback callback) {
         super(fragment, callback);
     }
 

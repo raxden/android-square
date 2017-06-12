@@ -11,9 +11,11 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by Ángel Gómez on 18/12/2016.
  */
-public class FabricApplicationInterceptor
-        extends ApplicationInterceptor<FabricInteractor, FabricInterceptorCallback>
-        implements FabricInteractor {
+public class FabricApplicationInterceptor extends ApplicationInterceptor<FabricInteractor, FabricInterceptorCallback> implements FabricInteractor {
+
+    public FabricApplicationInterceptor(@NonNull Application application) {
+        super(application);
+    }
 
     public FabricApplicationInterceptor(@NonNull Application application, @NonNull FabricInterceptorCallback callback) {
         super(application, callback);

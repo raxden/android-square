@@ -30,9 +30,17 @@ public class CountBackActivityInterceptor
         }
     };
 
+    public CountBackActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+        init();
+    }
+
     public CountBackActivityInterceptor(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
         super(activity, callback);
+        init();
+    }
 
+    private void init() {
         if (mMessage != null && mMessage.length() > 0) {
             mMessage = mActivity.getString(R.string.app__count_back_exit_message);
         }

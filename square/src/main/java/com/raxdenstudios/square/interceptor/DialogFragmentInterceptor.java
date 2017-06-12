@@ -12,9 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.interceptor.BaseInterceptor;
-import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.Interactor;
 import com.raxdenstudios.square.lifecycle.DialogFragmentLifecycle;
 
 /**
@@ -27,6 +24,11 @@ public abstract class DialogFragmentInterceptor<TInteractor extends Interactor, 
         implements DialogFragmentLifecycle {
 
     protected DialogFragment mDialogFragment;
+
+    public DialogFragmentInterceptor(DialogFragment dialogFragment) {
+        super(dialogFragment);
+        mDialogFragment = dialogFragment;
+    }
 
     public DialogFragmentInterceptor(DialogFragment dialogFragment, TCallback callback) {
         super(dialogFragment, callback);

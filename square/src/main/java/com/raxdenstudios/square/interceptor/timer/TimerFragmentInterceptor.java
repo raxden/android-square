@@ -34,9 +34,17 @@ public class TimerFragmentInterceptor
         }
     };
 
+    public TimerFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+        init();
+    }
+
     public TimerFragmentInterceptor(@NonNull Fragment fragment, @NonNull TimerInterceptorCallback callback) {
         super(fragment, callback);
+        init();
+    }
 
+    private void init() {
         if (time == 0) {
             time = DEFAULT_TIME_MS;
         }

@@ -3,9 +3,6 @@ package com.raxdenstudios.square.interceptor;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import com.raxdenstudios.square.interceptor.BaseInterceptor;
-import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.Interactor;
 import com.raxdenstudios.square.lifecycle.ApplicationLifecycle;
 
 /**
@@ -18,6 +15,11 @@ public abstract class ApplicationInterceptor<TInteractor extends Interactor, TCa
         implements ApplicationLifecycle {
 
     protected Application mApplication;
+
+    public ApplicationInterceptor(Application application) {
+        super(application);
+        mApplication = application;
+    }
 
     public ApplicationInterceptor(Application application, TCallback callback) {
         super(application, callback);

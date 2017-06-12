@@ -13,6 +13,10 @@ public class HandleExtrasActivityInterceptor
         extends ActivityInterceptor<HandleExtrasInteractor, HandleExtrasInterceptorCallback>
         implements HandleExtrasInteractor {
 
+    public HandleExtrasActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public HandleExtrasActivityInterceptor(@NonNull Activity activity, @NonNull HandleExtrasInterceptorCallback callback) {
         super(activity, callback);
     }

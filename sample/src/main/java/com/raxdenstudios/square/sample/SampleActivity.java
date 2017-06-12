@@ -26,6 +26,17 @@ public class SampleActivity extends SquareActivity {
 
             }
         });
+        interceptor.setOnInterceptorCallback(new AutoInflateLayoutInterceptorCallback() {
+            @Override
+            public void onContentViewCreated(View view, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onInterceptorAttached(AutoInflateLayoutInteractor interactor) {
+
+            }
+        });
         interceptors.add(interceptor);
     }
 

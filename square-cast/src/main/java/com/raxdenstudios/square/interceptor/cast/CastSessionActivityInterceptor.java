@@ -22,6 +22,10 @@ public class CastSessionActivityInterceptor
     private CastSession mCastSession;
     private SessionManagerListener<CastSession> mSessionManagerListener;
 
+    public CastSessionActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public CastSessionActivityInterceptor(@NonNull Activity activity, @NonNull CastSessionInterceptorCallback callback) {
         super(activity, callback);
     }

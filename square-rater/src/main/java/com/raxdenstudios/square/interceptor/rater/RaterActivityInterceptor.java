@@ -19,6 +19,10 @@ public class RaterActivityInterceptor
 
     private RaterManager mRaterManager;
 
+    public RaterActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public RaterActivityInterceptor(@NonNull Activity activity, @NonNull RaterInterceptorCallback callback) {
         super(activity, callback);
     }

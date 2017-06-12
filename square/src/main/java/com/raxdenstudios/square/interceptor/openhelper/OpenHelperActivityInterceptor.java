@@ -16,6 +16,10 @@ public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper>
 
     private SQLiteOpenHelper mOpenHelper;
 
+    public OpenHelperActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public OpenHelperActivityInterceptor(@NonNull Activity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
         super(activity, callback);
     }

@@ -35,9 +35,17 @@ public class TimerPresenterInterceptor<TView extends IView>
         }
     };
 
+    public TimerPresenterInterceptor(@NonNull Presenter presenter) {
+        super(presenter);
+        init();
+    }
+
     public TimerPresenterInterceptor(@NonNull Presenter presenter, @NonNull TimerInterceptorCallback callback) {
         super(presenter, callback);
+        init();
+    }
 
+    private void init() {
         if (time == 0) {
             time = DEFAULT_TIME_MS;
         }

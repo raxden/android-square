@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.square.interceptor.BaseInterceptor;
-import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.Interactor;
 import com.raxdenstudios.square.lifecycle.FragmentLifecycle;
 
 /**
@@ -25,6 +22,11 @@ public abstract class FragmentInterceptor<TInteractor extends Interactor, TCallb
         implements FragmentLifecycle {
 
     protected Fragment mFragment;
+
+    public FragmentInterceptor(Fragment fragment) {
+        super(fragment);
+        mFragment = fragment;
+    }
 
     public FragmentInterceptor(Fragment fragment, TCallback callback) {
         super(fragment, callback);

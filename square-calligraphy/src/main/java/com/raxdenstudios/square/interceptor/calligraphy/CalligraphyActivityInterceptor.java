@@ -17,6 +17,10 @@ public class CalligraphyActivityInterceptor
         extends ActivityInterceptor<Interactor, InterceptorCallback<Interactor>>
         implements Interactor {
 
+    public CalligraphyActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public CalligraphyActivityInterceptor(@NonNull Activity activity, @NonNull InterceptorCallback callback) {
         super(activity, callback);
     }

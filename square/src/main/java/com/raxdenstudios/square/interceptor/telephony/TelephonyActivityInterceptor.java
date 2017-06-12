@@ -19,6 +19,10 @@ public class TelephonyActivityInterceptor
 
     private TelephonyManager mTelephonyManager;
 
+    public TelephonyActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public TelephonyActivityInterceptor(@NonNull Activity activity, @NonNull TelephonyInterceptorCallback callback) {
         super(activity, callback);
     }

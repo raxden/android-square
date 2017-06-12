@@ -18,6 +18,11 @@ public class CompositeSubscriptionFragmentInterceptor
 
     private CompositeSubscription mCompositeSubscription;
 
+    public CompositeSubscriptionFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+        mCompositeSubscription = new CompositeSubscription();
+    }
+
     public CompositeSubscriptionFragmentInterceptor(@NonNull Fragment fragment, @NonNull CompositeSubscriptionInterceptorCallback callback) {
         super(fragment, callback);
         mCompositeSubscription = new CompositeSubscription();

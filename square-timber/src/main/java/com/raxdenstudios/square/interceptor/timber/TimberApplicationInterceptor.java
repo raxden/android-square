@@ -14,6 +14,10 @@ public class TimberApplicationInterceptor
         extends ApplicationInterceptor<TimberInteractor, TimberInterceptorCallback>
         implements TimberInteractor {
 
+    public TimberApplicationInterceptor(@NonNull Application application) {
+        super(application);
+    }
+
     public TimberApplicationInterceptor(@NonNull Application application, @NonNull TimberInterceptorCallback callback) {
         super(application, callback);
     }

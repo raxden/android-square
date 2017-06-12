@@ -16,6 +16,10 @@ public class ShakeDetectorActivityInterceptor
         extends ActivityInterceptor<ShakeDetectorInteractor, ShakeDetectorInterceptorCallback>
         implements ShakeDetectorInteractor {
 
+    public ShakeDetectorActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public ShakeDetectorActivityInterceptor(@NonNull Activity activity, @NonNull ShakeDetectorInterceptorCallback callback) {
         super(activity, callback);
     }

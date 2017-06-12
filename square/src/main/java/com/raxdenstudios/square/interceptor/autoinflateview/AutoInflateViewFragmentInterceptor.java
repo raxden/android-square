@@ -22,6 +22,10 @@ public class AutoInflateViewFragmentInterceptor
 
     private int mLayoutId;
 
+    public AutoInflateViewFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     public AutoInflateViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull AutoInflateViewInterceptorCallback callback) {
         super(fragment, callback);
     }

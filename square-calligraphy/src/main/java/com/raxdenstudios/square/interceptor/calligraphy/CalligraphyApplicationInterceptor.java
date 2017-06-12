@@ -13,6 +13,10 @@ public class CalligraphyApplicationInterceptor
         extends ApplicationInterceptor<CalligraphyInteractor, CalligraphyInterceptorCallback>
         implements CalligraphyInteractor {
 
+    public CalligraphyApplicationInterceptor(Application application) {
+        super(application);
+    }
+
     public CalligraphyApplicationInterceptor(Application application, CalligraphyInterceptorCallback callback) {
         super(application, callback);
     }

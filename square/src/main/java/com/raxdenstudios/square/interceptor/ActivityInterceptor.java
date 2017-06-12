@@ -7,9 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
-import com.raxdenstudios.square.interceptor.BaseInterceptor;
-import com.raxdenstudios.square.interceptor.InterceptorCallback;
-import com.raxdenstudios.square.interceptor.Interactor;
 import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
 
 /**
@@ -22,6 +19,11 @@ public abstract class ActivityInterceptor<TInteractor extends Interactor, TCallb
         implements ActivityLifecycle {
 
     protected Activity mActivity;
+
+    public ActivityInterceptor(Activity activity) {
+        super(activity);
+        mActivity = activity;
+    }
 
     public ActivityInterceptor(Activity activity, TCallback callback) {
         super(activity, callback);

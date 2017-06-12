@@ -17,11 +17,10 @@ public class IcepickActivityInterceptor
         implements IcepickInteractor {
 
     public IcepickActivityInterceptor(@NonNull Activity activity) {
-        super(activity, null);
+        super(activity);
     }
 
-    public IcepickActivityInterceptor(@NonNull Activity activity,
-                                      @NonNull IcepickInterceptorCallback callback) {
+    public IcepickActivityInterceptor(@NonNull Activity activity, @NonNull IcepickInterceptorCallback callback) {
         super(activity, callback);
     }
 

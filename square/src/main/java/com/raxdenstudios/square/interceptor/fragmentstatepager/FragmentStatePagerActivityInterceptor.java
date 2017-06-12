@@ -20,6 +20,10 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment>
     private ViewPager mViewPager;
     private FragmentStatePagerInterceptorAdapter mAdapter;
 
+    public FragmentStatePagerActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public FragmentStatePagerActivityInterceptor(@NonNull Activity activity, @NonNull FragmentStatePagerInterceptorCallback callback) {
         super(activity, callback);
     }

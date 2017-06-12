@@ -28,6 +28,10 @@ public class ZXingScannerFragmentInterceptor
     private ArrayList<Integer> mSelectedIndices;
     private int mCameraId = -1;
 
+    public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment, @NonNull ZXingScannerInterceptorCallback callback) {
         super(fragment, callback);
     }

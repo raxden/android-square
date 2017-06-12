@@ -16,6 +16,10 @@ public class InjectFragmentActivityInterceptor<TFragment extends Fragment>
         extends ActivityInterceptor<InjectFragmentInteractor, InjectFragmentInterceptorCallback<TFragment>>
         implements InjectFragmentInteractor {
 
+    public InjectFragmentActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public InjectFragmentActivityInterceptor(@NonNull Activity activity, @NonNull InjectFragmentInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }

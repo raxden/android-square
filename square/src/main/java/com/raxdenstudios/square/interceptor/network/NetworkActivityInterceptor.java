@@ -33,6 +33,10 @@ public class NetworkActivityInterceptor
         }
     };
 
+    public NetworkActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public NetworkActivityInterceptor(@NonNull Activity activity, @NonNull NetworkInterceptorCallback callback) {
         super(activity, callback);
     }

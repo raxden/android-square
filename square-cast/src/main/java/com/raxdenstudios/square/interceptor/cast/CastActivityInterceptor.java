@@ -26,6 +26,10 @@ public class CastActivityInterceptor
     private CastContext mCastContext;
     private MenuItem mMediaRouteMenuItem;
 
+    public CastActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public CastActivityInterceptor(@NonNull Activity activity, @NonNull CastInterceptorCallback callback) {
         super(activity, callback);
     }

@@ -15,12 +15,14 @@ import java.util.Locale;
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-public class AutoInflateLayoutActivityInterceptor
-        extends ActivityInterceptor<AutoInflateLayoutInteractor, AutoInflateLayoutInterceptorCallback>
-        implements AutoInflateLayoutInteractor {
+public class AutoInflateLayoutActivityInterceptor extends ActivityInterceptor<AutoInflateLayoutInteractor, AutoInflateLayoutInterceptorCallback> implements AutoInflateLayoutInteractor {
 
     private int mLayoutId;
     private View mInflateLayout;
+
+    public AutoInflateLayoutActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
 
     public AutoInflateLayoutActivityInterceptor(@NonNull Activity activity, @NonNull AutoInflateLayoutInterceptorCallback callback) {
         super(activity, callback);

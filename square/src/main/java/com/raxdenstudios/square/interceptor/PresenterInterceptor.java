@@ -17,6 +17,11 @@ public abstract class PresenterInterceptor<TView extends IView, TInteractor exte
 
     protected Presenter mPresenter;
 
+    public PresenterInterceptor(Presenter presenter) {
+        super(presenter);
+        mPresenter = presenter;
+    }
+
     public PresenterInterceptor(Presenter presenter, TCallback callback) {
         super(presenter, callback);
         mPresenter = presenter;

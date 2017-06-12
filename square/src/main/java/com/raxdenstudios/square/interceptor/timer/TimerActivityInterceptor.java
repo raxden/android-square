@@ -34,9 +34,17 @@ public class TimerActivityInterceptor
         }
     };
 
+    public TimerActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+        init();
+    }
+
     public TimerActivityInterceptor(@NonNull Activity activity, @NonNull TimerInterceptorCallback callback) {
         super(activity, callback);
+        init();
+    }
 
+    private void init() {
         if (time == 0) {
             time = DEFAULT_TIME_MS;
         }

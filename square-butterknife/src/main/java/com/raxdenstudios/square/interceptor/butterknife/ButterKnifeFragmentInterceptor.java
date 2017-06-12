@@ -21,6 +21,10 @@ public class ButterKnifeFragmentInterceptor
 
     private Unbinder unbinder;
 
+    public ButterKnifeFragmentInterceptor(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     public ButterKnifeFragmentInterceptor(@NonNull Fragment fragment, @NonNull ButterKnifeInterceptorCallback callback) {
         super(fragment, callback);
     }

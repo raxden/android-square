@@ -14,6 +14,10 @@ public class FullScreenActivityInterceptor
         extends ActivityInterceptor<FullScreenInteractor, FullScreenInterceptorCallback>
         implements FullScreenInteractor {
 
+    public FullScreenActivityInterceptor(@NonNull Activity activity) {
+        super(activity);
+    }
+
     public FullScreenActivityInterceptor(@NonNull Activity activity, @NonNull FullScreenInterceptorCallback callback) {
         super(activity, callback);
     }
