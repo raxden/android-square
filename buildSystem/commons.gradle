@@ -1,8 +1,8 @@
-// v1.0.2
+// v1.0.3
 
 import java.util.regex.Pattern
 
-task pullToGit(type: Exec) {
+task pullFromGit(type: Exec) {
     description 'Pulls git.'
     commandLine "git", "pull"
 }
@@ -40,7 +40,7 @@ def createPushTagToGitTask(tag) {
 
 def createUploadLibraryToGitTask(message) {
     return tasks.create(name: 'uploadLibraryToGit') {
-        tasks.pullToGit.execute()
+        tasks.pullFromGit.execute()
         tasks.addToGit.execute()
         createCommitToGitWithMessageTask(message)
         tasks.commitToGit.execute()
