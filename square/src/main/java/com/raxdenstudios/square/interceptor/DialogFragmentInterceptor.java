@@ -19,9 +19,7 @@ import com.raxdenstudios.square.lifecycle.DialogFragmentLifecycle;
  *
  * This abstract class defines the basis of an dialogFragment interceptor.
  */
-public abstract class DialogFragmentInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        extends BaseInterceptor<TInteractor, TCallback>
-        implements DialogFragmentLifecycle {
+public abstract class DialogFragmentInterceptor<TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements DialogFragmentLifecycle {
 
     protected DialogFragment mDialogFragment;
 

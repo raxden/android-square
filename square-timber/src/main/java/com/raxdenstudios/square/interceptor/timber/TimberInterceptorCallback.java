@@ -7,8 +7,7 @@ import timber.log.Timber;
 /**
  * Created by Ángel Gómez on 24/07/2016.
  */
-public interface TimberInterceptorCallback
-        extends InterceptorCallback<TimberInteractor> {
+public interface TimberInterceptorCallback extends InterceptorCallback {
 
     /**
      * Create your custom Timber.Tree like this:

@@ -8,8 +8,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-public interface CastInterceptorCallback
-        extends InterceptorCallback<CastInteractor> {
+public interface CastInterceptorCallback extends InterceptorCallback {
 
     /**
      *  return menu.findItem(R.id.media_route_menu_item)

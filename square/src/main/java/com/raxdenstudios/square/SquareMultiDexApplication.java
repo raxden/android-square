@@ -4,9 +4,11 @@ import android.content.res.Configuration;
 import android.support.multidex.MultiDexApplication;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
+import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.manager.ApplicationMultiDexInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,15 +35,20 @@ public abstract class SquareMultiDexApplication extends MultiDexApplication {
 
     /* Support methods */
 
+    protected abstract void setupInterceptors(List<Interceptor> interceptorList);
+
     private ApplicationMultiDexInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (ApplicationMultiDexInterceptorManager) InterceptorManagerFactory
-                    .buildManager(this);
-            addInterceptor(mInterceptorManager.getInterceptors());
+            mInterceptorManager = (ApplicationMultiDexInterceptorManager) InterceptorManagerFactory.buildManager(this);
+            List<Interceptor> interceptorList = new ArrayList<>();
+            setupInterceptors(interceptorList);
+            for (Interceptor interceptor : interceptorList) {
+                if (interceptor instanceof ApplicationInterceptor) {
+                    mInterceptorManager.addInterceptor((ApplicationInterceptor) interceptor);
+                }
+            }
         }
         return mInterceptorManager;
     }
-
-    protected abstract void addInterceptor(List<ApplicationInterceptor> interceptors);
 
 }

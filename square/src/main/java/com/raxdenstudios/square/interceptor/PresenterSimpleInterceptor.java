@@ -8,11 +8,10 @@ import com.raxdenstudios.mvp.view.IView;
  *
  * This abstract class defines the basis of an presenter interceptor.
  */
-public abstract class PresenterSimpleInterceptor<TView extends IView>
-        extends PresenterInterceptor<TView, Interactor, InterceptorCallback<Interactor>> {
+public abstract class PresenterSimpleInterceptor<TView extends IView> extends PresenterInterceptor<TView, InterceptorCallback> {
 
     public PresenterSimpleInterceptor(Presenter presenter) {
-        super(presenter, null);
+        super(presenter);
     }
 
 }

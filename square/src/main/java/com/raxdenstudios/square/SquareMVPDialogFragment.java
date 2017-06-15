@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 import com.raxdenstudios.mvp.MVPDialogFragment;
 import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
+import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.manager.DialogFragmentInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -149,14 +151,20 @@ public abstract class SquareMVPDialogFragment<TPresenter extends IPresenter>
 
     /* Support methods */
 
+    protected abstract void setupInterceptors(List<Interceptor> interceptorList);
+
     private DialogFragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
             mInterceptorManager = (DialogFragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
-            addInterceptor(mInterceptorManager.getInterceptors());
+            List<Interceptor> interceptorList = new ArrayList<>();
+            setupInterceptors(interceptorList);
+            for (Interceptor interceptor : interceptorList) {
+                if (interceptor instanceof DialogFragmentInterceptor) {
+                    mInterceptorManager.addInterceptor((DialogFragmentInterceptor) interceptor);
+                }
+            }
         }
         return mInterceptorManager;
     }
-
-    protected abstract void addInterceptor(List<DialogFragmentInterceptor> interceptors);
 
 }

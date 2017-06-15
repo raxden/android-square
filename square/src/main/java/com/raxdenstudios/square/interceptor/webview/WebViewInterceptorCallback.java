@@ -9,8 +9,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
 /**
  * Created by agomez on 16/07/2015.
  */
-public interface WebViewInterceptorCallback
-        extends InterceptorCallback<WebViewInteractor> {
+public interface WebViewInterceptorCallback extends InterceptorCallback {
 
     void onConfigureWebSettings(WebSettings settings);
 

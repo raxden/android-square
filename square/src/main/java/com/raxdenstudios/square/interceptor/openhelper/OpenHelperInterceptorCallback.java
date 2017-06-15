@@ -9,8 +9,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
 /**
  * Created by agomez on 08/05/2015.
  */
-public interface OpenHelperInterceptorCallback<T extends SQLiteOpenHelper>
-        extends InterceptorCallback<OpenHelperInteractor> {
+public interface OpenHelperInterceptorCallback<T extends SQLiteOpenHelper> extends InterceptorCallback {
 
     T onCreateOpenHelper(Context context, Bundle savedInstanceState);
 

@@ -9,7 +9,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
  * Created by agomez on 21/05/2015.
  */
 public interface ToolbarInterceptorCallback
-        extends InterceptorCallback<ToolbarInteractor> {
+        extends InterceptorCallback<ToolbarInterceptor> {
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 

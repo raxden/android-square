@@ -6,7 +6,6 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
  * Created by Ángel Gómez on 29/12/2016.
  */
 
-public interface CompositeSubscriptionInterceptorCallback
-        extends InterceptorCallback<CompositeSubscriptionInteractor> {
+public interface CompositeSubscriptionInterceptorCallback extends InterceptorCallback {
 
 }

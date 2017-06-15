@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.manager.FragmentInterceptorManager;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -126,15 +128,20 @@ public abstract class SquareFragment extends Fragment {
 
     /* Support methods */
 
+    protected abstract void setupInterceptors(List<Interceptor> interceptorList);
+
     private FragmentInterceptorManager getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory
-                    .buildManager(this);
-            addInterceptor(mInterceptorManager.getInterceptors());
+            mInterceptorManager = (FragmentInterceptorManager) InterceptorManagerFactory.buildManager(this);
+            List<Interceptor> interceptorList = new ArrayList<>();
+            setupInterceptors(interceptorList);
+            for (Interceptor interceptor : interceptorList) {
+                if (interceptor instanceof FragmentInterceptor) {
+                    mInterceptorManager.addInterceptor((FragmentInterceptor) interceptor);
+                }
+            }
         }
         return mInterceptorManager;
     }
-
-    protected abstract void addInterceptor(List<FragmentInterceptor> interceptors);
 
 }

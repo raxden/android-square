@@ -5,10 +5,12 @@ import android.os.Bundle;
 
 import com.raxdenstudios.mvp.presenter.Presenter;
 import com.raxdenstudios.mvp.view.IView;
+import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.PresenterInterceptor;
 import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 import com.raxdenstudios.square.manager.PresenterInterceptorManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,15 +76,20 @@ public abstract class SquarePresenter<TView extends IView> extends Presenter<TVi
 
     /* Support methods */
 
+    protected abstract void setupInterceptors(List<Interceptor> interceptorList);
+
     private PresenterInterceptorManager<TView> getInterceptorManager() {
         if (mInterceptorManager == null) {
-            mInterceptorManager = (PresenterInterceptorManager) InterceptorManagerFactory
-                    .buildManager(this);
-            addInterceptor(mInterceptorManager.getInterceptors());
+            mInterceptorManager = (PresenterInterceptorManager) InterceptorManagerFactory.buildManager(this);
+            List<Interceptor> interceptorList = new ArrayList<>();
+            setupInterceptors(interceptorList);
+            for (Interceptor interceptor : interceptorList) {
+                if (interceptor instanceof PresenterInterceptor) {
+                    mInterceptorManager.addInterceptor((PresenterInterceptor) interceptor);
+                }
+            }
         }
         return mInterceptorManager;
     }
-
-    protected abstract void addInterceptor(List<PresenterInterceptor> interceptors);
 
 }

@@ -14,9 +14,7 @@ import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
  *
  * This abstract class defines the basis of an activity interceptor.
  */
-public abstract class ActivityInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        extends BaseInterceptor<TInteractor, TCallback>
-        implements ActivityLifecycle {
+public abstract class ActivityInterceptor<TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements ActivityLifecycle {
 
     protected Activity mActivity;
 

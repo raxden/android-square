@@ -14,8 +14,7 @@ import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
  * Created by Ángel Gómez on 18/12/2016.
  */
 
-public class ActivityInterceptorManager extends InterceptorManager<Activity, ActivityInterceptor>
-        implements ActivityLifecycle {
+public class ActivityInterceptorManager extends InterceptorManager<Activity, ActivityInterceptor> implements ActivityLifecycle {
 
     public ActivityInterceptorManager(Activity activity) {
         super(activity);

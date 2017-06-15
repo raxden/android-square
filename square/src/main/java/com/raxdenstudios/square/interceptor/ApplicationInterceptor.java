@@ -10,9 +10,7 @@ import com.raxdenstudios.square.lifecycle.ApplicationLifecycle;
  *
  * This abstract class defines the basis of an application interceptor.
  */
-public abstract class ApplicationInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        extends BaseInterceptor<TInteractor, TCallback>
-        implements ApplicationLifecycle {
+public abstract class ApplicationInterceptor<TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements ApplicationLifecycle {
 
     protected Application mApplication;
 

@@ -17,9 +17,7 @@ import com.raxdenstudios.square.lifecycle.FragmentLifecycle;
  *
  * This abstract class defines the basis of an fragment interceptor.
  */
-public abstract class FragmentInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        extends BaseInterceptor<TInteractor, TCallback>
-        implements FragmentLifecycle {
+public abstract class FragmentInterceptor<TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements FragmentLifecycle {
 
     protected Fragment mFragment;
 

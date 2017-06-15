@@ -10,9 +10,7 @@ import com.raxdenstudios.square.lifecycle.ApplicationLifecycle;
  * Created by Ángel Gómez on 18/12/2016.
  */
 
-public class ApplicationInterceptorManager
-        extends InterceptorManager<Application, ApplicationInterceptor>
-        implements ApplicationLifecycle {
+public class ApplicationInterceptorManager extends InterceptorManager<Application, ApplicationInterceptor> implements ApplicationLifecycle {
 
     public ApplicationInterceptorManager(Application application) {
         super(application);

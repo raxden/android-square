@@ -8,10 +8,10 @@ import android.app.Application;
  * This abstract class defines the basis of an application interceptor.
  */
 public abstract class ApplicationSimpleInterceptor
-        extends ApplicationInterceptor<Interactor, InterceptorCallback<Interactor>> {
+        extends ApplicationInterceptor<InterceptorCallback> {
 
     public ApplicationSimpleInterceptor(Application application) {
-        super(application, null);
+        super(application);
     }
 
 }

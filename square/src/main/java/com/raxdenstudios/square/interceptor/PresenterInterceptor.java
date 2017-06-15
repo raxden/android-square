@@ -11,9 +11,7 @@ import com.raxdenstudios.square.lifecycle.PresenterLifecycle;
  *
  * This abstract class defines the basis of an presenter interceptor.
  */
-public abstract class PresenterInterceptor<TView extends IView, TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        extends BaseInterceptor<TInteractor, TCallback>
-        implements PresenterLifecycle<TView> {
+public abstract class PresenterInterceptor<TView extends IView, TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements PresenterLifecycle<TView> {
 
     protected Presenter mPresenter;
 

@@ -14,8 +14,7 @@ import com.raxdenstudios.mvp.presenter.Presenter;
  * <p>
  * This abstract class defines the basis of an interceptor.
  */
-public abstract class BaseInterceptor<TInteractor extends Interactor, TCallback extends InterceptorCallback<TInteractor>>
-        implements Interceptor {
+public abstract class BaseInterceptor<TCallback extends InterceptorCallback> implements Interceptor {
 
     private static final String TAG = BaseInterceptor.class.getSimpleName();
 
@@ -79,9 +78,6 @@ public abstract class BaseInterceptor<TInteractor extends Interactor, TCallback 
 
     public void setOnInterceptorCallback(TCallback callback) {
         mCallback = callback;
-        if (mCallback != null) {
-            mCallback.onInterceptorAttached((TInteractor) this);
-        }
     }
 
     @Override
