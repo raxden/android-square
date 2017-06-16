@@ -15,7 +15,7 @@ public interface ActivityLifecycle {
 
     void onSaveInstanceState(Bundle outState);
 
-    void attachBaseContext(Context newBase);
+    Context attachBaseContext(Context newBase);
 
     void onCreate(Bundle savedInstanceState);
 

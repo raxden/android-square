@@ -11,21 +11,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-public class CalligraphyActivityInterceptorImpl extends ActivityInterceptor<CalligraphyInterceptorCallback> implements CalligraphyInterceptor {
+public class CalligraphyActivityInterceptorImpl extends ActivityInterceptor<CalligraphyInterceptorCallback> implements CalligraphyActivityInterceptor {
 
     public CalligraphyActivityInterceptorImpl(@NonNull Activity activity) {
         super(activity);
     }
 
-    public CalligraphyActivityInterceptorImpl(@NonNull Activity activity, @NonNull CalligraphyInterceptorCallback callback) {
-        super(activity, callback);
-    }
-
     @Override
-    public void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
-
-        newBase = CalligraphyContextWrapper.wrap(newBase);
+    public Context attachBaseContext(Context newBase) {
+        return CalligraphyContextWrapper.wrap(newBase);
     }
 
 }

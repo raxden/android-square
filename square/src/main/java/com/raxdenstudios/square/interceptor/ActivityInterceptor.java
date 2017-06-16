@@ -34,8 +34,8 @@ public abstract class ActivityInterceptor<TCallback extends InterceptorCallback>
     }
 
     @Override
-    public void attachBaseContext(Context newBase) {
-
+    public Context attachBaseContext(Context newBase) {
+        return newBase;
     }
 
     @Override

@@ -28,10 +28,11 @@ public class ActivityInterceptorManager extends InterceptorManager<Activity, Act
     }
 
     @Override
-    public void attachBaseContext(Context newBase) {
+    public Context attachBaseContext(Context newBase) {
         for (ActivityInterceptor interceptor : interceptors) {
-            interceptor.attachBaseContext(newBase);
+            newBase = interceptor.attachBaseContext(newBase);
         }
+        return newBase;
     }
 
     @Override

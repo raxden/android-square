@@ -9,7 +9,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 /**
  * Created by Ángel Gómez on 18/12/2016.
  */
-public class CalligraphyApplicationInterceptorImpl extends ApplicationInterceptor<CalligraphyInterceptorCallback> implements CalligraphyInterceptor {
+public class CalligraphyApplicationInterceptorImpl extends ApplicationInterceptor<CalligraphyInterceptorCallback> implements CalligraphyApplicationInterceptor {
 
     public CalligraphyApplicationInterceptorImpl(Application application) {
         super(application);

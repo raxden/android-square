@@ -32,7 +32,7 @@ public abstract class SquareActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        getInterceptorManager().attachBaseContext(newBase);
+        newBase = getInterceptorManager().attachBaseContext(newBase);
         super.attachBaseContext(newBase);
     }
 
