@@ -1,9 +1,8 @@
 package com.raxdenstudios.square.interceptor.reactive;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.mvp.presenter.Presenter;
+import com.raxdenstudios.mvp.view.IView;
+import com.raxdenstudios.square.interceptor.PresenterInterceptor;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -12,17 +11,17 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Ángel Gómez on 29/12/2016.
  */
 
-public class CompositeSubscriptionActivityInterceptorImpl extends ActivityInterceptor<CompositeSubscriptionInterceptorCallback> implements CompositeSubscriptionInterceptor {
+public class CompositeDisposablePresenterInterceptorImpl<TView extends IView> extends PresenterInterceptor<TView, CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
 
     private CompositeSubscription mCompositeSubscription;
 
-    public CompositeSubscriptionActivityInterceptorImpl(@NonNull Activity activity) {
-        super(activity);
+    public CompositeDisposablePresenterInterceptorImpl(Presenter<TView> presenter) {
+        super(presenter);
         mCompositeSubscription = new CompositeSubscription();
     }
 
-    public CompositeSubscriptionActivityInterceptorImpl(@NonNull Activity activity, @NonNull CompositeSubscriptionInterceptorCallback callback) {
-        super(activity, callback);
+    public CompositeDisposablePresenterInterceptorImpl(Presenter<TView> presenter, CompositeDisposableInterceptorCallback callback) {
+        super(presenter, callback);
         mCompositeSubscription = new CompositeSubscription();
     }
 
