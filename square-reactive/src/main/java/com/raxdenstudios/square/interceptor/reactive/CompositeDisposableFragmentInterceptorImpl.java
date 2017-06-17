@@ -5,8 +5,9 @@ import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 
 /**
  * Created by Ángel Gómez on 29/12/2016.
@@ -14,56 +15,56 @@ import rx.subscriptions.CompositeSubscription;
 
 public class CompositeDisposableFragmentInterceptorImpl extends FragmentInterceptor<CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
 
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     public CompositeDisposableFragmentInterceptorImpl(@NonNull Fragment fragment) {
         super(fragment);
-        mCompositeSubscription = new CompositeSubscription();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     public CompositeDisposableFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull CompositeDisposableInterceptorCallback callback) {
         super(fragment, callback);
-        mCompositeSubscription = new CompositeSubscription();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mCompositeSubscription != null && !mCompositeSubscription.isUnsubscribed()) {
-            mCompositeSubscription.unsubscribe();
+        if (mCompositeDisposable != null && !mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable.dispose();
         }
     }
 
     @Override
-    public void addSubscription(Subscription subscription) {
-        if (subscription != null && mCompositeSubscription != null) {
-            mCompositeSubscription.add(subscription);
+    public void addDisposable(Disposable disposable) {
+        if (disposable != null && mCompositeDisposable != null) {
+            mCompositeDisposable.add(disposable);
         }
     }
 
     @Override
-    public void removeSubscription(Subscription subscription) {
-        if (subscription != null) {
-            if (!subscription.isUnsubscribed()) {
-                subscription.unsubscribe();
+    public void removeDisposable(Disposable disposable) {
+        if (disposable != null) {
+            if (!disposable.isDisposed()) {
+                disposable.dispose();
             }
-            if (mCompositeSubscription != null) {
-                mCompositeSubscription.remove(subscription);
+            if (mCompositeDisposable != null) {
+                mCompositeDisposable.remove(disposable);
             }
         }
     }
 
     @Override
-    public void removeAllSubscritions() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.clear();
+    public void removeAllDisposables() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
         }
     }
 
     @Override
-    public boolean hasSubscriptions() {
-        if (mCompositeSubscription != null) {
-            return mCompositeSubscription.hasSubscriptions();
+    public boolean hasDisposables() {
+        if (mCompositeDisposable != null) {
+            return mCompositeDisposable.size() > 0;
         } else {
             return false;
         }
