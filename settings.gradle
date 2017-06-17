@@ -1,1 +1,1 @@
-include ':square', ':square-butterknife', ':square-calligraphy', ':square-cast', ':square-reactive', ':square-fabric', ':square-icepick', ':square-jodatime', ':square-rater', ':square-timber', ':square-zxing', ':square-shakedetector', ':sample'
+include ':square', ':square-cast', ':square-reactive', ':square-rater', ':square-zxing', ':square-shakedetector', ':sample'
