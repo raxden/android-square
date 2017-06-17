@@ -12,5 +12,6 @@ public interface FragmentRefreshInterceptor extends Interceptor {
 
     void removeOnFragmentRefreshListener(OnFragmentRefreshListener listener);
 
+    void refresh();
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.interceptor.fragmentbackpressed.OnFragmentBackPressedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,15 @@ public class FragmentRefreshActivityInterceptorImpl extends ActivityInterceptor<
         if (mOnRefreshListeners != null) {
             mOnRefreshListeners.clear();
             mOnRefreshListeners = null;
+        }
+    }
+
+    @Override
+    public void refresh() {
+        if (mOnRefreshListeners != null) {
+            for (OnFragmentRefreshListener listener : mOnRefreshListeners) {
+                listener.onRefresh();
+            }
         }
     }
 
