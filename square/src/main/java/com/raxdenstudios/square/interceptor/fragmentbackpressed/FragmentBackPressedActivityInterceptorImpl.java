@@ -25,7 +25,7 @@ public class FragmentBackPressedActivityInterceptorImpl extends ActivityIntercep
     }
 
     @Override
-    public void addOnBackPressedFragmentListener(OnFragmentBackPressedListener listener) {
+    public void addOnFragmentBackPressedListener(OnFragmentBackPressedListener listener) {
         if (mOnBackPressedListeners == null) {
             mOnBackPressedListeners = new ArrayList<>();
         }
@@ -33,7 +33,7 @@ public class FragmentBackPressedActivityInterceptorImpl extends ActivityIntercep
     }
 
     @Override
-    public void removeOnBackPressedFragmentListener(OnFragmentBackPressedListener listener) {
+    public void removeOnFragmentBackPressedListener(OnFragmentBackPressedListener listener) {
         if (mOnBackPressedListeners != null) {
             mOnBackPressedListeners.remove(listener);
         }

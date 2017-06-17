@@ -8,8 +8,8 @@ import com.raxdenstudios.square.interceptor.Interceptor;
 
 public interface FragmentBackPressedInterceptor extends Interceptor {
 
-    void addOnBackPressedFragmentListener(OnFragmentBackPressedListener listener);
+    void addOnFragmentBackPressedListener(OnFragmentBackPressedListener listener);
 
-    void removeOnBackPressedFragmentListener(OnFragmentBackPressedListener listener);
+    void removeOnFragmentBackPressedListener(OnFragmentBackPressedListener listener);
 
 }
