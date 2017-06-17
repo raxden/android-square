@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.subscribers.ResourceSubscriber;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Ángel Gómez on 29/12/2016.
@@ -35,33 +35,33 @@ public class CompositeDisposableActivityInterceptorImpl extends ActivityIntercep
     }
 
     @Override
-    public void addSubscriber(ResourceSubscriber subscriber) {
-        if (subscriber != null && mCompositeDisposable != null) {
-            mCompositeDisposable.add(subscriber);
+    public void addDisposable(Disposable disposable) {
+        if (disposable != null && mCompositeDisposable != null) {
+            mCompositeDisposable.add(disposable);
         }
     }
 
     @Override
-    public void removeSubscriber(ResourceSubscriber subscriber) {
-        if (subscriber != null) {
-            if (!subscriber.isDisposed()) {
-                subscriber.dispose();
+    public void removeDisposable(Disposable disposable) {
+        if (disposable != null) {
+            if (!disposable.isDisposed()) {
+                disposable.dispose();
             }
             if (mCompositeDisposable != null) {
-                mCompositeDisposable.remove(subscriber);
+                mCompositeDisposable.remove(disposable);
             }
         }
     }
 
     @Override
-    public void removeAllSubscribers() {
+    public void removeAllDisposables() {
         if (mCompositeDisposable != null) {
             mCompositeDisposable.clear();
         }
     }
 
     @Override
-    public boolean hasSubscribers() {
+    public boolean hasDisposables() {
         if (mCompositeDisposable != null) {
             return mCompositeDisposable.size() > 0;
         } else {

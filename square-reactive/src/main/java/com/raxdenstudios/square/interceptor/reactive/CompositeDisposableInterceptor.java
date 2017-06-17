@@ -2,7 +2,7 @@ package com.raxdenstudios.square.interceptor.reactive;
 
 import com.raxdenstudios.square.interceptor.Interceptor;
 
-import io.reactivex.subscribers.ResourceSubscriber;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Ángel Gómez on 29/12/2016.
@@ -10,12 +10,12 @@ import io.reactivex.subscribers.ResourceSubscriber;
 
 public interface CompositeDisposableInterceptor extends Interceptor {
 
-    void addSubscriber(ResourceSubscriber subscriber);
+    void addDisposable(Disposable disposable);
 
-    void removeSubscriber(ResourceSubscriber subscriber);
+    void removeDisposable(Disposable disposable);
 
-    void removeAllSubscribers();
+    void removeAllDisposables();
 
-    boolean hasSubscribers();
+    boolean hasDisposables();
 
 }
