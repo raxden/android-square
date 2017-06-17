@@ -9,7 +9,7 @@ import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 /**
  * Created by agomez on 22/05/2015.
  */
-public class HandleArgumentsFragmentInterceptor extends FragmentInterceptor<HandleArgumentsInterceptorCallback> implements HandleArgumentsInteractor {
+public class HandleArgumentsFragmentInterceptor extends FragmentInterceptor<HandleArgumentsInterceptorCallback> implements HandleArgumentsInterceptor {
 
     public HandleArgumentsFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);

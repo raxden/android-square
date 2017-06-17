@@ -5,6 +5,6 @@ import com.raxdenstudios.square.interceptor.Interceptor;
 /**
  * Created by agomez on 02/06/2015.
  */
-public interface HandleArgumentsInteractor extends Interceptor {
+public interface HandleArgumentsInterceptor extends Interceptor {
 
 }
