@@ -28,14 +28,6 @@ public class ActivityInterceptorManager extends InterceptorManager<Activity, Act
     }
 
     @Override
-    public Context attachBaseContext(Context newBase) {
-        for (ActivityInterceptor interceptor : interceptors) {
-            newBase = interceptor.attachBaseContext(newBase);
-        }
-        return newBase;
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         for (ActivityInterceptor interceptor : interceptors) {
             interceptor.onCreate(savedInstanceState);
