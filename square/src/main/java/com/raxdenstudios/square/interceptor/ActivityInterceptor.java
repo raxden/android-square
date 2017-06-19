@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.interceptor;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -31,11 +30,6 @@ public abstract class ActivityInterceptor<TCallback extends InterceptorCallback>
     @Override
     public void onSaveInstanceState(Bundle outState) {
 
-    }
-
-    @Override
-    public Context attachBaseContext(Context newBase) {
-        return newBase;
     }
 
     @Override
