@@ -1,6 +1,5 @@
 package com.raxdenstudios.square;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -31,12 +30,6 @@ public abstract class SquareMVPActivity<TPresenter extends IPresenter>
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getInterceptorManager().onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
-        getInterceptorManager().attachBaseContext(newBase);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.lifecycle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,8 +13,6 @@ import android.view.Menu;
 public interface ActivityLifecycle {
 
     void onSaveInstanceState(Bundle outState);
-
-    Context attachBaseContext(Context newBase);
 
     void onCreate(Bundle savedInstanceState);
 

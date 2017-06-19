@@ -1,6 +1,5 @@
 package com.raxdenstudios.square;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,12 +27,6 @@ public abstract class SquareActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getInterceptorManager().onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        newBase = getInterceptorManager().attachBaseContext(newBase);
-        super.attachBaseContext(newBase);
     }
 
     @Override
