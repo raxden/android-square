@@ -13,8 +13,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         consumerProguardFiles 'proguard-rules.pro'
-
-        setProperty("archivesBaseName", "hobbiespot")
     }
 }
 
