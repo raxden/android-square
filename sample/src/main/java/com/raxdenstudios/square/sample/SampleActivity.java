@@ -5,9 +5,9 @@ import android.view.View;
 
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
-import com.raxdenstudios.square.interceptor.autoinflatelayout.AutoInflateLayoutActivityInterceptorImpl;
-import com.raxdenstudios.square.interceptor.autoinflatelayout.AutoInflateLayoutInterceptor;
-import com.raxdenstudios.square.interceptor.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptorImpl;
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
 
 import java.util.List;
 

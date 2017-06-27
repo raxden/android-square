@@ -1,1 +1,1 @@
-include ':square', ':square-cast', ':square-reactive', ':square-rater', ':square-zxing', ':square-shakedetector', ':sample'
+include ':square', ':square-commons', ':square-cast', ':square-reactive', ':square-rater', ':square-zxing', ':square-shakedetector', ':sample'
