@@ -18,15 +18,11 @@ ext {
     // Android dependencies
     supportLibraryVersion = '25.2.0'
     servicesVersion = '10.0.0'
-    multidexVersion = '1.0.0'
+    multidexVersion = '1.0.1'
 
     // Raxden libraries
-    androidCommonsVersion = '3.0.7@aar'     // https://github.com/raxden/AndroidCommons
-    androidResourcesVersion = '3.0.2@aar'   // https://github.com/raxden/AndroidResources
     androidMVPVersion = '3.0.3@aar'         // https://github.com/raxden/AndroidMVP
-    androidPreferencesVersion = '3.0.1@aar' // https://github.com/raxden/AndroidPreferences
     androidRaterVersion = '3.0.4@aar'       // https://github.com/raxden/AndroidRater
-    androidRecyclerVersion = '3.0.1@aar'    // https://github.com/raxden/AndroidRecycler
     androidShakeVersion = '3.0.1@aar'       // https://github.com/raxden/AndroidShakeDetector
 
     // Libraries
@@ -65,24 +61,6 @@ ext {
     castDependencies = [
             compile    : [
                     "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
-
-    multidexDependencies = [
-            compile    : [
-                    "com.android.support:multidex:${multidexVersion}"
             ],
             transitive : [
 
