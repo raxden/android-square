@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.manager;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -24,6 +23,13 @@ public class ActivityInterceptorManager extends InterceptorManager<Activity, Act
     public void onSaveInstanceState(Bundle outState) {
         for (ActivityInterceptor interceptor : interceptors) {
             interceptor.onSaveInstanceState(outState);
+        }
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        for (ActivityInterceptor interceptor : interceptors) {
+            interceptor.onNewIntent(intent);
         }
     }
 

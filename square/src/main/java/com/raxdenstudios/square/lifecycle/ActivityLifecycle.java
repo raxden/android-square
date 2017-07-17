@@ -14,6 +14,8 @@ public interface ActivityLifecycle {
 
     void onSaveInstanceState(Bundle outState);
 
+    void onNewIntent(Intent intent);
+
     void onCreate(Bundle savedInstanceState);
 
     void onPostCreate(Bundle savedInstanceState);
