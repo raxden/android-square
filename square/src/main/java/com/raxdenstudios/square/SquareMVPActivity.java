@@ -33,6 +33,12 @@ public abstract class SquareMVPActivity<TPresenter extends IPresenter>
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getInterceptorManager().onNewIntent(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getInterceptorManager().onCreate(savedInstanceState);
