@@ -8,7 +8,6 @@ import android.view.View;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
-import com.raxdenstudios.square.interceptor.webview.WebViewInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by agomez on 24/12/2015.
  */
-public class ZXingScannerFragmentInterceptorImpl extends FragmentInterceptor<ZXingScannerInterceptorCallback> implements WebViewInterceptor, ZXingScannerView.ResultHandler {
+public class ZXingScannerFragmentInterceptorImpl extends FragmentInterceptor<ZXingScannerInterceptorCallback> implements ZXingScannerInterceptor, ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
     private boolean mFlash;
