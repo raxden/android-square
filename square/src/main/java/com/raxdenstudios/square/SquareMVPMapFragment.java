@@ -57,9 +57,9 @@ public abstract class SquareMVPMapFragment<TPresenter extends IPresenter>
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return getInterceptorManager().onCreateView(inflater, null, container, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View parentView = super.onCreateView(inflater, container, savedInstanceState);
+        return getInterceptorManager().onCreateView(inflater, parentView, container, savedInstanceState);
     }
 
     @Override

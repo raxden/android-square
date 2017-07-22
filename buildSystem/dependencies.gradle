@@ -17,7 +17,7 @@ ext {
 
     // Android dependencies
     supportLibraryVersion = '25.2.0'
-    servicesVersion = '10.2.0'
+    servicesVersion = '10.0.0'
     multidexVersion = '1.0.1'
 
     // Raxden libraries
@@ -41,7 +41,16 @@ ext {
                     "com.android.support:multidex:${multidexVersion}",
                     "com.android.support:support-v13:${supportLibraryVersion}",
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
+//                    "com.google.android.gms:play-services-maps:${servicesVersion}",
+
+
+                    "com.google.android.gms:play-services-base:${servicesVersion}",
+                    "com.google.android.gms:play-services-analytics:${servicesVersion}",
                     "com.google.android.gms:play-services-maps:${servicesVersion}",
+
+                    "com.google.firebase:firebase-core:${servicesVersion}",
+                    "com.google.firebase:firebase-messaging:${servicesVersion}",
+
 
                     "com.github.raxden:android-mvp:${androidMVPVersion}"
             ],

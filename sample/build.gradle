@@ -14,6 +14,8 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        resValue "string", "geo_api_key", "AIzaSyCJJ64kpDOT5HrQkfe99QbB7hGAXJzFCWc"
+
     }
     buildTypes {
         release {
