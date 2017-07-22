@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.raxdenstudios.mvp.MVPSupportMapFragment;
+import com.raxdenstudios.mvp.MVPMapFragment;
 import com.raxdenstudios.mvp.presenter.IPresenter;
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 import com.raxdenstudios.square.interceptor.Interceptor;
@@ -27,8 +27,8 @@ import java.util.List;
  * Unlike SquareFragment this activity follows the MVP pattern, therefore has a presenter
  * attached.
  */
-public abstract class SquareMVPSupportMapFragment<TPresenter extends IPresenter>
-        extends MVPSupportMapFragment<TPresenter> {
+public abstract class SquareMVPMapFragment<TPresenter extends IPresenter>
+        extends MVPMapFragment<TPresenter> {
 
     private FragmentInterceptorManager mInterceptorManager;
 
