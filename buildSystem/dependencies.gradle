@@ -41,6 +41,7 @@ ext {
                     "com.android.support:multidex:${multidexVersion}",
                     "com.android.support:support-v13:${supportLibraryVersion}",
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                    "com.google.android.gms:play-services-maps:${servicesVersion}",
 
                     "com.github.raxden:android-mvp:${androidMVPVersion}"
             ],
