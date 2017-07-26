@@ -6,17 +6,17 @@ import android.view.View;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
 
-import java.util.List;
-
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
 public interface InjectFragmentListInterceptorCallback<T extends Fragment> extends InterceptorCallback {
 
-    List<View> onLoadFragmentContainer(Bundle savedInstanceState);
+    int getFragmentCount();
 
-    List<T> onCreateFragment();
+    View onLoadFragmentContainer(Bundle savedInstanceState, int position);
 
-    void onFragmentLoaded(List<T> fragment);
+    T onCreateFragment(int position);
+
+    void onFragmentLoaded(T fragment, int position);
 
 }

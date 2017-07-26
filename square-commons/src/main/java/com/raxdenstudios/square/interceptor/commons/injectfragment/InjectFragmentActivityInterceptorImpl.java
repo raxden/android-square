@@ -27,14 +27,14 @@ public class InjectFragmentActivityInterceptorImpl<TFragment extends Fragment> e
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View mContentView = mCallback.onLoadFragmentContainer(savedInstanceState);
-        if (mContentView != null) {
+        View contentView = mCallback.onLoadFragmentContainer(savedInstanceState);
+        if (contentView != null) {
             TFragment contentFragment;
             if (savedInstanceState == null) {
                 contentFragment = mCallback.onCreateFragment();
-                FragmentUtils.loadFragment(mActivity.getFragmentManager(), mContentView.getId(), contentFragment);
+                FragmentUtils.loadFragment(mActivity.getFragmentManager(), contentView.getId(), contentFragment);
             } else {
-                contentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), mContentView.getId());
+                contentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), contentView.getId());
             }
             mCallback.onFragmentLoaded(contentFragment);
         }
