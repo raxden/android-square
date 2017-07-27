@@ -30,7 +30,7 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewPager = mCallback.onCreateViewPager(savedInstanceState);
+        mViewPager = mCallback.onLoadViewPager(savedInstanceState);
         if (mViewPager != null) {
             mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getFragmentManager());
             mViewPager.setAdapter(mAdapter);
@@ -58,7 +58,7 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
     }
 
     @Override
-    public TFragment getCurrentPage() {
+    public TFragment getCurrentFragment() {
         return mAdapter.getFragment(getCurrentPosition());
     }
 
@@ -66,7 +66,7 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
     public TFragment nextPage() {
         if (!isLastPage()) {
             mViewPager.setCurrentItem(getCurrentPosition() + 1);
-            return getCurrentPage();
+            return getCurrentFragment();
         } else {
             return null;
         }
@@ -76,7 +76,7 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
     public TFragment previousPage() {
         if (!isFirstPage()) {
             mViewPager.setCurrentItem(getCurrentPosition() - 1);
-            return getCurrentPage();
+            return getCurrentFragment();
         } else {
             return null;
         }
@@ -100,12 +100,12 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
 
         @Override
         public TFragment getItem(int position) {
-            return mCallback.onCreatePagerContentFragment(position);
+            return mCallback.onCreateFragment(position);
         }
 
         @Override
         public int getCount() {
-            return mCallback.onViewPagerElements();
+            return mCallback.getFragmentElements();
         }
 
         public TFragment getFragment(int position) {

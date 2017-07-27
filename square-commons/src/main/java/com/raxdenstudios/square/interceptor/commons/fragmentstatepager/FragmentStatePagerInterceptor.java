@@ -22,7 +22,7 @@ public interface FragmentStatePagerInterceptor<TFragment extends Fragment> exten
 
     void setCurrentPage(int page, boolean smoothScroll);
 
-    TFragment getCurrentPage();
+    TFragment getCurrentFragment();
 
     TFragment nextPage();
 
