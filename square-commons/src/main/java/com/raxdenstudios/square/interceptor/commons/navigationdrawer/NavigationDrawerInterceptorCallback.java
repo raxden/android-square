@@ -19,7 +19,7 @@ public interface NavigationDrawerInterceptorCallback extends InterceptorCallback
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
-    void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle, Bundle savedInstanceState);
+    void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle);
 
     void onDrawerClosed(View drawerView);
 

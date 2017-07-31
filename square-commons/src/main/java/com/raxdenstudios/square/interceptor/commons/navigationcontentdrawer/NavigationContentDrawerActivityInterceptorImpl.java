@@ -62,7 +62,7 @@ public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fr
                     }
                 });
                 mDrawerLayout.addDrawerListener(mDrawerToggle);
-                mCallback.onActionBarDrawerToggleCreated(mDrawerToggle, savedInstanceState);
+                mCallback.onActionBarDrawerToggleCreated(mDrawerToggle);
             }
             TFragment contentDrawerFragment;
             if (savedInstanceState == null) {

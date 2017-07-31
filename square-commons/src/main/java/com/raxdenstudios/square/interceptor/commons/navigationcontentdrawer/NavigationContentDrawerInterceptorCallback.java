@@ -20,7 +20,7 @@ public interface NavigationContentDrawerInterceptorCallback<T extends Fragment> 
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
-    void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle, Bundle savedInstanceState);
+    void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle);
 
     T onCreateContentDrawerFragment();
 
