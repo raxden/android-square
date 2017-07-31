@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.injectfragment;
+package com.raxdenstudios.square.interceptor.commons.injectfragmentlist;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,13 +12,13 @@ import com.raxdenstudios.square.utils.FragmentUtils;
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
-public class InjectFragmentActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<InjectFragmentInterceptorCallback<TFragment>> implements InjectFragmentInterceptor {
+public class InjectFragmentListActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<InjectFragmentListInterceptorCallback<TFragment>> implements InjectFragmentListInterceptor {
 
-    public InjectFragmentActivityInterceptorImpl(@NonNull Activity activity) {
+    public InjectFragmentListActivityInterceptorImpl(@NonNull Activity activity) {
         super(activity);
     }
 
-    public InjectFragmentActivityInterceptorImpl(@NonNull Activity activity, @NonNull InjectFragmentInterceptorCallback<TFragment> callback) {
+    public InjectFragmentListActivityInterceptorImpl(@NonNull Activity activity, @NonNull InjectFragmentListInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }
 
@@ -27,16 +27,16 @@ public class InjectFragmentActivityInterceptorImpl<TFragment extends Fragment> e
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View contentView = mCallback.onLoadFragmentContainer(savedInstanceState);
-        if (contentView != null) {
+        for (int i = 0; i < mCallback.getFragmentCount(); i++) {
+            View contentView = mCallback.onLoadFragmentContainer(savedInstanceState, i);
             TFragment contentFragment;
             if (savedInstanceState == null) {
-                contentFragment = mCallback.onCreateFragment();
+                contentFragment = mCallback.onCreateFragment(i);
                 FragmentUtils.loadFragment(mActivity.getFragmentManager(), contentView.getId(), contentFragment);
             } else {
                 contentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), contentView.getId());
             }
-            mCallback.onFragmentLoaded(contentFragment);
+            mCallback.onFragmentLoaded(contentFragment, i);
         }
     }
 
