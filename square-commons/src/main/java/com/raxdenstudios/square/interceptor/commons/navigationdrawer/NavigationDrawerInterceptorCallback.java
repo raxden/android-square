@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.navigationdrawer;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,7 +11,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptorCallback<T extends Fragment> extends InterceptorCallback {
+public interface NavigationDrawerInterceptorCallback extends InterceptorCallback {
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 

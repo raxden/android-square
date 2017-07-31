@@ -19,7 +19,7 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback<TFragment>> implements NavigationDrawerInterceptor {
+public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback> implements NavigationDrawerInterceptor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
@@ -29,7 +29,7 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
         super(activity);
     }
 
-    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback<TFragment> callback) {
+    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback callback) {
         super(activity, callback);
     }
 
