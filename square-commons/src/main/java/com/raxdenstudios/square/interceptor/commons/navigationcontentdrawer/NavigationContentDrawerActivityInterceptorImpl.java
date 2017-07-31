@@ -63,6 +63,7 @@ public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fr
                 });
                 mDrawerLayout.addDrawerListener(mDrawerToggle);
                 mCallback.onActionBarDrawerToggleCreated(mDrawerToggle);
+                mCallback.onDrawerLayoutCreated(mDrawerLayout);
             }
             TFragment contentDrawerFragment;
             if (savedInstanceState == null) {

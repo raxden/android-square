@@ -18,6 +18,8 @@ public interface NavigationContentDrawerInterceptorCallback<T extends Fragment> 
 
     DrawerLayout onCreateDrawerLayout(Bundle savedInstanceState);
 
+    void onDrawerLayoutCreated(DrawerLayout drawerLayout);
+
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
     void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle);
