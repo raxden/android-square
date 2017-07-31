@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer;
+package com.raxdenstudios.square.interceptor.commons.navigationcontentdrawer;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
 /**
  * Created by agomez on 21/05/2015.
  */
-public interface NavigationDrawerInterceptorCallback<T extends Fragment> extends InterceptorCallback {
+public interface NavigationContentDrawerInterceptorCallback<T extends Fragment> extends InterceptorCallback {
 
     View onCreateContentDrawerView(Bundle savedInstanceState);
 
@@ -21,6 +21,10 @@ public interface NavigationDrawerInterceptorCallback<T extends Fragment> extends
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
     void onActionBarDrawerToggleCreated(ActionBarDrawerToggle drawerToggle, Bundle savedInstanceState);
+
+    T onCreateContentDrawerFragment();
+
+    void onContentDrawerFragmentLoaded(T fragment);
 
     void onDrawerClosed(View drawerView);
 

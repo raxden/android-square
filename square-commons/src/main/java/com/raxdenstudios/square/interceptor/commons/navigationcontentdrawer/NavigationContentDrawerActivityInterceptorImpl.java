@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer;
+package com.raxdenstudios.square.interceptor.commons.navigationcontentdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -15,21 +15,22 @@ import android.view.View;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.utils.FragmentUtils;
 
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback<TFragment>> implements NavigationDrawerInterceptor {
+public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationContentDrawerInterceptorCallback<TFragment>> implements NavigationContentDrawerInterceptor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity) {
+    public NavigationContentDrawerActivityInterceptorImpl(@NonNull Activity activity) {
         super(activity);
     }
 
-    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback<TFragment> callback) {
+    public NavigationContentDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }
 
@@ -63,6 +64,14 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
                 mDrawerLayout.addDrawerListener(mDrawerToggle);
                 mCallback.onActionBarDrawerToggleCreated(mDrawerToggle, savedInstanceState);
             }
+            TFragment contentDrawerFragment;
+            if (savedInstanceState == null) {
+                contentDrawerFragment = mCallback.onCreateContentDrawerFragment();
+                FragmentUtils.loadFragment(mActivity.getFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
+            } else {
+                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), mContentDrawerView.getId());
+            }
+            mCallback.onContentDrawerFragmentLoaded(contentDrawerFragment);
         }
     }
 
@@ -129,25 +138,25 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
             }
         };
     }
@@ -158,25 +167,25 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
             }
         };
     }
