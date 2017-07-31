@@ -43,6 +43,7 @@ public class ToolbarActivityInterceptorImpl extends ActivityInterceptor<ToolbarI
                     return mActivity.onOptionsItemSelected(item);
                 }
             });
+            mCallback.onToolbarViewCreated(toolbar);
         }
     }
 
