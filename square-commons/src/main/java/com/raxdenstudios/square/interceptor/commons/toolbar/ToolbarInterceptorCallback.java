@@ -12,4 +12,6 @@ public interface ToolbarInterceptorCallback extends InterceptorCallback {
 
     Toolbar onCreateToolbarView(Bundle savedInstanceState);
 
+    void onToolbarViewCreated(Toolbar toolbar);
+
 }

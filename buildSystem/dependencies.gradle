@@ -1,27 +1,13 @@
 
-allprojects {
-    repositories {
-        jcenter()
-        maven { url "https://jitpack.io" }
-        maven { url "https://clojars.org/repo/" }
-    }
-}
-
 ext {
 
-    // Sdk and tools
-    minSdkVersion = 16
-    targetSdkVersion = 25
-    compileSdkVersion = 25
-    buildToolsVersion = '25.0.2'
-
     // Android dependencies
-    supportLibraryVersion = '25.2.0'
-    servicesVersion = '10.0.0'
+    supportLibraryVersion = '25.4.0'
+    servicesVersion = '11.0.2'
     multidexVersion = '1.0.1'
 
     // Raxden libraries
-    androidMVPVersion = '3.0.6@aar'         // https://github.com/raxden/android-mvp
+    androidMVPVersion = '3.0.7@aar'         // https://github.com/raxden/android-mvp
     androidRaterVersion = '3.0.4@aar'       // https://github.com/raxden/AndroidRater
     androidShakeVersion = '3.0.1@aar'       // https://github.com/raxden/AndroidShakeDetector
 
@@ -43,14 +29,12 @@ ext {
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
 //                    "com.google.android.gms:play-services-maps:${servicesVersion}",
 
-
                     "com.google.android.gms:play-services-base:${servicesVersion}",
                     "com.google.android.gms:play-services-analytics:${servicesVersion}",
                     "com.google.android.gms:play-services-maps:${servicesVersion}",
 
                     "com.google.firebase:firebase-core:${servicesVersion}",
                     "com.google.firebase:firebase-messaging:${servicesVersion}",
-
 
                     "com.github.raxden:android-mvp:${androidMVPVersion}"
             ],

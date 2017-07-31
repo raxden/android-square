@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'realm-android'
 
 group = "com.raxdenstudios.square"
 version = VERSION_NAME
