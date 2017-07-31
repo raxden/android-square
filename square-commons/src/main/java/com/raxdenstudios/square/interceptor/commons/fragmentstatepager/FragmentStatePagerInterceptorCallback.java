@@ -11,7 +11,9 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback;
  */
 public interface FragmentStatePagerInterceptorCallback<TFragment extends Fragment> extends InterceptorCallback {
 
-    ViewPager onLoadViewPager(Bundle savedInstanceState);
+    ViewPager onCreateViewPager(Bundle savedInstanceState);
+
+    void onViewPagerCreated(ViewPager viewPager);
 
     TFragment onCreateFragment(int position);
 

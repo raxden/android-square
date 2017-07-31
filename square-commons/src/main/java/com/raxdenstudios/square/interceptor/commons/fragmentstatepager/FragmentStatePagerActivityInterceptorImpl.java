@@ -30,10 +30,11 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewPager = mCallback.onLoadViewPager(savedInstanceState);
+        mViewPager = mCallback.onCreateViewPager(savedInstanceState);
         if (mViewPager != null) {
             mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getFragmentManager());
             mViewPager.setAdapter(mAdapter);
+            mCallback.onViewPagerCreated(mViewPager);
         }
     }
 
