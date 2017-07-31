@@ -106,7 +106,7 @@ public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragmen
 
         @Override
         public int getCount() {
-            return mCallback.getFragmentElements();
+            return mCallback.getViewPagerElements();
         }
 
         public TFragment getFragment(int position) {

@@ -19,6 +19,6 @@ public interface FragmentStatePagerInterceptorCallback<TFragment extends Fragmen
 
     void onFragmentLoaded(TFragment fragment, int position);
 
-    int getFragmentElements();
+    int getViewPagerElements();
 
 }
