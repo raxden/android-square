@@ -34,14 +34,9 @@ public class AutoInflateLayoutActivityInterceptor extends ActivityInterceptor<Au
         mInflateLayout = onCreateView(mActivity.getLayoutInflater());
         if (mInflateLayout != null) {
             mActivity.setContentView(mInflateLayout);
-        }
-    }
-
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        if (mCallback != null) {
-            mCallback.onContentViewCreated(mInflateLayout, savedInstanceState);
+            if (mCallback != null) {
+                mCallback.onContentViewCreated(mInflateLayout, savedInstanceState);
+            }
         }
     }
 
