@@ -11,16 +11,16 @@ import io.reactivex.disposables.Disposable;
  * Created by Ángel Gómez on 29/12/2016.
  */
 
-public class CompositeDisposablePresenterInterceptorImpl<TView extends IView> extends PresenterInterceptor<TView, CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
+public class CompositeDisposablePresenterInterceptor<TView extends IView> extends PresenterInterceptor<TView, CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
 
     private CompositeDisposable mCompositeDisposable;
 
-    public CompositeDisposablePresenterInterceptorImpl(Presenter<TView> presenter) {
+    public CompositeDisposablePresenterInterceptor(Presenter<TView> presenter) {
         super(presenter);
         mCompositeDisposable = new CompositeDisposable();
     }
 
-    public CompositeDisposablePresenterInterceptorImpl(Presenter<TView> presenter, CompositeDisposableInterceptorCallback callback) {
+    public CompositeDisposablePresenterInterceptor(Presenter<TView> presenter, CompositeDisposableInterceptorCallback callback) {
         super(presenter, callback);
         mCompositeDisposable = new CompositeDisposable();
     }

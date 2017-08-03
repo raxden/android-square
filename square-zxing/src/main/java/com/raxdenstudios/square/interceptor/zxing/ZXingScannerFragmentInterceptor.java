@@ -17,7 +17,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by agomez on 24/12/2015.
  */
-public class ZXingScannerFragmentInterceptorImpl extends FragmentInterceptor<ZXingScannerInterceptorCallback> implements ZXingScannerInterceptor, ZXingScannerView.ResultHandler {
+public class ZXingScannerFragmentInterceptor extends FragmentInterceptor<ZXingScannerInterceptorCallback> implements ZXingScannerInterceptor, ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
     private boolean mFlash;
@@ -25,11 +25,11 @@ public class ZXingScannerFragmentInterceptorImpl extends FragmentInterceptor<ZXi
     private ArrayList<Integer> mSelectedIndices;
     private int mCameraId = -1;
 
-    public ZXingScannerFragmentInterceptorImpl(@NonNull Fragment fragment) {
+    public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);
     }
 
-    public ZXingScannerFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull ZXingScannerInterceptorCallback callback) {
+    public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment, @NonNull ZXingScannerInterceptorCallback callback) {
         super(fragment, callback);
     }
 

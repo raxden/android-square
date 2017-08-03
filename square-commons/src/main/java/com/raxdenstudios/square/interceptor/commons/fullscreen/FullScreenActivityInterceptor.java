@@ -10,13 +10,13 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by Ángel Gómez on 26/12/2016.
  */
-public class FullScreenActivityInterceptorImpl extends ActivityInterceptor<FullScreenInterceptorCallback> implements FullScreenInterceptor {
+public class FullScreenActivityInterceptor extends ActivityInterceptor<FullScreenInterceptorCallback> implements FullScreenInterceptor {
 
-    public FullScreenActivityInterceptorImpl(@NonNull Activity activity) {
+    public FullScreenActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public FullScreenActivityInterceptorImpl(@NonNull Activity activity, @NonNull FullScreenInterceptorCallback callback) {
+    public FullScreenActivityInterceptor(@NonNull Activity activity, @NonNull FullScreenInterceptorCallback callback) {
         super(activity, callback);
     }
 

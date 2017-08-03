@@ -8,9 +8,9 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptorImpl;
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
-import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptorImpl;
+import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
 import com.raxdenstudios.square.sample.R;
 
@@ -50,8 +50,8 @@ public class MapActivity extends SquareActivity implements
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
-        interceptorList.add(new AutoInflateLayoutActivityInterceptorImpl(this, this));
-        interceptorList.add(new InjectFragmentActivityInterceptorImpl<MapFragment>(this, this));
+        interceptorList.add(new AutoInflateLayoutActivityInterceptor(this, this));
+        interceptorList.add(new InjectFragmentActivityInterceptor<MapFragment>(this, this));
     }
 
 }

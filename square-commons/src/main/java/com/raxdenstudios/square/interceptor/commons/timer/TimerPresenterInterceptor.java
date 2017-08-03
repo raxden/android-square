@@ -1,16 +1,17 @@
 package com.raxdenstudios.square.interceptor.commons.timer;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.mvp.presenter.Presenter;
+import com.raxdenstudios.mvp.view.IView;
+import com.raxdenstudios.square.interceptor.PresenterInterceptor;
 
 /**
  * Created by agomez on 11/05/2105.
  */
-public class TimerActivityInterceptorImpl extends ActivityInterceptor<TimerInterceptorCallback> implements TimerInterceptor {
+public class TimerPresenterInterceptor<TView extends IView> extends PresenterInterceptor<TView, TimerInterceptorCallback> implements TimerInterceptor {
 
     private final static int DEFAULT_TIME_MS = 3000;
 
@@ -32,13 +33,13 @@ public class TimerActivityInterceptorImpl extends ActivityInterceptor<TimerInter
         }
     };
 
-    public TimerActivityInterceptorImpl(@NonNull Activity activity) {
-        super(activity);
+    public TimerPresenterInterceptor(@NonNull Presenter presenter) {
+        super(presenter);
         init();
     }
 
-    public TimerActivityInterceptorImpl(@NonNull Activity activity, @NonNull TimerInterceptorCallback callback) {
-        super(activity, callback);
+    public TimerPresenterInterceptor(@NonNull Presenter presenter, @NonNull TimerInterceptorCallback callback) {
+        super(presenter, callback);
         init();
     }
 
@@ -54,13 +55,6 @@ public class TimerActivityInterceptorImpl extends ActivityInterceptor<TimerInter
 
         removeRunnableIfExists();
         postRunnable();
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        removeRunnableIfExists();
-        if (mCallback != null) mCallback.onTimerCancelled();
-        return super.onBackPressed();
     }
 
     @Override

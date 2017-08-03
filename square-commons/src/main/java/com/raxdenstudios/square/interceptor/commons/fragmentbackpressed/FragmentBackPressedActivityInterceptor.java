@@ -12,15 +12,15 @@ import java.util.List;
  * Created by Ángel Gómez on 17/06/2017.
  */
 
-public class FragmentBackPressedActivityInterceptorImpl extends ActivityInterceptor<FragmentBackPressedInterceptorCallback> implements FragmentBackPressedInterceptor {
+public class FragmentBackPressedActivityInterceptor extends ActivityInterceptor<FragmentBackPressedInterceptorCallback> implements FragmentBackPressedInterceptor {
 
     private List<OnFragmentBackPressedListener> mOnBackPressedListeners;
 
-    public FragmentBackPressedActivityInterceptorImpl(@NonNull Activity activity) {
+    public FragmentBackPressedActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public FragmentBackPressedActivityInterceptorImpl(@NonNull Activity activity, @NonNull FragmentBackPressedInterceptorCallback callback) {
+    public FragmentBackPressedActivityInterceptor(@NonNull Activity activity, @NonNull FragmentBackPressedInterceptorCallback callback) {
         super(activity, callback);
     }
 

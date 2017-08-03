@@ -17,18 +17,18 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-public class CastActivityInterceptorImpl extends ActivityInterceptor<CastInterceptorCallback> implements CastInterceptor {
+public class CastActivityInterceptor extends ActivityInterceptor<CastInterceptorCallback> implements CastInterceptor {
 
     private IntroductoryOverlay mIntroductoryOverlay;
     private CastStateListener mCastStateListener;
     private CastContext mCastContext;
     private MenuItem mMediaRouteMenuItem;
 
-    public CastActivityInterceptorImpl(@NonNull Activity activity) {
+    public CastActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public CastActivityInterceptorImpl(@NonNull Activity activity, @NonNull CastInterceptorCallback callback) {
+    public CastActivityInterceptor(@NonNull Activity activity, @NonNull CastInterceptorCallback callback) {
         super(activity, callback);
     }
 

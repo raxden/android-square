@@ -9,13 +9,13 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-public class HandleExtrasActivityInterceptorImpl extends ActivityInterceptor<HandleExtrasInterceptorCallback> implements HandleExtrasInterceptor {
+public class HandleExtrasActivityInterceptor extends ActivityInterceptor<HandleExtrasInterceptorCallback> implements HandleExtrasInterceptor {
 
-    public HandleExtrasActivityInterceptorImpl(@NonNull Activity activity) {
+    public HandleExtrasActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public HandleExtrasActivityInterceptorImpl(@NonNull Activity activity, @NonNull HandleExtrasInterceptorCallback callback) {
+    public HandleExtrasActivityInterceptor(@NonNull Activity activity, @NonNull HandleExtrasInterceptorCallback callback) {
         super(activity, callback);
     }
 

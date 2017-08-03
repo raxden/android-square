@@ -12,13 +12,13 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
  * accelerating, the device is a) shaking, or b) free falling 1.84m (h =
  * 1/2*g*t^2*3/4).
  */
-public class ShakeDetectorActivityInterceptorImpl extends ActivityInterceptor<ShakeDetectorInterceptorCallback> implements ShakeDetectorInterceptor {
+public class ShakeDetectorActivityInterceptor extends ActivityInterceptor<ShakeDetectorInterceptorCallback> implements ShakeDetectorInterceptor {
 
-    public ShakeDetectorActivityInterceptorImpl(@NonNull Activity activity) {
+    public ShakeDetectorActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public ShakeDetectorActivityInterceptorImpl(@NonNull Activity activity, @NonNull ShakeDetectorInterceptorCallback callback) {
+    public ShakeDetectorActivityInterceptor(@NonNull Activity activity, @NonNull ShakeDetectorInterceptorCallback callback) {
         super(activity, callback);
     }
 

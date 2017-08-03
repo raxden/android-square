@@ -13,15 +13,15 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
  * Created by Raxden on 16/12/2016.
  */
 
-public class TelephonyActivityInterceptorImpl extends ActivityInterceptor<TelephonyInterceptorCallback> implements TelephonyInterceptor {
+public class TelephonyActivityInterceptor extends ActivityInterceptor<TelephonyInterceptorCallback> implements TelephonyInterceptor {
 
     private TelephonyManager mTelephonyManager;
 
-    public TelephonyActivityInterceptorImpl(@NonNull Activity activity) {
+    public TelephonyActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public TelephonyActivityInterceptorImpl(@NonNull Activity activity, @NonNull TelephonyInterceptorCallback callback) {
+    public TelephonyActivityInterceptor(@NonNull Activity activity, @NonNull TelephonyInterceptorCallback callback) {
         super(activity, callback);
     }
 

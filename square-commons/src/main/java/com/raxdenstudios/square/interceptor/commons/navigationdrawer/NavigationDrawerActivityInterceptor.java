@@ -19,17 +19,17 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback> implements NavigationDrawerInterceptor {
+public class NavigationDrawerActivityInterceptor<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback> implements NavigationDrawerInterceptor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity) {
+    public NavigationDrawerActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public NavigationDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback callback) {
+    public NavigationDrawerActivityInterceptor(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback callback) {
         super(activity, callback);
     }
 
@@ -130,25 +130,25 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationDrawerActivityInterceptor.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationDrawerActivityInterceptor.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationDrawerActivityInterceptor.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationDrawerActivityInterceptor.this.onDrawerStateChanged(newState);
             }
         };
     }
@@ -159,25 +159,25 @@ public class NavigationDrawerActivityInterceptorImpl<TFragment extends Fragment>
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationDrawerActivityInterceptor.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationDrawerActivityInterceptor.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationDrawerActivityInterceptor.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationDrawerActivityInterceptor.this.onDrawerStateChanged(newState);
             }
         };
     }

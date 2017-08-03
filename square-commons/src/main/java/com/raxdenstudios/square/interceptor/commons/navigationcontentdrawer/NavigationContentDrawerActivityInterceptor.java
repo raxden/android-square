@@ -20,17 +20,17 @@ import com.raxdenstudios.square.utils.FragmentUtils;
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<NavigationContentDrawerInterceptorCallback<TFragment>> implements NavigationContentDrawerInterceptor {
+public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragment> extends ActivityInterceptor<NavigationContentDrawerInterceptorCallback<TFragment>> implements NavigationContentDrawerInterceptor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationContentDrawerActivityInterceptorImpl(@NonNull Activity activity) {
+    public NavigationContentDrawerActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public NavigationContentDrawerActivityInterceptorImpl(@NonNull Activity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {
+    public NavigationContentDrawerActivityInterceptor(@NonNull Activity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }
 
@@ -139,25 +139,25 @@ public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fr
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerStateChanged(newState);
             }
         };
     }
@@ -168,25 +168,25 @@ public class NavigationContentDrawerActivityInterceptorImpl<TFragment extends Fr
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerClosed(drawerView);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerOpened(drawerView);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerOpened(drawerView);
             }
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerSlide(drawerView, slideOffset);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerSlide(drawerView, slideOffset);
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-                NavigationContentDrawerActivityInterceptorImpl.this.onDrawerStateChanged(newState);
+                NavigationContentDrawerActivityInterceptor.this.onDrawerStateChanged(newState);
             }
         };
     }

@@ -13,13 +13,13 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by agomez on 21/05/2015.
  */
-public class ToolbarActivityInterceptorImpl extends ActivityInterceptor<ToolbarInterceptorCallback> implements ToolbarInterceptor {
+public class ToolbarActivityInterceptor extends ActivityInterceptor<ToolbarInterceptorCallback> implements ToolbarInterceptor {
 
-    public ToolbarActivityInterceptorImpl(@NonNull Activity activity) {
+    public ToolbarActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public ToolbarActivityInterceptorImpl(@NonNull Activity activity, @NonNull ToolbarInterceptorCallback callback) {
+    public ToolbarActivityInterceptor(@NonNull Activity activity, @NonNull ToolbarInterceptorCallback callback) {
         super(activity, callback);
     }
 

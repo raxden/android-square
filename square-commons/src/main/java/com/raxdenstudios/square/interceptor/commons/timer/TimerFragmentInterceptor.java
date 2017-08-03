@@ -10,7 +10,7 @@ import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 /**
  * Created by agomez on 11/05/2105.
  */
-public class TimerFragmentInterceptorImpl extends FragmentInterceptor<TimerInterceptorCallback> implements TimerInterceptor {
+public class TimerFragmentInterceptor extends FragmentInterceptor<TimerInterceptorCallback> implements TimerInterceptor {
 
     private final static int DEFAULT_TIME_MS = 3000;
 
@@ -32,12 +32,12 @@ public class TimerFragmentInterceptorImpl extends FragmentInterceptor<TimerInter
         }
     };
 
-    public TimerFragmentInterceptorImpl(@NonNull Fragment fragment) {
+    public TimerFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);
         init();
     }
 
-    public TimerFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull TimerInterceptorCallback callback) {
+    public TimerFragmentInterceptor(@NonNull Fragment fragment, @NonNull TimerInterceptorCallback callback) {
         super(fragment, callback);
         init();
     }

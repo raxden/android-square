@@ -12,13 +12,13 @@ import com.raxdenstudios.square.utils.FragmentUtils;
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
-public class InjectFragmentListActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<InjectFragmentListInterceptorCallback<TFragment>> implements InjectFragmentListInterceptor {
+public class InjectFragmentListActivityInterceptor<TFragment extends Fragment> extends ActivityInterceptor<InjectFragmentListInterceptorCallback<TFragment>> implements InjectFragmentListInterceptor {
 
-    public InjectFragmentListActivityInterceptorImpl(@NonNull Activity activity) {
+    public InjectFragmentListActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public InjectFragmentListActivityInterceptorImpl(@NonNull Activity activity, @NonNull InjectFragmentListInterceptorCallback<TFragment> callback) {
+    public InjectFragmentListActivityInterceptor(@NonNull Activity activity, @NonNull InjectFragmentListInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }
 

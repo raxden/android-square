@@ -13,16 +13,16 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by Ángel Gómez on 20/12/2016.
  */
-public class FragmentStatePagerActivityInterceptorImpl<TFragment extends Fragment> extends ActivityInterceptor<FragmentStatePagerInterceptorCallback<TFragment>> implements FragmentStatePagerInterceptor<TFragment> {
+public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> extends ActivityInterceptor<FragmentStatePagerInterceptorCallback<TFragment>> implements FragmentStatePagerInterceptor<TFragment> {
 
     private ViewPager mViewPager;
     private FragmentStatePagerInterceptorAdapter mAdapter;
 
-    public FragmentStatePagerActivityInterceptorImpl(@NonNull Activity activity) {
+    public FragmentStatePagerActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public FragmentStatePagerActivityInterceptorImpl(@NonNull Activity activity, @NonNull FragmentStatePagerInterceptorCallback callback) {
+    public FragmentStatePagerActivityInterceptor(@NonNull Activity activity, @NonNull FragmentStatePagerInterceptorCallback callback) {
         super(activity, callback);
     }
 

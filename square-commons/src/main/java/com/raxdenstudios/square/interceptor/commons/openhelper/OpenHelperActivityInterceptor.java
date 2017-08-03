@@ -10,15 +10,15 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by agomez on 08/05/2015.
  */
-public class OpenHelperActivityInterceptorImpl<T extends SQLiteOpenHelper> extends ActivityInterceptor<OpenHelperInterceptorCallback<T>> implements OpenHelperInterceptor {
+public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper> extends ActivityInterceptor<OpenHelperInterceptorCallback<T>> implements OpenHelperInterceptor {
 
     private SQLiteOpenHelper mOpenHelper;
 
-    public OpenHelperActivityInterceptorImpl(@NonNull Activity activity) {
+    public OpenHelperActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public OpenHelperActivityInterceptorImpl(@NonNull Activity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
+    public OpenHelperActivityInterceptor(@NonNull Activity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
         super(activity, callback);
     }
 

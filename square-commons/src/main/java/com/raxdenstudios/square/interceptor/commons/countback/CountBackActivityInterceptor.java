@@ -11,7 +11,7 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by Ángel Gómez on 06/05/2015.
  */
-public class CountBackActivityInterceptorImpl extends ActivityInterceptor<CountBackInterceptorCallback> implements CountBackInterceptor {
+public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackInterceptorCallback> implements CountBackInterceptor {
 
     private static final int DEFAULT_NUM_COUNT_BACK = 1;
 
@@ -28,12 +28,12 @@ public class CountBackActivityInterceptorImpl extends ActivityInterceptor<CountB
         }
     };
 
-    public CountBackActivityInterceptorImpl(@NonNull Activity activity) {
+    public CountBackActivityInterceptor(@NonNull Activity activity) {
         super(activity);
         init();
     }
 
-    public CountBackActivityInterceptorImpl(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
+    public CountBackActivityInterceptor(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
         super(activity, callback);
         init();
     }

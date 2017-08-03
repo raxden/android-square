@@ -18,7 +18,7 @@ import com.raxdenstudios.square.utils.NetworkUtils;
  *
  * Created by agomez on 08/05/2015.
  */
-public class NetworkActivityInterceptorImpl extends ActivityInterceptor<NetworkInterceptorCallback> implements NetworkInterceptor {
+public class NetworkActivityInterceptor extends ActivityInterceptor<NetworkInterceptorCallback> implements NetworkInterceptor {
 
     private BroadcastReceiver mNetworkReceiver = new BroadcastReceiver() {
 
@@ -31,11 +31,11 @@ public class NetworkActivityInterceptorImpl extends ActivityInterceptor<NetworkI
         }
     };
 
-    public NetworkActivityInterceptorImpl(@NonNull Activity activity) {
+    public NetworkActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public NetworkActivityInterceptorImpl(@NonNull Activity activity, @NonNull NetworkInterceptorCallback callback) {
+    public NetworkActivityInterceptor(@NonNull Activity activity, @NonNull NetworkInterceptorCallback callback) {
         super(activity, callback);
     }
 

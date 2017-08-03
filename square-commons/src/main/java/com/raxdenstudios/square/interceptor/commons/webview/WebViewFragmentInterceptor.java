@@ -20,17 +20,17 @@ import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewFragmentInterceptorImpl extends FragmentInterceptor<WebViewInterceptorCallback> implements WebViewInterceptor {
+public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInterceptorCallback> implements WebViewInterceptor {
 
     private ViewGroup mContainer;
     private WebView mWebView;
     private boolean mPageFinished;
 
-    public WebViewFragmentInterceptorImpl(@NonNull Fragment fragment) {
+    public WebViewFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);
     }
 
-    public WebViewFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {
+    public WebViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {
         super(fragment, callback);
     }
 
@@ -112,7 +112,7 @@ public class WebViewFragmentInterceptorImpl extends FragmentInterceptor<WebViewI
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            WebViewFragmentInterceptorImpl.this.onProgressChanged(view, newProgress);
+            WebViewFragmentInterceptor.this.onProgressChanged(view, newProgress);
         }
     };
 
@@ -128,7 +128,7 @@ public class WebViewFragmentInterceptorImpl extends FragmentInterceptor<WebViewI
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             mPageFinished = true;
-            WebViewFragmentInterceptorImpl.this.onPageFinished(view, url);
+            WebViewFragmentInterceptor.this.onPageFinished(view, url);
         }
 
         @Override

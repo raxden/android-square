@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.raxdenstudios.square.SquareActivity;
 import com.raxdenstudios.square.interceptor.Interceptor;
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptorImpl;
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
 
@@ -20,7 +20,7 @@ public class SampleActivity extends SquareActivity implements AutoInflateLayoutI
 
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
-        AutoInflateLayoutInterceptor autoInflateLayoutInterceptor = new AutoInflateLayoutActivityInterceptorImpl(this, this);
+        AutoInflateLayoutInterceptor autoInflateLayoutInterceptor = new AutoInflateLayoutActivityInterceptor(this, this);
 
         interceptorList.add(autoInflateLayoutInterceptor);
     }

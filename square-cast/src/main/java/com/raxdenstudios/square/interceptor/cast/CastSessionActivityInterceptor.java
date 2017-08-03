@@ -14,17 +14,17 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
  * Created by Raxden on 13/12/2016.
  */
 
-public class CastSessionActivityInterceptorImpl extends ActivityInterceptor<CastSessionInterceptorCallback> implements CastSessionInterceptor {
+public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSessionInterceptorCallback> implements CastSessionInterceptor {
 
     private CastContext mCastContext;
     private CastSession mCastSession;
     private SessionManagerListener<CastSession> mSessionManagerListener;
 
-    public CastSessionActivityInterceptorImpl(@NonNull Activity activity) {
+    public CastSessionActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public CastSessionActivityInterceptorImpl(@NonNull Activity activity, @NonNull CastSessionInterceptorCallback callback) {
+    public CastSessionActivityInterceptor(@NonNull Activity activity, @NonNull CastSessionInterceptorCallback callback) {
         super(activity, callback);
     }
 

@@ -12,15 +12,15 @@ import java.util.List;
  * Created by Ángel Gómez on 17/06/2017.
  */
 
-public class FragmentRefreshActivityInterceptorImpl extends ActivityInterceptor<FragmentRefreshInterceptorCallback> implements FragmentRefreshInterceptor {
+public class FragmentRefreshActivityInterceptor extends ActivityInterceptor<FragmentRefreshInterceptorCallback> implements FragmentRefreshInterceptor {
 
     private List<OnFragmentRefreshListener> mOnRefreshListeners;
 
-    public FragmentRefreshActivityInterceptorImpl(@NonNull Activity activity) {
+    public FragmentRefreshActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public FragmentRefreshActivityInterceptorImpl(@NonNull Activity activity, @NonNull FragmentRefreshInterceptorCallback callback) {
+    public FragmentRefreshActivityInterceptor(@NonNull Activity activity, @NonNull FragmentRefreshInterceptorCallback callback) {
         super(activity, callback);
     }
 

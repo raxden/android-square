@@ -13,15 +13,15 @@ import java.util.Calendar;
 /**
  * Created by agomez on 06/05/2015.
  */
-public class RaterActivityInterceptorImpl extends ActivityInterceptor<RaterInterceptorCallback> implements RaterInterceptor, RaterManager.AppRaterCallbacks {
+public class RaterActivityInterceptor extends ActivityInterceptor<RaterInterceptorCallback> implements RaterInterceptor, RaterManager.AppRaterCallbacks {
 
     private RaterManager mRaterManager;
 
-    public RaterActivityInterceptorImpl(@NonNull Activity activity) {
+    public RaterActivityInterceptor(@NonNull Activity activity) {
         super(activity);
     }
 
-    public RaterActivityInterceptorImpl(@NonNull Activity activity, @NonNull RaterInterceptorCallback callback) {
+    public RaterActivityInterceptor(@NonNull Activity activity, @NonNull RaterInterceptorCallback callback) {
         super(activity, callback);
     }
 

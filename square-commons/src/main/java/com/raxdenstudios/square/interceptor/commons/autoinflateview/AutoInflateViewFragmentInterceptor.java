@@ -16,15 +16,15 @@ import java.util.Locale;
 /**
  * Created by agomez on 02/06/2015.
  */
-public class AutoInflateViewFragmentInterceptorImpl extends FragmentInterceptor<AutoInflateViewInterceptorCallback> implements AutoInflateViewInterceptor {
+public class AutoInflateViewFragmentInterceptor extends FragmentInterceptor<AutoInflateViewInterceptorCallback> implements AutoInflateViewInterceptor {
 
     private int mLayoutId;
 
-    public AutoInflateViewFragmentInterceptorImpl(@NonNull Fragment fragment) {
+    public AutoInflateViewFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);
     }
 
-    public AutoInflateViewFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull AutoInflateViewInterceptorCallback callback) {
+    public AutoInflateViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull AutoInflateViewInterceptorCallback callback) {
         super(fragment, callback);
     }
 

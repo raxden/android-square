@@ -13,16 +13,16 @@ import io.reactivex.disposables.Disposable;
  * Created by Ángel Gómez on 29/12/2016.
  */
 
-public class CompositeDisposableFragmentInterceptorImpl extends FragmentInterceptor<CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
+public class CompositeDisposableFragmentInterceptor extends FragmentInterceptor<CompositeDisposableInterceptorCallback> implements CompositeDisposableInterceptor {
 
     private CompositeDisposable mCompositeDisposable;
 
-    public CompositeDisposableFragmentInterceptorImpl(@NonNull Fragment fragment) {
+    public CompositeDisposableFragmentInterceptor(@NonNull Fragment fragment) {
         super(fragment);
         mCompositeDisposable = new CompositeDisposable();
     }
 
-    public CompositeDisposableFragmentInterceptorImpl(@NonNull Fragment fragment, @NonNull CompositeDisposableInterceptorCallback callback) {
+    public CompositeDisposableFragmentInterceptor(@NonNull Fragment fragment, @NonNull CompositeDisposableInterceptorCallback callback) {
         super(fragment, callback);
         mCompositeDisposable = new CompositeDisposable();
     }
