@@ -106,6 +106,15 @@ public class NavigationDrawerActivityInterceptor extends ActivityInterceptor<Nav
     }
 
     @Override
+    public void toggleDrawer() {
+        if (isOpenDrawer()) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+
+    @Override
     public void openDrawer() {
         mActivity.runOnUiThread(new Runnable() {
             @Override

@@ -8,6 +8,8 @@ import com.raxdenstudios.square.interceptor.Interceptor;
 
 public interface NavigationDrawerInterceptor extends Interceptor {
 
+    void toggleDrawer();
+
     void openDrawer();
 
     void closeDrawer();
