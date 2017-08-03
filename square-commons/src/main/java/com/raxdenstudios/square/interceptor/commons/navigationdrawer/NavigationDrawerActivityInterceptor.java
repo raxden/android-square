@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.interceptor.commons.navigationdrawer;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,7 +18,7 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 /**
  * Created by agomez on 21/05/2015.
  */
-public class NavigationDrawerActivityInterceptor<TFragment extends Fragment> extends ActivityInterceptor<NavigationDrawerInterceptorCallback> implements NavigationDrawerInterceptor {
+public class NavigationDrawerActivityInterceptor extends ActivityInterceptor<NavigationDrawerInterceptorCallback> implements NavigationDrawerInterceptor {
 
     private View mContentDrawerView;
     private DrawerLayout mDrawerLayout;
@@ -93,8 +92,8 @@ public class NavigationDrawerActivityInterceptor<TFragment extends Fragment> ext
 
     @Override
     public boolean onBackPressed() {
-        if (isOpen()) {
-            close();
+        if (isOpenDrawer()) {
+            closeDrawer();
             return true;
         }
         return false;
@@ -106,7 +105,20 @@ public class NavigationDrawerActivityInterceptor<TFragment extends Fragment> ext
         mCallback = null;
     }
 
-    private void close() {
+    @Override
+    public void openDrawer() {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mDrawerLayout != null && mContentDrawerView != null) {
+                    mDrawerLayout.openDrawer(mContentDrawerView);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void closeDrawer() {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -117,7 +129,8 @@ public class NavigationDrawerActivityInterceptor<TFragment extends Fragment> ext
         });
     }
 
-    private boolean isOpen() {
+    @Override
+    public boolean isOpenDrawer() {
         if (mDrawerLayout != null && mContentDrawerView != null) {
             return mDrawerLayout.isDrawerOpen(mContentDrawerView);
         }
