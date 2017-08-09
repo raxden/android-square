@@ -3,6 +3,7 @@ package com.raxdenstudios.square;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 
 import com.raxdenstudios.mvp.MVPActivity;
@@ -30,6 +31,12 @@ public abstract class SquareMVPActivity<TPresenter extends IPresenter>
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getInterceptorManager().onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        getInterceptorManager().onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

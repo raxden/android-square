@@ -27,6 +27,13 @@ public class ActivityInterceptorManager extends InterceptorManager<Activity, Act
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        for (ActivityInterceptor interceptor : interceptors) {
+            interceptor.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
     public void onNewIntent(Intent intent) {
         for (ActivityInterceptor interceptor : interceptors) {
             interceptor.onNewIntent(intent);
