@@ -28,6 +28,11 @@ public abstract class ActivityInterceptor<TCallback extends InterceptorCallback>
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
 
     }
