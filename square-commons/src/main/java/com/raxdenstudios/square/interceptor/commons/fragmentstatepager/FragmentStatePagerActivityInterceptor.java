@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
@@ -110,9 +111,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
         @Override
         public TFragment getItem(int position) {
-            TFragment fragment = mCallback.onCreateFragment(position);
-            mCallback.onFragmentLoaded(fragment, position);
-            return fragment;
+            return mCallback.onCreateFragment(position);
         }
 
         @Override
@@ -120,6 +119,12 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
             return mCallback.getViewPagerElements();
         }
 
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            TFragment fragment = (TFragment) super.instantiateItem(container, position);
+            mCallback.onFragmentLoaded(fragment, position);
+            return fragment;
+        }
 
         public TFragment getFragment(int position) {
             return (TFragment) instantiateItem(mViewPager, position);
@@ -136,7 +141,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
         @Override
         public void onPageSelected(int position) {
             TFragment fragment = mAdapter.getFragment(position);
-            mCallback.onFragmentLoaded(fragment, position);
+            mCallback.onFragmentSelected(fragment, position);
         }
 
         @Override
