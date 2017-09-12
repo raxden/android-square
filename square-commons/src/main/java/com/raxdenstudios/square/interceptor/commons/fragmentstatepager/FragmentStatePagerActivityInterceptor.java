@@ -34,7 +34,16 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
         if (mViewPager != null) {
             mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getFragmentManager());
             mViewPager.setAdapter(mAdapter);
+            mViewPager.addOnPageChangeListener(onPageChangeListener);
             mCallback.onViewPagerCreated(mViewPager);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mViewPager != null) {
+            mViewPager.removeOnPageChangeListener(onPageChangeListener);
         }
     }
 
@@ -101,7 +110,9 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
         @Override
         public TFragment getItem(int position) {
-            return mCallback.onCreateFragment(position);
+            TFragment fragment = mCallback.onCreateFragment(position);
+            mCallback.onFragmentLoaded(fragment, position);
+            return fragment;
         }
 
         @Override
@@ -109,9 +120,29 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
             return mCallback.getViewPagerElements();
         }
 
+
         public TFragment getFragment(int position) {
             return (TFragment) instantiateItem(mViewPager, position);
         }
 
     }
+
+    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            TFragment fragment = mAdapter.getFragment(position);
+            mCallback.onFragmentLoaded(fragment, position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
 }
