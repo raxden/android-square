@@ -100,7 +100,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
     @Override
     public boolean isLastPage() {
-        return getCurrentPosition() == getNumPages() - 1;
+        return getCurrentPosition() == getNumPages();
     }
 
     private class FragmentStatePagerInterceptorAdapter extends FragmentStatePagerAdapter {
