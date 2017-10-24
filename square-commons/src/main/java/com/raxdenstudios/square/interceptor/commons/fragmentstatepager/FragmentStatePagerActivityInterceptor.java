@@ -60,7 +60,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
     @Override
     public int getNumPages() {
-        return mViewPager.getChildCount();
+        return mAdapter.getCount();
     }
 
     @Override
