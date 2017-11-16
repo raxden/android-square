@@ -24,7 +24,7 @@ ext {
     deps = [
             square: [
                     implementation : [
-
+                            "com.github.raxden:android-mvp:${androidMVPVersion}"
                     ],
                     api: [
 
@@ -34,8 +34,7 @@ ext {
                     ],
                     compileOnly : [
                             "com.android.support:multidex:${multidexVersion}",
-                            "com.android.support:design:${supportLibraryVersion}",
-                            "com.github.raxden:android-mvp:${androidMVPVersion}"
+                            "com.android.support:design:${supportLibraryVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
