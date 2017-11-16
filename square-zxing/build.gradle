@@ -16,8 +16,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':square')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':square')
 
     implementation deps.square_zxing.implementation
     api deps.square_zxing.api
