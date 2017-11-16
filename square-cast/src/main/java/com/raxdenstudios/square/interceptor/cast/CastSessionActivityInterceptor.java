@@ -3,7 +3,6 @@ package com.raxdenstudios.square.interceptor.cast;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
@@ -33,7 +32,7 @@ public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSess
         super.onCreate(savedInstanceState);
         setupCastListener();
         mCastContext = CastContext.getSharedInstance(mActivity);
-        mCastContext.registerLifecycleCallbacksBeforeIceCreamSandwich((FragmentActivity)mActivity, savedInstanceState);
+//        mCastContext.registerLifecycleCallbacksBeforeIceCreamSandwich((FragmentActivity)mActivity, savedInstanceState);
         mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
         if (mCastSession != null) {
             mCallback.onCastConnected(mCastSession);

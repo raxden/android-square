@@ -24,7 +24,7 @@ ext {
     deps = [
             square: [
                     implementation : [
-                            "com.github.raxden:android-mvp:${androidMVPVersion}"
+
                     ],
                     api: [
 
@@ -34,7 +34,10 @@ ext {
                     ],
                     compileOnly : [
                             "com.android.support:multidex:${multidexVersion}",
-                            "com.android.support:design:${supportLibraryVersion}"
+                            "com.android.support:support-v13:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+                            "com.github.raxden:android-mvp:${androidMVPVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -55,7 +58,9 @@ ext {
 
                     ],
                     compileOnly : [
-
+                            "com.android.support:support-v13:${supportLibraryVersion}",
+                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.github.raxden:android-mvp:${androidMVPVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -70,13 +75,15 @@ ext {
 
                     ],
                     api: [
-                            "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
+
                     ],
                     annotationProcessor : [
 
                     ],
                     compileOnly : [
-
+                            "com.android.support:support-v13:${supportLibraryVersion}",
+                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -97,7 +104,7 @@ ext {
 
                     ],
                     compileOnly : [
-
+                            "com.android.support:support-v13:${supportLibraryVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -118,6 +125,7 @@ ext {
 
                     ],
                     compileOnly : [
+                            "com.android.support:support-v13:${supportLibraryVersion}",
                             "com.github.raxden:android-mvp:${androidMVPVersion}",
                             "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
                             "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
@@ -141,7 +149,7 @@ ext {
 
                     ],
                     compileOnly : [
-
+                            "com.android.support:support-v13:${supportLibraryVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -162,7 +170,7 @@ ext {
 
                     ],
                     compileOnly : [
-
+                            "com.android.support:support-v13:${supportLibraryVersion}"
                     ],
                     testImplementation : [
                             "junit:junit:${junitVersion}"
@@ -175,8 +183,11 @@ ext {
             sample: [
                     implementation: [
                             "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.android.support:support-v13:${supportLibraryVersion}",
                             "com.android.support:design:${supportLibraryVersion}",
-                            "com.google.android.gms:play-services-maps:${servicesVersion}"
+                            "com.google.android.gms:play-services-maps:${servicesVersion}",
+
+                            "com.github.raxden:android-mvp:${androidMVPVersion}"
                     ],
                     api: [
 

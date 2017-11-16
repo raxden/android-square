@@ -35,4 +35,10 @@ dependencies {
     implementation project(':square-shakedetector')
     implementation project(':square-zxing')
 
+    implementation deps.sample.implementation
+    api deps.sample.api
+    annotationProcessor deps.sample.annotationProcessor
+    compileOnly deps.sample.compileOnly
+    testImplementation deps.sample.testImplementation
+    androidTestImplementation deps.sample.androidTestImplementation
 }
