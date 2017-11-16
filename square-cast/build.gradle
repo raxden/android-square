@@ -16,10 +16,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':square')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':square')
 
-    compile castDependencies.compile
+    implementation deps.square_cast.implementation
+    api deps.square_cast.api
+    annotationProcessor deps.square_cast.annotationProcessor
+    compileOnly deps.square_cast.compileOnly
+    testImplementation deps.square_cast.testImplementation
+    androidTestImplementation deps.square_cast.androidTestImplementation
 }
 
 apply from: 'build_javadoc.gradle'

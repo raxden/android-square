@@ -2,12 +2,12 @@
 ext {
 
     // Android dependencies
-    supportLibraryVersion = '25.4.0'
-    servicesVersion = '11.0.2'
+    supportLibraryVersion = '26.1.0'
+    servicesVersion = '11.4.2'
     multidexVersion = '1.0.1'
 
     // Raxden libraries
-    androidMVPVersion = '3.0.11@aar'         // https://github.com/raxden/android-mvp
+    androidMVPVersion = '3.0.15@aar'        // https://github.com/raxden/android-mvp
     androidRaterVersion = '3.0.4@aar'       // https://github.com/raxden/AndroidRater
     androidShakeVersion = '3.0.1@aar'       // https://github.com/raxden/AndroidShakeDetector
 
@@ -17,131 +17,185 @@ ext {
     zxingVersion = '1.8.3'
 
     // Testing
-    jUnitVersion = '4.12'
-    assertJVersion = '1.7.0'
-    robolectricVersion = '3.0'
-    mockitoVersion = '1.10.19'
+    junitVersion = '4.12'
+    runnerVersion = '1.0.1'
+    espressoVersion = '3.0.1'
 
-    squareDependencies = [
-            compile    : [
-                    "com.android.support:multidex:${multidexVersion}",
-                    "com.android.support:support-v13:${supportLibraryVersion}",
-                    "com.android.support:appcompat-v7:${supportLibraryVersion}",
-                    "com.android.support:design:${supportLibraryVersion}",
-//                    "com.google.android.gms:play-services-maps:${servicesVersion}",
+    deps = [
+            square: [
+                    implementation : [
 
-                    "com.google.android.gms:play-services-base:${servicesVersion}",
-                    "com.google.android.gms:play-services-analytics:${servicesVersion}",
-                    "com.google.android.gms:play-services-maps:${servicesVersion}",
+                    ],
+                    api: [
 
-                    "com.google.firebase:firebase-core:${servicesVersion}",
-                    "com.google.firebase:firebase-messaging:${servicesVersion}",
+                    ],
+                    annotationProcessor : [
 
-                    "com.github.raxden:android-mvp:${androidMVPVersion}"
+                    ],
+                    compileOnly : [
+                            "com.android.support:multidex:${multidexVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+                            "com.github.raxden:android-mvp:${androidMVPVersion}"
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
             ],
-            transitive : [
+            square_commons: [
+                    implementation: [
 
+                    ],
+                    api: [
+
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
             ],
-            apt        : [
+            square_cast: [
+                    implementation: [
 
+                    ],
+                    api: [
+                            "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
             ],
-            provided   : [
+            square_rater: [
+                    implementation: [
 
+                    ],
+                    api: [
+                            "com.github.raxden:AndroidRater:${androidRaterVersion}"
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
             ],
-            testCompile: [
+            square_reactive: [
+                    implementation: [
 
+                    ],
+                    api: [
+
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+                            "com.github.raxden:android-mvp:${androidMVPVersion}",
+                            "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
+                            "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
+            ],
+            square_shakedetector: [
+                    implementation: [
+
+                    ],
+                    api: [
+                            "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}"
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
+            ],
+            square_zxing: [
+                    implementation: [
+
+                    ],
+                    api: [
+                            "me.dm7.barcodescanner:zxing:${zxingVersion}"
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
+            ],
+            sample: [
+                    implementation: [
+                            "com.android.support:appcompat-v7:${supportLibraryVersion}",
+                            "com.android.support:design:${supportLibraryVersion}",
+                            "com.google.android.gms:play-services-maps:${servicesVersion}"
+                    ],
+                    api: [
+
+                    ],
+                    annotationProcessor : [
+
+                    ],
+                    compileOnly : [
+
+                    ],
+                    testImplementation : [
+                            "junit:junit:${junitVersion}"
+                    ],
+                    androidTestImplementation : [
+                            "com.android.support.test:runner:${runnerVersion}",
+                            "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+                    ]
             ]
     ]
 
-    castDependencies = [
-            compile    : [
-                    "com.google.android.gms:play-services-cast-framework:${servicesVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
-
-    raterDependencies = [
-            compile    : [
-                    "com.github.raxden:AndroidRater:${androidRaterVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
-
-    reactiveDependencies = [
-            compile    : [
-                    "com.github.raxden:android-mvp:${androidMVPVersion}",
-                    "io.reactivex.rxjava2:rxandroid:${reactiveAndroidVersion}",
-                    "io.reactivex.rxjava2:rxjava:${reactiveJavaVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
-
-    shakedetectorDependencies = [
-            compile    : [
-                    "com.github.raxden:AndroidShakeDetector:${androidShakeVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
-
-    zxingDependencies = [
-            compile    : [
-                    "me.dm7.barcodescanner:zxing:${zxingVersion}"
-            ],
-            transitive : [
-
-            ],
-            apt        : [
-
-            ],
-            provided   : [
-
-            ],
-            testCompile: [
-
-            ]
-    ]
 }

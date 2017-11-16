@@ -16,10 +16,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':square')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':square')
 
-    compile raterDependencies.compile
+    implementation deps.square_rater.implementation
+    api deps.square_rater.api
+    annotationProcessor deps.square_rater.annotationProcessor
+    compileOnly deps.square_rater.compileOnly
+    testImplementation deps.square_rater.testImplementation
+    androidTestImplementation deps.square_rater.androidTestImplementation
 }
 
 apply from: 'build_javadoc.gradle'

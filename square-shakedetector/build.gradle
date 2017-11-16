@@ -16,10 +16,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':square')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':square')
 
-    compile shakedetectorDependencies.compile
+    implementation deps.square_shakedetector.implementation
+    api deps.square_shakedetector.api
+    annotationProcessor deps.square_shakedetector.annotationProcessor
+    compileOnly deps.square_shakedetector.compileOnly
+    testImplementation deps.square_shakedetector.testImplementation
+    androidTestImplementation deps.square_shakedetector.androidTestImplementation
 }
 
 apply from: 'build_javadoc.gradle'

@@ -16,10 +16,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':square')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':square')
 
-    compile reactiveDependencies.compile
+    implementation deps.square_reactive.implementation
+    api deps.square_reactive.api
+    annotationProcessor deps.square_reactive.annotationProcessor
+    compileOnly deps.square_reactive.compileOnly
+    testImplementation deps.square_reactive.testImplementation
+    androidTestImplementation deps.square_reactive.androidTestImplementation
 }
 
 apply from: 'build_javadoc.gradle'

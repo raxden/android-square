@@ -16,9 +16,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
+    implementation fileTree(include: '*.jar', dir: 'libs')
 
-    compile squareDependencies.compile
+    implementation deps.square.implementation
+    api deps.square.api
+    annotationProcessor deps.square.annotationProcessor
+    compileOnly deps.square.compileOnly
+    testImplementation deps.square.testImplementation
+    androidTestImplementation deps.square.androidTestImplementation
 }
 
 apply from: '../buildSystem/commons.gradle'

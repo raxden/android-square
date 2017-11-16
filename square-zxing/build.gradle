@@ -19,7 +19,12 @@ dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':square')
 
-    compile zxingDependencies.compile
+    implementation deps.square_zxing.implementation
+    api deps.square_zxing.api
+    annotationProcessor deps.square_zxing.annotationProcessor
+    compileOnly deps.square_zxing.compileOnly
+    testImplementation deps.square_zxing.testImplementation
+    androidTestImplementation deps.square_zxing.androidTestImplementation
 }
 
 apply from: 'build_javadoc.gradle'
