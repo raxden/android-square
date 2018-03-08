@@ -14,6 +14,8 @@ public interface ActivityLifecycle {
 
     void onSaveInstanceState(Bundle outState);
 
+    void onRestoreInstanceState(Bundle savedInstanceState);
+
     void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults);
 
     void onNewIntent(Intent intent);

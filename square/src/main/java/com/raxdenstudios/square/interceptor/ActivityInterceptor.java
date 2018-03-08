@@ -38,6 +38,11 @@ public abstract class ActivityInterceptor<TCallback extends InterceptorCallback>
     }
 
     @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onNewIntent(Intent intent) {
 
     }
