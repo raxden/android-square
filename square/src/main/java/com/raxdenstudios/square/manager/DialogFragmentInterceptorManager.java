@@ -34,6 +34,13 @@ public class DialogFragmentInterceptorManager extends InterceptorManager<DialogF
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        for (DialogFragmentInterceptor interceptor : interceptors) {
+            interceptor.onViewStateRestored(savedInstanceState);
+        }
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         for (DialogFragmentInterceptor interceptor : interceptors) {
             interceptor.onAttach(activity);

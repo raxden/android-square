@@ -39,6 +39,11 @@ public abstract class DialogFragmentInterceptor<TCallback extends InterceptorCal
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onAttach(Activity activity) {
 
     }

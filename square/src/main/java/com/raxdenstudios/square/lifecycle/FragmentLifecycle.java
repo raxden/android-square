@@ -18,6 +18,8 @@ public interface FragmentLifecycle {
 
     void onSaveInstanceState(Bundle outState);
 
+    void onViewStateRestored(Bundle savedInstanceState);
+
     void onAttach(Activity activity);
 
     void onAttach(Context context);

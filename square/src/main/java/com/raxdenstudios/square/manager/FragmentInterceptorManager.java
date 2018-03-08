@@ -32,6 +32,13 @@ public class FragmentInterceptorManager extends InterceptorManager<Fragment, Fra
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        for (FragmentInterceptor interceptor : interceptors) {
+            interceptor.onViewStateRestored(savedInstanceState);
+        }
+    }
+
+    @Override
     public void onAttach(Activity activity) {
         for (FragmentInterceptor interceptor : interceptors) {
             interceptor.onAttach(activity);

@@ -37,6 +37,11 @@ public abstract class FragmentInterceptor<TCallback extends InterceptorCallback>
     }
 
     @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onAttach(Activity activity) {
 
     }
