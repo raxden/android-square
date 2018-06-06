@@ -3,7 +3,7 @@ Android Square
 
 Framework for Android that lets you add useful features to your activities or fragments via interfaces. Works on Android 4.1 (API level 16) and upwards.
 
-[![Release](https://img.shields.io/github/release/raxden/AndroidSquare.svg?label=maven central)](https://jitpack.io/#raxden/AndroidSquare/) [![API](https://img.shields.io/badge/API-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16)
+[![Release](https://img.shields.io/github/release/raxden/square.svg?label=maven central)](https://jitpack.io/#raxden/AndroidSquare/) [![API](https://img.shields.io/badge/API-16%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
 ## Usage
 
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	    compile 'com.github.raxden:AndroidSquare:3.0.83@aar'
+	    compile 'com.github.raxden:AndroidSquare:3.0.86@aar'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
 <dependency>
 	    <groupId>com.github.raxden</groupId>
 	    <artifactId>AndroidSquare</artifactId>
-	    <version>3.0.83</version>
+	    <version>3.0.86</version>
 </dependency>
 ```
 
@@ -43,7 +43,7 @@ dependencies {
 
 ### Documentation 
 
-For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/3.0.83/javadoc/).
+For a **detailed documentation**, please have a look at the [**Wiki**](https://github.com/raxden/AndroidSquare/wiki) or the [**Javadocs**](https://jitpack.io/com/github/raxden/AndroidSquare/3.0.86/javadoc/).
 
 ## LICENSE
 
