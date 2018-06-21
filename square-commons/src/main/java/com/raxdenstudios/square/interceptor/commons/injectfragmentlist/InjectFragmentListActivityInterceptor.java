@@ -10,6 +10,7 @@ import android.view.View;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.utils.FragmentUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,9 +53,20 @@ public class InjectFragmentListActivityInterceptor<TFragment extends Fragment> e
                 contentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), contentView.getId());
             }
             mCallback.onFragmentLoaded(contentFragment, i);
-            mFragmentList.add(contentFragment);
+            addFragment(contentFragment);
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mFragmentList.clear();
+        mFragmentList = null;
+    }
+
+    private void addFragment(TFragment fragment) {
+        if (mFragmentList == null) mFragmentList = new ArrayList<>();
+        mFragmentList.add(fragment);
+    }
 
 }

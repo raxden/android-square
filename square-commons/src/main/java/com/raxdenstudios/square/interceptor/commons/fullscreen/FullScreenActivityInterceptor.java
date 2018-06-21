@@ -5,19 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.WindowManager;
 
-import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
 
 /**
  * Created by Ángel Gómez on 26/12/2016.
  */
-public class FullScreenActivityInterceptor extends ActivityInterceptor<FullScreenInterceptorCallback> implements FullScreenInterceptor {
+public class FullScreenActivityInterceptor extends ActivitySimpleInterceptor implements FullScreenInterceptor {
 
     public FullScreenActivityInterceptor(@NonNull Activity activity) {
         super(activity);
-    }
-
-    public FullScreenActivityInterceptor(@NonNull Activity activity, @NonNull FullScreenInterceptorCallback callback) {
-        super(activity, callback);
     }
 
     @Override
