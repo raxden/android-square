@@ -7,7 +7,7 @@ import android.app.DialogFragment;
  *
  * This abstract class defines the basis of an DialogFragment interceptor.
  */
-public abstract class DialogFragmentSimpleInterceptor extends BaseInterceptor<InterceptorCallback> {
+public abstract class DialogFragmentSimpleInterceptor extends DialogFragmentInterceptor<InterceptorCallback> {
 
     public DialogFragmentSimpleInterceptor(DialogFragment dialogFragment) {
         super(dialogFragment);
