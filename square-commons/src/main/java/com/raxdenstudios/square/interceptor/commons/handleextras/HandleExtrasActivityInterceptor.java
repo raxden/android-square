@@ -23,7 +23,7 @@ public class HandleExtrasActivityInterceptor extends ActivityInterceptor<HandleE
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle extras = mActivity.getIntent() != null ? mActivity.getIntent().getExtras() : new Bundle();
+        Bundle extras = mActivity.getIntent() != null && mActivity.getIntent().getExtras() != null ? mActivity.getIntent().getExtras() : new Bundle();
         if (mCallback != null) {
             mCallback.onHandleExtras(savedInstanceState, extras);
         }
