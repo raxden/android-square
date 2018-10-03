@@ -1,6 +1,6 @@
 package com.raxdenstudios.square.interceptor.commons.webview;
 
-import android.app.Fragment;
+import android.app.DialogFragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,22 +13,22 @@ import android.webkit.WebViewClient;
 import android.widget.ScrollView;
 
 import com.raxdenstudios.square.R;
-import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 
 /**
  * Created by agomez on 16/07/2015.
  */
-public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInterceptorCallback> implements WebViewInterceptor {
+public class WebViewFragmentDialogInterceptor extends DialogFragmentInterceptor<WebViewInterceptorCallback> implements WebViewInterceptor {
 
     private ViewGroup mContainer;
     private WebView mWebView;
     private boolean mPageFinished;
 
-    public WebViewFragmentInterceptor(@NonNull Fragment fragment) {
+    public WebViewFragmentDialogInterceptor(@NonNull DialogFragment fragment) {
         super(fragment);
     }
 
-    public WebViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {
+    public WebViewFragmentDialogInterceptor(@NonNull DialogFragment fragment, @NonNull WebViewInterceptorCallback callback) {
         super(fragment, callback);
     }
 
@@ -103,7 +103,7 @@ public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInter
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            WebViewFragmentInterceptor.this.onProgressChanged(view, newProgress);
+            WebViewFragmentDialogInterceptor.this.onProgressChanged(view, newProgress);
         }
     };
 
@@ -119,7 +119,7 @@ public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInter
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             mPageFinished = true;
-            WebViewFragmentInterceptor.this.onPageFinished(view, url);
+            WebViewFragmentDialogInterceptor.this.onPageFinished(view, url);
         }
 
         @Override
