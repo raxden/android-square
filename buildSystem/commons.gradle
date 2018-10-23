@@ -44,7 +44,7 @@ task uploadRelease {
 
 void increaseBuildVersion() {
     println(":increaseBuildVersion - Incrementing build version...")
-    def gradlePropsFile = file('../gradle.properties')
+    def gradlePropsFile = file('gradle.properties')
     if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
         Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
@@ -67,7 +67,7 @@ void increaseBuildVersion() {
 
 String getVersionName() {
     def versionName
-    def gradlePropsFile = file('../gradle.properties')
+    def gradlePropsFile = file('gradle.properties')
     if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
         Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
@@ -78,11 +78,11 @@ String getVersionName() {
 
 void updateReadmeFile(version) {
     println(":updateReadmeFile - Updating readme file...")
-    def readmeFile = file('../README.md')
+    def readmeFile = file('README.md')
     if (readmeFile.exists()) {
         readmeFile.delete()
     }
-    def readmeTemplateFile = file('../README.template')
+    def readmeTemplateFile = file('README.template')
     if (readmeTemplateFile.canRead()) {
         def content = readmeTemplateFile.getText("UTF-8").replaceAll("\\{versionName\\}", version)
         readmeFile = new File("README.md")
