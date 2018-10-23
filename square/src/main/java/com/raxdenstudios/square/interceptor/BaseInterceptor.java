@@ -1,13 +1,12 @@
 package com.raxdenstudios.square.interceptor;
 
-import android.app.Activity;
 import android.app.Application;
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.util.Log;
 
-import com.raxdenstudios.mvp.presenter.Presenter;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Ángel Gómez
@@ -33,12 +32,12 @@ public abstract class BaseInterceptor<TCallback extends InterceptorCallback> imp
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Activity activity) {
+    public BaseInterceptor(FragmentActivity activity) {
         mContext = activity;
     }
 
     @SuppressWarnings("unchecked")
-    public BaseInterceptor(Activity activity, TCallback callback) {
+    public BaseInterceptor(FragmentActivity activity, TCallback callback) {
         mContext = activity;
         setOnInterceptorCallback(callback);
     }
@@ -62,17 +61,6 @@ public abstract class BaseInterceptor<TCallback extends InterceptorCallback> imp
     @SuppressWarnings("unchecked")
     public BaseInterceptor(DialogFragment dialogFragment, TCallback callback) {
         mContext = dialogFragment.getActivity();
-        setOnInterceptorCallback(callback);
-    }
-
-    @SuppressWarnings("unchecked")
-    public BaseInterceptor(Presenter presenter) {
-        mContext = presenter.mContext;
-    }
-
-    @SuppressWarnings("unchecked")
-    public BaseInterceptor(Presenter presenter, TCallback callback) {
-        mContext = presenter.mContext;
         setOnInterceptorCallback(callback);
     }
 

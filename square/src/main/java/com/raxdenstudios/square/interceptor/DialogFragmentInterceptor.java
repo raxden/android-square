@@ -1,8 +1,6 @@
 package com.raxdenstudios.square.interceptor;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.raxdenstudios.square.lifecycle.DialogFragmentLifecycle;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by Ángel Gómez
@@ -44,7 +45,7 @@ public abstract class DialogFragmentInterceptor<TCallback extends InterceptorCal
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(FragmentActivity activity) {
 
     }
 

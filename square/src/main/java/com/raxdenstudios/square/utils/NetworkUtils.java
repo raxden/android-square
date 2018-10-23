@@ -29,7 +29,7 @@ public class NetworkUtils {
 	}
 	
 	public static boolean isNetworkAvailable(ConnectivityManager cm) {
-		return 	(cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) != null && cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting()) ||
+		return (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) != null && cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting()) ||
 				(cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI) != null && cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting());
 	}
 	

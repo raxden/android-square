@@ -1,12 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentbackpressed;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 17/06/2017.
@@ -16,11 +16,11 @@ public class FragmentBackPressedActivityInterceptor extends ActivityInterceptor<
 
     private List<OnFragmentBackPressedListener> mOnBackPressedListeners;
 
-    public FragmentBackPressedActivityInterceptor(@NonNull Activity activity) {
+    public FragmentBackPressedActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public FragmentBackPressedActivityInterceptor(@NonNull Activity activity, @NonNull FragmentBackPressedInterceptorCallback callback) {
+    public FragmentBackPressedActivityInterceptor(@NonNull FragmentActivity activity, @NonNull FragmentBackPressedInterceptorCallback callback) {
         super(activity, callback);
     }
 

@@ -1,8 +1,6 @@
 package com.raxdenstudios.square.interceptor.commons.autoinflatelayout;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,6 +10,9 @@ import com.raxdenstudios.square.utils.StringUtils;
 
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
@@ -20,11 +21,11 @@ public class AutoInflateLayoutActivityInterceptor extends ActivityInterceptor<Au
     private int mLayoutId;
     private View mInflateLayout;
 
-    public AutoInflateLayoutActivityInterceptor(@NonNull Activity activity) {
+    public AutoInflateLayoutActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public AutoInflateLayoutActivityInterceptor(@NonNull Activity activity, @NonNull AutoInflateLayoutInterceptorCallback callback) {
+    public AutoInflateLayoutActivityInterceptor(@NonNull FragmentActivity activity, @NonNull AutoInflateLayoutInterceptorCallback callback) {
         super(activity, callback);
     }
 

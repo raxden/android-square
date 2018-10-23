@@ -1,127 +1,54 @@
-// v1.0.4
+// v1.0.5
 
 import java.util.regex.Pattern
 
-task fetchFromGit(type: Exec) {
-    description 'Fetch git.'
-    commandLine "git", "fetch"
-}
+// ========== TASKS ================================================================================
 
-task pullFromGit(type: Exec) {
-    description 'Pulls git.'
-    commandLine "git", "pull"
-}
-
-task addToGit(type: Exec) {
-    description 'Add git.'
-    commandLine "git", "add", "-A"
-}
-
-task commitToGit(type: Exec) {
-    description 'Commit git.'
-    commandLine "git", "commit"
-}
-
-def createCommitToGitWithMessageTask(message) {
-    return tasks.create(name: 'commitToGitWithMessage', type: Exec) {
-        description 'Commit git.'
-        commandLine "git", "commit", "-m", message
+task updateLibrary {
+    doLast {
+        exec { commandLine "git", "fetch" }
+        exec { commandLine "git", "pull" }
     }
 }
 
-task pushToGit(type: Exec) {
-    description 'Push git.'
-    commandLine "git", "push"
-}
-
-def createTagToGitTask(tag, message) {
-    return tasks.create(name: 'tagToGit', type: Exec) {
-        description 'Tag git.'
-        commandLine "git", "tag", "-a", tag, "-m", message
+task increaseBuildVersion {
+    doLast {
+        increaseBuildVersion()
+        updateReadmeFile(getVersionName())
     }
 }
 
-def createPushTagToGitTask(tag) {
-    return tasks.create(name: 'pushTagToGit', type: Exec) {
-        description 'Push tag git.'
-        commandLine "git", "push", "origin", tag
+task uploadLibrary {
+    dependsOn updateLibrary
+    doLast {
+        exec { commandLine "git", "add", "-A" }
+        exec { commandLine "git", "commit", "-m", "Update library" }
+        exec { commandLine "git", "push" }
     }
 }
 
-def createUploadLibraryToGitTask(message) {
-    return tasks.create(name: 'uploadLibraryToGit') {
-        tasks.fetchFromGit.execute()
-        tasks.pullFromGit.execute()
-        tasks.addToGit.execute()
-        createCommitToGitWithMessageTask(message)
-        tasks.commitToGitWithMessage.execute()
-        tasks.pushToGit.execute()
+task uploadRelease {
+    dependsOn updateLibrary, increaseBuildVersion
+    doLast {
+        def versionName = getVersionName()
+        def message = "Release " + versionName + " created"
+        exec { commandLine "git", "add", "-A" }
+        exec { commandLine "git", "commit", "-m", message }
+        exec { commandLine "git", "push" }
+        exec { commandLine "git", "tag", "-a", versionName, "-m", message }
+        exec { commandLine "git", "push", "origin", versionName }
     }
 }
 
-def createUploadReleaseToGitTask(tag, message) {
-    return tasks.create(name: 'uploadReleaseToGit') {
-        createUploadLibraryToGitTask(message)
-        tasks.uploadLibraryToGit.execute()
-        createTagToGitTask(tag, message)
-        tasks.tagToGit.execute()
-        createPushTagToGitTask(tag)
-        tasks.pushTagToGit.execute()
-    }
-}
+// ========== METHODS ==============================================================================
 
-def createUpdateReadmeFileTask(version) {
-    return tasks.create(name: 'updateReadmeFile') {
-        println(":updateReadmeFile - Updating readme file...")
-        def readmeFile = file('../README.md')
-        if (readmeFile.exists()) {
-            readmeFile.delete()
-        }
-        def readmeTemplateFile = file('../README.template')
-        if (readmeTemplateFile.canRead()) {
-            def content = readmeTemplateFile.getText("UTF-8").replaceAll("\\{versionName\\}", version)
-            readmeFile = new File("README.md")
-            readmeFile.createNewFile()
-            readmeFile.write(content, "UTF-8")
-        }
-        println(":updateReadmeFile - Readme file has been update")
-    }
-}
-
-// gradlew uploadLibrary -Pmessage=messageToUpload
-task uploadLibraryWithMessage << {
-    def message = "$message"
-    createUploadLibraryToGitTask(message)
-    tasks.uploadLibraryToGit.execute()
-}
-
-task increaseBuildVersion << {
+void increaseBuildVersion() {
     println(":increaseBuildVersion - Incrementing build version...")
-    def versionName = increaseBuildVersion()
-    createUpdateReadmeFileTask(versionName)
-    tasks.updateReadmeFile.execute()
-    println(":increaseBuildVersion - build version incremented to " + versionName)
-}
-
-task uploadLibrary << {
-    createUploadLibraryToGitTask("Upload library (" + version + ")")
-    tasks.uploadLibraryToGit.execute()
-}
-
-task uploadRelease << {
-    println(":uploadRelease - Upload release to repository...")
-    createUploadReleaseToGitTask(version, "Release " + version + " created")
-    tasks.uploadReleaseToGit.execute()
-    println(":uploadRelease - Release uploaded: " + version)
-}
-
-String increaseBuildVersion() {
-    def versionName
     def gradlePropsFile = file('../gradle.properties')
     if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
-        def Properties versionProps = new Properties()
+        Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(gradlePropsFile))
-        versionName = versionProps['VERSION_NAME']
+        def versionName = versionProps['VERSION_NAME']
         def patternVersionNumber = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)")
         def matcherVersionNumber = patternVersionNumber.matcher(versionName)
         if (matcherVersionNumber.find()) {
@@ -135,5 +62,32 @@ String increaseBuildVersion() {
     } else {
         throw new GradleException(":increaseBuildVersion - Could not read version.properties!")
     }
+    println(":increaseBuildVersion - build version incremented to " + versionName)
+}
+
+String getVersionName() {
+    def versionName
+    def gradlePropsFile = file('../gradle.properties')
+    if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(gradlePropsFile))
+        versionName = versionProps['VERSION_NAME']
+    }
     return versionName
+}
+
+void updateReadmeFile(version) {
+    println(":updateReadmeFile - Updating readme file...")
+    def readmeFile = file('../README.md')
+    if (readmeFile.exists()) {
+        readmeFile.delete()
+    }
+    def readmeTemplateFile = file('../README.template')
+    if (readmeTemplateFile.canRead()) {
+        def content = readmeTemplateFile.getText("UTF-8").replaceAll("\\{versionName\\}", version)
+        readmeFile = new File("README.md")
+        readmeFile.createNewFile()
+        readmeFile.write(content, "UTF-8")
+    }
+    println(":updateReadmeFile - Readme file has been update")
 }

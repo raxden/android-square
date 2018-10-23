@@ -1,10 +1,11 @@
 package com.raxdenstudios.square.interceptor.commons.injectfragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.

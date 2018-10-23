@@ -1,11 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.timer;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by agomez on 11/05/2105.
@@ -32,12 +33,12 @@ public class TimerActivityInterceptor extends ActivityInterceptor<TimerIntercept
         }
     };
 
-    public TimerActivityInterceptor(@NonNull Activity activity) {
+    public TimerActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
         init();
     }
 
-    public TimerActivityInterceptor(@NonNull Activity activity, @NonNull TimerInterceptorCallback callback) {
+    public TimerActivityInterceptor(@NonNull FragmentActivity activity, @NonNull TimerInterceptorCallback callback) {
         super(activity, callback);
         init();
     }

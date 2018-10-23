@@ -1,8 +1,8 @@
 package com.raxdenstudios.square.interceptor.commons.countback;
 
-import android.app.Activity;
+import androidx.fragment.app.FragmentActivity;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.Toast;
 
 import com.raxdenstudios.square.R;
@@ -28,12 +28,12 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
         }
     };
 
-    public CountBackActivityInterceptor(@NonNull Activity activity) {
+    public CountBackActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
         init();
     }
 
-    public CountBackActivityInterceptor(@NonNull Activity activity, @NonNull CountBackInterceptorCallback callback) {
+    public CountBackActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CountBackInterceptorCallback callback) {
         super(activity, callback);
         init();
     }

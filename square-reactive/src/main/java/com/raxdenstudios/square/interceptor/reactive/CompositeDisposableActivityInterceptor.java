@@ -1,10 +1,9 @@
 package com.raxdenstudios.square.interceptor.reactive;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -16,12 +15,12 @@ public class CompositeDisposableActivityInterceptor extends ActivityInterceptor<
 
     private CompositeDisposable mCompositeDisposable;
 
-    public CompositeDisposableActivityInterceptor(@NonNull Activity activity) {
+    public CompositeDisposableActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
         mCompositeDisposable = new CompositeDisposable();
     }
 
-    public CompositeDisposableActivityInterceptor(@NonNull Activity activity, @NonNull CompositeDisposableInterceptorCallback callback) {
+    public CompositeDisposableActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CompositeDisposableInterceptorCallback callback) {
         super(activity, callback);
         mCompositeDisposable = new CompositeDisposable();
     }

@@ -1,19 +1,19 @@
 package com.raxdenstudios.square.interceptor.commons.navigationdrawer;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 /**
  * Created by agomez on 21/05/2015.
@@ -24,11 +24,11 @@ public class NavigationDrawerActivityInterceptor extends ActivityInterceptor<Nav
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationDrawerActivityInterceptor(@NonNull Activity activity) {
+    public NavigationDrawerActivityInterceptor(@NonNull AppCompatActivity activity) {
         super(activity);
     }
 
-    public NavigationDrawerActivityInterceptor(@NonNull Activity activity, @NonNull NavigationDrawerInterceptorCallback callback) {
+    public NavigationDrawerActivityInterceptor(@NonNull AppCompatActivity activity, @NonNull NavigationDrawerInterceptorCallback callback) {
         super(activity, callback);
     }
 
@@ -231,11 +231,7 @@ public class NavigationDrawerActivityInterceptor extends ActivityInterceptor<Nav
     }
 
     private void invalidateOptionsMenu() {
-        if (mActivity instanceof AppCompatActivity) {
-            ((AppCompatActivity) mActivity).supportInvalidateOptionsMenu();
-        } else {
-            mActivity.invalidateOptionsMenu();
-        }
+        mActivity.invalidateOptionsMenu();
     }
 
     private ActionBarDrawerToggle.Delegate getDrawerToggleDelegate() {

@@ -1,16 +1,17 @@
 package com.raxdenstudios.square.interceptor.commons.network;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.utils.NetworkUtils;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * This interceptor requires the following permissions:
@@ -31,11 +32,11 @@ public class NetworkActivityInterceptor extends ActivityInterceptor<NetworkInter
         }
     };
 
-    public NetworkActivityInterceptor(@NonNull Activity activity) {
+    public NetworkActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public NetworkActivityInterceptor(@NonNull Activity activity, @NonNull NetworkInterceptorCallback callback) {
+    public NetworkActivityInterceptor(@NonNull FragmentActivity activity, @NonNull NetworkInterceptorCallback callback) {
         super(activity, callback);
     }
 

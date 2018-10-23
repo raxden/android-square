@@ -1,11 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.timer;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by agomez on 11/05/2105.

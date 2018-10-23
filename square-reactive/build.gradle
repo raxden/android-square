@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 group = "com.raxdenstudios.square.interceptor.reactive"
 version = VERSION_NAME
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -13,18 +15,21 @@ android {
 
         consumerProguardFiles 'proguard-rules.pro'
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
+
     implementation project(':square')
 
-    implementation deps.square_reactive.implementation
-    api deps.square_reactive.api
-    annotationProcessor deps.square_reactive.annotationProcessor
-    compileOnly deps.square_reactive.compileOnly
-    testImplementation deps.square_reactive.testImplementation
-    androidTestImplementation deps.square_reactive.androidTestImplementation
+    rootProject.reactiveDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
 }
 
+apply from: '../buildSystem/commons.gradle'
 apply from: 'build_javadoc.gradle'

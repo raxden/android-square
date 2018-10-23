@@ -1,21 +1,21 @@
 package com.raxdenstudios.square.interceptor.commons.navigationcontentdrawer;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
 import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.utils.FragmentUtils;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by agomez on 21/05/2015.
@@ -26,11 +26,11 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationContentDrawerActivityInterceptor(@NonNull Activity activity) {
+    public NavigationContentDrawerActivityInterceptor(@NonNull AppCompatActivity activity) {
         super(activity);
     }
 
-    public NavigationContentDrawerActivityInterceptor(@NonNull Activity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {
+    public NavigationContentDrawerActivityInterceptor(@NonNull AppCompatActivity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {
         super(activity, callback);
     }
 
@@ -68,9 +68,9 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
             TFragment contentDrawerFragment;
             if (savedInstanceState == null) {
                 contentDrawerFragment = mCallback.onCreateContentDrawerFragment();
-                FragmentUtils.loadFragment(mActivity.getFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
+                FragmentUtils.loadFragment(mActivity.getSupportFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
             } else {
-                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity.getFragmentManager(), mContentDrawerView.getId());
+                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity.getSupportFragmentManager(), mContentDrawerView.getId());
             }
             mCallback.onContentDrawerFragmentLoaded(contentDrawerFragment);
         }
@@ -193,14 +193,14 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
 
     private void onDrawerClosed(View drawerView) {
         if (mCallback != null) {
-            invalidateOptionsMenu();
+            mActivity.invalidateOptionsMenu();
             mCallback.onDrawerClosed(drawerView);
         }
     }
 
     private void onDrawerOpened(View drawerView) {
         if (mCallback != null) {
-            invalidateOptionsMenu();
+            mActivity.invalidateOptionsMenu();
             mCallback.onDrawerOpened(drawerView);
         }
     }
@@ -214,14 +214,6 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     private void onDrawerStateChanged(int newState) {
         if (mCallback != null) {
             mCallback.onDrawerStateChanged(newState);
-        }
-    }
-
-    private void invalidateOptionsMenu() {
-        if (mActivity instanceof AppCompatActivity) {
-            ((AppCompatActivity) mActivity).supportInvalidateOptionsMenu();
-        } else {
-            mActivity.invalidateOptionsMenu();
         }
     }
 

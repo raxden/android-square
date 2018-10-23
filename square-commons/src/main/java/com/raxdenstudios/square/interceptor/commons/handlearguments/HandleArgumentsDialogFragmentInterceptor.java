@@ -1,10 +1,11 @@
 package com.raxdenstudios.square.interceptor.commons.handlearguments;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by agomez on 22/05/2015.

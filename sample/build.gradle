@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.raxdenstudios.square.sample"
@@ -11,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         resValue "string", "geo_api_key", "AIzaSyCJJ64kpDOT5HrQkfe99QbB7hGAXJzFCWc"
 
@@ -30,15 +32,10 @@ dependencies {
     implementation project(':square')
     implementation project(':square-commons')
     implementation project(':square-cast')
-    implementation project(':square-rater')
     implementation project(':square-reactive')
-    implementation project(':square-shakedetector')
     implementation project(':square-zxing')
 
-    implementation deps.sample.implementation
-    api deps.sample.api
-    annotationProcessor deps.sample.annotationProcessor
-    compileOnly deps.sample.compileOnly
-    testImplementation deps.sample.testImplementation
-    androidTestImplementation deps.sample.androidTestImplementation
+    rootProject.appDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
 }

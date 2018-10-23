@@ -1,12 +1,13 @@
 package com.raxdenstudios.square.interceptor;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
 import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez
@@ -15,14 +16,14 @@ import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
  */
 public abstract class ActivityInterceptor<TCallback extends InterceptorCallback> extends BaseInterceptor<TCallback> implements ActivityLifecycle {
 
-    protected Activity mActivity;
+    protected FragmentActivity mActivity;
 
-    public ActivityInterceptor(Activity activity) {
+    public ActivityInterceptor(FragmentActivity activity) {
         super(activity);
         mActivity = activity;
     }
 
-    public ActivityInterceptor(Activity activity, TCallback callback) {
+    public ActivityInterceptor(FragmentActivity activity, TCallback callback) {
         super(activity, callback);
         mActivity = activity;
     }

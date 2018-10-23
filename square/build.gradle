@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 group = "com.raxdenstudios.square"
 version = VERSION_NAME
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -13,17 +15,18 @@ android {
 
         consumerProguardFiles 'proguard-rules.pro'
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
 
-    implementation deps.square.implementation
-    api deps.square.api
-    annotationProcessor deps.square.annotationProcessor
-    compileOnly deps.square.compileOnly
-    testImplementation deps.square.testImplementation
-    androidTestImplementation deps.square.androidTestImplementation
+    rootProject.libDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
 }
 
 apply from: '../buildSystem/commons.gradle'

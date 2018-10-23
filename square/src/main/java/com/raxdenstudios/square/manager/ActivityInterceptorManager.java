@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.manager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,13 +8,15 @@ import android.view.Menu;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
 
+import androidx.fragment.app.FragmentActivity;
+
 /**
  * Created by Ángel Gómez on 18/12/2016.
  */
 
-public class ActivityInterceptorManager extends InterceptorManager<Activity, ActivityInterceptor> implements ActivityLifecycle {
+public class ActivityInterceptorManager extends InterceptorManager<FragmentActivity, ActivityInterceptor> implements ActivityLifecycle {
 
-    public ActivityInterceptorManager(Activity activity) {
+    public ActivityInterceptorManager(FragmentActivity activity) {
         super(activity);
     }
 

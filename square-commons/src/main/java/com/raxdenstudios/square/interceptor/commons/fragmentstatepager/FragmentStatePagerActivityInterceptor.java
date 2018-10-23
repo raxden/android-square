@@ -1,15 +1,16 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentstatepager;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v13.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.
@@ -19,11 +20,11 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
     private ViewPager mViewPager;
     private FragmentStatePagerInterceptorAdapter mAdapter;
 
-    public FragmentStatePagerActivityInterceptor(@NonNull Activity activity) {
+    public FragmentStatePagerActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public FragmentStatePagerActivityInterceptor(@NonNull Activity activity, @NonNull FragmentStatePagerInterceptorCallback callback) {
+    public FragmentStatePagerActivityInterceptor(@NonNull FragmentActivity activity, @NonNull FragmentStatePagerInterceptorCallback callback) {
         super(activity, callback);
     }
 
@@ -33,7 +34,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
         mViewPager = mCallback.onCreateViewPager(savedInstanceState);
         if (mViewPager != null) {
-            mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getFragmentManager());
+            mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getSupportFragmentManager());
             mViewPager.setAdapter(mAdapter);
             mViewPager.addOnPageChangeListener(onPageChangeListener);
             mCallback.onViewPagerCreated(mViewPager);

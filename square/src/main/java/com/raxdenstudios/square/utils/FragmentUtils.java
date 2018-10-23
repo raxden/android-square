@@ -1,8 +1,8 @@
 package com.raxdenstudios.square.utils;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * Created by Ángel Gómez on 10/06/2017.

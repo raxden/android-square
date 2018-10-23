@@ -1,6 +1,6 @@
 package com.raxdenstudios.square.interceptor;
 
-import android.app.Activity;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez
@@ -9,7 +9,7 @@ import android.app.Activity;
  */
 public abstract class ActivitySimpleInterceptor extends ActivityInterceptor<InterceptorCallback> {
 
-    public ActivitySimpleInterceptor(Activity activity) {
+    public ActivitySimpleInterceptor(FragmentActivity activity) {
         super(activity);
     }
 

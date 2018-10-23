@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 group = "com.raxdenstudios.square.interceptor.zxing"
 version = VERSION_NAME
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -13,18 +15,21 @@ android {
 
         consumerProguardFiles 'proguard-rules.pro'
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
-    implementation project(':square')
 
-    implementation deps.square_zxing.implementation
-    api deps.square_zxing.api
-    annotationProcessor deps.square_zxing.annotationProcessor
-    compileOnly deps.square_zxing.compileOnly
-    testImplementation deps.square_zxing.testImplementation
-    androidTestImplementation deps.square_zxing.androidTestImplementation
+    implementation project(':square')
+    
+    rootProject.zxingDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
 }
 
+apply from: '../buildSystem/commons.gradle'
 apply from: 'build_javadoc.gradle'

@@ -1,11 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.openhelper;
 
-import android.app.Activity;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by agomez on 08/05/2015.
@@ -14,11 +15,11 @@ public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper> extends A
 
     private SQLiteOpenHelper mOpenHelper;
 
-    public OpenHelperActivityInterceptor(@NonNull Activity activity) {
+    public OpenHelperActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public OpenHelperActivityInterceptor(@NonNull Activity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
+    public OpenHelperActivityInterceptor(@NonNull FragmentActivity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {
         super(activity, callback);
     }
 

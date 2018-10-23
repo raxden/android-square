@@ -1,8 +1,6 @@
 package com.raxdenstudios.square.interceptor.zxing;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.google.zxing.BarcodeFormat;
@@ -12,6 +10,8 @@ import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**

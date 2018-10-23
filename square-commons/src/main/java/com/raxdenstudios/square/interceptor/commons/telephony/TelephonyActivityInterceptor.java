@@ -1,13 +1,14 @@
 package com.raxdenstudios.square.interceptor.commons.telephony;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Raxden on 16/12/2016.
@@ -17,11 +18,11 @@ public class TelephonyActivityInterceptor extends ActivityInterceptor<TelephonyI
 
     private TelephonyManager mTelephonyManager;
 
-    public TelephonyActivityInterceptor(@NonNull Activity activity) {
+    public TelephonyActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public TelephonyActivityInterceptor(@NonNull Activity activity, @NonNull TelephonyInterceptorCallback callback) {
+    public TelephonyActivityInterceptor(@NonNull FragmentActivity activity, @NonNull TelephonyInterceptorCallback callback) {
         super(activity, callback);
     }
 

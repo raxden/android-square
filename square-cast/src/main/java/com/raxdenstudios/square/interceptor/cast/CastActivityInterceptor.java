@@ -1,9 +1,7 @@
 package com.raxdenstudios.square.interceptor.cast;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +11,9 @@ import com.google.android.gms.cast.framework.CastState;
 import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -24,11 +25,11 @@ public class CastActivityInterceptor extends ActivityInterceptor<CastInterceptor
     private CastContext mCastContext;
     private MenuItem mMediaRouteMenuItem;
 
-    public CastActivityInterceptor(@NonNull Activity activity) {
+    public CastActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public CastActivityInterceptor(@NonNull Activity activity, @NonNull CastInterceptorCallback callback) {
+    public CastActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CastInterceptorCallback callback) {
         super(activity, callback);
     }
 

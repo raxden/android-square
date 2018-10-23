@@ -1,7 +1,5 @@
 package com.raxdenstudios.square.manager;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 import com.raxdenstudios.square.lifecycle.FragmentLifecycle;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Ángel Gómez on 18/12/2016.
@@ -39,7 +40,7 @@ public class FragmentInterceptorManager extends InterceptorManager<Fragment, Fra
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(FragmentActivity activity) {
         for (FragmentInterceptor interceptor : interceptors) {
             interceptor.onAttach(activity);
         }

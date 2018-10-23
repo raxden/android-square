@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.lifecycle;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -8,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez
@@ -20,7 +21,7 @@ public interface FragmentLifecycle {
 
     void onViewStateRestored(Bundle savedInstanceState);
 
-    void onAttach(Activity activity);
+    void onAttach(FragmentActivity activity);
 
     void onAttach(Context context);
 

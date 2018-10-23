@@ -1,12 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentrefresh;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 17/06/2017.
@@ -16,11 +16,11 @@ public class FragmentRefreshActivityInterceptor extends ActivityInterceptor<Frag
 
     private List<OnFragmentRefreshListener> mOnRefreshListeners;
 
-    public FragmentRefreshActivityInterceptor(@NonNull Activity activity) {
+    public FragmentRefreshActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public FragmentRefreshActivityInterceptor(@NonNull Activity activity, @NonNull FragmentRefreshInterceptorCallback callback) {
+    public FragmentRefreshActivityInterceptor(@NonNull FragmentActivity activity, @NonNull FragmentRefreshInterceptorCallback callback) {
         super(activity, callback);
     }
 

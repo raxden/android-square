@@ -1,13 +1,14 @@
 package com.raxdenstudios.square.interceptor.cast;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Raxden on 13/12/2016.
@@ -19,11 +20,11 @@ public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSess
     private CastSession mCastSession;
     private SessionManagerListener<CastSession> mSessionManagerListener;
 
-    public CastSessionActivityInterceptor(@NonNull Activity activity) {
+    public CastSessionActivityInterceptor(@NonNull FragmentActivity activity) {
         super(activity);
     }
 
-    public CastSessionActivityInterceptor(@NonNull Activity activity, @NonNull CastSessionInterceptorCallback callback) {
+    public CastSessionActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CastSessionInterceptorCallback callback) {
         super(activity, callback);
     }
 

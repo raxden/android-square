@@ -14,7 +14,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/geo_api_key" />
 
-        <activity android:name=".map.controller.MapActivity">
+        <activity android:name=".SampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

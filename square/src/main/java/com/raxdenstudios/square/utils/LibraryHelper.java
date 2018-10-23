@@ -30,25 +30,13 @@ public class LibraryHelper {
     public boolean isMultiDexLibraryAvailable() {
         if (multiDexLibrary == null) {
             try {
-                Class.forName("android.support.multidex.MultiDexApplication");
+                Class.forName("androidx.multidex.MultiDexApplication");
                 multiDexLibrary = Status.AVAILABLE;
             } catch (ClassNotFoundException e) {
                 multiDexLibrary = Status.NOT_AVAILABLE;
             }
         }
         return multiDexLibrary == Status.AVAILABLE;
-    }
-
-    public boolean isMVPLibraryAvailable() {
-        if (mvpLibrary == null) {
-            try {
-                Class.forName("com.raxdenstudios.mvp.MVPActivity");
-                mvpLibrary = Status.AVAILABLE;
-            } catch (ClassNotFoundException e) {
-                mvpLibrary = Status.NOT_AVAILABLE;
-            }
-        }
-        return mvpLibrary == Status.AVAILABLE;
     }
 
 }
