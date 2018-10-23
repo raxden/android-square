@@ -1,4 +1,5 @@
 apply from: 'buildSystem/dependencies.gradle'
+apply from: 'buildSystem/commons.gradle'
 
 buildscript {
     repositories {
