@@ -1,6 +1,6 @@
 package com.raxdenstudios.square.interceptor;
 
-import androidx.fragment.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 
 /**
  * Created by Ángel Gómez

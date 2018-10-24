@@ -1,6 +1,7 @@
 package com.raxdenstudios.square;
 
 import android.content.res.Configuration;
+import android.support.multidex.MultiDexApplication;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
 import com.raxdenstudios.square.interceptor.Interceptor;
@@ -9,8 +10,6 @@ import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.multidex.MultiDexApplication;
 
 /**
  * Created by Ángel Gómez

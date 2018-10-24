@@ -2,20 +2,19 @@ package com.raxdenstudios.square.interceptor.commons.navigationcontentdrawer;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
-import com.raxdenstudios.square.R;
+import com.raxdenstudios.square.interceptor.commons.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.utils.FragmentUtils;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 /**
  * Created by agomez on 21/05/2015.
@@ -50,7 +49,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
             Toolbar toolbar = mCallback.onCreateToolbarView(savedInstanceState);
             if (mDrawerLayout != null) {
                 // set a custom shadow that overlays the main content when the drawer opens
-                mDrawerLayout.setDrawerShadow(R.drawable.app__drawer_shadow, GravityCompat.START);
+                mDrawerLayout.setDrawerShadow(R.drawable.square__drawer_shadow, GravityCompat.START);
                 // ActionBarDrawerToggle ties together the the proper interactions between the sliding drawer and the action bar app icon
                 mDrawerToggle = toolbar != null ? initActionBarDrawerToogle(toolbar) : initActionBarDrawerToogle();
                 mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
@@ -86,7 +85,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         if (mCallback != null && mDrawerToggle != null && mDrawerLayout != null) {
-            if (mActivity.getFragmentManager().getBackStackEntryCount() > 0) {
+            if (mActivity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
                 ActionBarDrawerToggle.Delegate delegate = getDrawerToggleDelegate();
                 if (delegate != null) {
@@ -134,7 +133,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle() {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, R.string.app__drawer_open, R.string.app__drawer_close) {
+        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -163,7 +162,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle(Toolbar toolbar) {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, toolbar, R.string.app__drawer_open, R.string.app__drawer_close) {
+        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {

@@ -1,11 +1,10 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentstatepager;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Ángel Gómez on 20/12/2016.

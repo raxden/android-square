@@ -2,6 +2,8 @@ package com.raxdenstudios.square.interceptor.cast;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,9 +13,6 @@ import com.google.android.gms.cast.framework.CastState;
 import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.

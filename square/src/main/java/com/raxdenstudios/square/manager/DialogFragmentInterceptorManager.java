@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor;
 import com.raxdenstudios.square.lifecycle.DialogFragmentLifecycle;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.DialogFragment;
 
 /**
  * Created by Ángel Gómez on 18/12/2016.

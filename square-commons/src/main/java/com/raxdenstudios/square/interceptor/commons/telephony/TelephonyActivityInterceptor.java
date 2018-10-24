@@ -2,13 +2,12 @@ package com.raxdenstudios.square.interceptor.commons.telephony;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Raxden on 16/12/2016.

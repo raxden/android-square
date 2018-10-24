@@ -24,8 +24,6 @@ android {
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
 
-    implementation project(':square')
-    
     rootProject.zxingDependencies.each {
         add(it.configuration, it.dependency, it.options)
     }

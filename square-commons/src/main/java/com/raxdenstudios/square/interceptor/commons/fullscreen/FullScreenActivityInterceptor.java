@@ -1,12 +1,11 @@
 package com.raxdenstudios.square.interceptor.commons.fullscreen;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.view.WindowManager;
 
 import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 26/12/2016.

@@ -29,12 +29,6 @@ android {
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
 
-    implementation project(':square')
-    implementation project(':square-commons')
-    implementation project(':square-cast')
-    implementation project(':square-reactive')
-    implementation project(':square-zxing')
-
     rootProject.appDependencies.each {
         add(it.configuration, it.dependency, it.options)
     }

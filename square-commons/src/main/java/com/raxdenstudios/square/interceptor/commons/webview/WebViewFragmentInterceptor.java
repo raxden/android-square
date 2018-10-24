@@ -2,6 +2,8 @@ package com.raxdenstudios.square.interceptor.commons.webview;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -10,11 +12,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ScrollView;
 
-import com.raxdenstudios.square.R;
+import com.raxdenstudios.square.interceptor.commons.R;
 import com.raxdenstudios.square.interceptor.FragmentInterceptor;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 /**
  * Created by agomez on 16/07/2015.
@@ -40,7 +39,7 @@ public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInter
         mContainer = mCallback != null ? mCallback.onLoadWebViewContainer() : null;
         if (mContainer != null) {
             mWebView = new WebView(mContext);
-            mWebView.setId(R.id.app__webview);
+            mWebView.setId(R.id.square__webview);
 
             mContainer.removeAllViews();
             mContainer.addView(mWebView);

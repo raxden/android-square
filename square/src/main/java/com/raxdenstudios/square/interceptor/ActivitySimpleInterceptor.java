@@ -1,6 +1,6 @@
 package com.raxdenstudios.square.interceptor;
 
-import androidx.fragment.app.FragmentActivity;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez

@@ -3,12 +3,11 @@ package com.raxdenstudios.square.manager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.lifecycle.ActivityLifecycle;
-
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 18/12/2016.

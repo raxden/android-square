@@ -1,16 +1,14 @@
 package com.raxdenstudios.square.manager;
 
 import android.content.res.Configuration;
+import android.support.multidex.MultiDexApplication;
 
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor;
 import com.raxdenstudios.square.lifecycle.ApplicationLifecycle;
 
-import androidx.multidex.MultiDexApplication;
-
 /**
  * Created by Ángel Gómez on 18/12/2016.
  */
-
 public class ApplicationMultiDexInterceptorManager
         extends InterceptorManager<MultiDexApplication, ApplicationInterceptor>
         implements ApplicationLifecycle {

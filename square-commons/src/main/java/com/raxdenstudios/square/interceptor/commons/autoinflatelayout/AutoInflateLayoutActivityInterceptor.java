@@ -1,6 +1,8 @@
 package com.raxdenstudios.square.interceptor.commons.autoinflatelayout;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -9,9 +11,6 @@ import com.raxdenstudios.square.utils.ResourceUtils;
 import com.raxdenstudios.square.utils.StringUtils;
 
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 22/05/2015.

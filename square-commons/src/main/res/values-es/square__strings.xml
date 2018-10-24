@@ -2,6 +2,6 @@
 <resources>
 
     <!-- CountBack interceptor -->
-    <string name="app__count_back_exit_message">Presiona atrás de nuevo para salir</string>
+    <string name="square__count_back_exit_message">Presiona atrás de nuevo para salir</string>
 
 </resources>

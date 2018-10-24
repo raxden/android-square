@@ -1,14 +1,13 @@
 package com.raxdenstudios.square.interceptor.commons.navigationcontentdrawer;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.raxdenstudios.square.interceptor.InterceptorCallback;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 /**
  * Created by agomez on 21/05/2015.

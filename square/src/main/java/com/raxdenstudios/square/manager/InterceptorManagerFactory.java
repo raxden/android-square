@@ -1,13 +1,12 @@
 package com.raxdenstudios.square.manager;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import com.raxdenstudios.square.utils.LibraryHelper;
-
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.multidex.MultiDexApplication;
 
 /**
  * Created by Ángel Gómez on 18/12/2016.

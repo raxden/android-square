@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 import com.raxdenstudios.square.utils.NetworkUtils;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * This interceptor requires the following permissions:

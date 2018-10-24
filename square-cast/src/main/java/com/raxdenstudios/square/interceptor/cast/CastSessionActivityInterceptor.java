@@ -1,14 +1,13 @@
 package com.raxdenstudios.square.interceptor.cast;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Raxden on 13/12/2016.

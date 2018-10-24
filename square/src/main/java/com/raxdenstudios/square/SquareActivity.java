@@ -3,6 +3,8 @@ package com.raxdenstudios.square;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
@@ -12,9 +14,6 @@ import com.raxdenstudios.square.manager.InterceptorManagerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez

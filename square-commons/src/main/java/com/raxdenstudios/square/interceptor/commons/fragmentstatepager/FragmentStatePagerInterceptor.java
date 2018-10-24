@@ -1,8 +1,8 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentstatepager;
 
-import com.raxdenstudios.square.interceptor.Interceptor;
+import android.support.v4.app.Fragment;
 
-import androidx.fragment.app.Fragment;
+import com.raxdenstudios.square.interceptor.Interceptor;
 
 /**
  * Created by Ángel Gómez on 29/12/2016.

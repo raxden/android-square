@@ -30,7 +30,7 @@ public class LibraryHelper {
     public boolean isMultiDexLibraryAvailable() {
         if (multiDexLibrary == null) {
             try {
-                Class.forName("androidx.multidex.MultiDexApplication");
+                Class.forName("android.support.multidex.MultiDexApplication");
                 multiDexLibrary = Status.AVAILABLE;
             } catch (ClassNotFoundException e) {
                 multiDexLibrary = Status.NOT_AVAILABLE;

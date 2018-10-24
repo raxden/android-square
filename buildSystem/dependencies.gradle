@@ -4,12 +4,11 @@ ext {
     // ========== VERSIONS =========================================================================
 
     // Android dependencies
-    def appCompatLibraryVersion = '1.0.0'
+    def multidexVersion = '1.0.2'
+    def supportVersion = '28.0.0'
     def constraintLayoutVersion = '1.1.3'
     def kotlinVersion = '1.2.71'
-    def materialVersion = '1.0.0'
     def servicesVersion = '11.8.0'
-    def multidexVersion = '2.0.0'
 
     // dependencies
     def rxAndroidVersion = '2.0.1'              // https://github.com/ReactiveX/RxAndroid
@@ -25,18 +24,25 @@ ext {
     // ========== LIBRARIES ========================================================================
 
     def androidLibs = [
-            appCompat: [group: 'androidx.appcompat', name: 'appcompat', version: appCompatLibraryVersion],
-            constraintLayout: [group: 'androidx.constraintlayout', name: 'constraintlayout', version: constraintLayoutVersion],
-            kotlin: [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk7', version: kotlinVersion],
-            material: [group: 'com.google.android.material', name: 'material', version: materialVersion],
-            playServicesMaps: [group: 'com.google.android.gms', name: 'play-services-maps', version: servicesVersion],
-            playServicesCast: [group: 'com.google.android.gms', name: 'play-services-cast-framework', version: servicesVersion],
-            multidexVersion: [group: 'androidx.multidex', name: 'multidex', version: multidexVersion]
+            multidexVersion: [group: 'com.android.support', name: 'multidex', version: multidexVersion],
+            supportV4: [group: 'com.android.support', name: 'support-v4', version: supportVersion],
+            supportV13: [group: 'com.android.support', name: 'support-v13', version: supportVersion],
+            appcompatV7: [group: 'com.android.support', name: 'appcompat-v7', version: supportVersion],
+            constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
+            kotlin: [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk7', version: kotlinVersion]
+    ]
+
+    def playServicesLibs = [
+            maps: [group: 'com.google.android.gms', name: 'play-services-maps', version: servicesVersion],
+            cast: [group: 'com.google.android.gms', name: 'play-services-cast-framework', version: servicesVersion]
+    ]
+
+    def rxLibs = [
+            android: [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
+            kotlin: [group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: rxKotlinVersion]
     ]
 
     def libs = [
-            rxAndroid: [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
-            rxKotlin: [group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: rxKotlinVersion],
             zXing: [group: 'me.dm7.barcodescanner', name: 'zxing', version: zxingVersion]
     ]
 
@@ -50,11 +56,19 @@ ext {
 
     // ========== MODULES DEPENDENCIES =============================================================
 
+    def modules = [
+            sample: ':sample',
+            square: ':square',
+            squareCast: ':square-cast',
+            squareCommons: ':square-commons',
+            squareReactive: ':square-reactive',
+            squareZxing: ':square-zxing'
+    ]
+
     libDependencies = [
-            [configuration: "compileOnly", dependency: androidLibs.appCompat],
-            [configuration: "compileOnly", dependency: androidLibs.kotlin],
-            [configuration: "compileOnly", dependency: androidLibs.playServicesMaps],
             [configuration: "compileOnly", dependency: androidLibs.multidexVersion],
+            [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
+            [configuration: "compileOnly", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
             [configuration: "testImplementation", dependency: testLibs.mockito],
@@ -63,7 +77,8 @@ ext {
     ]
 
     commonsDependencies = [
-            [configuration: "compileOnly", dependency: androidLibs.appCompat],
+            [configuration: "compileOnly", dependency: project(modules.square)],
+            [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
@@ -73,10 +88,11 @@ ext {
     ]
 
     reactiveDependencies = [
-            [configuration: "compileOnly", dependency: androidLibs.appCompat],
+            [configuration: "compileOnly", dependency: project(modules.square)],
+            [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
-            [configuration: "compileOnly", dependency: libs.rxAndroid],
-            [configuration: "compileOnly", dependency: libs.rxKotlin],
+            [configuration: "compileOnly", dependency: rxLibs.android],
+            [configuration: "compileOnly", dependency: rxLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
             [configuration: "testImplementation", dependency: testLibs.mockito],
@@ -85,9 +101,10 @@ ext {
     ]
 
     castDependencies = [
-            [configuration: "compileOnly", dependency: androidLibs.appCompat],
+            [configuration: "compileOnly", dependency: project(modules.square)],
+            [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
-            [configuration: "compileOnly", dependency: androidLibs.playServicesCast],
+            [configuration: "compileOnly", dependency: playServicesLibs.cast],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
             [configuration: "testImplementation", dependency: testLibs.mockito],
@@ -96,8 +113,7 @@ ext {
     ]
 
     zxingDependencies = [
-            [configuration: "compileOnly", dependency: androidLibs.appCompat],
-            [configuration: "compileOnly", dependency: androidLibs.kotlin],
+            [configuration: "compileOnly", dependency: project(modules.square)],
             [configuration: "api", dependency: libs.zXing],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
@@ -107,8 +123,14 @@ ext {
     ]
 
     appDependencies = [
-            [configuration: "implementation", dependency: androidLibs.appCompat],
-            [configuration: "implementation", dependency: androidLibs.material],
+            [configuration: "implementation", dependency: project(modules.square)],
+            [configuration: "implementation", dependency: project(modules.squareCast)],
+            [configuration: "implementation", dependency: project(modules.squareCommons)],
+            [configuration: "implementation", dependency: project(modules.squareReactive)],
+            [configuration: "implementation", dependency: project(modules.squareZxing)],
+            [configuration: "implementation", dependency: androidLibs.supportV4],
+            [configuration: "implementation", dependency: androidLibs.supportV13],
+            [configuration: "implementation", dependency: androidLibs.appcompatV7],
             [configuration: "implementation", dependency: androidLibs.constraintLayout],
             [configuration: "implementation", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],

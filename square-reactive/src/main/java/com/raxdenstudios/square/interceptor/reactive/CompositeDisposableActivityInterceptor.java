@@ -1,9 +1,10 @@
 package com.raxdenstudios.square.interceptor.reactive;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 

@@ -1,12 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.countback;
 
-import androidx.fragment.app.FragmentActivity;
 import android.os.Handler;
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.raxdenstudios.square.R;
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
+import com.raxdenstudios.square.interceptor.commons.R;
 
 /**
  * Created by Ángel Gómez on 06/05/2015.
@@ -40,7 +40,7 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
 
     private void init() {
         if (mMessage != null && mMessage.length() > 0) {
-            mMessage = mActivity.getString(R.string.app__count_back_exit_message);
+            mMessage = mActivity.getString(R.string.square__count_back_exit_message);
         }
         if (mDefaultCountBackToExit == 0) {
             mDefaultCountBackToExit = DEFAULT_NUM_COUNT_BACK;
@@ -50,7 +50,7 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
 
     @Override
     public boolean onBackPressed() {
-        if (mActivity.getFragmentManager().getBackStackEntryCount() > 0) {
+        if (mActivity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
             return false;
         }
         if (exitToast == null) {

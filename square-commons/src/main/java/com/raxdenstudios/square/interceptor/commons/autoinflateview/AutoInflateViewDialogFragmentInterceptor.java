@@ -2,6 +2,8 @@
 package com.raxdenstudios.square.interceptor.commons.autoinflateview;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,6 @@ import com.raxdenstudios.square.utils.ResourceUtils;
 import com.raxdenstudios.square.utils.StringUtils;
 
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by agomez on 02/06/2015.

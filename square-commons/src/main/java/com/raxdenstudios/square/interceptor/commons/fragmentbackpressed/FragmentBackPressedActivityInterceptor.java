@@ -1,12 +1,12 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentbackpressed;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * Created by Ángel Gómez on 17/06/2017.
