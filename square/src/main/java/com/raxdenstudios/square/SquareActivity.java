@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor;
@@ -20,7 +20,7 @@ import java.util.List;
  *
  * SquareActivity is an abstract class that adds interceptor functionality to the activity.
  */
-public abstract class SquareActivity extends FragmentActivity {
+public abstract class SquareActivity extends AppCompatActivity {
 
     private ActivityInterceptorManager mInterceptorManager;
 
