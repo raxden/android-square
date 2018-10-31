@@ -31,11 +31,11 @@ public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSess
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupCastListener();
-        mCastContext = CastContext.getSharedInstance(mActivity);
-//        mCastContext.registerLifecycleCallbacksBeforeIceCreamSandwich((FragmentActivity)mActivity, savedInstanceState);
+        mCastContext = CastContext.getSharedInstance(getActivity());
+//        mCastContext.registerLifecycleCallbacksBeforeIceCreamSandwich((FragmentActivity)activity, savedInstanceState);
         mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
         if (mCastSession != null) {
-            mCallback.onCastConnected(mCastSession);
+            getCallback().onCastConnected(mCastSession);
         }
     }
 
@@ -103,14 +103,14 @@ public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSess
 
             private void onApplicationConnected(CastSession castSession) {
                 mCastSession = castSession;
-                if (mCallback != null) {
-                    mCallback.onCastConnected(castSession);
+                if (getCallback() != null) {
+                    getCallback().onCastConnected(castSession);
                 }
             }
 
             private void onApplicationDisconnected() {
-                if (mCallback != null) {
-                    mCallback.onCastDisconnected();
+                if (getCallback() != null) {
+                    getCallback().onCastDisconnected();
                 }
             }
         };

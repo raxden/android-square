@@ -23,7 +23,7 @@ public class HandleArgumentsFragmentInterceptor extends FragmentInterceptor<Hand
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCallback.onHandleArguments(savedInstanceState, mFragment.getArguments());
+        getCallback().onHandleArguments(savedInstanceState, getFragment().getArguments());
     }
 
 }

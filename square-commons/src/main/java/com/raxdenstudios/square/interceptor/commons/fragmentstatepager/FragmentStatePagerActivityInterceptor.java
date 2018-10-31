@@ -31,12 +31,12 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewPager = mCallback.onCreateViewPager(savedInstanceState);
+        mViewPager = getCallback().onCreateViewPager(savedInstanceState);
         if (mViewPager != null) {
-            mAdapter = new FragmentStatePagerInterceptorAdapter(mActivity.getSupportFragmentManager());
+            mAdapter = new FragmentStatePagerInterceptorAdapter(getActivity().getSupportFragmentManager());
             mViewPager.setAdapter(mAdapter);
             mViewPager.addOnPageChangeListener(onPageChangeListener);
-            mCallback.onViewPagerCreated(mViewPager);
+            getCallback().onViewPagerCreated(mViewPager);
         }
     }
 
@@ -111,18 +111,18 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
 
         @Override
         public TFragment getItem(int position) {
-            return mCallback.onCreateFragment(position);
+            return getCallback().onCreateFragment(position);
         }
 
         @Override
         public int getCount() {
-            return mCallback.getViewPagerElements();
+            return getCallback().getViewPagerElements();
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             TFragment fragment = (TFragment) super.instantiateItem(container, position);
-            mCallback.onFragmentLoaded(fragment, position);
+            getCallback().onFragmentLoaded(fragment, position);
             return fragment;
         }
 
@@ -141,7 +141,7 @@ public class FragmentStatePagerActivityInterceptor<TFragment extends Fragment> e
         @Override
         public void onPageSelected(int position) {
             TFragment fragment = mAdapter.getFragment(position);
-            mCallback.onFragmentSelected(fragment, position);
+            getCallback().onFragmentSelected(fragment, position);
         }
 
         @Override

@@ -38,7 +38,7 @@ public class AutoInflateViewDialogFragmentInterceptor extends DialogFragmentInte
         if (mLayoutId != 0) {
             return inflater.inflate(mLayoutId, null);
         } else {
-            int layoutId = ResourceUtils.getLayoutId(mContext, getLayoutName());
+            int layoutId = ResourceUtils.INSTANCE.getLayoutId(getContext(), getLayoutName());
             if (layoutId > 0) {
                 return inflater.inflate(layoutId, null);
             }
@@ -47,7 +47,7 @@ public class AutoInflateViewDialogFragmentInterceptor extends DialogFragmentInte
     }
 
     private String getLayoutName() {
-        String className = StringUtils.uncapitalize(mDialogFragment.getClass().getSimpleName());
+        String className = getDialogFragment().getClass().getSimpleName().toLowerCase();
         return StringUtils.join(className.split("(?=\\p{Upper})"), "_").toLowerCase(Locale.getDefault());
     }
 

@@ -43,10 +43,10 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mContentDrawerView = mCallback.onCreateContentDrawerView(savedInstanceState);
+        mContentDrawerView = getCallback().onCreateContentDrawerView(savedInstanceState);
         if (mContentDrawerView != null) {
-            mDrawerLayout = mCallback.onCreateDrawerLayout(savedInstanceState);
-            Toolbar toolbar = mCallback.onCreateToolbarView(savedInstanceState);
+            mDrawerLayout = getCallback().onCreateDrawerLayout(savedInstanceState);
+            Toolbar toolbar = getCallback().onCreateToolbarView(savedInstanceState);
             if (mDrawerLayout != null) {
                 // set a custom shadow that overlays the main content when the drawer opens
                 mDrawerLayout.setDrawerShadow(R.drawable.square__drawer_shadow, GravityCompat.START);
@@ -56,22 +56,22 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
                     @Override
                     public void onClick(View view) {
                         if (mDrawerToggle != null && !mDrawerToggle.isDrawerIndicatorEnabled()) {
-                            mActivity.onBackPressed();
+                            getActivity().onBackPressed();
                         }
                     }
                 });
                 mDrawerLayout.addDrawerListener(mDrawerToggle);
-                mCallback.onActionBarDrawerToggleCreated(mDrawerToggle);
-                mCallback.onDrawerLayoutCreated(mDrawerLayout);
+                getCallback().onActionBarDrawerToggleCreated(mDrawerToggle);
+                getCallback().onDrawerLayoutCreated(mDrawerLayout);
             }
             TFragment contentDrawerFragment;
             if (savedInstanceState == null) {
-                contentDrawerFragment = mCallback.onCreateContentDrawerFragment();
-                FragmentUtils.loadFragment(mActivity.getSupportFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
+                contentDrawerFragment = getCallback().onCreateContentDrawerFragment();
+                FragmentUtils.INSTANCE.loadFragment(getActivity().getSupportFragmentManager(), mContentDrawerView.getId(), contentDrawerFragment);
             } else {
-                contentDrawerFragment = (TFragment) FragmentUtils.getFragment(mActivity.getSupportFragmentManager(), mContentDrawerView.getId());
+                contentDrawerFragment = (TFragment) FragmentUtils.INSTANCE.getFragment(getActivity().getSupportFragmentManager(), mContentDrawerView.getId());
             }
-            mCallback.onContentDrawerFragmentLoaded(contentDrawerFragment);
+            getCallback().onContentDrawerFragmentLoaded(contentDrawerFragment);
         }
     }
 
@@ -84,8 +84,8 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (mCallback != null && mDrawerToggle != null && mDrawerLayout != null) {
-            if (mActivity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+        if (getCallback() != null && mDrawerToggle != null && mDrawerLayout != null) {
+            if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
                 ActionBarDrawerToggle.Delegate delegate = getDrawerToggleDelegate();
                 if (delegate != null) {
@@ -111,11 +111,11 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mCallback = null;
+        setCallback(null);
     }
 
     private void close() {
-        mActivity.runOnUiThread(new Runnable() {
+        getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (mDrawerLayout != null && mContentDrawerView != null) {
@@ -133,7 +133,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle() {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
+        return new ActionBarDrawerToggle(getActivity(), mDrawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -162,7 +162,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     }
 
     private ActionBarDrawerToggle initActionBarDrawerToogle(Toolbar toolbar) {
-        return new ActionBarDrawerToggle(mActivity, mDrawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
+        return new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -191,34 +191,34 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     }
 
     private void onDrawerClosed(View drawerView) {
-        if (mCallback != null) {
-            mActivity.invalidateOptionsMenu();
-            mCallback.onDrawerClosed(drawerView);
+        if (getCallback() != null) {
+            getActivity().invalidateOptionsMenu();
+            getCallback().onDrawerClosed(drawerView);
         }
     }
 
     private void onDrawerOpened(View drawerView) {
-        if (mCallback != null) {
-            mActivity.invalidateOptionsMenu();
-            mCallback.onDrawerOpened(drawerView);
+        if (getCallback() != null) {
+            getActivity().invalidateOptionsMenu();
+            getCallback().onDrawerOpened(drawerView);
         }
     }
 
     private void onDrawerSlide(View drawerView, float slideOffset) {
-        if (mCallback != null) {
-            mCallback.onDrawerSlide(drawerView, slideOffset);
+        if (getCallback() != null) {
+            getCallback().onDrawerSlide(drawerView, slideOffset);
         }
     }
 
     private void onDrawerStateChanged(int newState) {
-        if (mCallback != null) {
-            mCallback.onDrawerStateChanged(newState);
+        if (getCallback() != null) {
+            getCallback().onDrawerStateChanged(newState);
         }
     }
 
     private ActionBarDrawerToggle.Delegate getDrawerToggleDelegate() {
-        if (mActivity instanceof AppCompatActivity) {
-            return ((AppCompatActivity) mActivity).getDrawerToggleDelegate();
+        if (getActivity() instanceof AppCompatActivity) {
+            return ((AppCompatActivity) getActivity()).getDrawerToggleDelegate();
         }
         return null;
     }

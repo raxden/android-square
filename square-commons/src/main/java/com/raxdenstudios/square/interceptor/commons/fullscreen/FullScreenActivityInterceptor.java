@@ -23,7 +23,7 @@ public class FullScreenActivityInterceptor extends ActivitySimpleInterceptor imp
         int flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
         int mask = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
-        mActivity.getWindow().setFlags(flags, mask);
+        getActivity().getWindow().setFlags(flags, mask);
     }
 
 }

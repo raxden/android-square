@@ -23,7 +23,7 @@ public class HandleArgumentsDialogFragmentInterceptor extends DialogFragmentInte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCallback.onHandleArguments(savedInstanceState, mDialogFragment.getArguments());
+        getCallback().onHandleArguments(savedInstanceState, getDialogFragment().getArguments());
     }
 
 }

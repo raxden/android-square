@@ -6,25 +6,6 @@ package com.raxdenstudios.square.utils;
 
 public class StringUtils {
 
-    public static String uncapitalize(String str) {
-        return changeFirstCharacterCase(str, false);
-    }
-
-    private static String changeFirstCharacterCase(String str, boolean capitalize) {
-        if (str == null || str.length() == 0) {
-            return str;
-        }
-        StringBuffer buf = new StringBuffer(str.length());
-        if (capitalize) {
-            buf.append(Character.toUpperCase(str.charAt(0)));
-        }
-        else {
-            buf.append(Character.toLowerCase(str.charAt(0)));
-        }
-        buf.append(str.substring(1));
-        return buf.toString();
-    }
-
     public static String join(Object[] array, String separator) {
         if (array == null) {
             return null;

@@ -24,8 +24,8 @@ public class TimerFragmentInterceptor extends FragmentInterceptor<TimerIntercept
         public void run() {
             synchronized (o) {
                 isTimerEnded = true;
-                if (mCallback != null) {
-                    mCallback.onTimerEnd();
+                if (getCallback() != null) {
+                    getCallback().onTimerEnd();
                 }
             }
             removeRunnableIfExists();
@@ -62,7 +62,7 @@ public class TimerFragmentInterceptor extends FragmentInterceptor<TimerIntercept
 
         synchronized (o) {
             if (!isTimerEnded) {
-                if (mCallback != null) mCallback.onTimerCancelled();
+                if (getCallback() != null) getCallback().onTimerCancelled();
             }
             removeRunnableIfExists();
         }

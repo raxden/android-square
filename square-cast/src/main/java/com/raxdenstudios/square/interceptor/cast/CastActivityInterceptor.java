@@ -40,22 +40,22 @@ public class CastActivityInterceptor extends ActivityInterceptor<CastInterceptor
             @Override
             public void onCastStateChanged(int newState) {
                 if (newState != CastState.NO_DEVICES_AVAILABLE) {
-                    mCallback.devicesNotAvailable();
+                    getCallback().devicesNotAvailable();
                 } else {
-                    mCallback.devicesAvailable();
+                    getCallback().devicesAvailable();
                     showIntroductoryOverlay();
                 }
             }
         };
-        mCastContext = CastContext.getSharedInstance(mActivity);
+        mCastContext = CastContext.getSharedInstance(getActivity());
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuItem mediaRoutMenuItem = mCallback.onCreateMediaRouteMenuItem(menu);
+        MenuItem mediaRoutMenuItem = getCallback().onCreateMediaRouteMenuItem(menu);
         if (mediaRoutMenuItem != null) {
-            mMediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(mActivity, menu, mediaRoutMenuItem.getItemId());
+            mMediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(getActivity(), menu, mediaRoutMenuItem.getItemId());
         }
     }
 
@@ -89,7 +89,7 @@ public class CastActivityInterceptor extends ActivityInterceptor<CastInterceptor
                 @Override
                 public void run() {
                     mIntroductoryOverlay = new IntroductoryOverlay
-                            .Builder(mActivity, mMediaRouteMenuItem)
+                            .Builder(getActivity(), mMediaRouteMenuItem)
                             .setTitleText("Introducing Cast")
                             .setSingleTime()
                             .setOnOverlayDismissedListener(

@@ -40,7 +40,7 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
 
     private void init() {
         if (mMessage != null && mMessage.length() > 0) {
-            mMessage = mActivity.getString(R.string.square__count_back_exit_message);
+            mMessage = getActivity().getString(R.string.square__count_back_exit_message);
         }
         if (mDefaultCountBackToExit == 0) {
             mDefaultCountBackToExit = DEFAULT_NUM_COUNT_BACK;
@@ -50,11 +50,11 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
 
     @Override
     public boolean onBackPressed() {
-        if (mActivity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+        if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
             return false;
         }
         if (exitToast == null) {
-            exitToast = Toast.makeText(mActivity, mMessage, Toast.LENGTH_SHORT);
+            exitToast = Toast.makeText(getActivity(), mMessage, Toast.LENGTH_SHORT);
         }
         if (mCountBackToExit > 0) {
             mCountBackToExit--;

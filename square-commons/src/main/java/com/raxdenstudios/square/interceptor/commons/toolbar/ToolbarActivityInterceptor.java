@@ -26,10 +26,10 @@ public class ToolbarActivityInterceptor extends ActivityInterceptor<ToolbarInter
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = mCallback.onCreateToolbarView(savedInstanceState);
+        Toolbar toolbar = getCallback().onCreateToolbarView(savedInstanceState);
         if (toolbar != null) {
-            if (mActivity instanceof AppCompatActivity) {
-                AppCompatActivity compatActivity = ((AppCompatActivity) mActivity);
+            if (getActivity() instanceof AppCompatActivity) {
+                AppCompatActivity compatActivity = ((AppCompatActivity) getActivity());
                 compatActivity.setSupportActionBar(toolbar);
                 ActionBar actionBar = compatActivity.getSupportActionBar();
                 if (actionBar != null) {
@@ -39,10 +39,10 @@ public class ToolbarActivityInterceptor extends ActivityInterceptor<ToolbarInter
             toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    return mActivity.onOptionsItemSelected(item);
+                    return getActivity().onOptionsItemSelected(item);
                 }
             });
-            mCallback.onToolbarViewCreated(toolbar);
+            getCallback().onToolbarViewCreated(toolbar);
         }
     }
 

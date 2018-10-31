@@ -24,9 +24,9 @@ public class NetworkActivityInterceptor extends ActivityInterceptor<NetworkInter
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (mCallback != null) {
-                mCallback.onNetworkAvailable(NetworkUtils.isNetworkAvailable(context));
-                mCallback.onWifiAvailable(NetworkUtils.isWifiAvailable(context));
+            if (getCallback() != null) {
+                getCallback().onNetworkAvailable(NetworkUtils.isNetworkAvailable(context));
+                getCallback().onWifiAvailable(NetworkUtils.isWifiAvailable(context));
             }
         }
     };
@@ -44,14 +44,14 @@ public class NetworkActivityInterceptor extends ActivityInterceptor<NetworkInter
         super.onCreate(savedInstanceState);
 
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        mActivity.registerReceiver(mNetworkReceiver, intentFilter);
+        getActivity().registerReceiver(mNetworkReceiver, intentFilter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        mActivity.unregisterReceiver(mNetworkReceiver);
+        getActivity().unregisterReceiver(mNetworkReceiver);
     }
 
 }

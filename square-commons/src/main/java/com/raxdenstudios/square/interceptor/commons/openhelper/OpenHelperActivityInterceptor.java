@@ -26,7 +26,7 @@ public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper> extends A
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mOpenHelper = mCallback.onCreateOpenHelper(mActivity, savedInstanceState);
+        mOpenHelper = getCallback().onCreateOpenHelper(getActivity(), savedInstanceState);
     }
 
     @Override

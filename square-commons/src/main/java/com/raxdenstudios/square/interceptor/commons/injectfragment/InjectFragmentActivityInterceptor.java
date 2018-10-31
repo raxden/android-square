@@ -37,15 +37,15 @@ public class InjectFragmentActivityInterceptor<TFragment extends Fragment> exten
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View contentView = mCallback.onLoadFragmentContainer(savedInstanceState);
+        View contentView = getCallback().onLoadFragmentContainer(savedInstanceState);
         if (contentView != null) {
             if (savedInstanceState == null) {
-                mContentFragment = mCallback.onCreateFragment();
-                FragmentUtils.loadFragment(mActivity.getSupportFragmentManager(), contentView.getId(), mContentFragment);
+                mContentFragment = getCallback().onCreateFragment();
+                FragmentUtils.INSTANCE.loadFragment(getActivity().getSupportFragmentManager(), contentView.getId(), mContentFragment);
             } else {
-                mContentFragment = (TFragment) FragmentUtils.getFragment(mActivity.getSupportFragmentManager(), contentView.getId());
+                mContentFragment = (TFragment) FragmentUtils.INSTANCE.getFragment(getActivity().getSupportFragmentManager(), contentView.getId());
             }
-            mCallback.onFragmentLoaded(mContentFragment);
+            getCallback().onFragmentLoaded(mContentFragment);
         }
     }
 

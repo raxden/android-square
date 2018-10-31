@@ -29,7 +29,7 @@ public class TelephonyActivityInterceptor extends ActivityInterceptor<TelephonyI
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mTelephonyManager = (TelephonyManager) mActivity.getSystemService(Context.TELEPHONY_SERVICE);
+        mTelephonyManager = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         if (mTelephonyManager != null) {
             mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
         }
@@ -47,7 +47,7 @@ public class TelephonyActivityInterceptor extends ActivityInterceptor<TelephonyI
     private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
-            mCallback.onCallStateChanged(state, incomingNumber);
+            getCallback().onCallStateChanged(state, incomingNumber);
             super.onCallStateChanged(state, incomingNumber);
         }
     };

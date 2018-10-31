@@ -37,7 +37,7 @@ public class ZXingScannerFragmentInterceptor extends FragmentInterceptor<ZXingSc
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mScannerView = mCallback != null ? mCallback.onLoadZXingScannerView() : null;
+        mScannerView = getCallback() != null ? getCallback().onLoadZXingScannerView() : null;
         if (mScannerView != null) {
             mFlash = false;
             mAutoFocus = true;
@@ -70,8 +70,8 @@ public class ZXingScannerFragmentInterceptor extends FragmentInterceptor<ZXingSc
 
     @Override
     public void handleResult(Result result) {
-        if (mCallback != null) {
-            mCallback.handleZXingScannerResult(result);
+        if (getCallback() != null) {
+            getCallback().handleZXingScannerResult(result);
         }
     }
 

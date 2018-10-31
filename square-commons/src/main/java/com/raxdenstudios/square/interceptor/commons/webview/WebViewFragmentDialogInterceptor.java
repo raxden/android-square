@@ -36,9 +36,9 @@ public class WebViewFragmentDialogInterceptor extends DialogFragmentInterceptor<
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mContainer = mCallback != null ? mCallback.onLoadWebViewContainer() : null;
+        mContainer = getCallback() != null ? getCallback().onLoadWebViewContainer() : null;
         if (mContainer != null) {
-            mWebView = new WebView(mContext);
+            mWebView = new WebView(getContext());
             mWebView.setId(R.id.square__webview);
 
             mContainer.removeAllViews();
@@ -54,12 +54,12 @@ public class WebViewFragmentDialogInterceptor extends DialogFragmentInterceptor<
 
             CookieManager.getInstance().setAcceptCookie(true);
 
-            mCallback.onConfigureWebSettings(mWebView.getSettings());
+            getCallback().onConfigureWebSettings(mWebView.getSettings());
 
             mWebView.setWebViewClient(webviewClient);
             mWebView.setWebChromeClient(webChromeClient);
 
-            mCallback.onWebViewCreate(mWebView);
+            getCallback().onWebViewCreate(mWebView);
         }
     }
 
@@ -88,13 +88,13 @@ public class WebViewFragmentDialogInterceptor extends DialogFragmentInterceptor<
 
     private void onProgressChanged(WebView view, int newProgress) {
         if (view != null && !mPageFinished) {
-            if (mCallback != null) mCallback.onProgressShow(Integer.toString(newProgress) + "%");
+            if (getCallback() != null) getCallback().onProgressShow(Integer.toString(newProgress) + "%");
         }
     }
 
     private void onPageFinished(WebView view, String url) {
         if (view != null) {
-            if (mCallback != null) mCallback.onProgressHide();
+            if (getCallback() != null) getCallback().onProgressHide();
         }
     }
 

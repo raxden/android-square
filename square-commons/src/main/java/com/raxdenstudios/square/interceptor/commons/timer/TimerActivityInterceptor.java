@@ -24,8 +24,8 @@ public class TimerActivityInterceptor extends ActivityInterceptor<TimerIntercept
         public void run() {
             synchronized (o) {
                 isTimerEnded = true;
-                if (mCallback != null) {
-                    mCallback.onTimerEnd();
+                if (getCallback() != null) {
+                    getCallback().onTimerEnd();
                 }
             }
             removeRunnableIfExists();
@@ -59,7 +59,7 @@ public class TimerActivityInterceptor extends ActivityInterceptor<TimerIntercept
     @Override
     public boolean onBackPressed() {
         removeRunnableIfExists();
-        if (mCallback != null) mCallback.onTimerCancelled();
+        if (getCallback() != null) getCallback().onTimerCancelled();
         return super.onBackPressed();
     }
 
@@ -69,7 +69,7 @@ public class TimerActivityInterceptor extends ActivityInterceptor<TimerIntercept
 
         synchronized (o) {
             if (!isTimerEnded) {
-                if (mCallback != null) mCallback.onTimerCancelled();
+                if (getCallback() != null) getCallback().onTimerCancelled();
             }
             removeRunnableIfExists();
         }
