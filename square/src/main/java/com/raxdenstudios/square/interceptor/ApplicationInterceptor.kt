@@ -15,6 +15,8 @@ abstract class ApplicationInterceptor<TCallback : InterceptorCallback>(
     : BaseInterceptor<TCallback>(application, callback),
         ApplicationLifecycle {
 
+    override fun onCreate() {}
+
     override fun onConfigurationChanged(newConfig: Configuration?) {}
 
     override fun onLowMemory() {}

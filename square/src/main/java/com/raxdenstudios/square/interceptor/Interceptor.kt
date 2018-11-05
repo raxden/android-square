@@ -6,6 +6,6 @@ package com.raxdenstudios.square.interceptor
  * Contract that define a Interceptor
  */
 interface Interceptor {
-    fun onCreate()
-    fun onDestroy()
+    fun onInterceptorCreated()
+    fun onInterceptorDestroyed()
 }

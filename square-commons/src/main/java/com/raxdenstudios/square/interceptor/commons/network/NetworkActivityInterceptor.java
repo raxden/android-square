@@ -32,7 +32,7 @@ public class NetworkActivityInterceptor extends ActivityInterceptor<NetworkInter
     };
 
     public NetworkActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public NetworkActivityInterceptor(@NonNull FragmentActivity activity, @NonNull NetworkInterceptorCallback callback) {

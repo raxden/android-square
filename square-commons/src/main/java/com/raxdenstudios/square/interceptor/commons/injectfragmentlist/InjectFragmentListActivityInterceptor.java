@@ -21,7 +21,7 @@ public class InjectFragmentListActivityInterceptor<TFragment extends Fragment> e
     List<TFragment> mFragmentList;
 
     public InjectFragmentListActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public InjectFragmentListActivityInterceptor(@NonNull FragmentActivity activity, @NonNull InjectFragmentListInterceptorCallback<TFragment> callback) {

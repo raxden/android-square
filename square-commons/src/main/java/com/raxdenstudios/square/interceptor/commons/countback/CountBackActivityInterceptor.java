@@ -29,7 +29,7 @@ public class CountBackActivityInterceptor extends ActivityInterceptor<CountBackI
     };
 
     public CountBackActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
         init();
     }
 

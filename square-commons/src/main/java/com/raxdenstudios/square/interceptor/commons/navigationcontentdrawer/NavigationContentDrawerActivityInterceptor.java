@@ -26,7 +26,7 @@ public class NavigationContentDrawerActivityInterceptor<TFragment extends Fragme
     private ActionBarDrawerToggle mDrawerToggle;
 
     public NavigationContentDrawerActivityInterceptor(@NonNull AppCompatActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public NavigationContentDrawerActivityInterceptor(@NonNull AppCompatActivity activity, @NonNull NavigationContentDrawerInterceptorCallback<TFragment> callback) {

@@ -96,7 +96,7 @@ abstract class SquareActivity : AppCompatActivity() {
 
     // ========== Support methods ==================================================================
 
-    protected abstract fun setupInterceptors(interceptorList: List<ActivityInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<ActivityInterceptor<*>>)
 
     private val interceptorManager: ActivityInterceptorManager
         get() {

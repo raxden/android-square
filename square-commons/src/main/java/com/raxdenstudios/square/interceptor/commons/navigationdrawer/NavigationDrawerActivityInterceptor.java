@@ -24,7 +24,7 @@ public class NavigationDrawerActivityInterceptor extends ActivityInterceptor<Nav
     private ActionBarDrawerToggle mDrawerToggle;
 
     public NavigationDrawerActivityInterceptor(@NonNull AppCompatActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public NavigationDrawerActivityInterceptor(@NonNull AppCompatActivity activity, @NonNull NavigationDrawerInterceptorCallback callback) {

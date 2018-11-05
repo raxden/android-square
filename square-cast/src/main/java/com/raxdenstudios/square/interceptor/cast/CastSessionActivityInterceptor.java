@@ -20,7 +20,7 @@ public class CastSessionActivityInterceptor extends ActivityInterceptor<CastSess
     private SessionManagerListener<CastSession> mSessionManagerListener;
 
     public CastSessionActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public CastSessionActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CastSessionInterceptorCallback callback) {

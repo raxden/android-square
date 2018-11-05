@@ -20,10 +20,8 @@ import com.raxdenstudios.square.lifecycle.FragmentLifecycle
 abstract class FragmentInterceptor<TCallback : InterceptorCallback>(
         protected var fragment: Fragment,
         callback: TCallback? = null)
-    : BaseInterceptor<TCallback>,
+    : BaseInterceptor<TCallback>(fragment, callback),
         FragmentLifecycle {
-
-    protected var fragment: Fragment
 
     override fun onSaveInstanceState(outState: Bundle) {}
 
@@ -35,7 +33,9 @@ abstract class FragmentInterceptor<TCallback : InterceptorCallback>(
 
     override fun onAttachFragment(childFragment: Fragment?) {}
 
-    override fun onCreate(savedInstanceState: Bundle?) {}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onInterceptorCreated()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, inflatedView: View?, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflatedView
 
@@ -50,6 +50,10 @@ abstract class FragmentInterceptor<TCallback : InterceptorCallback>(
     override fun onPause() {}
 
     override fun onStop() {}
+
+    override fun onDestroy() {
+        super.onInterceptorDestroyed()
+    }
 
     override fun onDestroyView() {}
 

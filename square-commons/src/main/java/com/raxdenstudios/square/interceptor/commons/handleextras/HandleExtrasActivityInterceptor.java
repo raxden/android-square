@@ -12,7 +12,7 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 public class HandleExtrasActivityInterceptor extends ActivityInterceptor<HandleExtrasInterceptorCallback> implements HandleExtrasInterceptor {
 
     public HandleExtrasActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public HandleExtrasActivityInterceptor(@NonNull FragmentActivity activity, @NonNull HandleExtrasInterceptorCallback callback) {

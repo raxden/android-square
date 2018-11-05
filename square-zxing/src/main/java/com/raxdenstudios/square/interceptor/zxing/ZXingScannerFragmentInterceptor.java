@@ -26,7 +26,7 @@ public class ZXingScannerFragmentInterceptor extends FragmentInterceptor<ZXingSc
     private int mCameraId = -1;
 
     public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment);
+        super(fragment, null);
     }
 
     public ZXingScannerFragmentInterceptor(@NonNull Fragment fragment, @NonNull ZXingScannerInterceptorCallback callback) {

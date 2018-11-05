@@ -15,7 +15,7 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor;
 public class ToolbarActivityInterceptor extends ActivityInterceptor<ToolbarInterceptorCallback> implements ToolbarInterceptor {
 
     public ToolbarActivityInterceptor(@NonNull AppCompatActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public ToolbarActivityInterceptor(@NonNull AppCompatActivity activity, @NonNull ToolbarInterceptorCallback callback) {

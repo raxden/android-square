@@ -28,11 +28,11 @@ abstract class BaseInterceptor<TCallback : InterceptorCallback>(
 
     // =============================================================================================
 
-    override fun onCreate() {
+    override fun onInterceptorCreated() {
         Log.d(BaseInterceptor::class.java.simpleName, this.javaClass.simpleName + " created!")
     }
 
-    override fun onDestroy() {
+    override fun onInterceptorDestroyed() {
         Log.d(BaseInterceptor::class.java.simpleName, this.javaClass.simpleName + " destroyed!")
         callback = null
     }

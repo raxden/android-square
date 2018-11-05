@@ -17,7 +17,7 @@ public class FragmentBackPressedActivityInterceptor extends ActivityInterceptor<
     private List<OnFragmentBackPressedListener> mOnBackPressedListeners;
 
     public FragmentBackPressedActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public FragmentBackPressedActivityInterceptor(@NonNull FragmentActivity activity, @NonNull FragmentBackPressedInterceptorCallback callback) {

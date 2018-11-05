@@ -17,7 +17,7 @@ public class CompositeDisposableActivityInterceptor extends ActivityInterceptor<
     private CompositeDisposable mCompositeDisposable;
 
     public CompositeDisposableActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
         mCompositeDisposable = new CompositeDisposable();
     }
 

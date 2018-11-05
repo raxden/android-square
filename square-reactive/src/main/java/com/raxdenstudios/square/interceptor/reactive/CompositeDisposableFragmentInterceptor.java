@@ -18,7 +18,7 @@ public class CompositeDisposableFragmentInterceptor extends FragmentInterceptor<
     private CompositeDisposable mCompositeDisposable;
 
     public CompositeDisposableFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment);
+        super(fragment, null);
         mCompositeDisposable = new CompositeDisposable();
     }
 

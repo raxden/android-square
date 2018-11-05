@@ -109,7 +109,7 @@ abstract class SquareFragment : Fragment() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: List<FragmentInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<FragmentInterceptor<*>>)
 
     private val interceptorManager: FragmentInterceptorManager
         get() {

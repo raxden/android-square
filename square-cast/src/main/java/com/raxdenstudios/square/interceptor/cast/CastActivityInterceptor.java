@@ -25,7 +25,7 @@ public class CastActivityInterceptor extends ActivityInterceptor<CastInterceptor
     private MenuItem mMediaRouteMenuItem;
 
     public CastActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public CastActivityInterceptor(@NonNull FragmentActivity activity, @NonNull CastInterceptorCallback callback) {

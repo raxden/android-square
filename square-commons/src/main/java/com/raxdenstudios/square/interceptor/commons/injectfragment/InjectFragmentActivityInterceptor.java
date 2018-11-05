@@ -18,7 +18,7 @@ public class InjectFragmentActivityInterceptor<TFragment extends Fragment> exten
     private TFragment mContentFragment;
 
     public InjectFragmentActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public InjectFragmentActivityInterceptor(@NonNull FragmentActivity activity, @NonNull InjectFragmentInterceptorCallback<TFragment> callback) {

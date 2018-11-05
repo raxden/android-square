@@ -25,7 +25,9 @@ abstract class DialogFragmentInterceptor<TCallback : InterceptorCallback>(
     : BaseInterceptor<TCallback>(dialogFragment, callback),
         DialogFragmentLifecycle {
 
-    override fun onCreate(savedInstanceState: Bundle?) {}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onInterceptorCreated()
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?, createdDialog: Dialog): Dialog = createdDialog
 
@@ -58,6 +60,10 @@ abstract class DialogFragmentInterceptor<TCallback : InterceptorCallback>(
     override fun onStop() {}
 
     override fun onDestroyView() {}
+
+    override fun onDestroy() {
+        super.onInterceptorDestroyed()
+    }
 
     override fun onDetach() {}
 

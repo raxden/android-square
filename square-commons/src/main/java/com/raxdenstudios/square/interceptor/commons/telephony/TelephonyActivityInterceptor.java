@@ -18,7 +18,7 @@ public class TelephonyActivityInterceptor extends ActivityInterceptor<TelephonyI
     private TelephonyManager mTelephonyManager;
 
     public TelephonyActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public TelephonyActivityInterceptor(@NonNull FragmentActivity activity, @NonNull TelephonyInterceptorCallback callback) {

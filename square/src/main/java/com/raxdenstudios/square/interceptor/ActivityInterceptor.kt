@@ -27,6 +27,10 @@ abstract class ActivityInterceptor<TCallback : InterceptorCallback>(
 
     override fun onNewIntent(intent: Intent?) {}
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onInterceptorCreated()
+    }
+
     override fun onPostCreate(savedInstanceState: Bundle?) {}
 
     override fun onCreateOptionsMenu(menu: Menu?) {}
@@ -40,6 +44,10 @@ abstract class ActivityInterceptor<TCallback : InterceptorCallback>(
     override fun onPause() {}
 
     override fun onStop() {}
+
+    override fun onDestroy() {
+        super.onInterceptorDestroyed()
+    }
 
     override fun onBackPressed(): Boolean = false
 

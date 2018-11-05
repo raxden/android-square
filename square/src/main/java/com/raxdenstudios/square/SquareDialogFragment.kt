@@ -128,7 +128,7 @@ abstract class SquareDialogFragment : DialogFragment() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: List<DialogFragmentInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<DialogFragmentInterceptor<*>>)
 
     private val interceptorManager: DialogFragmentInterceptorManager
         get() {

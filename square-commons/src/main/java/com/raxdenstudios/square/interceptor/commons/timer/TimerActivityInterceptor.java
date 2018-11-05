@@ -33,7 +33,7 @@ public class TimerActivityInterceptor extends ActivityInterceptor<TimerIntercept
     };
 
     public TimerActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
         init();
     }
 

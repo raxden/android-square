@@ -25,7 +25,7 @@ public class WebViewFragmentDialogInterceptor extends DialogFragmentInterceptor<
     private boolean mPageFinished;
 
     public WebViewFragmentDialogInterceptor(@NonNull DialogFragment fragment) {
-        super(fragment);
+        super(fragment, null);
     }
 
     public WebViewFragmentDialogInterceptor(@NonNull DialogFragment fragment, @NonNull WebViewInterceptorCallback callback) {

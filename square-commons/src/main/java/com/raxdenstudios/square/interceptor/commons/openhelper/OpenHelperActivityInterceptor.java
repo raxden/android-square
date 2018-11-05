@@ -15,7 +15,7 @@ public class OpenHelperActivityInterceptor<T extends SQLiteOpenHelper> extends A
     private SQLiteOpenHelper mOpenHelper;
 
     public OpenHelperActivityInterceptor(@NonNull FragmentActivity activity) {
-        super(activity);
+        super(activity, null);
     }
 
     public OpenHelperActivityInterceptor(@NonNull FragmentActivity activity, @NonNull OpenHelperInterceptorCallback<T> callback) {

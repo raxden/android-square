@@ -28,7 +28,7 @@ abstract class SquareMultiDexApplication : MultiDexApplication() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: List<ApplicationInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<ApplicationInterceptor<*>>)
 
     private val interceptorManager: ApplicationMultiDexInterceptorManager
         get() {

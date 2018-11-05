@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
-
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 import com.raxdenstudios.square.utils.ResourceUtils
 import com.raxdenstudios.square.utils.StringUtils
-
-import java.util.Locale
+import java.util.*
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -31,29 +29,24 @@ class AutoInflateLayoutActivityInterceptor(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mInflateLayout = onCreateView(activity.layoutInflater)
-        if (mInflateLayout != null) {
-            activity.setContentView(mInflateLayout)
-            if (callback != null) {
-                callback!!.onContentViewCreated(mInflateLayout!!, savedInstanceState!!)
+        onCreateView(activity.layoutInflater)?.let {
+            mInflateLayout = it
+            activity.setContentView(it)
+            onContentViewCreated(it, savedInstanceState)
+        }
+    }
+
+    private fun onCreateView(layoutInflater: LayoutInflater): View? = when {
+        mLayoutId != 0 -> layoutInflater.inflate(mLayoutId, null)
+        else -> {
+            ResourceUtils.getLayoutId(activity, layoutName).let { layoutId ->
+                layoutInflater.inflate(layoutId, null).takeIf { layoutId > 0 }
             }
         }
     }
 
-    private fun onCreateView(inflater: LayoutInflater): View? {
-        return inflateLayout(inflater)
-    }
-
-    private fun inflateLayout(inflater: LayoutInflater): View? {
-        if (mLayoutId != 0) {
-            return inflater.inflate(mLayoutId, null)
-        } else {
-            val layoutId = ResourceUtils.getLayoutId(activity, layoutName)
-            if (layoutId > 0) {
-                return inflater.inflate(layoutId, null)
-            }
-        }
-        return null
+    private fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+        callback?.onContentViewCreated(view, savedInstanceState)
     }
 
     override fun setLayoutId(layoutId: Int) {

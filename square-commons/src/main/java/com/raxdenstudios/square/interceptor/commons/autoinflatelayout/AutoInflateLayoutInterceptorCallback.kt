@@ -10,6 +10,6 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback
  */
 interface AutoInflateLayoutInterceptorCallback : InterceptorCallback {
 
-    fun onContentViewCreated(view: View, savedInstanceState: Bundle)
+    fun onContentViewCreated(view: View, savedInstanceState: Bundle?)
 
 }
