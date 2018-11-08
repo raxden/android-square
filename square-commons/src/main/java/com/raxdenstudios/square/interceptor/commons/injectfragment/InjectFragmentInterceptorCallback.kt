@@ -13,8 +13,8 @@ interface InjectFragmentInterceptorCallback<T : Fragment> : InterceptorCallback 
 
     fun onLoadFragmentContainer(savedInstanceState: Bundle?): View
 
-    fun onCreateFragment(): T
+    fun onCreateFragment(): T?
 
-    fun onFragmentLoaded(fragment: T)
+    fun onFragmentLoaded(fragment: T?)
 
 }
