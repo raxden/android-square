@@ -8,6 +8,7 @@ import com.raxdenstudios.square.SquareActivity
 import com.raxdenstudios.square.SquareFragment
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 import com.raxdenstudios.square.interceptor.FragmentInterceptor
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback
@@ -40,7 +41,7 @@ class FragmentStatePagerActivity
 
     // ======== AutoInflateLayoutInterceptorCallback ===============================================
 
-    override fun onCreateViewPager(savedInstanceState: Bundle?): ViewPager = content_view
+    override fun onCreateViewPager(savedInstanceState: Bundle?): ViewPager = view_pager
 
     override fun onViewPagerCreated(viewPager: ViewPager) {
         mViewPagerView = viewPager
@@ -71,6 +72,7 @@ class FragmentStatePagerActivity
     // ======== SUPPORT METHODS ====================================================================
 
     override fun setupInterceptors(interceptorList: MutableList<ActivityInterceptor<*>>) {
+        interceptorList.add(AutoInflateLayoutActivityInterceptor(this, this))
         mFragmentStatePagerInterceptor = FragmentStatePagerActivityInterceptor(this, this)
         interceptorList.add(mFragmentStatePagerInterceptor as FragmentStatePagerActivityInterceptor)
     }
