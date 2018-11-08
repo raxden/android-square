@@ -31,7 +31,7 @@ class InjectFragmentActivity
 
     override fun onCreateFragment(): InjectedFragment = InjectedFragment.newInstance(intent.extras)
 
-    override fun onFragmentLoaded(fragment: InjectedFragment?) {
+    override fun onFragmentLoaded(fragment: InjectedFragment) {
         mInjectedFragment = fragment
     }
 

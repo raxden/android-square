@@ -6,13 +6,13 @@ import org.junit.Before
 import org.junit.Test
 import org.robolectric.Robolectric
 
-class InjectFragmentActivityTest : BaseTest() {
+class InjectFragmentListActivityTest : BaseTest() {
 
-    lateinit var activity: InjectFragmentActivity
+    lateinit var activity: InjectFragmentListActivity
 
     @Before
     fun setup() {
-        activity = Robolectric.buildActivity(InjectFragmentActivity::class.java).apply {
+        activity = Robolectric.buildActivity(InjectFragmentListActivity::class.java).apply {
             create().start().resume()
         }.get()
     }
@@ -23,8 +23,10 @@ class InjectFragmentActivityTest : BaseTest() {
     }
 
     @Test
-    fun checkIfFragmentIsLoaded() {
-        assertNotNull(activity.mInjectedFragment)
+    fun checkIfFragmentListIsLoaded() {
+        assertNotNull(activity.mFirstFragment)
+        assertNotNull(activity.mSecondFragment)
+        assertNotNull(activity.mThirdFragment)
     }
 
 }

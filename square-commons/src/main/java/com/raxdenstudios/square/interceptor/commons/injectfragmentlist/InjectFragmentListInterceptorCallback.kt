@@ -1,0 +1,22 @@
+package com.raxdenstudios.square.interceptor.commons.injectfragmentlist
+
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.View
+
+import com.raxdenstudios.square.interceptor.InterceptorCallback
+
+/**
+ * Created by Ángel Gómez on 20/12/2016.
+ */
+interface InjectFragmentListInterceptorCallback<T : Fragment> : InterceptorCallback {
+
+    val fragmentCount: Int
+
+    fun onLoadFragmentContainer(savedInstanceState: Bundle?, position: Int): View?
+
+    fun onCreateFragment(position: Int): T?
+
+    fun onFragmentLoaded(fragment: T?, position: Int)
+
+}

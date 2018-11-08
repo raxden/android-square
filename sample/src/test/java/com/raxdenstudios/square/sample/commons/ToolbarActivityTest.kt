@@ -18,6 +18,11 @@ class ToolbarActivityTest : BaseTest() {
     }
 
     @Test
+    fun checkIfLayoutIsLoaded() {
+        assertNotNull(activity.mContentView)
+    }
+
+    @Test
     fun checkIfToolbarIsLoaded() {
         assertNotNull(activity.mToolbarView)
     }

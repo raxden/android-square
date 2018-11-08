@@ -1,9 +1,7 @@
 package com.raxdenstudios.square.sample
 
 
-import com.raxdenstudios.square.sample.commons.AutoInflateLayoutActivityTest
-import com.raxdenstudios.square.sample.commons.FragmentStatePagerActivityTest
-import com.raxdenstudios.square.sample.commons.ToolbarActivityTest
+import com.raxdenstudios.square.sample.commons.*
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -11,6 +9,8 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
         AutoInflateLayoutActivityTest::class,
         FragmentStatePagerActivityTest::class,
+        InjectFragmentActivityTest::class,
+        InjectFragmentListActivityTest::class,
         ToolbarActivityTest::class
 )
 class TestSuite
