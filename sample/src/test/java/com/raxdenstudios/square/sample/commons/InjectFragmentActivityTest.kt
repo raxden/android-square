@@ -6,20 +6,20 @@ import org.junit.Before
 import org.junit.Test
 import org.robolectric.Robolectric
 
-class ToolbarActivityTest : BaseTest() {
+class InjectFragmentActivityTest : BaseTest() {
 
-    lateinit var activity: ToolbarActivity
+    lateinit var activity: InjectFragmentActivity
 
     @Before
     fun setup() {
-        activity = Robolectric.buildActivity(ToolbarActivity::class.java).apply {
+        activity = Robolectric.buildActivity(InjectFragmentActivity::class.java).apply {
             create().start().resume()
         }.get()
     }
 
     @Test
     fun checkIfToolbarIsLoaded() {
-        assertNotNull(activity.mToolbarView)
+        assertNotNull(activity.mInjectedFragment)
     }
 
 }

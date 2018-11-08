@@ -1,5 +1,6 @@
-package com.raxdenstudios.square.sample
+package com.raxdenstudios.square.sample.commons
 
+import com.raxdenstudios.square.sample.BaseTest
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
