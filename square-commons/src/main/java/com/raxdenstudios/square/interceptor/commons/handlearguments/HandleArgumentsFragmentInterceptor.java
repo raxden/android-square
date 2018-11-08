@@ -12,7 +12,7 @@ import com.raxdenstudios.square.interceptor.FragmentInterceptor;
 public class HandleArgumentsFragmentInterceptor extends FragmentInterceptor<HandleArgumentsInterceptorCallback> implements HandleArgumentsInterceptor {
 
     public HandleArgumentsFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment);
+        super(fragment, null);
     }
 
     public HandleArgumentsFragmentInterceptor(@NonNull Fragment fragment, @NonNull HandleArgumentsInterceptorCallback callback) {

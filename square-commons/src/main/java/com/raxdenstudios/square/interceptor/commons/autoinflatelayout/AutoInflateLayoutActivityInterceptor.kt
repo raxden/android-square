@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 import com.raxdenstudios.square.utils.ResourceUtils
-import com.raxdenstudios.square.utils.StringUtils
-import java.util.*
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -23,8 +21,11 @@ class AutoInflateLayoutActivityInterceptor(
 
     private val layoutName: String
         get() {
-            val className = activity.javaClass.simpleName.toLowerCase()
-            return StringUtils.join(className.split("(?=\\p{Upper})".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray(), "_").toLowerCase(Locale.getDefault())
+            return activity.javaClass.simpleName
+                    .decapitalize()
+                    .split("(?=\\p{Upper})".toRegex())
+                    .joinToString(separator = "_")
+                    .toLowerCase()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -25,7 +25,7 @@ public class WebViewFragmentInterceptor extends FragmentInterceptor<WebViewInter
     private boolean mPageFinished;
 
     public WebViewFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment);
+        super(fragment, null);
     }
 
     public WebViewFragmentInterceptor(@NonNull Fragment fragment, @NonNull WebViewInterceptorCallback callback) {

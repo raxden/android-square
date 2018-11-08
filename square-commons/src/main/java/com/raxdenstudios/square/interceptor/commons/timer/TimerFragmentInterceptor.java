@@ -33,7 +33,7 @@ public class TimerFragmentInterceptor extends FragmentInterceptor<TimerIntercept
     };
 
     public TimerFragmentInterceptor(@NonNull Fragment fragment) {
-        super(fragment);
+        super(fragment, null);
         init();
     }
 

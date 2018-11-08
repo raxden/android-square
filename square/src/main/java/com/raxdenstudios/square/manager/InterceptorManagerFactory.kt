@@ -16,7 +16,7 @@ object InterceptorManagerFactory {
     fun <T> buildManager(type: T): InterceptorManager<*, *>? {
         return when (type) {
             LibraryHelper.isMultiDexAvailable() && type is MultiDexApplication -> ApplicationMultiDexInterceptorManager(type as MultiDexApplication)
-            is Application -> ApplicationMultiDexInterceptorManager(type as MultiDexApplication)
+            is Application -> ApplicationInterceptorManager(type as Application)
             is FragmentActivity -> ActivityInterceptorManager(type as FragmentActivity)
             is DialogFragment -> DialogFragmentInterceptorManager(type as DialogFragment)
             is Fragment -> FragmentInterceptorManager(type as Fragment)
