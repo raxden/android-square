@@ -29,4 +29,11 @@ class InjectFragmentListActivityTest : BaseTest() {
         assertNotNull(activity.mThirdFragment)
     }
 
+    @Test
+    fun checkIfFragmentListViewIsLoaded() {
+        assertNotNull(activity.mFirstFragment?.view)
+        assertNotNull(activity.mSecondFragment?.view)
+        assertNotNull(activity.mThirdFragment?.view)
+    }
+
 }

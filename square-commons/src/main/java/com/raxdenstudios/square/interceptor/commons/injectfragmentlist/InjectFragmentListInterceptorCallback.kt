@@ -17,6 +17,6 @@ interface InjectFragmentListInterceptorCallback<T : Fragment> : InterceptorCallb
 
     fun onCreateFragment(position: Int): T?
 
-    fun onFragmentLoaded(fragment: T?, position: Int)
+    fun onFragmentLoaded(fragment: T, position: Int)
 
 }

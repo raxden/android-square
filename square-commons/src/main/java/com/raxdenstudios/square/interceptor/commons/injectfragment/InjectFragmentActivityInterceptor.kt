@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 import com.raxdenstudios.square.utils.FragmentUtils
 
@@ -25,16 +26,21 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        callback?.onLoadFragmentContainer(savedInstanceState)?.let { view ->
-            if (savedInstanceState != null) mContentFragment = FragmentUtils.getFragment(activity.supportFragmentManager, view.id) as TFragment
-            else {
-                mContentFragment = callback?.onCreateFragment()
-                mContentFragment?.let { FragmentUtils.loadFragment(activity.supportFragmentManager, view.id, it) }
-            }
-            callback?.onFragmentLoaded(mContentFragment)
-        }
+        initFragment(savedInstanceState)?.let { callback?.onFragmentLoaded(it) }
     }
 
+    private fun initFragment(savedInstanceState: Bundle?): TFragment? =
+        callback?.onLoadFragmentContainer(savedInstanceState)?.let { view ->
+            savedInstanceState?.let { loadCurrentFragmentFromView(view) } ?: loadFragment(view)
+        }
+
+    private fun loadCurrentFragmentFromView(view: View): TFragment? =
+            FragmentUtils.getFragment(activity.supportFragmentManager, view.id)
+
+    private fun loadFragment(view: View): TFragment? =
+            callback?.onCreateFragment()?.let {
+                FragmentUtils.loadFragment(activity.supportFragmentManager, view.id, it)
+                it
+            }
 
 }

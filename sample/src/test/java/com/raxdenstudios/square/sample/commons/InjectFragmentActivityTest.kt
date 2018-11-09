@@ -27,4 +27,9 @@ class InjectFragmentActivityTest : BaseTest() {
         assertNotNull(activity.mInjectedFragment)
     }
 
+    @Test
+    fun checkIfFragmentViewIsLoaded() {
+        assertNotNull(activity.mInjectedFragment?.view)
+    }
+
 }

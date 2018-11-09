@@ -9,13 +9,14 @@ import android.support.v4.app.FragmentManager
 
 object FragmentUtils {
 
-    fun loadFragment(fragmentManager: FragmentManager, containerId: Int, fragment: Fragment) {
+    fun <TFragment : Fragment> loadFragment(fragmentManager: FragmentManager, containerId: Int, fragment: TFragment) {
         fragmentManager
                 .beginTransaction()
                 .replace(containerId, fragment, fragment.javaClass.simpleName)
                 .commit()
     }
 
-    fun getFragment(fragmentManager: FragmentManager, containerId: Int): Fragment? = fragmentManager.findFragmentById(containerId)
+    fun <TFragment : Fragment> getFragment(fragmentManager: FragmentManager, containerId: Int): TFragment? =
+            fragmentManager.findFragmentById(containerId) as TFragment
 
 }

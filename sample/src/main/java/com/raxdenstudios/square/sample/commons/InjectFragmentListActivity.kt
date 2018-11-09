@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.raxdenstudios.square.SquareActivity
+import com.raxdenstudios.square.SquareFragment
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
+import com.raxdenstudios.square.interceptor.FragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
+import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewFragmentInterceptor
+import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListInterceptorCallback
 import kotlinx.android.synthetic.main.inject_fragment_list_activity.*
@@ -47,7 +51,7 @@ class InjectFragmentListActivity
         else -> null
     }
 
-    override fun onFragmentLoaded(fragment: InjectedFragment?, position: Int) {
+    override fun onFragmentLoaded(fragment: InjectedFragment, position: Int) {
         when(position) {
             0 -> mFirstFragment = fragment
             1 -> mSecondFragment = fragment
@@ -62,12 +66,18 @@ class InjectFragmentListActivity
         interceptorList.add(InjectFragmentListActivityInterceptor(this, this))
     }
 
-    class InjectedFragment: Fragment() {
+    class InjectedFragment
+        : SquareFragment(),
+            AutoInflateViewInterceptorCallback {
 
         companion object {
             fun newInstance(bundle: Bundle?) = InjectedFragment().apply {
                 arguments = bundle ?: Bundle()
             }
+        }
+
+        override fun setupInterceptors(interceptorList: MutableList<FragmentInterceptor<*>>) {
+            interceptorList.add(AutoInflateViewFragmentInterceptor(this, this))
         }
     }
 
