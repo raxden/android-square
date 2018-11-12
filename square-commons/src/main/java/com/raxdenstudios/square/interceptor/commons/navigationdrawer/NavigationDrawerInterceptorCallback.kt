@@ -15,6 +15,7 @@ interface NavigationDrawerInterceptorCallback : InterceptorCallback {
 
     fun onCreateContentDrawerView(savedInstanceState: Bundle?, gravity: Int): View?
 
+
     fun onCreateDrawerLayout(savedInstanceState: Bundle?): DrawerLayout?
 
     fun onDrawerLayoutCreated(drawerLayout: DrawerLayout)
@@ -23,11 +24,12 @@ interface NavigationDrawerInterceptorCallback : InterceptorCallback {
 
     fun onActionBarDrawerToggleCreated(drawerToggle: ActionBarDrawerToggle)
 
-    fun onDrawerClosed(drawerView: View)
 
-    fun onDrawerOpened(drawerView: View)
+    fun onDrawerClosed(gravity: Int, drawerView: View)
 
-    fun onDrawerSlide(drawerView: View, slideOffset: Float)
+    fun onDrawerOpened(gravity: Int, drawerView: View)
+
+    fun onDrawerSlide(gravity: Int, drawerView: View, slideOffset: Float)
 
     fun onDrawerStateChanged(newState: Int)
 

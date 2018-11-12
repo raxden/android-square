@@ -26,6 +26,17 @@ class NavigationDrawerActivityInterceptor(
     private var mDrawerLayout: DrawerLayout? = null
     private var mDrawerToggle: ActionBarDrawerToggle? = null
 
+    private var mDrawerOpenListenerList: MutableMap<Int, MutableList<DrawerOpenListener>?> = mutableMapOf()
+    private var mDrawerCloseListenerList: MutableMap<Int, MutableList<DrawerCloseListener>?> = mutableMapOf()
+
+    interface DrawerCloseListener {
+        fun onDrawerClosed()
+    }
+
+    interface DrawerOpenListener {
+        fun onDrawerOpened()
+    }
+
     private val drawerToggleDelegate: ActionBarDrawerToggle.Delegate?
         get() = appCompatActivity.drawerToggleDelegate
 
@@ -100,7 +111,8 @@ class NavigationDrawerActivityInterceptor(
     override fun isOpenDrawer(gravity: Int): Boolean = mContentDrawerView[gravity]?.let { mDrawerLayout?.isDrawerOpen(it) }
             ?: false
 
-    override fun openDrawer(gravity: Int) {
+    override fun openDrawer(gravity: Int, listener: DrawerOpenListener?) {
+        listener?.let { mDrawerOpenListenerList[gravity]?.add(listener) }
         appCompatActivity.runOnUiThread {
             mContentDrawerView[gravity]?.let {
                 mDrawerLayout?.openDrawer(it)
@@ -108,7 +120,8 @@ class NavigationDrawerActivityInterceptor(
         }
     }
 
-    override fun closeDrawer(gravity: Int) {
+    override fun closeDrawer(gravity: Int, listener: DrawerCloseListener?) {
+        listener?.let { mDrawerCloseListenerList[gravity]?.add(listener) }
         appCompatActivity.runOnUiThread {
             mContentDrawerView[gravity]?.let {
                 mDrawerLayout?.closeDrawer(it)
@@ -162,23 +175,46 @@ class NavigationDrawerActivityInterceptor(
                 }
             }
 
-    private fun onDrawerClosed(drawerView: View?) {
+    private fun onDrawerClosed(drawerView: View) {
+        onDrawerClosed(Gravity.START.takeIf { drawerView.id == mContentDrawerView[Gravity.START]?.id }
+                ?: Gravity.END, drawerView)
+    }
+
+    private fun onDrawerClosed(gravity: Int, drawerView: View?) {
+        mDrawerCloseListenerList[gravity]?.let {
+            it.map { listener -> listener.onDrawerClosed() }
+            it.clear()
+        }
         drawerView?.let {
             invalidateOptionsMenu()
-            callback?.onDrawerClosed(it)
+            callback?.onDrawerClosed(gravity, it)
         }
     }
 
-    private fun onDrawerOpened(drawerView: View?) {
+    private fun onDrawerOpened(drawerView: View) {
+        onDrawerOpened(Gravity.START.takeIf { drawerView.id == mContentDrawerView[Gravity.START]?.id }
+                ?: Gravity.END, drawerView)
+    }
+
+    private fun onDrawerOpened(gravity: Int, drawerView: View?) {
+        mDrawerOpenListenerList[gravity]?.let {
+            it.map { listener -> listener.onDrawerOpened() }
+            it.clear()
+        }
         drawerView?.let {
             invalidateOptionsMenu()
-            callback?.onDrawerOpened(it)
+            callback?.onDrawerOpened(gravity, it)
         }
     }
 
-    private fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+    private fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+        onDrawerSlide(Gravity.START.takeIf { drawerView.id == mContentDrawerView[Gravity.START]?.id }
+                ?: Gravity.END, drawerView, slideOffset)
+    }
+
+    private fun onDrawerSlide(gravity: Int, drawerView: View?, slideOffset: Float) {
         drawerView?.let {
-            callback?.onDrawerSlide(it, slideOffset)
+            callback?.onDrawerSlide(gravity, it, slideOffset)
         }
     }
 

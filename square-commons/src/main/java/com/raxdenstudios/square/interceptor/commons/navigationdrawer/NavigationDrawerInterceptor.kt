@@ -12,8 +12,8 @@ interface NavigationDrawerInterceptor : Interceptor {
 
     fun toggleDrawer(gravity: Int)
 
-    fun openDrawer(gravity: Int)
+    fun openDrawer(gravity: Int, listener: NavigationDrawerActivityInterceptor.DrawerOpenListener? = null)
 
-    fun closeDrawer(gravity: Int)
+    fun closeDrawer(gravity: Int, listener: NavigationDrawerActivityInterceptor.DrawerCloseListener? = null)
 
 }
