@@ -30,9 +30,9 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
     }
 
     private fun initFragment(savedInstanceState: Bundle?): TFragment? =
-        callback?.onLoadFragmentContainer(savedInstanceState)?.let { view ->
-            savedInstanceState?.let { loadCurrentFragmentFromView(view) } ?: loadFragment(view)
-        }
+            callback?.onLoadFragmentContainer(savedInstanceState)?.let { view ->
+                savedInstanceState?.let { loadCurrentFragmentFromView(view) } ?: loadFragment(view)
+            }
 
     private fun loadCurrentFragmentFromView(view: View): TFragment? =
             FragmentUtils.getFragment(activity.supportFragmentManager, view.id)
