@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.raxdenstudios.square.interceptor.DialogFragmentInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.manager.DialogFragmentInterceptorManager
 import com.raxdenstudios.square.manager.InterceptorManagerFactory
 
@@ -128,7 +129,7 @@ abstract class SquareDialogFragment : DialogFragment() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: MutableList<DialogFragmentInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<Interceptor>)
 
     private val interceptorManager: DialogFragmentInterceptorManager
         get() {
@@ -138,9 +139,9 @@ abstract class SquareDialogFragment : DialogFragment() {
     private fun initInterceptorManager(): DialogFragmentInterceptorManager {
         dialogFragmentInterceptorManager = InterceptorManagerFactory.buildManager(this) as DialogFragmentInterceptorManager
         dialogFragmentInterceptorManager?.apply {
-            val interceptorList = mutableListOf<DialogFragmentInterceptor<*>>()
+            val interceptorList = mutableListOf<Interceptor>()
             setupInterceptors(interceptorList)
-            interceptorList.forEach { addInterceptor(it) }
+            interceptorList.forEach { interceptor -> addInterceptor((interceptor as DialogFragmentInterceptor<*>)) }
         }
         return dialogFragmentInterceptorManager!!
     }

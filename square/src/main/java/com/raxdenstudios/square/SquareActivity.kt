@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.manager.ActivityInterceptorManager
 import com.raxdenstudios.square.manager.InterceptorManagerFactory
 
@@ -96,7 +97,7 @@ abstract class SquareActivity : AppCompatActivity() {
 
     // ========== Support methods ==================================================================
 
-    protected abstract fun setupInterceptors(interceptorList: MutableList<ActivityInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<Interceptor>)
 
     private val interceptorManager: ActivityInterceptorManager
         get() {
@@ -106,9 +107,9 @@ abstract class SquareActivity : AppCompatActivity() {
     private fun initInterceptorManager(): ActivityInterceptorManager {
         activityInterceptorManager = InterceptorManagerFactory.buildManager(this) as ActivityInterceptorManager
         activityInterceptorManager?.apply {
-            val interceptorList = mutableListOf<ActivityInterceptor<*>>()
+            val interceptorList = mutableListOf<Interceptor>()
             setupInterceptors(interceptorList)
-            interceptorList.forEach { addInterceptor(it) }
+            interceptorList.forEach { interceptor -> addInterceptor((interceptor as ActivityInterceptor<*>)) }
         }
         return activityInterceptorManager!!
     }

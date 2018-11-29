@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.raxdenstudios.square.interceptor.FragmentInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.manager.FragmentInterceptorManager
 import com.raxdenstudios.square.manager.InterceptorManagerFactory
 
@@ -109,7 +110,7 @@ abstract class SquareFragment : Fragment() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: MutableList<FragmentInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<Interceptor>)
 
     private val interceptorManager: FragmentInterceptorManager
         get() {
@@ -119,9 +120,9 @@ abstract class SquareFragment : Fragment() {
     private fun initInterceptorManager(): FragmentInterceptorManager {
         fragmentInterceptorManager = InterceptorManagerFactory.buildManager(this) as FragmentInterceptorManager
         fragmentInterceptorManager?.apply {
-            val interceptorList = mutableListOf<FragmentInterceptor<*>>()
+            val interceptorList = mutableListOf<Interceptor>()
             setupInterceptors(interceptorList)
-            interceptorList.forEach { addInterceptor(it) }
+            interceptorList.forEach { interceptor -> addInterceptor((interceptor as FragmentInterceptor<*>)) }
         }
         return fragmentInterceptorManager!!
     }

@@ -3,7 +3,7 @@ package com.raxdenstudios.square.sample.commons
 import android.os.Bundle
 import android.view.View
 import com.raxdenstudios.square.SquareActivity
-import com.raxdenstudios.square.interceptor.ActivityInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
 
@@ -21,7 +21,7 @@ class AutoInflateLayoutActivity
 
     // ======== SUPPORT METHODS ====================================================================
 
-    override fun setupInterceptors(interceptorList: MutableList<ActivityInterceptor<*>>) {
+    override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
         interceptorList.add(AutoInflateLayoutActivityInterceptor(this, this))
     }
 

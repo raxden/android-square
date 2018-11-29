@@ -3,6 +3,7 @@ package com.raxdenstudios.square
 import android.content.res.Configuration
 import android.support.multidex.MultiDexApplication
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.manager.ApplicationMultiDexInterceptorManager
 import com.raxdenstudios.square.manager.InterceptorManagerFactory
 
@@ -28,7 +29,7 @@ abstract class SquareMultiDexApplication : MultiDexApplication() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: MutableList<ApplicationInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<Interceptor>)
 
     private val interceptorManager: ApplicationMultiDexInterceptorManager
         get() {
@@ -38,9 +39,9 @@ abstract class SquareMultiDexApplication : MultiDexApplication() {
     private fun initInterceptorManager(): ApplicationMultiDexInterceptorManager {
         applicationMultiDexInterceptorManager = InterceptorManagerFactory.buildManager(this) as ApplicationMultiDexInterceptorManager
         applicationMultiDexInterceptorManager?.apply {
-            val interceptorList = mutableListOf<ApplicationInterceptor<*>>()
+            val interceptorList = mutableListOf<Interceptor>()
             setupInterceptors(interceptorList)
-            interceptorList.forEach { addInterceptor(it) }
+            interceptorList.forEach { interceptor -> addInterceptor((interceptor as ApplicationInterceptor<*>)) }
         }
         return applicationMultiDexInterceptorManager!!
     }

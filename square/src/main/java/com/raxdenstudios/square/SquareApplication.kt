@@ -3,6 +3,7 @@ package com.raxdenstudios.square
 import android.app.Application
 import android.content.res.Configuration
 import com.raxdenstudios.square.interceptor.ApplicationInterceptor
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.manager.ApplicationInterceptorManager
 import com.raxdenstudios.square.manager.InterceptorManagerFactory
 
@@ -28,7 +29,7 @@ abstract class SquareApplication : Application() {
 
     /* Support methods */
 
-    protected abstract fun setupInterceptors(interceptorList: MutableList<ApplicationInterceptor<*>>)
+    protected abstract fun setupInterceptors(interceptorList: MutableList<Interceptor>)
 
     private val interceptorManager: ApplicationInterceptorManager
         get() {
@@ -38,9 +39,9 @@ abstract class SquareApplication : Application() {
     private fun initInterceptorManager(): ApplicationInterceptorManager {
         applicationInterceptorManager = InterceptorManagerFactory.buildManager(this) as ApplicationInterceptorManager
         applicationInterceptorManager?.apply {
-            val interceptorList = mutableListOf<ApplicationInterceptor<*>>()
+            val interceptorList = mutableListOf<Interceptor>()
             setupInterceptors(interceptorList)
-            interceptorList.forEach { addInterceptor(it) }
+            interceptorList.forEach { interceptor -> addInterceptor((interceptor as ApplicationInterceptor<*>)) }
         }
         return applicationInterceptorManager!!
     }
