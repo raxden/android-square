@@ -51,7 +51,9 @@ abstract class BaseNavigationDrawerActivityInterceptor<TCallback : BaseNavigatio
             // set a custom shadow that overlays the main content when the drawer opens
             drawerLayout.setDrawerShadow(R.drawable.square__drawer_shadow, GravityCompat.START)
             // ActionBarDrawerToggle ties together the the proper interactions between the sliding drawer and the action bar app icon
-            mDrawerToggle = callback?.onCreateToolbarView(savedInstanceState)?.let { initActionBarDrawerToggle(it) } ?: initActionBarDrawerToggle()
+            mDrawerToggle = callback?.onCreateToolbarView(savedInstanceState)?.let {
+                initActionBarDrawerToggle(drawerLayout, it)
+            } ?: initActionBarDrawerToggle(drawerLayout)
             mDrawerToggle?.let { actionBarDrawerToggle ->
                 actionBarDrawerToggle.toolbarNavigationClickListener = View.OnClickListener {
                     if (!actionBarDrawerToggle.isDrawerIndicatorEnabled) appCompatActivity.onBackPressed()
@@ -126,8 +128,8 @@ abstract class BaseNavigationDrawerActivityInterceptor<TCallback : BaseNavigatio
         }
     }
 
-    private fun initActionBarDrawerToggle(): ActionBarDrawerToggle =
-            object : ActionBarDrawerToggle(appCompatActivity, mDrawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
+    private fun initActionBarDrawerToggle(drawerLayout: DrawerLayout): ActionBarDrawerToggle =
+            object : ActionBarDrawerToggle(appCompatActivity, drawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
                     this@BaseNavigationDrawerActivityInterceptor.onDrawerClosed(drawerView)
@@ -149,8 +151,8 @@ abstract class BaseNavigationDrawerActivityInterceptor<TCallback : BaseNavigatio
                 }
             }
 
-    private fun initActionBarDrawerToggle(toolbar: Toolbar): ActionBarDrawerToggle =
-            object : ActionBarDrawerToggle(appCompatActivity, mDrawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
+    private fun initActionBarDrawerToggle(drawerLayout: DrawerLayout, toolbar: Toolbar): ActionBarDrawerToggle =
+            object : ActionBarDrawerToggle(appCompatActivity, drawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
                     this@BaseNavigationDrawerActivityInterceptor.onDrawerClosed(drawerView)
