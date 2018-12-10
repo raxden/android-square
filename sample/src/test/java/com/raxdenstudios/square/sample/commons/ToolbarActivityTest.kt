@@ -1,7 +1,7 @@
 package com.raxdenstudios.square.sample.commons
 
 import com.raxdenstudios.square.sample.BaseTest
-import junit.framework.Assert.assertNotNull
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.robolectric.Robolectric

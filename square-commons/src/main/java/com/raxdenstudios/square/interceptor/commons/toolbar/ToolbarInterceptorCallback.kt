@@ -12,6 +12,6 @@ interface ToolbarInterceptorCallback : InterceptorCallback {
 
     fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar?
 
-    fun onToolbarViewCreated(toolbar: Toolbar?)
+    fun onToolbarViewCreated(toolbar: Toolbar)
 
 }

@@ -29,7 +29,7 @@ class ToolbarActivity
 
     override fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar = toolbar_view
 
-    override fun onToolbarViewCreated(toolbar: Toolbar?) {
+    override fun onToolbarViewCreated(toolbar: Toolbar) {
         mToolbarView = toolbar
     }
 
