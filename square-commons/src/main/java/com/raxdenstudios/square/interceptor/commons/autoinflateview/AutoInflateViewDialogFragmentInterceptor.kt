@@ -32,7 +32,8 @@ class AutoInflateViewDialogFragmentInterceptor(
         mLayoutId != 0 -> inflater.inflate(mLayoutId, null)
         else -> {
             ResourceUtils.getLayoutId(context, layoutName).let { layoutId ->
-                inflater.inflate(layoutId, null).takeIf { layoutId > 0 }
+                if (layoutId != 0) inflater.inflate(layoutId, null)
+                else null
             }
         }
     }

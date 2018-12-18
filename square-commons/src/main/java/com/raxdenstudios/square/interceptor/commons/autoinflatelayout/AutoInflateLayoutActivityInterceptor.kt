@@ -41,7 +41,8 @@ class AutoInflateLayoutActivityInterceptor(
         mLayoutId != 0 -> layoutInflater.inflate(mLayoutId, null)
         else -> {
             ResourceUtils.getLayoutId(activity, layoutName).let { layoutId ->
-                layoutInflater.inflate(layoutId, null).takeIf { layoutId > 0 }
+                if (layoutId != 0) layoutInflater.inflate(layoutId, null)
+                else null
             }
         }
     }

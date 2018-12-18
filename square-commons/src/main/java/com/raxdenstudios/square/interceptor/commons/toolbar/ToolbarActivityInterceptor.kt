@@ -29,5 +29,4 @@ class ToolbarActivityInterceptor(
             callback?.onToolbarViewCreated(toolbar)
         }
     }
-
 }
