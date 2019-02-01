@@ -19,7 +19,7 @@ class ToolbarActivity
     var mContentView: View? = null
     var mToolbarView: Toolbar? = null
 
-    // ======== AutoInflateLayoutInterceptorCallback ===============================================
+    // ======== InflateLayoutInterceptorCallback ===============================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

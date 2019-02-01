@@ -13,7 +13,7 @@ class AutoInflateLayoutActivity
 
     var mContentView: View? = null
 
-    // ======== AutoInflateLayoutInterceptorCallback ===============================================
+    // ======== InflateLayoutInterceptorCallback ===============================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

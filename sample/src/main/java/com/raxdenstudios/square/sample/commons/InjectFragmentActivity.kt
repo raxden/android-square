@@ -21,7 +21,7 @@ class InjectFragmentActivity
     var mContentView: View? = null
     var mInjectedFragment: InjectedFragment? = null
 
-    // ======== AutoInflateLayoutInterceptorCallback ===============================================
+    // ======== InflateLayoutInterceptorCallback ===============================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

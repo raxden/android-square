@@ -32,13 +32,13 @@ class FragmentStatePagerActivity
 
     var mFragmentStatePagerInterceptor: FragmentStatePagerInterceptor<Fragment>? = null
 
-    // ======== AutoInflateLayoutInterceptorCallback ===============================================
+    // ======== InflateLayoutInterceptorCallback ===============================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view
     }
 
-    // ======== AutoInflateLayoutInterceptorCallback ===============================================
+    // ======== InflateLayoutInterceptorCallback ===============================================
 
     override fun onCreateViewPager(savedInstanceState: Bundle?): ViewPager = view_pager
 
