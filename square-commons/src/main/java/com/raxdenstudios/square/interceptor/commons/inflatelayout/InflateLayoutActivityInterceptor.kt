@@ -30,10 +30,10 @@ class InflateLayoutActivityInterceptor(
         super.onCreate(savedInstanceState)
 
         when {
-            mLayoutId != 0 -> callback?.onLayoutIdLoaded(mLayoutId)
+            mLayoutId != 0 -> callback?.onLayoutIdLoaded(mLayoutId, savedInstanceState)
             else -> {
                 ResourceUtils.getLayoutId(activity, layoutName).let { layoutId ->
-                    if (layoutId != 0) callback?.onLayoutIdLoaded(mLayoutId)
+                    if (layoutId != 0) callback?.onLayoutIdLoaded(mLayoutId, savedInstanceState)
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.interceptor.commons.inflatelayout
 
+import android.os.Bundle
 import com.raxdenstudios.square.interceptor.InterceptorCallback
 
 /**
@@ -7,6 +8,6 @@ import com.raxdenstudios.square.interceptor.InterceptorCallback
  */
 interface InflateLayoutInterceptorCallback : InterceptorCallback {
 
-    fun onLayoutIdLoaded(layoutId: Int)
+    fun onLayoutIdLoaded(layoutId: Int, savedInstanceState: Bundle?)
 
 }
