@@ -2,14 +2,12 @@ package com.raxdenstudios.square.interceptor.commons.autoinflatelayout
 
 import android.os.Bundle
 import android.view.View
-
-import com.raxdenstudios.square.interceptor.InterceptorCallback
+import com.raxdenstudios.square.interceptor.HasInterceptor
 
 /**
- * Created by Ángel Gómez on 22/05/2015.
+ * Created by Ángel Gómez on 29/12/2016.
  */
-interface AutoInflateLayoutInterceptorCallback : InterceptorCallback {
+interface HasAutoInflateLayoutInterceptor : HasInterceptor<AutoInflateLayoutInterceptor> {
 
     fun onContentViewCreated(view: View, savedInstanceState: Bundle?)
-
 }

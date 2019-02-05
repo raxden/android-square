@@ -1,15 +1,16 @@
 package com.raxdenstudios.square.sample
 
-import com.raxdenstudios.square.SquareApplication
-import com.raxdenstudios.square.interceptor.Interceptor
+import android.app.Application
+import com.raxdenstudios.square.InterceptorManager
 
 /**
  * Created by Ángel Gómez on 12/06/2017.
  */
 
-open class AppApplication : SquareApplication() {
+class AppApplication : Application() {
 
-    override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
+    override fun onCreate() {
+        super.onCreate()
+        InterceptorManager.init(this)
     }
-
 }

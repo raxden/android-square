@@ -1,20 +1,16 @@
 package com.raxdenstudios.square.interceptor.commons.autoinflatelayout
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
-import com.raxdenstudios.square.utils.ResourceUtils
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
 class AutoInflateLayoutActivityInterceptor(
-        activity: FragmentActivity,
-        callback: AutoInflateLayoutInterceptorCallback)
-    : ActivityInterceptor<AutoInflateLayoutInterceptorCallback>(activity, callback),
-        AutoInflateLayoutInterceptor {
+        callback: HasAutoInflateLayoutInterceptor
+) : ActivityInterceptor<HasAutoInflateLayoutInterceptor>(activity, callback) {
 
     private var mLayoutId: Int = 0
     private var mInflateLayout: View? = null

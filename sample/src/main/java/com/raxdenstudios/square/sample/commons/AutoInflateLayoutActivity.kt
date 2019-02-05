@@ -1,16 +1,14 @@
 package com.raxdenstudios.square.sample.commons
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.raxdenstudios.square.SquareActivity
-import com.raxdenstudios.square.interceptor.Interceptor
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 
-class AutoInflateLayoutActivity
-    : SquareActivity(),
-        AutoInflateLayoutInterceptorCallback {
+class AutoInflateLayoutActivity : AppCompatActivity(), HasAutoInflateLayoutInterceptor {
 
+    lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
     var mContentView: View? = null
 
     // ======== InflateLayoutInterceptorCallback ===============================================
@@ -19,10 +17,8 @@ class AutoInflateLayoutActivity
         mContentView = view
     }
 
-    // ======== SUPPORT METHODS ====================================================================
-
-    override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
-        interceptorList.add(AutoInflateLayoutActivityInterceptor(this, this))
+    override fun onInterceptorAttached(interceptor: AutoInflateLayoutInterceptor) {
+        mAutoInflateLayoutInterceptor = interceptor
     }
 
 }

@@ -6,19 +6,18 @@ import android.support.v4.view.ViewPager
 import android.view.View
 import com.raxdenstudios.square.SquareActivity
 import com.raxdenstudios.square.SquareFragment
-import com.raxdenstudios.square.interceptor.Interceptor
+import com.raxdenstudios.square.interceptor.HasInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptorCallback
-import kotlinx.android.synthetic.main.fragment_state_pager_activity.*
 
 class FragmentStatePagerActivity
     : SquareActivity(),
-        AutoInflateLayoutInterceptorCallback,
+        AutoInflateLayoutInterceptor,
         FragmentStatePagerInterceptorCallback<Fragment> {
 
     var mContentView: View? = null
@@ -70,7 +69,7 @@ class FragmentStatePagerActivity
 
     // ======== SUPPORT METHODS ====================================================================
 
-    override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
+    override fun setupInterceptors(interceptorList: MutableList<HasInterceptor>) {
         interceptorList.add(AutoInflateLayoutActivityInterceptor(this, this))
         mFragmentStatePagerInterceptor = FragmentStatePagerActivityInterceptor(this, this)
         interceptorList.add(mFragmentStatePagerInterceptor as FragmentStatePagerActivityInterceptor)
@@ -86,7 +85,7 @@ class FragmentStatePagerActivity
             }
         }
 
-        override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
+        override fun setupInterceptors(interceptorList: MutableList<HasInterceptor>) {
             interceptorList.add(AutoInflateViewFragmentInterceptor(this, this))
         }
     }

@@ -5,18 +5,17 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.raxdenstudios.square.SquareActivity
 import com.raxdenstudios.square.SquareFragment
-import com.raxdenstudios.square.interceptor.Interceptor
+import com.raxdenstudios.square.interceptor.HasInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback
+import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListInterceptorCallback
-import kotlinx.android.synthetic.main.inject_fragment_list_activity.*
 
 class InjectFragmentListActivity
     : SquareActivity(),
-        AutoInflateLayoutInterceptorCallback,
+        AutoInflateLayoutInterceptor,
         InjectFragmentListInterceptorCallback<InjectFragmentListActivity.InjectedFragment> {
 
     var mContentView: View? = null
@@ -60,7 +59,7 @@ class InjectFragmentListActivity
 
     // ======== SUPPORT METHODS ====================================================================
 
-    override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
+    override fun setupInterceptors(interceptorList: MutableList<HasInterceptor>) {
         interceptorList.add(AutoInflateLayoutActivityInterceptor(this, this))
         interceptorList.add(InjectFragmentListActivityInterceptor(this, this))
     }
@@ -75,7 +74,7 @@ class InjectFragmentListActivity
             }
         }
 
-        override fun setupInterceptors(interceptorList: MutableList<Interceptor>) {
+        override fun setupInterceptors(interceptorList: MutableList<HasInterceptor>) {
             interceptorList.add(AutoInflateViewFragmentInterceptor(this, this))
         }
     }
