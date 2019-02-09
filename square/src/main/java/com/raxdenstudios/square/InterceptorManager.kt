@@ -9,101 +9,56 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.View
 
-object InterceptorManager {
+class InterceptorManager private constructor(builder: Builder) {
+
+    private var factoryList = mutableListOf<InterceptorFactory>()
+
+    init {
+        factoryList = builder.factoryList
+    }
+
+    class Builder {
+
+        val factoryList = mutableListOf<InterceptorFactory>()
+
+        fun addInterceptorFactory(factory: InterceptorFactory): Builder {
+            factoryList.add(factory)
+            return this
+        }
+
+        fun build(): InterceptorManager = InterceptorManager(this)
+    }
 
     fun init(app: Application) {
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
 
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-                activity?.let { handleActivity(it) }
+                for (factory in factoryList) factory.onActivityCreated(activity, savedInstanceState)
             }
 
             override fun onActivityPaused(activity: Activity?) {
-
+                for (factory in factoryList) factory.onActivityPaused(activity)
             }
 
             override fun onActivityResumed(activity: Activity?) {
-
+                for (factory in factoryList) factory.onActivityResumed(activity)
             }
 
             override fun onActivityStarted(activity: Activity?) {
-
+                for (factory in factoryList) factory.onActivityStarted(activity)
             }
 
             override fun onActivityDestroyed(activity: Activity?) {
-
+                for (factory in factoryList) factory.onActivityDestroyed(activity)
             }
 
             override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-
+                for (factory in factoryList) factory.onActivitySaveInstanceState(activity, outState)
             }
 
             override fun onActivityStopped(activity: Activity?) {
-
+                for (factory in factoryList) factory.onActivityStopped(activity)
             }
         })
     }
-
-    private fun handleActivity(activity: Activity) {
-        (activity as? FragmentActivity)?.run {
-            supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
-                override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
-
-                }
-
-                override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
-
-                }
-
-                override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-
-                }
-
-                override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
-
-                }
-
-                override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentSaveInstanceState(fm: FragmentManager, f: Fragment, outState: Bundle) {
-
-                }
-
-                override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentPreCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-
-                }
-
-                override fun onFragmentActivityCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-
-                }
-
-                override fun onFragmentPaused(fm: FragmentManager, f: Fragment) {
-
-                }
-
-                override fun onFragmentDetached(fm: FragmentManager, f: Fragment) {
-
-                }
-            }, true)
-        }
-    }
-
 }

@@ -4,14 +4,15 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 
-abstract class ActivityInterceptor<TCallback: HasInterceptor<Interceptor>>(
+abstract class ActivityInterceptor<TInterceptor : Interceptor, TCallback : HasInterceptor<TInterceptor>>(
         val mCallback: TCallback
-): Application.ActivityLifecycleCallbacks {
+) : Application.ActivityLifecycleCallbacks, Interceptor {
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
     }
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+        mCallback.onInterceptorCreated(this as TInterceptor)
     }
 
     override fun onActivityStarted(activity: Activity?) {

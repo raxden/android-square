@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.sample.commons
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
@@ -17,8 +18,7 @@ class AutoInflateLayoutActivity : AppCompatActivity(), HasAutoInflateLayoutInter
         mContentView = view
     }
 
-    override fun onInterceptorAttached(interceptor: AutoInflateLayoutInterceptor) {
+    override fun onInterceptorCreated(interceptor: AutoInflateLayoutInterceptor) {
         mAutoInflateLayoutInterceptor = interceptor
     }
-
 }
