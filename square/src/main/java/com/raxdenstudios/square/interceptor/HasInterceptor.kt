@@ -1,6 +1,6 @@
 package com.raxdenstudios.square.interceptor
 
-interface HasInterceptor<TInterceptor: Interceptor> {
+interface HasInterceptor {
 
-    fun onInterceptorCreated(interceptor: TInterceptor)
+    fun onInterceptorCreated(interceptor: Interceptor)
 }

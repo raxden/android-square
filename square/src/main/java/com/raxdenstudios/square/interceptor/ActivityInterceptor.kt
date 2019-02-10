@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 
-abstract class ActivityInterceptor<TInterceptor : Interceptor, TCallback : HasInterceptor<TInterceptor>>(
+abstract class ActivityInterceptor<TInterceptor : Interceptor, TCallback : HasInterceptor>(
         val mCallback: TCallback
 ) : Application.ActivityLifecycleCallbacks, Interceptor {
 

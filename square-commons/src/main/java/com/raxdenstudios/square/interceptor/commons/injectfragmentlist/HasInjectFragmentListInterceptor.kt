@@ -8,7 +8,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 /**
  * Created by Ángel Gómez on 29/12/2016.
  */
-interface HasInjectFragmentListInterceptor<T : Fragment> : HasInterceptor<InjectFragmentListInterceptor> {
+interface HasInjectFragmentListInterceptor<T : Fragment> : HasInterceptor {
 
     val fragmentCount: Int
 

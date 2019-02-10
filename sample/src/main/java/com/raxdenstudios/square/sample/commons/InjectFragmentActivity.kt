@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentInterceptor
@@ -14,6 +15,9 @@ class InjectFragmentActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
         HasInjectFragmentInterceptor<InjectFragmentActivity.InjectedFragment> {
 
+    lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
+    lateinit var mInjectFragmentInterceptor: InjectFragmentInterceptor
+
     var mContentView: View? = null
     var mInjectedFragment: InjectedFragment? = null
 
@@ -22,8 +26,6 @@ class InjectFragmentActivity : AppCompatActivity(),
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view
     }
-
-    override fun onInterceptorCreated(interceptor: AutoInflateLayoutInterceptor) {}
 
     // ======== InjectFragmentInterceptorCallback ===============================================
 
@@ -35,7 +37,12 @@ class InjectFragmentActivity : AppCompatActivity(),
         mInjectedFragment = fragment
     }
 
-    override fun onInterceptorCreated(interceptor: InjectFragmentInterceptor) {}
+    // ==========================================================================================
+
+    override fun onInterceptorCreated(interceptor: Interceptor) {
+        mAutoInflateLayoutInterceptor = interceptor as AutoInflateLayoutInterceptor
+        mInjectFragmentInterceptor = interceptor as InjectFragmentInterceptor
+    }
 
     class InjectedFragment : Fragment() {
 

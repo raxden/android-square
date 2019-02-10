@@ -7,7 +7,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 /**
  * Created by Ángel Gómez on 29/12/2016.
  */
-interface HasAutoInflateLayoutInterceptor : HasInterceptor<AutoInflateLayoutInterceptor> {
+interface HasAutoInflateLayoutInterceptor : HasInterceptor {
 
     fun onContentViewCreated(view: View, savedInstanceState: Bundle?)
 }

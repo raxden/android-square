@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 
 class AutoInflateLayoutActivity : AppCompatActivity(), HasAutoInflateLayoutInterceptor {
 
     lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
+
     var mContentView: View? = null
 
     // ======== InflateLayoutInterceptorCallback ===============================================
@@ -18,7 +20,7 @@ class AutoInflateLayoutActivity : AppCompatActivity(), HasAutoInflateLayoutInter
         mContentView = view
     }
 
-    override fun onInterceptorCreated(interceptor: AutoInflateLayoutInterceptor) {
-        mAutoInflateLayoutInterceptor = interceptor
+    override fun onInterceptorCreated(interceptor: Interceptor) {
+        mAutoInflateLayoutInterceptor = interceptor as AutoInflateLayoutInterceptor
     }
 }
