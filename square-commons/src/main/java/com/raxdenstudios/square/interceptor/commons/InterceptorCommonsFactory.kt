@@ -6,10 +6,12 @@ import com.raxdenstudios.square.InterceptorFactory
 import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.HasFragmentStatePagerInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentInterceptor
-import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentListInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentListActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInjectFragmentListInterceptor
+import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
 
 class InterceptorCommonsFactory : InterceptorFactory() {
 
@@ -18,11 +20,12 @@ class InterceptorCommonsFactory : InterceptorFactory() {
             is HasAutoInflateLayoutInterceptor -> list.add(AutoInflateLayoutActivityInterceptor(activity))
             is HasInjectFragmentInterceptor<*> -> list.add(InjectFragmentActivityInterceptor(activity))
             is HasInjectFragmentListInterceptor<*> -> list.add(InjectFragmentListActivityInterceptor(activity))
+            is HasFragmentStatePagerInterceptor<*> -> list.add(FragmentStatePagerActivityInterceptor(activity))
         }
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 }

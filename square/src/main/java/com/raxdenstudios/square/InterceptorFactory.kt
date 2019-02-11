@@ -69,7 +69,6 @@ abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
                                 interceptor.onFragmentStarted(fm, f)
                     }
 
-
                     override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
                         for (interceptor in fragmentInterceptorList)
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)

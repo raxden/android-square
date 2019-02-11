@@ -8,11 +8,11 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 /**
  * Created by Ángel Gómez on 29/12/2016.
  */
-interface HasInjectFragmentInterceptor<T : Fragment> : HasInterceptor {
+interface HasInjectFragmentInterceptor<TFragment : Fragment> : HasInterceptor {
 
     fun onLoadFragmentContainer(savedInstanceState: Bundle?): View
 
-    fun onCreateFragment(): T
+    fun onCreateFragment(): TFragment
 
-    fun onFragmentLoaded(fragment: T)
+    fun onFragmentLoaded(fragment: TFragment)
 }
