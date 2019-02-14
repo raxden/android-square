@@ -12,6 +12,10 @@ import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFrag
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInjectFragmentListInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.telephony.HasTelephonyInterceptor
+import com.raxdenstudios.square.interceptor.commons.telephony.TelephonyActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.toolbar.HasToolbarInterceptor
+import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarActivityInterceptor
 
 class InterceptorCommonsFactory : InterceptorFactory() {
 
@@ -21,6 +25,8 @@ class InterceptorCommonsFactory : InterceptorFactory() {
             is HasInjectFragmentInterceptor<*> -> list.add(InjectFragmentActivityInterceptor(activity))
             is HasInjectFragmentListInterceptor<*> -> list.add(InjectFragmentListActivityInterceptor(activity))
             is HasFragmentStatePagerInterceptor<*> -> list.add(FragmentStatePagerActivityInterceptor(activity))
+            is HasToolbarInterceptor -> list.add(ToolbarActivityInterceptor(activity))
+            is HasTelephonyInterceptor -> list.add(TelephonyActivityInterceptor(activity))
         }
     }
 

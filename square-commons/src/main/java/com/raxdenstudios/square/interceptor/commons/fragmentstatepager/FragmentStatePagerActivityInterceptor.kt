@@ -16,26 +16,23 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor
  */
 class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
         callback: HasFragmentStatePagerInterceptor<TFragment>
-) : ActivityInterceptor<FragmentStatePagerInterceptor<TFragment>, HasFragmentStatePagerInterceptor<TFragment>>(callback),
-        FragmentStatePagerInterceptor<TFragment> {
+) : ActivityInterceptor<FragmentStatePagerInterceptor, HasFragmentStatePagerInterceptor<TFragment>>(callback),
+        FragmentStatePagerInterceptor {
 
     private lateinit var mViewPager: ViewPager
     private var mAdapter: FragmentStatePagerInterceptorAdapter? = null
 
-    override val numPages: Int
+    private val numPages: Int
         get() = mAdapter?.count ?: 0
 
-    override val currentPosition: Int
+    override val currentPage: Int
         get() = mViewPager.currentItem
 
-    override val currentFragment: TFragment?
-        get() = mAdapter?.getFragment(currentPosition)
-
     override val isFirstPage: Boolean
-        get() = currentPosition == 0
+        get() = currentPage == 0
 
     override val isLastPage: Boolean
-        get() = currentPosition == numPages - 1
+        get() = currentPage == numPages - 1
 
     private val onPageChangeListener = object : ViewPager.OnPageChangeListener {
 
@@ -75,14 +72,14 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
         mViewPager.setCurrentItem(page, smoothScroll)
     }
 
-    override fun nextPage(): TFragment? = if (isLastPage) null else {
-        mViewPager.currentItem = currentPosition + 1
-        currentFragment
+    override fun nextPage(): Boolean = if (isLastPage) false else {
+        mViewPager.currentItem = currentPage + 1
+        true
     }
 
-    override fun previousPage(): TFragment? = if (isFirstPage) null else {
-        mViewPager.currentItem = currentPosition - 1
-        currentFragment
+    override fun previousPage(): Boolean = if (isFirstPage) false else {
+        mViewPager.currentItem = currentPage - 1
+        true
     }
 
     private inner class FragmentStatePagerInterceptorAdapter internal constructor(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {

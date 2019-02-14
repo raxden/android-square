@@ -29,31 +29,31 @@ class FragmentStatePagerActivityTest : BaseTest() {
 
     @Test
     fun checkPager() {
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 0)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 0)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertNotNull(activity.mFragmentStatePagerInterceptor?.nextPage())
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 1)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 1)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertNotNull(activity.mFragmentStatePagerInterceptor?.nextPage())
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 2)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 2)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertTrue(activity.mFragmentStatePagerInterceptor?.nextPage() == null)
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 2)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 2)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertNotNull(activity.mFragmentStatePagerInterceptor?.previousPage())
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 1)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 1)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertNotNull(activity.mFragmentStatePagerInterceptor?.previousPage())
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 0)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 0)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertTrue(activity.mFragmentStatePagerInterceptor?.previousPage() == null)
-        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPosition, 0)
+        assertEquals(activity.mFragmentStatePagerInterceptor?.currentPage, 0)
         assertNotNull(activity.mFragmentStatePagerInterceptor?.currentFragment)
 
         assertNotNull(activity.mFirstFragment)
