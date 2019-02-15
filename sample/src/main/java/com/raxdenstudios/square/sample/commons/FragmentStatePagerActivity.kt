@@ -1,7 +1,6 @@
 package com.raxdenstudios.square.sample.commons
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -14,10 +13,10 @@ import kotlinx.android.synthetic.main.fragment_state_pager_activity.*
 
 class FragmentStatePagerActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
-        HasFragmentStatePagerInterceptor<FragmentStatePagerActivity.InjectedFragment> {
+        HasFragmentStatePagerInterceptor<InjectedFragment> {
 
-    lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
-    lateinit var mFragmentStatePagerInterceptor: FragmentStatePagerInterceptor
+    private var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor? = null
+    private var mFragmentStatePagerInterceptor: FragmentStatePagerInterceptor? = null
 
     var mContentView: View? = null
     var mViewPagerView: View? = null
@@ -27,12 +26,15 @@ class FragmentStatePagerActivity : AppCompatActivity(),
     var mThirdFragment: InjectedFragment? = null
 
     var mFragmentSelected: Int = 0
+    var mFragmentScrolled: Int = 0
 
-    // ======== InflateLayoutInterceptorCallback ===============================================
+    // ======== HasAutoInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view
     }
+
+    // ======== HasFragmentStatePagerInterceptor ===================================================
 
     override val viewPagerElements: Int
         get() = 3
@@ -44,10 +46,10 @@ class FragmentStatePagerActivity : AppCompatActivity(),
     }
 
     override fun onCreateFragment(position: Int): InjectedFragment = when (position) {
-        0 -> InjectedFragment.newInstance(intent.extras)
-        1 -> InjectedFragment.newInstance(intent.extras)
-        2 -> InjectedFragment.newInstance(intent.extras)
-        else -> InjectedFragment.newInstance(intent.extras)
+        0 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
+        1 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 2") })
+        2 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 3") })
+        else -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
     }
 
     override fun onFragmentLoaded(fragment: InjectedFragment, position: Int) {
@@ -58,23 +60,18 @@ class FragmentStatePagerActivity : AppCompatActivity(),
         }
     }
 
-    override fun onFragmentSelected(fragment: InjectedFragment, position: Int) {
+    override fun onPageSelected(position: Int) {
         mFragmentSelected = position
     }
 
-    // ==========================================================================================
-
-    override fun onInterceptorCreated(interceptor: Interceptor) {
-        mAutoInflateLayoutInterceptor = interceptor as AutoInflateLayoutInterceptor
-        mFragmentStatePagerInterceptor = interceptor as FragmentStatePagerInterceptor
+    override fun onPageScrolled(position: Int) {
+        mFragmentSelected = position
     }
 
-    class InjectedFragment : Fragment() {
+    // =============================================================================================
 
-        companion object {
-            fun newInstance(bundle: Bundle?) = InjectedFragment().apply {
-                arguments = bundle ?: Bundle()
-            }
-        }
+    override fun onInterceptorCreated(interceptor: Interceptor) {
+        mAutoInflateLayoutInterceptor = interceptor as? AutoInflateLayoutInterceptor
+        mFragmentStatePagerInterceptor = interceptor as? FragmentStatePagerInterceptor
     }
 }

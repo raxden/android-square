@@ -12,6 +12,11 @@ import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFrag
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInjectFragmentListInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasNavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationDrawerActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.HasNavigationContentDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.NavigationContentDrawerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.HasTelephonyInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.TelephonyActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.HasToolbarInterceptor
@@ -20,13 +25,15 @@ import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarActivityInter
 class InterceptorCommonsFactory : InterceptorFactory() {
 
     override fun initActivityInterceptors(activity: Activity, list: MutableList<Interceptor>) {
+        (activity as? HasAutoInflateLayoutInterceptor)?.let { int -> list.add(AutoInflateLayoutActivityInterceptor(int)) }
+        (activity as? HasInjectFragmentInterceptor<*>)?.let { int -> list.add(InjectFragmentActivityInterceptor(int)) }
+        (activity as? HasInjectFragmentListInterceptor<*>)?.let { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
+        (activity as? HasFragmentStatePagerInterceptor<*>)?.let { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
+        (activity as? HasToolbarInterceptor)?.let { int -> list.add(ToolbarActivityInterceptor(int)) }
+        (activity as? HasTelephonyInterceptor)?.let { int -> list.add(TelephonyActivityInterceptor(int)) }
         when (activity) {
-            is HasAutoInflateLayoutInterceptor -> list.add(AutoInflateLayoutActivityInterceptor(activity))
-            is HasInjectFragmentInterceptor<*> -> list.add(InjectFragmentActivityInterceptor(activity))
-            is HasInjectFragmentListInterceptor<*> -> list.add(InjectFragmentListActivityInterceptor(activity))
-            is HasFragmentStatePagerInterceptor<*> -> list.add(FragmentStatePagerActivityInterceptor(activity))
-            is HasToolbarInterceptor -> list.add(ToolbarActivityInterceptor(activity))
-            is HasTelephonyInterceptor -> list.add(TelephonyActivityInterceptor(activity))
+            is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))
+            is HasNavigationDrawerInterceptor -> list.add(NavigationDrawerActivityInterceptor(activity))
         }
     }
 

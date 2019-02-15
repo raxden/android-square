@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
+import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
@@ -36,10 +38,13 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
 
     private val onPageChangeListener = object : ViewPager.OnPageChangeListener {
 
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            if (positionOffset != 0.0f || positionOffsetPixels != 0) return
+            mCallback.onPageScrolled(position)
+        }
 
         override fun onPageSelected(position: Int) {
-            mAdapter?.getFragment(position)?.let { mCallback.onFragmentSelected(it, position) }
+            mCallback.onPageSelected(position)
         }
 
         override fun onPageScrollStateChanged(state: Int) {}
@@ -84,7 +89,9 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
 
     private inner class FragmentStatePagerInterceptorAdapter internal constructor(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 
-        override fun getItem(position: Int): TFragment = mCallback.onCreateFragment(position)
+        override fun getItem(position: Int): TFragment {
+          return mCallback.onCreateFragment(position)
+        }
 
         override fun getCount(): Int = mCallback.viewPagerElements
 
@@ -93,7 +100,5 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
             mCallback.onFragmentLoaded(fragment, position)
             return fragment
         }
-
-        fun getFragment(position: Int): TFragment = instantiateItem(mViewPager, position)
     }
 }

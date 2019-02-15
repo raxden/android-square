@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".commons.AutoInflateLayoutActivity">
+        <activity android:name=".commons.NavigationDrawerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
 
-abstract class FragmentInterceptor<TInterceptor : Interceptor, TCallback : HasInterceptor<TInterceptor>>(
+abstract class FragmentInterceptor<TInterceptor : Interceptor, TCallback : HasInterceptor>(
         val mCallback: TCallback
 ) : FragmentManager.FragmentLifecycleCallbacks(), Interceptor {
 

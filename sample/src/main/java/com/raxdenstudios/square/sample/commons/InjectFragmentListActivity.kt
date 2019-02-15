@@ -13,10 +13,10 @@ import kotlinx.android.synthetic.main.inject_fragment_list_activity.*
 
 class InjectFragmentListActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
-        HasInjectFragmentListInterceptor<InjectFragmentListActivity.InjectedFragment> {
+        HasInjectFragmentListInterceptor<InjectedFragment> {
 
-    lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
-    lateinit var mInjectFragmentListInterceptor: InjectFragmentListInterceptor
+    private var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor? = null
+    private var mInjectFragmentListInterceptor: InjectFragmentListInterceptor? = null
 
     var mContentView: View? = null
 
@@ -24,13 +24,13 @@ class InjectFragmentListActivity : AppCompatActivity(),
     var mSecondFragment: Fragment? = null
     var mThirdFragment: Fragment? = null
 
-    // ======== InflateLayoutInterceptorCallback ===============================================
+    // ======== HasAutoInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view
     }
 
-    // ======== InjectFragmentListInterceptorCallback ===============================================
+    // ======== HasInjectFragmentListInterceptor ===================================================
 
     override val fragmentCount: Int
         get() = 3
@@ -43,10 +43,10 @@ class InjectFragmentListActivity : AppCompatActivity(),
     }
 
     override fun onCreateFragment(position: Int): InjectedFragment = when (position) {
-        0 -> InjectedFragment.newInstance(intent.extras)
-        1 -> InjectedFragment.newInstance(intent.extras)
-        2 -> InjectedFragment.newInstance(intent.extras)
-        else -> InjectedFragment.newInstance(intent.extras)
+        0 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
+        1 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 2") })
+        2 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 3") })
+        else -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
     }
 
     override fun onFragmentLoaded(fragment: InjectedFragment, position: Int) {
@@ -57,20 +57,10 @@ class InjectFragmentListActivity : AppCompatActivity(),
         }
     }
 
-    // ==========================================================================================
+    // =============================================================================================
 
     override fun onInterceptorCreated(interceptor: Interceptor) {
-        mAutoInflateLayoutInterceptor = interceptor as AutoInflateLayoutInterceptor
-        mInjectFragmentListInterceptor = interceptor as InjectFragmentListInterceptor
+        mAutoInflateLayoutInterceptor = interceptor as? AutoInflateLayoutInterceptor
+        mInjectFragmentListInterceptor = interceptor as? InjectFragmentListInterceptor
     }
-
-    class InjectedFragment : Fragment() {
-
-        companion object {
-            fun newInstance(bundle: Bundle?) = InjectedFragment().apply {
-                arguments = bundle ?: Bundle()
-            }
-        }
-    }
-
 }
