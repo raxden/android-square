@@ -1,10 +1,10 @@
 package com.raxdenstudios.square.interceptor.commons.autoinflatelayout
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
-import com.raxdenstudios.square.utils.ResourceUtils
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -31,7 +31,7 @@ class AutoInflateLayoutActivityInterceptor(
     private fun onCreateView(activity: Activity): View? = when {
         mLayoutId != 0 -> activity.layoutInflater.inflate(mLayoutId, null)
         else -> {
-            ResourceUtils.getLayoutId(activity, getLayoutName(activity)).let { layoutId ->
+            getLayoutId(activity, getLayoutName(activity)).let { layoutId ->
                 if (layoutId != 0) activity.layoutInflater.inflate(layoutId, null)
                 else null
             }
@@ -45,5 +45,10 @@ class AutoInflateLayoutActivityInterceptor(
                 .joinToString(separator = "_")
                 .toLowerCase()
     }
+
+    private fun getLayoutId(context: Context, name: String?): Int = name?.takeIf { it.isNotEmpty() }?.let {
+        context.resources.getIdentifier(it.replace("R.layout.", ""), "layout", context.packageName)
+    } ?: 0
+
 }
 

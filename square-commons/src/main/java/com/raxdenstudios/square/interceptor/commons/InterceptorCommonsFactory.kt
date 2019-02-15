@@ -17,6 +17,8 @@ import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationD
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationDrawerInterceptor
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.HasNavigationContentDrawerInterceptor
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.NavigationContentDrawerActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.network.HasNetworkInterceptor
+import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.HasTelephonyInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.TelephonyActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.HasToolbarInterceptor
@@ -35,6 +37,8 @@ class InterceptorCommonsFactory : InterceptorFactory() {
             is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))
             is HasNavigationDrawerInterceptor -> list.add(NavigationDrawerActivityInterceptor(activity))
         }
+        (activity as? HasNetworkInterceptor)?.let { int -> list.add(NetworkActivityInterceptor(int)) }
+
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {

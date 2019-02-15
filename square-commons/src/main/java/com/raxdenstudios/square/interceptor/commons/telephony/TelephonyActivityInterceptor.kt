@@ -19,6 +19,7 @@ class TelephonyActivityInterceptor(
     private var mTelephonyManager: TelephonyManager? = null
 
     private val mPhoneStateListener = object : PhoneStateListener() {
+
         override fun onCallStateChanged(state: Int, incomingNumber: String) {
             mCallback.onCallStateChanged(state, incomingNumber)
             super.onCallStateChanged(state, incomingNumber)
