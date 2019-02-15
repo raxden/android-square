@@ -25,8 +25,19 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
     protected lateinit var mDrawerToggle: ActionBarDrawerToggle
     protected lateinit var mActivity: AppCompatActivity
 
+    protected var mDrawerListener: DrawerListener? = null
     protected var mDrawerOpenListenerList: MutableMap<Int, MutableList<DrawerOpenListener>?> = mutableMapOf()
     protected var mDrawerCloseListenerList: MutableMap<Int, MutableList<DrawerCloseListener>?> = mutableMapOf()
+
+    interface DrawerListener {
+        fun onDrawerSlide(gravity: Int, drawerView: View, slideOffset: Float)
+
+        fun onDrawerOpened(gravity: Int, drawerView: View)
+
+        fun onDrawerClosed(gravity: Int, drawerView: View)
+
+        fun onDrawerStateChanged(newState: Int)
+    }
 
     interface DrawerCloseListener {
         fun onDrawerClosed()
@@ -123,6 +134,10 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         }
     }
 
+    override fun setDrawerListener(listener: DrawerListener?) {
+        mDrawerListener = listener
+    }
+
     private fun setDrawerShadow(drawerLayout: DrawerLayout) {
         drawerLayout.setDrawerShadow(R.drawable.square__drawer_shadow, GravityCompat.START)
     }
@@ -195,9 +210,9 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
             it.map { listener -> listener.onDrawerClosed() }
             it.clear()
         }
-        drawerView?.let {
+        drawerView?.apply {
             mActivity.invalidateOptionsMenu()
-            mCallback.onDrawerClosed(gravity, it)
+            mDrawerListener?.onDrawerClosed(gravity, this)
         }
     }
 
@@ -211,9 +226,9 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
             it.map { listener -> listener.onDrawerOpened() }
             it.clear()
         }
-        drawerView?.let {
+        drawerView?.apply {
             mActivity.invalidateOptionsMenu()
-            mCallback.onDrawerOpened(gravity, it)
+            mDrawerListener?.onDrawerOpened(gravity, this)
         }
     }
 
@@ -223,11 +238,11 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
     }
 
     private fun onDrawerSlide(gravity: Int, drawerView: View?, slideOffset: Float) {
-        drawerView?.let { mCallback.onDrawerSlide(gravity, it, slideOffset) }
+        drawerView?.let { mDrawerListener?.onDrawerSlide(gravity, it, slideOffset) }
     }
 
     private fun onDrawerStateChanged(newState: Int) {
-        mCallback.onDrawerStateChanged(newState)
+        mDrawerListener?.onDrawerStateChanged(newState)
     }
 
 }

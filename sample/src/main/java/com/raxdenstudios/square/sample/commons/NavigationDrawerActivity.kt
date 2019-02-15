@@ -99,14 +99,6 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     override fun onActionBarDrawerToggleCreated(drawerToggle: ActionBarDrawerToggle) {}
 
-    override fun onDrawerClosed(gravity: Int, drawerView: View) {}
-
-    override fun onDrawerOpened(gravity: Int, drawerView: View) {}
-
-    override fun onDrawerSlide(gravity: Int, drawerView: View, slideOffset: Float) {}
-
-    override fun onDrawerStateChanged(newState: Int) {}
-
     // =============================================================================================
 
     override fun onInterceptorCreated(interceptor: Interceptor) {

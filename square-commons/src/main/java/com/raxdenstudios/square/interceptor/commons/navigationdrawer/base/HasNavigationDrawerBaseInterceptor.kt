@@ -23,13 +23,4 @@ interface HasNavigationDrawerBaseInterceptor : HasInterceptor {
 
 
     fun onActionBarDrawerToggleCreated(drawerToggle: ActionBarDrawerToggle)
-
-
-    fun onDrawerClosed(gravity: Int, drawerView: View)
-
-    fun onDrawerOpened(gravity: Int, drawerView: View)
-
-    fun onDrawerSlide(gravity: Int, drawerView: View, slideOffset: Float)
-
-    fun onDrawerStateChanged(newState: Int)
 }
