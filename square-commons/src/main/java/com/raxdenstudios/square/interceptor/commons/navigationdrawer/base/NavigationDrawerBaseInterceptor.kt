@@ -13,11 +13,11 @@ interface NavigationDrawerBaseInterceptor: Interceptor {
 
     fun onPrepareOptionsMenu(menu: Menu?)
 
-    fun setDrawerListener(listener: NavigationDrawerActivityBaseInterceptor.DrawerListener? = null)
-
     fun isOpenDrawer(gravity: Int): Boolean
 
     fun toggleDrawer(gravity: Int)
+
+    fun setDrawerListener(listener: NavigationDrawerActivityBaseInterceptor.DrawerListener? = null)
 
     fun openDrawer(gravity: Int, listener: NavigationDrawerActivityBaseInterceptor.DrawerOpenListener? = null)
 
