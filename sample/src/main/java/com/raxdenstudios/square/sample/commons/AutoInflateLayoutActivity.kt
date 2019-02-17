@@ -14,7 +14,7 @@ class AutoInflateLayoutActivity : AppCompatActivity(),
 
     var mContentView: View? = null
 
-    // ======== HasAutoInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

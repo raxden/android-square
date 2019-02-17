@@ -8,6 +8,9 @@ import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflat
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.HasFragmentStatePagerInterceptor
+import com.raxdenstudios.square.interceptor.commons.inflatelayout.HasInflateLayoutInterceptor
+import com.raxdenstudios.square.interceptor.commons.inflatelayout.InflateLayoutActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.inflatelayout.InflateLayoutFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInjectFragmentListInterceptor
@@ -28,6 +31,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
 
     override fun initActivityInterceptors(activity: Activity, list: MutableList<Interceptor>) {
         (activity as? HasAutoInflateLayoutInterceptor)?.let { int -> list.add(AutoInflateLayoutActivityInterceptor(int)) }
+        (activity as? HasInflateLayoutInterceptor)?.let { int -> list.add(InflateLayoutActivityInterceptor(int)) }
         (activity as? HasInjectFragmentInterceptor<*>)?.let { int -> list.add(InjectFragmentActivityInterceptor(int)) }
         (activity as? HasInjectFragmentListInterceptor<*>)?.let { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
         (activity as? HasFragmentStatePagerInterceptor<*>)?.let { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
@@ -42,7 +46,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {
-
+        (fragment as? HasInflateLayoutInterceptor)?.let { int -> list.add(InflateLayoutFragmentInterceptor(int)) }
     }
 
 }

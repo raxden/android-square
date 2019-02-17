@@ -26,7 +26,7 @@ class ToolbarActivity : AppCompatActivity(),
     var mToolbarView: Toolbar? = null
     var mInjectedFragment: InjectedFragment? = null
 
-    // ======== HasAutoInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

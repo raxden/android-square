@@ -48,7 +48,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
             super.onBackPressed()
     }
 
-    // ======== HasAutoInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

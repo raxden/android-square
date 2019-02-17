@@ -28,7 +28,7 @@ class FragmentStatePagerActivity : AppCompatActivity(),
     var mFragmentSelected: Int = 0
     var mFragmentScrolled: Int = 0
 
-    // ======== HasAutoInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view

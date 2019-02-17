@@ -24,7 +24,7 @@ class InjectFragmentListActivity : AppCompatActivity(),
     var mSecondFragment: Fragment? = null
     var mThirdFragment: Fragment? = null
 
-    // ======== HasAutoInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ====================================================
 
     override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
         mContentView = view
