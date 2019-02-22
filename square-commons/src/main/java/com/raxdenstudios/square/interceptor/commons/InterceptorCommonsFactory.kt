@@ -6,6 +6,8 @@ import com.raxdenstudios.square.InterceptorFactory
 import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
+import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.FloatingActionButtonFragmentActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.HasFloatingActionButtonFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.HasFragmentStatePagerInterceptor
 import com.raxdenstudios.square.interceptor.commons.inflatelayout.HasInflateLayoutInterceptor
@@ -30,23 +32,24 @@ import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarActivityInter
 class InterceptorCommonsFactory : InterceptorFactory() {
 
     override fun initActivityInterceptors(activity: Activity, list: MutableList<Interceptor>) {
-        (activity as? HasAutoInflateLayoutInterceptor)?.let { int -> list.add(AutoInflateLayoutActivityInterceptor(int)) }
-        (activity as? HasInflateLayoutInterceptor)?.let { int -> list.add(InflateLayoutActivityInterceptor(int)) }
-        (activity as? HasInjectFragmentInterceptor<*>)?.let { int -> list.add(InjectFragmentActivityInterceptor(int)) }
-        (activity as? HasInjectFragmentListInterceptor<*>)?.let { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
-        (activity as? HasFragmentStatePagerInterceptor<*>)?.let { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
-        (activity as? HasToolbarInterceptor)?.let { int -> list.add(ToolbarActivityInterceptor(int)) }
-        (activity as? HasTelephonyInterceptor)?.let { int -> list.add(TelephonyActivityInterceptor(int)) }
+        (activity as? HasAutoInflateLayoutInterceptor)?.also { int -> list.add(AutoInflateLayoutActivityInterceptor(int)) }
+        (activity as? HasInflateLayoutInterceptor)?.also { int -> list.add(InflateLayoutActivityInterceptor(int)) }
+        (activity as? HasToolbarInterceptor)?.also { int -> list.add(ToolbarActivityInterceptor(int)) }
+        (activity as? HasInjectFragmentInterceptor<*>)?.also { int -> list.add(InjectFragmentActivityInterceptor(int)) }
+        (activity as? HasInjectFragmentListInterceptor<*>)?.also { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
+        (activity as? HasFragmentStatePagerInterceptor<*>)?.also { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
+        (activity as? HasFloatingActionButtonFragmentInterceptor<*, *>)?.also { int -> list.add(FloatingActionButtonFragmentActivityInterceptor(int)) }
+        (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         when (activity) {
             is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))
             is HasNavigationDrawerInterceptor -> list.add(NavigationDrawerActivityInterceptor(activity))
         }
-        (activity as? HasNetworkInterceptor)?.let { int -> list.add(NetworkActivityInterceptor(int)) }
+        (activity as? HasNetworkInterceptor)?.also { int -> list.add(NetworkActivityInterceptor(int)) }
 
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {
-        (fragment as? HasInflateLayoutInterceptor)?.let { int -> list.add(InflateLayoutFragmentInterceptor(int)) }
+        (fragment as? HasInflateLayoutInterceptor)?.also { int -> list.add(InflateLayoutFragmentInterceptor(int)) }
     }
 
 }

@@ -35,7 +35,7 @@ class InjectFragmentListActivity : AppCompatActivity(),
     override val fragmentCount: Int
         get() = 3
 
-    override fun onLoadFragmentContainer(savedInstanceState: Bundle?, position: Int): View = when (position) {
+    override fun onLoadFragmentContainer(position: Int): View = when (position) {
         0 -> container_first_view
         1 -> container_second_view
         2 -> container_third_view

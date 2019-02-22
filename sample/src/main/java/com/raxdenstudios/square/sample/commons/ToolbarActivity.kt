@@ -40,7 +40,7 @@ class ToolbarActivity : AppCompatActivity(),
         mToolbarView = toolbar
     }
 
-    // ======== HasInjectFragmentInterceptor =======================================================
+    // ======== HasFloatingActionButtonFragmentInterceptor =======================================================
 
     override fun onLoadFragmentContainer(savedInstanceState: Bundle?): View = container_view
 

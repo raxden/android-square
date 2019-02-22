@@ -81,9 +81,8 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         return mContentDrawerView[gravity]?.let { view ->
             savedInstanceState?.let {
                 activity.supportFragmentManager.findFragmentById(view.id) as TFragment
-            } ?: mCallback.onCreateContentDrawerFragment(gravity).let {
+            } ?: mCallback.onCreateContentDrawerFragment(gravity).also {
                 activity.supportFragmentManager.beginTransaction().replace(view.id, it, it.javaClass.simpleName).commit()
-                it
             }
         }
     }

@@ -10,7 +10,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
  */
 interface HasInjectFragmentInterceptor<TFragment : Fragment> : HasInterceptor {
 
-    fun onLoadFragmentContainer(savedInstanceState: Bundle?): View
+    fun onLoadFragmentContainer(): View
 
     fun onCreateFragment(): TFragment
 

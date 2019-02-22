@@ -3,6 +3,7 @@ package com.raxdenstudios.square.interceptor.commons.toolbar
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 
@@ -14,16 +15,20 @@ class ToolbarActivityInterceptor(
 ) : ActivityInterceptor<ToolbarInterceptor, HasToolbarInterceptor>(callback),
         ToolbarInterceptor {
 
+    private var mToolbar: Toolbar? = null
+
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        mCallback.onCreateToolbarView(savedInstanceState).let { toolbar ->
-            (activity as AppCompatActivity).let {
-                it.setSupportActionBar(toolbar)
-                it.supportActionBar?.setDisplayShowTitleEnabled(false)
-            }
-            toolbar.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
-            mCallback.onToolbarViewCreated(toolbar)
+        mToolbar = (activity as? AppCompatActivity)?.let {
+            initToolbar(it, savedInstanceState)
         }
+    }
+
+    private fun initToolbar(activity: AppCompatActivity, savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView(savedInstanceState).also {
+        activity.setSupportActionBar(it)
+        activity.supportActionBar?.setDisplayShowTitleEnabled(false)
+        it.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
+        mCallback.onToolbarViewCreated(it)
     }
 }

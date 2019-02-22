@@ -146,12 +146,11 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         initActionBarDrawerToggle(drawerLayout, it)
     } ?: initActionBarDrawerToggle(drawerLayout)
 
-    private fun initToolbar(savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView(savedInstanceState)?.let {
+    private fun initToolbar(savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView(savedInstanceState)?.also {
         mActivity.setSupportActionBar(it)
         mActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
         it.setOnMenuItemClickListener { item -> mActivity.onOptionsItemSelected(item) }
         mCallback.onToolbarViewCreated(it)
-        it
     }
 
     private fun initActionBarDrawerToggle(drawerLayout: DrawerLayout): ActionBarDrawerToggle =

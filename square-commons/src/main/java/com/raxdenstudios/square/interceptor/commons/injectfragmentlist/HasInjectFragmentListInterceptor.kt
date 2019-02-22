@@ -12,7 +12,7 @@ interface HasInjectFragmentListInterceptor<T : Fragment> : HasInterceptor {
 
     val fragmentCount: Int
 
-    fun onLoadFragmentContainer(savedInstanceState: Bundle?, position: Int): View
+    fun onLoadFragmentContainer(position: Int): View
 
     fun onCreateFragment(position: Int): T
 

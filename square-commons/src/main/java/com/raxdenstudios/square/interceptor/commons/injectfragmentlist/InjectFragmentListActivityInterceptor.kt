@@ -21,12 +21,11 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
     }
 
     private fun initFragment(activity: FragmentActivity, savedInstanceState: Bundle?, position: Int): TFragment? {
-        return mCallback.onLoadFragmentContainer(savedInstanceState, position).let { view ->
+        return mCallback.onLoadFragmentContainer(position).let { view ->
             savedInstanceState?.let {
                 activity.supportFragmentManager.findFragmentById(view.id) as TFragment
-            } ?: mCallback.onCreateFragment(position).let {
+            } ?: mCallback.onCreateFragment(position).also {
                 activity.supportFragmentManager.beginTransaction().replace(view.id, it, it.javaClass.simpleName).commit()
-                it
             }
         }
     }
