@@ -27,6 +27,7 @@ ext {
             multidexVersion: [group: 'com.android.support', name: 'multidex', version: multidexVersion],
             supportV4: [group: 'com.android.support', name: 'support-v4', version: supportVersion],
             appcompatV7: [group: 'com.android.support', name: 'appcompat-v7', version: supportVersion],
+            design: [group: 'com.android.support', name: 'design', version: supportVersion],
             constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
             kotlin: [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk7', version: kotlinVersion]
     ]
@@ -67,6 +68,7 @@ ext {
     libDependencies = [
             [configuration: "compileOnly", dependency: androidLibs.multidexVersion],
             [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
+            [configuration: "compileOnly", dependency: androidLibs.design],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
@@ -78,6 +80,7 @@ ext {
     commonsDependencies = [
             [configuration: "compileOnly", dependency: project(modules.square)],
             [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
+            [configuration: "compileOnly", dependency: androidLibs.design],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
@@ -129,6 +132,7 @@ ext {
             [configuration: "implementation", dependency: project(modules.squareZxing)],
             [configuration: "implementation", dependency: androidLibs.supportV4],
             [configuration: "implementation", dependency: androidLibs.appcompatV7],
+            [configuration: "implementation", dependency: androidLibs.design],
             [configuration: "implementation", dependency: androidLibs.constraintLayout],
             [configuration: "implementation", dependency: androidLibs.kotlin],
             [configuration: "testImplementation", dependency: testLibs.junit],

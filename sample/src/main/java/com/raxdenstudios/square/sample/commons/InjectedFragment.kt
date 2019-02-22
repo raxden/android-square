@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.raxdenstudios.square.sample.R
 import kotlinx.android.synthetic.main.injected_fragment.*
 
-class InjectedFragment: Fragment() {
+open class InjectedFragment: Fragment() {
 
     companion object {
         fun newInstance(bundle: Bundle?) = InjectedFragment().apply {

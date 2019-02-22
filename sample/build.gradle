@@ -17,6 +17,7 @@ android {
 
         resValue "string", "geo_api_key", "AIzaSyCJJ64kpDOT5HrQkfe99QbB7hGAXJzFCWc"
 
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
