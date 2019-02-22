@@ -64,7 +64,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     // ======== HasFloatingActionButtonFragmentInterceptor =======================================================
 
-    override fun onLoadFragmentContainer(savedInstanceState: Bundle?): View = container_view
+    override fun onLoadFragmentContainer(): View = container_view
 
     override fun onCreateFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment") })
 
