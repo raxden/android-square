@@ -9,7 +9,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 /**
  * Created by Ángel Gómez on 29/12/2016.
  */
-interface HasFloatingActionButtonFragmentInterceptor<TMasterFragment : Fragment, TDetailFragment : Fragment> : HasInterceptor {
+interface HasFloatingActionButtonFragmentInterceptor<TFragment : Fragment> : HasInterceptor {
 
     fun onLoadFloatingActionButton(): FloatingActionButton
 
@@ -19,11 +19,7 @@ interface HasFloatingActionButtonFragmentInterceptor<TMasterFragment : Fragment,
 
     fun onLoadFragmentContainer(): View
 
-    fun onCreateMasterFragment(): TMasterFragment
+    fun onCreateFragment(type: FragmentType): TFragment
 
-    fun onFragmentMasterLoaded(fragment: TMasterFragment)
-
-    fun onCreateDetailFragment(): TDetailFragment
-
-    fun onFragmentDetailLoaded(fragment: TDetailFragment)
+    fun onFragmentLoaded(type: FragmentType, fragment: TFragment)
 }

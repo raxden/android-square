@@ -25,7 +25,7 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
         (activity as? FragmentActivity)?.also {
             mHasSavedInstanceState = savedInstanceState != null
             mContainerView = mCallback.onLoadFragmentContainer()
-            mFragment = initFragment(activity)
+            mFragment = instantiateFragment(activity)
         }
     }
 
@@ -33,7 +33,7 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
         super.onActivityStarted(activity)
 
         (activity as? FragmentActivity)?.also {
-            mFragment = initFragment(activity)
+            mFragment = instantiateFragment(activity)
         }
     }
 
@@ -43,7 +43,7 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
         mFragment = null
     }
 
-    private fun initFragment(activity: FragmentActivity): TFragment? {
+    private fun instantiateFragment(activity: FragmentActivity): TFragment? {
         return if (!mHasSavedInstanceState) {
             mCallback.onCreateFragment().also {
                 activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, it, it.javaClass.simpleName).commit()

@@ -76,8 +76,8 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
 
         (activity as? FragmentActivity)?.also {
             mHasSavedInstanceState = savedInstanceState != null
-            mContainerFragmentMap[Gravity.START] = initFragment(activity, Gravity.START)
-            mContainerFragmentMap[Gravity.END] = initFragment(activity, Gravity.END)
+            mContainerFragmentMap[Gravity.START] = instantiateFragment(activity, Gravity.START)
+            mContainerFragmentMap[Gravity.END] = instantiateFragment(activity, Gravity.END)
         }
     }
 
@@ -85,8 +85,8 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         super.onActivityStarted(activity)
 
         (activity as? FragmentActivity)?.also {
-            mContainerFragmentMap[Gravity.START] = initFragment(activity, Gravity.START)
-            mContainerFragmentMap[Gravity.END] = initFragment(activity, Gravity.END)
+            mContainerFragmentMap[Gravity.START] = instantiateFragment(activity, Gravity.START)
+            mContainerFragmentMap[Gravity.END] = instantiateFragment(activity, Gravity.END)
         }
     }
 
@@ -96,7 +96,7 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         mContainerFragmentMap.clear()
     }
 
-    private fun initFragment(activity: FragmentActivity, gravity: Int): TFragment? {
+    private fun instantiateFragment(activity: FragmentActivity, gravity: Int): TFragment? {
         return mContentDrawerView[gravity]?.let { view ->
             if (!mHasSavedInstanceState) {
                 mCallback.onCreateContentDrawerFragment(gravity).also {

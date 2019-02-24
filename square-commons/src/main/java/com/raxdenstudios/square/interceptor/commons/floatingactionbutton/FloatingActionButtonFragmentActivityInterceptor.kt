@@ -13,9 +13,9 @@ import com.raxdenstudios.square.interceptor.commons.R
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-class FloatingActionButtonFragmentActivityInterceptor<TMasterFragment : Fragment, TDetailFragment : Fragment>(
-        callback: HasFloatingActionButtonFragmentInterceptor<TMasterFragment, TDetailFragment>
-) : ActivityInterceptor<FloatingActionButtonFragmentInterceptor, HasFloatingActionButtonFragmentInterceptor<TMasterFragment, TDetailFragment>>(callback),
+class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
+        callback: HasFloatingActionButtonFragmentInterceptor<TFragment>
+) : ActivityInterceptor<FloatingActionButtonFragmentInterceptor, HasFloatingActionButtonFragmentInterceptor<TFragment>>(callback),
         FloatingActionButtonFragmentInterceptor {
 
     private var mNavigationIcon: Int = R.drawable.square__ic_close_white_24dp
@@ -23,19 +23,19 @@ class FloatingActionButtonFragmentActivityInterceptor<TMasterFragment : Fragment
     private lateinit var mToolbar: Toolbar
     private lateinit var mContainerView: View
     private var mHasSavedInstanceState: Boolean = false
-    private var mMasterFragment: TMasterFragment? = null
-    private var mDetailFragment: TDetailFragment? = null
+    private var mCurrentFragmentType: FragmentType = FragmentType.MASTER
+    private var mContainerFragmentMap: MutableMap<FragmentType, TFragment?> = mutableMapOf()
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         (activity as? AppCompatActivity)?.also {
             mHasSavedInstanceState = savedInstanceState != null
+            mCurrentFragmentType = savedInstanceState?.getInt("currentFragmentType")?.let { FragmentType.values()[it] } ?: FragmentType.MASTER
             mFloatingActionButton = initFloatingActionButton(activity)
             mToolbar = initToolbar(activity)
             mContainerView = mCallback.onLoadFragmentContainer()
-            mMasterFragment = initMasterFragment(activity)
-            mDetailFragment = initDetailFragment(activity)
+            mMasterFragment = instantiateFragment(activity)
         }
     }
 
@@ -44,8 +44,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TMasterFragment : Fragment
         super.onActivityStarted(activity)
 
         (activity as? AppCompatActivity)?.also {
-            mMasterFragment = initMasterFragment(activity)
-            mDetailFragment = initDetailFragment(activity)
+            mMasterFragment = instantiateFragment(activity)
         }
     }
 
@@ -86,7 +85,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TMasterFragment : Fragment
         mCallback.onToolbarViewCreated(it)
     }
 
-    private fun initMasterFragment(activity: AppCompatActivity): TMasterFragment? {
+    private fun instantiateFragment(activity: AppCompatActivity): TFragment? {
         return if (!mHasSavedInstanceState) {
             mCallback.onCreateMasterFragment().also {
                 activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, it, it.javaClass.simpleName).commit()
@@ -101,19 +100,5 @@ class FloatingActionButtonFragmentActivityInterceptor<TMasterFragment : Fragment
         }
     }
 
-    private fun initDetailFragment(activity: AppCompatActivity): TDetailFragment? {
-        return if (!mHasSavedInstanceState) {
-            mCallback.onCreateDetailFragment().also {
-                activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, it, it.javaClass.simpleName).commit()
-                mCallback.onFragmentDetailLoaded(it)
-            }
-        } else if (mDetailFragment == null) {
-            (activity.supportFragmentManager.findFragmentById(mContainerView.id) as? TDetailFragment)?.also {
-                mCallback.onFragmentDetailLoaded(it)
-            }
-        } else {
-            mDetailFragment
-        }
-    }
 }
 

@@ -26,7 +26,7 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
             mHasSavedInstanceState = savedInstanceState != null
             for (position in 0 until mCallback.fragmentCount) {
                 mContainerViewMap[position] = mCallback.onLoadFragmentContainer(position)
-                mContainerFragmentMap[position] = initFragment(activity, position)
+                mContainerFragmentMap[position] = instantiateFragment(activity, position)
             }
         }
     }
@@ -36,7 +36,7 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
 
         (activity as? FragmentActivity)?.also {
             for (position in 0 until mCallback.fragmentCount) {
-                mContainerFragmentMap[position] = initFragment(activity, position)
+                mContainerFragmentMap[position] = instantiateFragment(activity, position)
             }
         }
     }
@@ -47,7 +47,7 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
         mContainerFragmentMap.clear()
     }
 
-    private fun initFragment(activity: FragmentActivity, position: Int): TFragment? {
+    private fun instantiateFragment(activity: FragmentActivity, position: Int): TFragment? {
         return mContainerViewMap[position]?.let { view ->
             if (!mHasSavedInstanceState) {
                 mCallback.onCreateFragment(position).also {

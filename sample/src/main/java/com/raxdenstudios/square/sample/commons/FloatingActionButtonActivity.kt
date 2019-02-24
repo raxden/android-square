@@ -13,12 +13,13 @@ import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.FloatingActionButtonFragmentInterceptor
+import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.FragmentType
 import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.HasFloatingActionButtonFragmentInterceptor
 import kotlinx.android.synthetic.main.floating_action_button_activity.*
 
 class FloatingActionButtonActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
-        HasFloatingActionButtonFragmentInterceptor<InjectedFragment, InjectedFragment> {
+        HasFloatingActionButtonFragmentInterceptor<InjectedFragment> {
 
     private var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor? = null
     private var mFloatingActionButtonFragmentInterceptor: FloatingActionButtonFragmentInterceptor? = null
@@ -46,16 +47,16 @@ class FloatingActionButtonActivity : AppCompatActivity(),
 
     override fun onLoadFragmentContainer(): View = container_view
 
-    override fun onCreateMasterFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply { putString("title", "Master Fragment") })
-
-    override fun onFragmentMasterLoaded(fragment: InjectedFragment) {
-        mMasterFragment = fragment
+    override fun onCreateFragment(type: FragmentType): InjectedFragment = when(type) {
+        FragmentType.MASTER -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Master Fragment") })
+        FragmentType.DETAIL -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
     }
 
-    override fun onCreateDetailFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
-
-    override fun onFragmentDetailLoaded(fragment: InjectedFragment) {
-        mDetailFragment = fragment
+    override fun onFragmentLoaded(type: FragmentType, fragment: InjectedFragment) {
+        when(type) {
+            FragmentType.MASTER -> mMasterFragment = fragment
+            FragmentType.DETAIL -> mDetailFragment = fragment
+        }
     }
 
     // =============================================================================================
