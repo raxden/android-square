@@ -30,7 +30,7 @@ class FloatingActionButtonActivity : AppCompatActivity(),
 
     // ======== HasInflateLayoutInterceptor ========================================================
 
-    override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onContentViewCreated(view: View) {
         mContentView = view
     }
 
@@ -38,7 +38,7 @@ class FloatingActionButtonActivity : AppCompatActivity(),
 
     override fun onLoadFloatingActionButton(): FloatingActionButton = floating_action_button
 
-    override fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar = toolbar_view
+    override fun onCreateToolbarView(): Toolbar = toolbar_view
 
     override fun onToolbarViewCreated(toolbar: Toolbar) {
         mToolbarView = toolbar

@@ -30,7 +30,7 @@ class FragmentStatePagerActivity : AppCompatActivity(),
 
     // ======== HasInflateLayoutInterceptor ====================================================
 
-    override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onContentViewCreated(view: View) {
         mContentView = view
     }
 
@@ -39,7 +39,7 @@ class FragmentStatePagerActivity : AppCompatActivity(),
     override val viewPagerElements: Int
         get() = 3
 
-    override fun onCreateViewPager(savedInstanceState: Bundle?): ViewPager = view_pager
+    override fun onCreateViewPager(): ViewPager = view_pager
 
     override fun onViewPagerCreated(viewPager: ViewPager) {
         mViewPagerView = viewPager

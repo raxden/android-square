@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.toolbar
 
-import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.raxdenstudios.square.interceptor.HasInterceptor
 
@@ -9,7 +8,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
  */
 interface HasToolbarInterceptor : HasInterceptor {
 
-    fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar
+    fun onCreateToolbarView(): Toolbar
 
     fun onToolbarViewCreated(toolbar: Toolbar)
 }

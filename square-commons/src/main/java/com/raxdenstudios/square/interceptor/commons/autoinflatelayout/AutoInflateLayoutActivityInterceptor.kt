@@ -24,7 +24,7 @@ class AutoInflateLayoutActivityInterceptor(
         super.onActivityCreated(activity, savedInstanceState)
         activity?.let { onCreateView(it) }?.let { view ->
             activity.setContentView(view)
-            mCallback.onContentViewCreated(view, savedInstanceState)
+            mCallback.onContentViewCreated(view)
         }
     }
 

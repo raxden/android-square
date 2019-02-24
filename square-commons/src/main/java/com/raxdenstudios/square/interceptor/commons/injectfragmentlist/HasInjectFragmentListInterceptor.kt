@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.injectfragmentlist
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.raxdenstudios.square.interceptor.HasInterceptor
@@ -16,5 +15,5 @@ interface HasInjectFragmentListInterceptor<T : Fragment> : HasInterceptor {
 
     fun onCreateFragment(position: Int): T
 
-    fun onFragmentLoaded(fragment: T, position: Int)
+    fun onFragmentLoaded(position: Int, fragment: T)
 }

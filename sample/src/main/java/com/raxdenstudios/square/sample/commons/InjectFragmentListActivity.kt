@@ -26,7 +26,7 @@ class InjectFragmentListActivity : AppCompatActivity(),
 
     // ======== HasInflateLayoutInterceptor ====================================================
 
-    override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onContentViewCreated(view: View) {
         mContentView = view
     }
 
@@ -49,7 +49,7 @@ class InjectFragmentListActivity : AppCompatActivity(),
         else -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
     }
 
-    override fun onFragmentLoaded(fragment: InjectedFragment, position: Int) {
+    override fun onFragmentLoaded(position: Int, fragment: InjectedFragment) {
         when (position) {
             0 -> mFirstFragment = fragment
             1 -> mSecondFragment = fragment

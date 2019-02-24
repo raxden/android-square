@@ -20,13 +20,13 @@ class InjectFragmentActivity : AppCompatActivity(),
     var mContentView: View? = null
     var mInjectedFragment: InjectedFragment? = null
 
-    // ======== HasInflateLayoutInterceptor ====================================================
+    // ======== HasInflateLayoutInterceptor ========================================================
 
-    override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onContentViewCreated(view: View) {
         mContentView = view
     }
 
-    // ======== HasFloatingActionButtonFragmentInterceptor =======================================================
+    // ======== HasInjectFragmentInterceptor =======================================================
 
     override fun onLoadFragmentContainer(): View = container_view
 

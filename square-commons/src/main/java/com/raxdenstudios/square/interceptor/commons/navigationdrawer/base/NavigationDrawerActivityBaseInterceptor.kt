@@ -54,10 +54,10 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         super.onActivityCreated(activity, savedInstanceState)
 
         mActivity = activity as AppCompatActivity
-        mContentDrawerView[Gravity.START] = mCallback.onCreateContentDrawerView(savedInstanceState, Gravity.START)
-        mContentDrawerView[Gravity.END] = mCallback.onCreateContentDrawerView(savedInstanceState, Gravity.END)
+        mContentDrawerView[Gravity.START] = mCallback.onCreateContentDrawerView(Gravity.START)
+        mContentDrawerView[Gravity.END] = mCallback.onCreateContentDrawerView(Gravity.END)
 
-        mDrawerLayout = mCallback.onCreateDrawerLayout(savedInstanceState).let {
+        mDrawerLayout = mCallback.onCreateDrawerLayout().let {
             setDrawerShadow(it)
             mToolbar = initToolbar(savedInstanceState)
             mDrawerToggle = initDrawerToggle(it, mToolbar)
@@ -146,7 +146,7 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         initActionBarDrawerToggle(drawerLayout, it)
     } ?: initActionBarDrawerToggle(drawerLayout)
 
-    private fun initToolbar(savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView(savedInstanceState)?.also {
+    private fun initToolbar(savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView()?.also {
         mActivity.setSupportActionBar(it)
         mActivity.supportActionBar?.setDisplayShowTitleEnabled(false)
         it.setOnMenuItemClickListener { item -> mActivity.onOptionsItemSelected(item) }

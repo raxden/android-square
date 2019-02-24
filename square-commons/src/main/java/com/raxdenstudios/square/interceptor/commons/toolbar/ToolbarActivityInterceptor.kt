@@ -21,11 +21,11 @@ class ToolbarActivityInterceptor(
         super.onActivityCreated(activity, savedInstanceState)
 
         mToolbar = (activity as? AppCompatActivity)?.let {
-            initToolbar(it, savedInstanceState)
+            initToolbar(it)
         }
     }
 
-    private fun initToolbar(activity: AppCompatActivity, savedInstanceState: Bundle?): Toolbar? = mCallback.onCreateToolbarView(savedInstanceState).also {
+    private fun initToolbar(activity: AppCompatActivity): Toolbar? = mCallback.onCreateToolbarView().also {
         activity.setSupportActionBar(it)
         activity.supportActionBar?.setDisplayShowTitleEnabled(false)
         it.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }

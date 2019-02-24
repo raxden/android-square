@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.fragmentstatepager
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import com.raxdenstudios.square.interceptor.HasInterceptor
@@ -12,7 +11,7 @@ interface HasFragmentStatePagerInterceptor<TFragment : Fragment> : HasIntercepto
 
     val viewPagerElements: Int
 
-    fun onCreateViewPager(savedInstanceState: Bundle?): ViewPager
+    fun onCreateViewPager(): ViewPager
 
     fun onViewPagerCreated(viewPager: ViewPager)
 

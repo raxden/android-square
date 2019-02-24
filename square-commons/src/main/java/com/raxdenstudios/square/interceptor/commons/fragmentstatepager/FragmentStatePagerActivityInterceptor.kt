@@ -53,7 +53,7 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        mViewPager = mCallback.onCreateViewPager(savedInstanceState).let { viewPager ->
+        mViewPager = mCallback.onCreateViewPager().let { viewPager ->
             (activity as? FragmentActivity)?.let {
                 mAdapter = FragmentStatePagerInterceptorAdapter(activity.supportFragmentManager)
                 viewPager.adapter = mAdapter

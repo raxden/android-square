@@ -50,13 +50,13 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     // ======== HasInflateLayoutInterceptor ====================================================
 
-    override fun onContentViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onContentViewCreated(view: View) {
         mContentView = view
     }
 
     // ======== HasToolbarInterceptor ==============================================================
 
-    override fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar = toolbar_view
+    override fun onCreateToolbarView(): Toolbar = toolbar_view
 
     override fun onToolbarViewCreated(toolbar: Toolbar) {
         mToolbarView = toolbar
@@ -87,13 +87,13 @@ class NavigationDrawerActivity : AppCompatActivity(),
         }
     }
 
-    override fun onCreateContentDrawerView(savedInstanceState: Bundle?, gravity: Int): View = when (gravity) {
+    override fun onCreateContentDrawerView(gravity: Int): View = when (gravity) {
         Gravity.START -> left_offscreen_container
         Gravity.END -> right_offscreen_container
         else -> left_offscreen_container
     }
 
-    override fun onCreateDrawerLayout(savedInstanceState: Bundle?): DrawerLayout = drawer_layout
+    override fun onCreateDrawerLayout(): DrawerLayout = drawer_layout
 
     override fun onDrawerLayoutCreated(drawerLayout: DrawerLayout) {}
 

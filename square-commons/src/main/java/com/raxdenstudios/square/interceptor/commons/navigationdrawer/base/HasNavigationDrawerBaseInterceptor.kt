@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.navigationdrawer.base
 
-import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
@@ -9,15 +8,15 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 
 interface HasNavigationDrawerBaseInterceptor : HasInterceptor {
 
-    fun onCreateContentDrawerView(savedInstanceState: Bundle?, gravity: Int): View
+    fun onCreateContentDrawerView(gravity: Int): View
 
 
-    fun onCreateDrawerLayout(savedInstanceState: Bundle?): DrawerLayout
+    fun onCreateDrawerLayout(): DrawerLayout
 
     fun onDrawerLayoutCreated(drawerLayout: DrawerLayout)
 
 
-    fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar?
+    fun onCreateToolbarView(): Toolbar?
 
     fun onToolbarViewCreated(toolbar: Toolbar)
 

@@ -1,6 +1,5 @@
 package com.raxdenstudios.square.interceptor.commons.floatingactionbutton
 
-import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
@@ -14,7 +13,7 @@ interface HasFloatingActionButtonFragmentInterceptor<TMasterFragment : Fragment,
 
     fun onLoadFloatingActionButton(): FloatingActionButton
 
-    fun onCreateToolbarView(savedInstanceState: Bundle?): Toolbar
+    fun onCreateToolbarView(): Toolbar
 
     fun onToolbarViewCreated(toolbar: Toolbar)
 
