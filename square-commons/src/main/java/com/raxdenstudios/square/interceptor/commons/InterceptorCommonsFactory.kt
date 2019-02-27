@@ -38,7 +38,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasInjectFragmentInterceptor<*>)?.also { int -> list.add(InjectFragmentActivityInterceptor(int)) }
         (activity as? HasInjectFragmentListInterceptor<*>)?.also { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
         (activity as? HasFragmentStatePagerInterceptor<*>)?.also { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
-        (activity as? HasFloatingActionButtonFragmentInterceptor<*, *>)?.also { int -> list.add(FloatingActionButtonFragmentActivityInterceptor(int)) }
+        (activity as? HasFloatingActionButtonFragmentInterceptor<*>)?.also { int -> list.add(FloatingActionButtonFragmentActivityInterceptor(int)) }
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         when (activity) {
             is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))
