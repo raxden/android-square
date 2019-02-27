@@ -111,25 +111,15 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     private fun initFloatingActionButton(activity: AppCompatActivity): FloatingActionButton {
         return mCallback.onLoadFloatingActionButton().also {
             it.setOnClickListener {
-                setFragment(activity, FragmentType.DETAIL)
+                mCurrentFragmentType = FragmentType.DETAIL
+                mContainerFragmentMap[mCurrentFragmentType] = mCallback.onCreateFragment(mCurrentFragmentType).also { fragment ->
+                    activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, fragment, fragment.javaClass.simpleName).commit()
+                    mCallback.onFragmentLoaded(mCurrentFragmentType, fragment)
+                }
+                mToolbar.setNavigationIcon(mNavigationIcon)
+                mFloatingActionButton.hide()
             }
         }
-    }
-
-    private fun setFragment(activity: AppCompatActivity, fragmentType: FragmentType) {
-        when(fragmentType) {
-            FragmentType.MASTER -> {
-
-            }
-            FragmentType.DETAIL -> {
-
-            }
-        }
-        mContainerFragmentMap[fragmentType] = mCallback.onCreateFragment(fragmentType).also { fragment ->
-            activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, fragment, fragment.javaClass.simpleName).commit()
-            mCallback.onFragmentLoaded(fragmentType, fragment)
-        }
-        mCurrentFragmentType = fragmentType
     }
 
     private fun initToolbar(activity: AppCompatActivity): Toolbar = mCallback.onCreateToolbarView().also {
@@ -137,18 +127,16 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         activity.supportActionBar?.setDisplayShowTitleEnabled(false)
         it.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
         it.setNavigationOnClickListener {
-            if (activity.supportFragmentManager.backStackEntryCount > 0)
-                activity.supportFragmentManager.popBackStack()
-        }
-        activity.supportFragmentManager.addOnBackStackChangedListener {
-            if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                mCurrentFragmentType = FragmentType.DETAIL
-                it.setNavigationIcon(mNavigationIcon)
-                mFloatingActionButton.hide()
-            } else {
-                mCurrentFragmentType = FragmentType.MASTER
-                it.navigationIcon = null
-                mFloatingActionButton.show()
+            when(mCurrentFragmentType) {
+                FragmentType.DETAIL -> {
+                    mCurrentFragmentType = FragmentType.MASTER
+                    mContainerFragmentMap[mCurrentFragmentType] = mCallback.onCreateFragment(mCurrentFragmentType).also { fragment ->
+                        activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, fragment, fragment.javaClass.simpleName).commit()
+                        mCallback.onFragmentLoaded(mCurrentFragmentType, fragment)
+                    }
+                    mToolbar.navigationIcon = null
+                    mFloatingActionButton.show()
+                }
             }
         }
         mCallback.onToolbarViewCreated(it)
