@@ -17,6 +17,8 @@ import android.animation.ArgbEvaluator
 import android.content.res.Resources
 import android.os.Build
 import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -38,6 +40,10 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     private var mCurrentFragmentType: FragmentType = FragmentType.MASTER
     private var mContainerFragmentMap: MutableMap<FragmentType, TFragment?> = mutableMapOf()
 
+    interface AnimationFinishedListener {
+        fun onAnimationFinished()
+    }
+
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
@@ -54,15 +60,6 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
                 override fun onFragmentViewCreated(fm: FragmentManager, fragment: Fragment, view: View, savedInstanceState: Bundle?) {
                     if (mContainerFragmentMap[FragmentType.DETAIL] == fragment)
                         registerCircularRevealAnimation(view, getStartColorAnimation(), getEndColorAnimation(), getDurationAnimation(activity.resources))
-                }
-
-                override fun onFragmentPaused(fm: FragmentManager, fragment: Fragment) {
-                    if (mContainerFragmentMap[FragmentType.DETAIL] == fragment) {
-                        fragment.view?.also { view ->
-                            startCircularRevealExitAnimation(view, getStartColorAnimation(), getEndColorAnimation(), getDurationAnimation(activity.resources))
-                        }
-                    }
-                    super.onFragmentPaused(fm, fragment)
                 }
             }, true)
         }
@@ -114,12 +111,25 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     private fun initFloatingActionButton(activity: AppCompatActivity): FloatingActionButton {
         return mCallback.onLoadFloatingActionButton().also {
             it.setOnClickListener {
-                mContainerFragmentMap[FragmentType.DETAIL] = mCallback.onCreateFragment(FragmentType.DETAIL).also { fragment ->
-                    activity.supportFragmentManager.beginTransaction().addToBackStack("detail").replace(mContainerView.id, fragment, fragment.javaClass.simpleName).commit()
-                    mCallback.onFragmentLoaded(FragmentType.DETAIL, fragment)
-                }
+                setFragment(activity, FragmentType.DETAIL)
             }
         }
+    }
+
+    private fun setFragment(activity: AppCompatActivity, fragmentType: FragmentType) {
+        when(fragmentType) {
+            FragmentType.MASTER -> {
+
+            }
+            FragmentType.DETAIL -> {
+
+            }
+        }
+        mContainerFragmentMap[fragmentType] = mCallback.onCreateFragment(fragmentType).also { fragment ->
+            activity.supportFragmentManager.beginTransaction().replace(mContainerView.id, fragment, fragment.javaClass.simpleName).commit()
+            mCallback.onFragmentLoaded(fragmentType, fragment)
+        }
+        mCurrentFragmentType = fragmentType
     }
 
     private fun initToolbar(activity: AppCompatActivity): Toolbar = mCallback.onCreateToolbarView().also {
@@ -202,7 +212,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         })
     }
 
-    private fun startCircularRevealExitAnimation(view: View, animStartColor: Int, animEndColor: Int, animDuration: Int) {
+    private fun startCircularRevealExitAnimation(view: View, animStartColor: Int, animEndColor: Int, animDuration: Int/*, listener: AnimationFinishedListener*/) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
         val cx = (mFloatingActionButton.x + mFloatingActionButton.width / 2).toInt()
         val cy = (mFloatingActionButton.y).toInt()
@@ -214,6 +224,13 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0f).apply {
             duration = animDuration.toLong()
             interpolator = FastOutSlowInInterpolator()
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    //Important: This will prevent the view's flashing (visible between the finished animation and the Fragment remove)
+                    view.visibility = View.GONE
+//                    listener.onAnimationFinished()
+                }
+            })
         }.start()
 
         ValueAnimator().apply {
