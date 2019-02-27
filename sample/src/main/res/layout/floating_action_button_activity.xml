@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         app:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@android:color/white"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_add_white_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/container_view"

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.floating_action_button_activity.*
 
 class FloatingActionButtonActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
-        HasFloatingActionButtonFragmentInterceptor<InjectedFragment> {
+        HasFloatingActionButtonFragmentInterceptor<Fragment> {
 
     private var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor? = null
     private var mFloatingActionButtonFragmentInterceptor: FloatingActionButtonFragmentInterceptor? = null
@@ -27,7 +27,13 @@ class FloatingActionButtonActivity : AppCompatActivity(),
     var mContentView: View? = null
     var mToolbarView: Toolbar? = null
     var mMasterFragment: InjectedFragment? = null
-    var mDetailFragment: InjectedFragment? = null
+    var mDetailFragment: InjectedTwoFragment? = null
+
+    override fun onBackPressed() {
+        if (mFloatingActionButtonFragmentInterceptor?.onBackPressed(this) == true)
+            return
+        super.onBackPressed()
+    }
 
     // ======== HasInflateLayoutInterceptor ========================================================
 
@@ -47,15 +53,15 @@ class FloatingActionButtonActivity : AppCompatActivity(),
 
     override fun onLoadFragmentContainer(): View = container_view
 
-    override fun onCreateFragment(type: FragmentType): InjectedFragment = when(type) {
+    override fun onCreateFragment(type: FragmentType): Fragment = when (type) {
         FragmentType.MASTER -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Master Fragment") })
-        FragmentType.DETAIL -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
+        FragmentType.DETAIL -> InjectedTwoFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
     }
 
-    override fun onFragmentLoaded(type: FragmentType, fragment: InjectedFragment) {
-        when(type) {
-            FragmentType.MASTER -> mMasterFragment = fragment
-            FragmentType.DETAIL -> mDetailFragment = fragment
+    override fun onFragmentLoaded(type: FragmentType, fragment: Fragment) {
+        when (type) {
+            FragmentType.MASTER -> mMasterFragment = fragment as InjectedFragment
+            FragmentType.DETAIL -> mDetailFragment = fragment as InjectedTwoFragment
         }
     }
 

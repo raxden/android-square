@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.interceptor.commons.floatingactionbutton
 
+import android.app.Activity
 import com.raxdenstudios.square.interceptor.Interceptor
 
 /**
@@ -7,6 +8,7 @@ import com.raxdenstudios.square.interceptor.Interceptor
  */
 
 interface FloatingActionButtonFragmentInterceptor : Interceptor {
+    fun onBackPressed(activity: Activity?) : Boolean
     fun setNavigationIcon(icon: Int)
     fun setStartColorAnimation(color: Int)
     fun setEndColorAnimation(color: Int)
