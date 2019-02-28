@@ -12,5 +12,5 @@ interface FloatingActionButtonFragmentInterceptor : Interceptor {
     fun setNavigationIcon(icon: Int)
     fun setStartColorAnimation(color: Int)
     fun setEndColorAnimation(color: Int)
-    fun setDurationAnimation(duration: Int)
+    fun setDurationAnimation(duration: Long)
 }

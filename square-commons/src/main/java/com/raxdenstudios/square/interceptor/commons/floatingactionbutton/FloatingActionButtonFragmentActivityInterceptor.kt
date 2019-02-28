@@ -19,6 +19,7 @@ import android.os.Build
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.support.v4.content.ContextCompat
 
 /**
  * Created by Ángel Gómez on 22/05/2015.
@@ -31,7 +32,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     private var mNavigationIcon: Int = R.drawable.square__ic_close_white_24dp
     private var mStartColorAnimation: Int = 0
     private var mEndColorAnimation: Int = 0
-    private var mDurationAnimation: Int = 0
+    private var mDurationAnimation: Long = 0
 
     private lateinit var mFloatingActionButton: FloatingActionButton
     private lateinit var mToolbar: Toolbar
@@ -76,7 +77,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
 
         (activity as? AppCompatActivity)?.also {
             if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                mToolbar.setNavigationIcon(mNavigationIcon)
+                mToolbar.navigationIcon = ContextCompat.getDrawable(activity, mNavigationIcon)
                 mFloatingActionButton.hide()
             } else {
                 mToolbar.navigationIcon = null
@@ -95,13 +96,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     override fun onBackPressed(activity: Activity?): Boolean {
         return (activity as? AppCompatActivity)?.let {
             if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                mContainerFragmentMap[FragmentType.DETAIL]?.view?.also { fragmentView ->
-                    startCircularRevealExitAnimation(fragmentView, object : AnimationFinishedListener {
-                        override fun onAnimationFinished() {
-                            activity.supportFragmentManager.popBackStack()
-                        }
-                    })
-                }
+                closeDetail(activity)
                 true
             } else false
         } ?: false
@@ -119,7 +114,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         mEndColorAnimation = color
     }
 
-    override fun setDurationAnimation(duration: Int) {
+    override fun setDurationAnimation(duration: Long) {
         mDurationAnimation = duration
     }
 
@@ -144,13 +139,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         it.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
         it.setNavigationOnClickListener {
             if (activity.supportFragmentManager.backStackEntryCount > 0)
-                mContainerFragmentMap[FragmentType.DETAIL]?.view?.also { fragmentView ->
-                    startCircularRevealExitAnimation(fragmentView, object : AnimationFinishedListener {
-                        override fun onAnimationFinished() {
-                            activity.supportFragmentManager.popBackStack()
-                        }
-                    })
-                }
+                closeDetail(activity)
         }
         activity.supportFragmentManager.addOnBackStackChangedListener {
             if (activity.supportFragmentManager.backStackEntryCount > 0) {
@@ -184,6 +173,16 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
+    private fun closeDetail(activity: AppCompatActivity) {
+        mContainerFragmentMap[FragmentType.DETAIL]?.view?.also { fragmentView ->
+            startCircularRevealExitAnimation(fragmentView, object : AnimationFinishedListener {
+                override fun onAnimationFinished() {
+                    activity.supportFragmentManager.popBackStack()
+                }
+            })
+        }
+    }
+
     private fun getStartColorAnimation(): Int {
         return if (mStartColorAnimation != 0) mStartColorAnimation else mFloatingActionButton.backgroundTintList?.defaultColor
                 ?: 0
@@ -194,8 +193,8 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
                 ?: 0
     }
 
-    private fun getDurationAnimation(resources: Resources): Int {
-        return if (mDurationAnimation != 0) mDurationAnimation else resources.getInteger(android.R.integer.config_mediumAnimTime)
+    private fun getDurationAnimation(resources: Resources): Long {
+        return if (mDurationAnimation != 0.toLong()) mDurationAnimation else resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
     }
 
     private fun registerCircularRevealAnimation(view: View) {
@@ -214,7 +213,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
                 val finalRadius = Math.sqrt((width * width + height * height).toDouble()).toFloat()
 
                 ViewAnimationUtils.createCircularReveal(v, cx, cy, 0f, finalRadius).apply {
-                    duration = getDurationAnimation(view.resources).toLong()
+                    duration = getDurationAnimation(view.resources)
                     interpolator = FastOutSlowInInterpolator()
                 }.start()
 
@@ -222,7 +221,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
                     setIntValues(getStartColorAnimation(), getEndColorAnimation())
                     setEvaluator(ArgbEvaluator())
                     addUpdateListener { view.setBackgroundColor(it.animatedValue as Int) }
-                    duration = getDurationAnimation(view.resources).toLong()
+                    duration = getDurationAnimation(view.resources)
                 }.start()
             }
         })
@@ -238,7 +237,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         val initRadius = Math.sqrt((width * width + height * height).toDouble()).toFloat()
 
         ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0f).apply {
-            duration = getDurationAnimation(view.resources).toLong()
+            duration = getDurationAnimation(view.resources)
             interpolator = FastOutSlowInInterpolator()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
@@ -253,7 +252,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
             setIntValues(getStartColorAnimation(), getEndColorAnimation())
             setEvaluator(ArgbEvaluator())
             addUpdateListener { view.setBackgroundColor(it.animatedValue as Int) }
-            duration = getDurationAnimation(view.resources).toLong()
+            duration = getDurationAnimation(view.resources)
         }.start()
     }
 }
