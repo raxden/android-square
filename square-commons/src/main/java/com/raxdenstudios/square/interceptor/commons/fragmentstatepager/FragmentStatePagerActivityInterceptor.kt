@@ -97,7 +97,7 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
 
         override fun instantiateItem(container: ViewGroup, position: Int): TFragment {
             val fragment = super.instantiateItem(container, position) as TFragment
-            mCallback.onFragmentLoaded(fragment, position)
+            mCallback.onFragmentLoaded(position, fragment)
             return fragment
         }
     }
