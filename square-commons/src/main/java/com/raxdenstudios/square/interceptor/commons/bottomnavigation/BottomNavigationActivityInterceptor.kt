@@ -26,13 +26,13 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
 
         getFragmentManager(activity)?.also { fm ->
             mContainerView = mCallback.onLoadFragmentContainer()
-            mBottomNavigationView = initBottomNavigationView(fm, savedInstanceState)
+            mBottomNavigationView = initBottomNavigationView(fm)
 
             if (savedInstanceState == null) {
                 mBottomNavigationView.selectedItemId.also { id ->
                     mContainerFragmentMap[id] = mCallback.onCreateFragment(id).also {
                         fm.beginTransaction()
-                                .replace(mContainerView.id, it, it.javaClass.simpleName + "_" + id)
+                                .replace(mContainerView.id, it, "fragment_$id")
                                 .commit()
                         mCallback.onFragmentLoaded(id, it)
                     }
@@ -45,11 +45,16 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
         super.onActivityStarted(activity)
 
         getFragmentManager(activity)?.also { fm ->
-//           TODO()
+            if (mSavedInstanceState != null) {
+                for (i in 0..mBottomNavigationView.childCount) {
+                    mBottomNavigationView.getChildAt(i).id.also { id ->
+                        mContainerFragmentMap[id] = (fm.findFragmentByTag("fragment_$id") as? TFragment)?.also {
+                            mCallback.onFragmentLoaded(id, it)
+                        }
+                    }
+                }
+            }
         }
-//        (activity as? FragmentActivity)?.also {
-//            mContainerFragmentMap[mBottomNavigationView.selectedItemId] = instantiateFragment(activity, mBottomNavigationView.selectedItemId)
-//        }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
@@ -58,9 +63,9 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
         super.onActivitySaveInstanceState(activity, outState)
     }
 
-    private fun initBottomNavigationView(fm: FragmentManager, savedInstanceState: Bundle?): BottomNavigationView {
+    private fun initBottomNavigationView(fm: FragmentManager): BottomNavigationView {
         return mCallback.onCreateBottomNavigationView().also { view ->
-            savedInstanceState?.getInt("selectedItemId")?.also { id ->
+            mSavedInstanceState?.getInt("selectedItemId")?.also { id ->
                 view.selectedItemId = id
             }
             view.setOnNavigationItemSelectedListener { menuItem ->
