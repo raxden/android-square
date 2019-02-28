@@ -30,9 +30,8 @@ class FloatingActionButtonActivity : AppCompatActivity(),
     var mDetailFragment: InjectedTwoFragment? = null
 
     override fun onBackPressed() {
-        if (mFloatingActionButtonFragmentInterceptor?.onBackPressed(this) == true)
-            return
-        super.onBackPressed()
+        if (mFloatingActionButtonFragmentInterceptor?.onBackPressed(this) == false)
+            super.onBackPressed()
     }
 
     // ======== HasInflateLayoutInterceptor ========================================================
