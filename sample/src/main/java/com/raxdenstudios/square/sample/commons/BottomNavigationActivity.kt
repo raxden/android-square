@@ -12,6 +12,7 @@ import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInf
 import com.raxdenstudios.square.interceptor.commons.bottomnavigation.HasBottomNavigationInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.HasToolbarInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptor
+import com.raxdenstudios.square.sample.R
 import kotlinx.android.synthetic.main.bottom_navigation_activity.*
 
 class BottomNavigationActivity : AppCompatActivity(),
@@ -54,23 +55,23 @@ class BottomNavigationActivity : AppCompatActivity(),
 
     override fun onLoadFragmentContainer(): View = container_view
 
-    override fun onCreateFragment(position: Int): Fragment = when (position) {
-        0 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
-        1 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 2") })
-        2 -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 3") })
-        else -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
+    override fun onCreateFragment(itemId: Int): Fragment = when (itemId) {
+        R.id.navigation_home -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment Home") })
+        R.id.navigation_dashboard -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment Dashboard") })
+        R.id.navigation_notifications -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment Notifications") })
+        else -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment Home") })
     }
 
-    override fun onFragmentLoaded(position: Int, fragment: Fragment) {
-        when (position) {
-            0 -> mFirstFragment = fragment
-            1 -> mSecondFragment = fragment
-            2 -> mThirdFragment = fragment
+    override fun onFragmentLoaded(itemId: Int, fragment: Fragment) {
+        when (itemId) {
+            R.id.navigation_home -> mFirstFragment = fragment
+            R.id.navigation_dashboard -> mSecondFragment = fragment
+            R.id.navigation_notifications -> mThirdFragment = fragment
         }
     }
 
-    override fun onPageSelected(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onMenuItemSelected(itemId: Int) {
+
     }
 
     // =============================================================================================

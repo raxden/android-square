@@ -39,7 +39,6 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     private lateinit var mFloatingActionButton: FloatingActionButton
     private lateinit var mToolbar: Toolbar
     private lateinit var mContainerView: View
-    private var mHasSavedInstanceState: Boolean = false
     private var mCurrentFragmentType: FragmentType = FragmentType.MASTER
     private var mContainerFragmentMap: MutableMap<FragmentType, TFragment?> = mutableMapOf()
 
@@ -50,15 +49,20 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        (activity as? AppCompatActivity)?.also {
-            mHasSavedInstanceState = savedInstanceState != null
-            mCurrentFragmentType = savedInstanceState?.getInt("currentFragmentType")?.let { FragmentType.values()[it] }
-                    ?: FragmentType.MASTER
-            mFloatingActionButton = initFloatingActionButton(activity)
-            mToolbar = initToolbar(activity)
+        getFragmentManager(activity)?.also { fm ->
+            mCurrentFragmentType = restoreCurrentFragmentType(savedInstanceState)
+            mFloatingActionButton = initFloatingActionButton(fm)
+            mToolbar = initToolbar(activity as AppCompatActivity, fm)
             mContainerView = mCallback.onLoadFragmentContainer()
-            mContainerFragmentMap[mCurrentFragmentType] = instantiateFragment(activity, mCurrentFragmentType)
-            activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
+            if (savedInstanceState == null) {
+                mContainerFragmentMap[mCurrentFragmentType] = mCallback.onCreateFragment(mCurrentFragmentType).also {
+                    fm.beginTransaction()
+                            .replace(mContainerView.id, it, it.javaClass.simpleName)
+                            .commit()
+                    mCallback.onFragmentLoaded(mCurrentFragmentType, it)
+                }
+            }
+            fm.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
                 override fun onFragmentViewCreated(fm: FragmentManager, fragment: Fragment, view: View, savedInstanceState: Bundle?) {
                     if (mContainerFragmentMap[FragmentType.DETAIL] == fragment)
@@ -80,32 +84,34 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
     override fun onActivityStarted(activity: Activity?) {
         super.onActivityStarted(activity)
 
-        (activity as? AppCompatActivity)?.also {
-            if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                mToolbar.navigationIcon = ContextCompat.getDrawable(activity, mNavigationIcon)
+        getFragmentManager(activity)?.also { fm ->
+            if (fm.backStackEntryCount > 0) {
+                mToolbar.navigationIcon = activity?.let { ContextCompat.getDrawable(it, mNavigationIcon) }
                 mFloatingActionButton.hide()
             } else {
                 mToolbar.navigationIcon = mOriginalNavigationIcon
                 mFloatingActionButton.show()
             }
-            mContainerFragmentMap[mCurrentFragmentType] = instantiateFragment(activity, mCurrentFragmentType)
+            if (mSavedInstanceState != null) {
+                mContainerFragmentMap[mCurrentFragmentType] = (fm.findFragmentById(mContainerView.id) as? TFragment)?.also {
+                    mCallback.onFragmentLoaded(mCurrentFragmentType, it)
+                }
+            }
         }
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
-        mContainerFragmentMap.clear()
-
         super.onActivityDestroyed(activity)
+
+        mContainerFragmentMap.clear()
     }
 
-    override fun onBackPressed(activity: Activity?): Boolean {
-        return (activity as? AppCompatActivity)?.let {
-            if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                closeDetail(activity)
-                true
-            } else false
-        } ?: false
-    }
+    override fun onBackPressed(activity: Activity?): Boolean = getFragmentManager(activity)?.let { fm ->
+        if (fm.backStackEntryCount > 0) {
+            closeDetail(fm)
+            true
+        } else false
+    } ?: false
 
     override fun setNavigationIcon(icon: Int) {
         mNavigationIcon = icon
@@ -123,14 +129,17 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         mDurationAnimation = duration
     }
 
-    private fun initFloatingActionButton(activity: AppCompatActivity): FloatingActionButton {
+    private fun restoreCurrentFragmentType(savedInstanceState: Bundle?): FragmentType {
+        return savedInstanceState?.getInt("currentFragmentType")?.let { FragmentType.values()[it] }
+                ?: FragmentType.MASTER
+    }
+
+    private fun initFloatingActionButton(fm: FragmentManager): FloatingActionButton {
         return mCallback.onLoadFloatingActionButton().also {
             it.setOnClickListener {
                 mContainerFragmentMap[FragmentType.DETAIL] = mCallback.onCreateFragment(FragmentType.DETAIL).also { fragment ->
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .addToBackStack(fragment.javaClass.simpleName)
-                            .add(mContainerView.id, fragment, fragment.javaClass.simpleName)
+                    fm.beginTransaction()
+                            .replace(mContainerView.id, fragment, fragment.javaClass.simpleName)
                             .commit()
                     mCallback.onFragmentLoaded(FragmentType.DETAIL, fragment)
                 }
@@ -138,52 +147,35 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    private fun initToolbar(activity: AppCompatActivity): Toolbar = mCallback.onCreateToolbarView().also {
-        activity.setSupportActionBar(it)
-        activity.supportActionBar?.setDisplayShowTitleEnabled(false)
-        it.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
-        it.setNavigationOnClickListener {
-            if (activity.supportFragmentManager.backStackEntryCount > 0)
-                closeDetail(activity)
-        }
-        activity.supportFragmentManager.addOnBackStackChangedListener {
-            if (activity.supportFragmentManager.backStackEntryCount > 0) {
-                mCurrentFragmentType = FragmentType.DETAIL
-                mOriginalNavigationIcon = it.navigationIcon
-                it.setNavigationIcon(mNavigationIcon)
-                mFloatingActionButton.hide()
-            } else {
-                mCurrentFragmentType = FragmentType.MASTER
-                it.navigationIcon = mOriginalNavigationIcon
-                mFloatingActionButton.show()
+    private fun initToolbar(activity: AppCompatActivity, fm: FragmentManager): Toolbar {
+        return mCallback.onCreateToolbarView().also { toolbar ->
+            activity.setSupportActionBar(toolbar)
+            activity.supportActionBar?.setDisplayShowTitleEnabled(false)
+            toolbar.setOnMenuItemClickListener { item -> activity.onOptionsItemSelected(item) }
+            toolbar.setNavigationOnClickListener {
+                if (fm.backStackEntryCount > 0) closeDetail(fm)
             }
-        }
-        mCallback.onToolbarViewCreated(it)
-    }
-
-    private fun instantiateFragment(activity: AppCompatActivity, fragmentType: FragmentType): TFragment? {
-        return if (!mHasSavedInstanceState) {
-            mCallback.onCreateFragment(fragmentType).also {
-                activity.supportFragmentManager
-                        .beginTransaction()
-                        .replace(mContainerView.id, it, it.javaClass.simpleName)
-                        .commit()
-                mCallback.onFragmentLoaded(fragmentType, it)
+            fm.addOnBackStackChangedListener {
+                if (fm.backStackEntryCount > 0) {
+                    mCurrentFragmentType = FragmentType.DETAIL
+                    mOriginalNavigationIcon = toolbar.navigationIcon
+                    toolbar.setNavigationIcon(mNavigationIcon)
+                    mFloatingActionButton.hide()
+                } else {
+                    mCurrentFragmentType = FragmentType.MASTER
+                    toolbar.navigationIcon = mOriginalNavigationIcon
+                    mFloatingActionButton.show()
+                }
             }
-        } else if (mContainerFragmentMap[fragmentType] == null) {
-            (activity.supportFragmentManager.findFragmentById(mContainerView.id) as? TFragment)?.also {
-                mCallback.onFragmentLoaded(fragmentType, it)
-            }
-        } else {
-            mContainerFragmentMap[fragmentType]
+            mCallback.onToolbarViewCreated(toolbar)
         }
     }
 
-    private fun closeDetail(activity: AppCompatActivity) {
+    private fun closeDetail(fm: FragmentManager) {
         mContainerFragmentMap[FragmentType.DETAIL]?.view?.also { fragmentView ->
             startCircularRevealExitAnimation(fragmentView, object : AnimationFinishedListener {
                 override fun onAnimationFinished() {
-                    activity.supportFragmentManager.popBackStack()
+                    fm.popBackStack()
                 }
             })
             mToolbar.navigationIcon = mOriginalNavigationIcon

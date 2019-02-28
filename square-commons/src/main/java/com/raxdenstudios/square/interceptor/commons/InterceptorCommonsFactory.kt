@@ -7,6 +7,7 @@ import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.bottomnavigation.BottomNavigationActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.bottomnavigation.HasBottomNavigationInterceptor
 import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.FloatingActionButtonFragmentActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.floatingactionbutton.HasFloatingActionButtonFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerActivityInterceptor
@@ -40,7 +41,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasInjectFragmentListInterceptor<*>)?.also { int -> list.add(InjectFragmentListActivityInterceptor(int)) }
         (activity as? HasFragmentStatePagerInterceptor<*>)?.also { int -> list.add(FragmentStatePagerActivityInterceptor(int)) }
         (activity as? HasFloatingActionButtonFragmentInterceptor<*>)?.also { int -> list.add(FloatingActionButtonFragmentActivityInterceptor(int)) }
-        (activity as? HasBottomNavigationActivityInterceptor<*>)?.also { int -> list.add(BottomNavigationActivityInterceptor(int)) }
+        (activity as? HasBottomNavigationInterceptor<*>)?.also { int -> list.add(BottomNavigationActivityInterceptor(int)) }
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         when (activity) {
             is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))

@@ -16,9 +16,9 @@ interface HasBottomNavigationInterceptor<T : Fragment> : HasInterceptor {
 
     fun onLoadFragmentContainer(): View
 
-    fun onCreateFragment(position: Int): T
+    fun onCreateFragment(itemId: Int): T
 
-    fun onFragmentLoaded(position: Int, fragment: T)
+    fun onFragmentLoaded(itemId: Int, fragment: T)
 
-    fun onPageSelected(position: Int)
+    fun onMenuItemSelected(itemId: Int)
 }

@@ -68,25 +68,38 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
     : NavigationDrawerActivityBaseInterceptor<NavigationContentDrawerInterceptor, HasNavigationContentDrawerInterceptor<TFragment>>(callback),
         NavigationContentDrawerInterceptor {
 
-    private var mHasSavedInstanceState: Boolean = false
     private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        (activity as? FragmentActivity)?.also {
-            mHasSavedInstanceState = savedInstanceState != null
-            mContainerFragmentMap[Gravity.START] = instantiateFragment(activity, Gravity.START)
-            mContainerFragmentMap[Gravity.END] = instantiateFragment(activity, Gravity.END)
+        getFragmentManager(activity)?.also { fm ->
+            if (savedInstanceState == null) {
+                mContentDrawerView.keys.forEach { gravity ->
+                    mContainerFragmentMap[gravity] = mContentDrawerView[gravity]?.let { view ->
+                        mCallback.onCreateContentDrawerFragment(gravity).also {
+                            fm.beginTransaction()
+                                    .replace(view.id, it, it.javaClass.simpleName)
+                                    .commit()
+                            mCallback.onContentDrawerFragmentLoaded(gravity, it)
+                        }
+                    }
+                }
+            }
         }
     }
 
     override fun onActivityStarted(activity: Activity?) {
         super.onActivityStarted(activity)
 
-        (activity as? FragmentActivity)?.also {
-            mContainerFragmentMap[Gravity.START] = instantiateFragment(activity, Gravity.START)
-            mContainerFragmentMap[Gravity.END] = instantiateFragment(activity, Gravity.END)
+        getFragmentManager(activity)?.also { fm ->
+            mContentDrawerView.keys.forEach { gravity ->
+                mContainerFragmentMap[gravity] = mContentDrawerView[gravity]?.let { view ->
+                    (fm.findFragmentById(view.id) as? TFragment)?.also {
+                        mCallback.onContentDrawerFragmentLoaded(gravity, it)
+                    }
+                }
+            }
         }
     }
 
@@ -94,22 +107,5 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         super.onActivityDestroyed(activity)
 
         mContainerFragmentMap.clear()
-    }
-
-    private fun instantiateFragment(activity: FragmentActivity, gravity: Int): TFragment? {
-        return mContentDrawerView[gravity]?.let { view ->
-            if (!mHasSavedInstanceState) {
-                mCallback.onCreateContentDrawerFragment(gravity).also {
-                    activity.supportFragmentManager.beginTransaction().replace(view.id, it, it.javaClass.simpleName).commit()
-                    mCallback.onContentDrawerFragmentLoaded(gravity, it)
-                }
-            } else if (mContainerFragmentMap[gravity] == null) {
-                (activity.supportFragmentManager.findFragmentById(view.id) as? TFragment)?.also {
-                    mCallback.onContentDrawerFragmentLoaded(gravity, it)
-                }
-            } else {
-                mContainerFragmentMap[gravity]
-            }
-        }
     }
 }
