@@ -69,6 +69,5 @@ class FloatingActionButtonActivity : AppCompatActivity(),
     override fun onInterceptorCreated(interceptor: Interceptor) {
         mAutoInflateLayoutInterceptor = interceptor as? AutoInflateLayoutInterceptor
         mFloatingActionButtonFragmentInterceptor = interceptor as? FloatingActionButtonFragmentInterceptor
-        mFloatingActionButtonFragmentInterceptor?.setDurationAnimation(2000)
     }
 }
