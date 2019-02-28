@@ -88,7 +88,7 @@ class BottomNavigationActivity : AppCompatActivity(),
     }
 
     override fun onMenuItemSelected(itemId: Int) {
-        Log.d("TEST", "onMenuItemSelected$itemId")
+        Log.d("TEST", "onMenuItemSelected_$itemId")
     }
 
     // =============================================================================================

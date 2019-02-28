@@ -45,12 +45,10 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
         super.onActivityStarted(activity)
 
         getFragmentManager(activity)?.also { fm ->
-            if (mSavedInstanceState != null) {
-                for (i in 0..mBottomNavigationView.childCount) {
-                    mBottomNavigationView.getChildAt(i).id.also { id ->
-                        mContainerFragmentMap[id] = (fm.findFragmentByTag("fragment_$id") as? TFragment)?.also {
-                            mCallback.onFragmentLoaded(id, it)
-                        }
+            mSavedInstanceState?.also { bundle ->
+                bundle.getIntArray("itemIds")?.forEach { itemId ->
+                    mContainerFragmentMap[itemId] = (fm.findFragmentByTag("fragment_$itemId") as? TFragment)?.also {
+                        mCallback.onFragmentLoaded(itemId, it)
                     }
                 }
             }
@@ -59,6 +57,7 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
         outState?.putInt("selectedItemId", mBottomNavigationView.selectedItemId)
+        outState?.putIntArray("itemIds", mContainerFragmentMap.keys.toIntArray())
 
         super.onActivitySaveInstanceState(activity, outState)
     }
@@ -77,7 +76,7 @@ class BottomNavigationActivityInterceptor<TFragment : Fragment>(
                                 .commit()
                     } ?: mCallback.onCreateFragment(menuItem.itemId).also {
                         fm.beginTransaction()
-                                .add(mContainerView.id, it, it.javaClass.simpleName)
+                                .add(mContainerView.id, it, "fragment_${menuItem.itemId}")
                                 .hide(activeFragment)
                                 .commit()
                     }
