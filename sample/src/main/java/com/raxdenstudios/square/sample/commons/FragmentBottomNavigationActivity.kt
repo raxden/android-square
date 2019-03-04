@@ -5,12 +5,11 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
 import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
-import com.raxdenstudios.square.interceptor.commons.bottomnavigation.HasFragmentBottomNavigationInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentbottomnavigation.HasFragmentBottomNavigationInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.HasToolbarInterceptor
 import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptor
 import com.raxdenstudios.square.sample.R

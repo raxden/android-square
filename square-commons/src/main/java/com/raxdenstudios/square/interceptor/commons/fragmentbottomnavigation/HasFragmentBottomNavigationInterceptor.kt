@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.bottomnavigation
+package com.raxdenstudios.square.interceptor.commons.fragmentbottomnavigation
 
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment

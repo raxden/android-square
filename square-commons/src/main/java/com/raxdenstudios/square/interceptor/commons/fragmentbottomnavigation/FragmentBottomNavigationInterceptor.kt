@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.bottomnavigation
+package com.raxdenstudios.square.interceptor.commons.fragmentbottomnavigation
 
 import com.raxdenstudios.square.interceptor.Interceptor
 
