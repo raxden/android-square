@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
@@ -12,10 +11,10 @@ import com.raxdenstudios.square.interceptor.ActivityInterceptor
 /**
  * Created by Ángel Gómez on 22/05/2015.
  */
-class BottomNavigationActivityInterceptor<TFragment : Fragment>(
-        callback: HasBottomNavigationInterceptor<TFragment>
-) : ActivityInterceptor<BottomNavigationInterceptor, HasBottomNavigationInterceptor<TFragment>>(callback),
-        BottomNavigationInterceptor {
+class FragmentBottomNavigationActivityInterceptor<TFragment : Fragment>(
+        callback: HasFragmentBottomNavigationInterceptor<TFragment>
+) : ActivityInterceptor<FragmentBottomNavigationInterceptor, HasFragmentBottomNavigationInterceptor<TFragment>>(callback),
+        FragmentBottomNavigationInterceptor {
 
     private lateinit var mBottomNavigationView: BottomNavigationView
     private lateinit var mContainerView: View

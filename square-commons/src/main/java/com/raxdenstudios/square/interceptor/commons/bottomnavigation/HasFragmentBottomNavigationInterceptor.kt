@@ -8,7 +8,7 @@ import com.raxdenstudios.square.interceptor.HasInterceptor
 /**
  * Created by Ángel Gómez on 29/12/2016.
  */
-interface HasBottomNavigationInterceptor<T : Fragment> : HasInterceptor {
+interface HasFragmentBottomNavigationInterceptor<T : Fragment> : HasInterceptor {
 
     fun onCreateBottomNavigationView(): BottomNavigationView
 
