@@ -17,7 +17,7 @@ class ToolbarActivityInterceptor(
 
     private var mToolbar: Toolbar? = null
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         mToolbar = (activity as? AppCompatActivity)?.let {

@@ -12,6 +12,7 @@ import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.HasFragme
 import kotlinx.android.synthetic.main.fragment_state_pager_activity.*
 
 class FragmentStatePagerActivity : AppCompatActivity(),
+        ViewPager.OnPageChangeListener,
         HasAutoInflateLayoutInterceptor,
         HasFragmentStatePagerInterceptor<InjectedFragment> {
 
@@ -28,7 +29,27 @@ class FragmentStatePagerActivity : AppCompatActivity(),
     var mFragmentSelected: Int = 0
     var mFragmentScrolled: Int = 0
 
-    // ======== HasInflateLayoutInterceptor ====================================================
+    override fun onResume() {
+        super.onResume()
+        mFragmentStatePagerInterceptor?.addOnPageChangeListener(this)
+    }
+
+    override fun onPause() {
+        mFragmentStatePagerInterceptor?.removeOnPageChangeListener(this)
+        super.onPause()
+    }
+
+    override fun onPageSelected(position: Int) {
+        mFragmentSelected = position
+    }
+
+    override fun onPageScrolled(position: Int, p1: Float, p2: Int) {
+        mFragmentSelected = position
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {}
+
+    // ======== HasInflateLayoutInterceptor ========================================================
 
     override fun onContentViewCreated(view: View) {
         mContentView = view
@@ -58,14 +79,6 @@ class FragmentStatePagerActivity : AppCompatActivity(),
             1 -> mSecondFragment = fragment
             2 -> mThirdFragment = fragment
         }
-    }
-
-    override fun onPageSelected(position: Int) {
-        mFragmentSelected = position
-    }
-
-    override fun onPageScrolled(position: Int) {
-        mFragmentSelected = position
     }
 
     // =============================================================================================

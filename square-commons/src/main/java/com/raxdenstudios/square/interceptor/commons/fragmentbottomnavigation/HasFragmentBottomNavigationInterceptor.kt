@@ -20,5 +20,5 @@ interface HasFragmentBottomNavigationInterceptor<T : Fragment> : HasInterceptor 
 
     fun onFragmentLoaded(itemId: Int, fragment: T)
 
-    fun onMenuItemSelected(itemId: Int)
+    fun onBottomNavigationItemSelected(itemId: Int)
 }

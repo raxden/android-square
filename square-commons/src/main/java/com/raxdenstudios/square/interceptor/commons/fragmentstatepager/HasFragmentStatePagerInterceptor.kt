@@ -18,8 +18,4 @@ interface HasFragmentStatePagerInterceptor<TFragment : Fragment> : HasIntercepto
     fun onCreateFragment(position: Int): TFragment
 
     fun onFragmentLoaded(position: Int, fragment: TFragment)
-
-    fun onPageSelected(position: Int)
-
-    fun onPageScrolled(position: Int)
 }

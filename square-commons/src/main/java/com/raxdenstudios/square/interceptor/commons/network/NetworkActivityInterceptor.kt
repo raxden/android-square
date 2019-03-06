@@ -33,7 +33,7 @@ class NetworkActivityInterceptor(
         }
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         activity?.apply {
@@ -41,7 +41,7 @@ class NetworkActivityInterceptor(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         activity?.apply {
             unregisterReceiver(mNetworkBroadcastReceiver)
         }

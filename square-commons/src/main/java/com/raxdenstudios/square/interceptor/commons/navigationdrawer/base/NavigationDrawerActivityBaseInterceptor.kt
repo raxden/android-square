@@ -50,7 +50,7 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
     private val drawerToggleDelegate: ActionBarDrawerToggle.Delegate?
         get() = mActivity.drawerToggleDelegate
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         mActivity = activity as AppCompatActivity
@@ -73,9 +73,9 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
         mDrawerToggle.syncState()
-        super.onActivityStarted(activity)
+        super.onActivityStarted(activity, savedInstanceState)
     }
 
     override fun onConfigurationChanged(configuration: Configuration?) {

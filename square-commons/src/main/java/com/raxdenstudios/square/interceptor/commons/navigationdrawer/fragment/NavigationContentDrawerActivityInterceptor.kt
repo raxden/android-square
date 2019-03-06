@@ -70,7 +70,7 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
 
     private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
@@ -89,8 +89,8 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
-        super.onActivityStarted(activity)
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
             mContentDrawerView.keys.forEach { gravity ->
@@ -103,7 +103,7 @@ class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         super.onActivityDestroyed(activity)
 
         mContainerFragmentMap.clear()

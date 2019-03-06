@@ -36,21 +36,31 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
     override val isLastPage: Boolean
         get() = currentPage == numPages - 1
 
+    private var mOnPageChangeListenerList: MutableList<ViewPager.OnPageChangeListener> = mutableListOf()
+
     private val onPageChangeListener = object : ViewPager.OnPageChangeListener {
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             if (positionOffset != 0.0f || positionOffsetPixels != 0) return
-            mCallback.onPageScrolled(position)
+            mOnPageChangeListenerList.forEach {
+                it.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
         }
 
         override fun onPageSelected(position: Int) {
-            mCallback.onPageSelected(position)
+            mOnPageChangeListenerList.forEach {
+                it.onPageSelected(position)
+            }
         }
 
-        override fun onPageScrollStateChanged(state: Int) {}
+        override fun onPageScrollStateChanged(state: Int) {
+            mOnPageChangeListenerList.forEach {
+                it.onPageScrollStateChanged(state)
+            }
+        }
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         mViewPager = mCallback.onCreateViewPager().let { viewPager ->
@@ -64,7 +74,7 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         mViewPager.removeOnPageChangeListener(onPageChangeListener)
         super.onActivityDestroyed(activity)
     }
@@ -85,6 +95,16 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
     override fun previousPage(): Boolean = if (isFirstPage) false else {
         mViewPager.currentItem = currentPage - 1
         true
+    }
+
+    override fun addOnPageChangeListener(listener: ViewPager.OnPageChangeListener) {
+        if (!mOnPageChangeListenerList.contains(listener))
+            mOnPageChangeListenerList.add(listener)
+    }
+
+    override fun removeOnPageChangeListener(listener: ViewPager.OnPageChangeListener) {
+        if (mOnPageChangeListenerList.contains(listener))
+            mOnPageChangeListenerList.remove(listener)
     }
 
     private inner class FragmentStatePagerInterceptorAdapter internal constructor(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {

@@ -70,7 +70,7 @@ class FragmentBottomNavigationActivity : AppCompatActivity(),
         }
     }
 
-    override fun onMenuItemSelected(itemId: Int) {
+    override fun onBottomNavigationItemSelected(itemId: Int) {
     }
 
     // =============================================================================================

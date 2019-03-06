@@ -8,7 +8,7 @@ import com.raxdenstudios.square.interceptor.Interceptor
  */
 
 interface FloatingActionButtonFragmentInterceptor : Interceptor {
-    fun onBackPressed(activity: Activity?) : Boolean
+    fun onBackPressed(activity: Activity): Boolean
     fun setNavigationIcon(icon: Int)
     fun setStartColorAnimation(color: Int)
     fun setEndColorAnimation(color: Int)

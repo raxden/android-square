@@ -46,7 +46,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         fun onAnimationFinished()
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
@@ -75,14 +75,8 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-        outState?.putInt("currentFragmentType", mCurrentFragmentType.ordinal)
-
-        super.onActivitySaveInstanceState(activity, outState)
-    }
-
-    override fun onActivityStarted(activity: Activity?) {
-        super.onActivityStarted(activity)
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
             if (fm.backStackEntryCount > 0) {
@@ -92,7 +86,7 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
                 mToolbar.navigationIcon = mOriginalNavigationIcon
                 mFloatingActionButton.show()
             }
-            if (mSavedInstanceState != null) {
+            if (savedInstanceState != null) {
                 mContainerFragmentMap[mCurrentFragmentType] = (fm.findFragmentById(mContainerView.id) as? TFragment)?.also {
                     mCallback.onFragmentLoaded(mCurrentFragmentType, it)
                 }
@@ -100,13 +94,19 @@ class FloatingActionButtonFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
+        outState?.putInt("currentFragmentType", mCurrentFragmentType.ordinal)
+
+        super.onActivitySaveInstanceState(activity, outState)
+    }
+
+    override fun onActivityDestroyed(activity: Activity) {
         super.onActivityDestroyed(activity)
 
         mContainerFragmentMap.clear()
     }
 
-    override fun onBackPressed(activity: Activity?): Boolean = getFragmentManager(activity)?.let { fm ->
+    override fun onBackPressed(activity: Activity): Boolean = getFragmentManager(activity)?.let { fm ->
         if (fm.backStackEntryCount > 0) {
             closeDetail(fm)
             true

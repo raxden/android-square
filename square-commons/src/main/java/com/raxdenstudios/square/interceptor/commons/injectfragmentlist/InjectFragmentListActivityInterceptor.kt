@@ -18,7 +18,7 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
     private var mContainerViewMap: MutableMap<Int, View> = mutableMapOf()
     private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
@@ -37,11 +37,11 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
-        super.onActivityStarted(activity)
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
-            if (mSavedInstanceState != null) {
+            if (savedInstanceState != null) {
                 for (position in 0 until mCallback.fragmentCount) {
                     mContainerViewMap[position]?.also { view ->
                         mContainerFragmentMap[position] = (fm.findFragmentById(view.id) as? TFragment)?.also {
@@ -53,7 +53,7 @@ class InjectFragmentListActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         super.onActivityDestroyed(activity)
 
         mContainerViewMap.clear()

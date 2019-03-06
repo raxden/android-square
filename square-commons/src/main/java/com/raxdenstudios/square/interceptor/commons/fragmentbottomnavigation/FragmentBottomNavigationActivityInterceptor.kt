@@ -20,12 +20,12 @@ class FragmentBottomNavigationActivityInterceptor<TFragment : Fragment>(
     private lateinit var mContainerView: View
     private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
             mContainerView = mCallback.onLoadFragmentContainer()
-            mBottomNavigationView = initBottomNavigationView(fm)
+            mBottomNavigationView = initBottomNavigationView(fm, savedInstanceState)
 
             if (savedInstanceState == null) {
                 mBottomNavigationView.selectedItemId.also { id ->
@@ -40,11 +40,11 @@ class FragmentBottomNavigationActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
-        super.onActivityStarted(activity)
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
-            mSavedInstanceState?.also { bundle ->
+            savedInstanceState?.also { bundle ->
                 bundle.getIntArray("itemIds")?.forEach { itemId ->
                     mContainerFragmentMap[itemId] = (fm.findFragmentByTag("fragment_$itemId") as? TFragment)?.also {
                         mCallback.onFragmentLoaded(itemId, it)
@@ -54,16 +54,16 @@ class FragmentBottomNavigationActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
         outState?.putInt("selectedItemId", mBottomNavigationView.selectedItemId)
         outState?.putIntArray("itemIds", mContainerFragmentMap.keys.toIntArray())
 
         super.onActivitySaveInstanceState(activity, outState)
     }
 
-    private fun initBottomNavigationView(fm: FragmentManager): BottomNavigationView {
+    private fun initBottomNavigationView(fm: FragmentManager, savedInstanceState: Bundle?): BottomNavigationView {
         return mCallback.onCreateBottomNavigationView().also { view ->
-            mSavedInstanceState?.getInt("selectedItemId")?.also { id ->
+            savedInstanceState?.getInt("selectedItemId")?.also { id ->
                 view.selectedItemId = id
             }
             view.setOnNavigationItemSelectedListener { menuItem ->
@@ -82,7 +82,7 @@ class FragmentBottomNavigationActivityInterceptor<TFragment : Fragment>(
                     mContainerFragmentMap[menuItem.itemId] = fragment
                     mCallback.onFragmentLoaded(menuItem.itemId, fragment)
                 }
-                mCallback.onMenuItemSelected(menuItem.itemId)
+                mCallback.onBottomNavigationItemSelected(menuItem.itemId)
                 true
             }
             mCallback.onBottomNavigationViewCreated(view)

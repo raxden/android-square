@@ -20,9 +20,10 @@ class AutoInflateLayoutActivityInterceptor(
         mLayoutId = layoutId
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
-        activity?.let { onCreateView(it) }?.let { view ->
+
+        onCreateView(activity)?.let { view ->
             activity.setContentView(view)
             mCallback.onContentViewCreated(view)
         }

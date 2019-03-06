@@ -26,7 +26,7 @@ class TelephonyActivityInterceptor(
         }
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         activity?.apply {
@@ -35,7 +35,7 @@ class TelephonyActivityInterceptor(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         mTelephonyManager?.apply {
             listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE)
         }

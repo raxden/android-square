@@ -14,11 +14,10 @@ class InflateLayoutActivityInterceptor(
 ) : ActivityInterceptor<InflateLayoutInterceptor, HasInflateLayoutInterceptor>(callback),
         InflateLayoutInterceptor {
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
-        activity?.let {
-            getLayoutId(activity, getLayoutName(activity)).takeIf { it != 0 }?.let { mCallback.onLayoutLoaded(it) }
-        }
+
+        getLayoutId(activity, getLayoutName(activity)).takeIf { it != 0 }?.let { mCallback.onLayoutLoaded(it) }
     }
 
     private fun getLayoutName(activity: Activity): String {

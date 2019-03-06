@@ -14,8 +14,8 @@ class InjectFragmentActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
         HasInjectFragmentInterceptor<InjectedFragment> {
 
-    private var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor? = null
-    private var mInjectFragmentInterceptor: InjectFragmentInterceptor? = null
+    private lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
+    private lateinit var mInjectFragmentInterceptor: InjectFragmentInterceptor
 
     var mContentView: View? = null
     var mInjectedFragment: InjectedFragment? = null
@@ -28,9 +28,11 @@ class InjectFragmentActivity : AppCompatActivity(),
 
     // ======== HasInjectFragmentInterceptor =======================================================
 
-    override fun onLoadFragmentContainer(): View = container_view
+    override fun onLoadFragmentContainer(): View =
+            container_view
 
-    override fun onCreateFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
+    override fun onCreateFragment(): InjectedFragment =
+            InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment 1") })
 
     override fun onFragmentLoaded(fragment: InjectedFragment) {
         mInjectedFragment = fragment
@@ -39,7 +41,9 @@ class InjectFragmentActivity : AppCompatActivity(),
     // =============================================================================================
 
     override fun onInterceptorCreated(interceptor: Interceptor) {
-        mAutoInflateLayoutInterceptor = interceptor as? AutoInflateLayoutInterceptor
-        mInjectFragmentInterceptor = interceptor as? InjectFragmentInterceptor
+        when(interceptor) {
+            is AutoInflateLayoutInterceptor -> mAutoInflateLayoutInterceptor = interceptor
+            is InjectFragmentInterceptor -> mInjectFragmentInterceptor = interceptor
+        }
     }
 }

@@ -10,31 +10,44 @@ abstract class ActivityInterceptor<TInterceptor : Interceptor, TCallback : HasIn
         val mCallback: TCallback
 ) : Application.ActivityLifecycleCallbacks, Interceptor {
 
-    var mSavedInstanceState: Bundle? = null
+    private var mSavedInstanceState: Bundle? = null
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-    }
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {}
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    // =============================================================================================
+
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         mCallback.onInterceptorCreated(this as TInterceptor)
         mSavedInstanceState = savedInstanceState
     }
 
-    override fun onActivityStarted(activity: Activity?) {
+    // =============================================================================================
+
+    override fun onActivityStarted(activity: Activity) {
+        onActivityStarted(activity, mSavedInstanceState)
     }
 
-    override fun onActivityResumed(activity: Activity?) {
-    }
+    protected open fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {}
 
-    override fun onActivityPaused(activity: Activity?) {
-    }
+    // =============================================================================================
 
-    override fun onActivityStopped(activity: Activity?) {
-    }
+    override fun onActivityResumed(activity: Activity) {}
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    // =============================================================================================
+
+    override fun onActivityPaused(activity: Activity) {}
+
+    // =============================================================================================
+
+    override fun onActivityStopped(activity: Activity) {}
+
+    // =============================================================================================
+
+    override fun onActivityDestroyed(activity: Activity) {
         mSavedInstanceState = null
     }
 
-    protected fun getFragmentManager(activity: Activity?) : FragmentManager? = (activity as? FragmentActivity)?.supportFragmentManager
+    // =============================================================================================
+
+    protected fun getFragmentManager(activity: Activity) : FragmentManager? = (activity as? FragmentActivity)?.supportFragmentManager
 }

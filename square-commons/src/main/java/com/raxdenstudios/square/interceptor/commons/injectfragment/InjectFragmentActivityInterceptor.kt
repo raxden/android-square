@@ -18,7 +18,7 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
     private lateinit var mContainerView: View
     private var mFragment: TFragment? = null
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
@@ -34,11 +34,11 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
-        super.onActivityStarted(activity)
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
 
         getFragmentManager(activity)?.also { fm ->
-            if (mSavedInstanceState != null) {
+            if (savedInstanceState != null) {
                 mFragment = (fm.findFragmentById(mContainerView.id) as? TFragment)?.also {
                     mCallback.onFragmentLoaded(it)
                 }
@@ -46,7 +46,7 @@ class InjectFragmentActivityInterceptor<TFragment : Fragment>(
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         super.onActivityDestroyed(activity)
         mFragment = null
     }

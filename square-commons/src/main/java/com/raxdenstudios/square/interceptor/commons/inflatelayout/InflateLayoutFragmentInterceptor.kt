@@ -15,6 +15,7 @@ class InflateLayoutFragmentInterceptor(
 
     override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
         super.onFragmentAttached(fm, f, context)
+
         getLayoutId(context, getLayoutName(f)).takeIf { it != 0 }?.let { mCallback.onLayoutLoaded(it) }
     }
 
