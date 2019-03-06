@@ -12,7 +12,7 @@ interface HasFragmentBottomSheetInterceptor<TView: View, T : Fragment> : HasInte
 
     fun onCreateBottomSheetView(): TView
 
-    fun onBottomSheetViewCreated(bottomSheetView: BottomSheetBehavior<TView>)
+    fun onBottomSheetBehaviourCreated(bottomSheetView: BottomSheetBehavior<TView>)
 
     fun onLoadBottomSheetFragmentContainer(): View
 

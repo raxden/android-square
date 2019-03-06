@@ -2,9 +2,10 @@ package com.raxdenstudios.square.interceptor.commons.fragmentbottomsheet
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.CoordinatorLayout
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 
@@ -17,12 +18,37 @@ class FragmentBottomSheetActivityInterceptor<TView : View, TFragment : Fragment>
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<TView>
     private var mBottomSheetListenerList: MutableList<BottomSheetListener> = mutableListOf()
 
+    private lateinit var mContainerView: View
+    private var mFragment: TFragment? = null
+
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
+        mBottomSheetView = mCallback.onCreateBottomSheetView()
+        mBottomSheetBehavior = initBottomSheetBehaviour(savedInstanceState)
+
         getFragmentManager(activity)?.also { fm ->
-            mBottomSheetView = mCallback.onCreateBottomSheetView()
-            mBottomSheetBehavior = initBottomSheetBehaviour(savedInstanceState)
+            mContainerView = mCallback.onLoadBottomSheetFragmentContainer()
+            if (savedInstanceState == null) {
+                mFragment = mCallback.onCreateBottomSheetFragment().also {
+                    fm.beginTransaction()
+                            .replace(mContainerView.id, it, it.javaClass.simpleName)
+                            .commit()
+                    mCallback.onBottomSheetFragmentLoaded(it)
+                }
+            }
+        }
+    }
+
+    override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
+        super.onActivityStarted(activity, savedInstanceState)
+
+        getFragmentManager(activity)?.also { fm ->
+            if (savedInstanceState != null) {
+                mFragment = (fm.findFragmentById(mContainerView.id) as? TFragment)?.also {
+                    mCallback.onBottomSheetFragmentLoaded(it)
+                }
+            }
         }
     }
 
@@ -44,18 +70,13 @@ class FragmentBottomSheetActivityInterceptor<TView : View, TFragment : Fragment>
 //        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
-    override fun hide() {
-//        mBottomSheetBehavior.peekHeight = 0
-//        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
-
     override fun expand() {
-//        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    override fun isHidden(): Boolean {
-//        return mBottomSheetBehaviourState == BottomSheetBehavior.STATE_COLLAPSED && mBottomSheetBehavior.peekHeight == 0
-        return false
+    override fun hide() {
+        mBottomSheetBehavior.peekHeight = 0
+        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun isPartialExpanded(): Boolean {
@@ -63,15 +84,11 @@ class FragmentBottomSheetActivityInterceptor<TView : View, TFragment : Fragment>
         return false
     }
 
-    override fun isExpanded(): Boolean {
-//        return mBottomSheetBehaviourState == BottomSheetBehavior.STATE_EXPANDED
-        return false
-    }
+    override fun isHidden(): Boolean = mBottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED && mBottomSheetBehavior.peekHeight == 0
 
-    override fun isCollapsed(): Boolean {
-//        return mBottomSheetBehaviourState == BottomSheetBehavior.STATE_COLLAPSED
-        return false
-    }
+    override fun isExpanded(): Boolean = mBottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED
+
+    override fun isCollapsed(): Boolean = mBottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED
 
     interface BottomSheetListener {
         fun onStateChanged(bottomSheet: View, newState: Int)
@@ -90,9 +107,7 @@ class FragmentBottomSheetActivityInterceptor<TView : View, TFragment : Fragment>
 
     private fun initBottomSheetBehaviour(savedInstanceState: Bundle?): BottomSheetBehavior<TView> {
         return BottomSheetBehavior.from<TView>(mBottomSheetView).also { behaviour ->
-            behaviour.isHideable = false
-            behaviour.peekHeight = 0
-            behaviour.state = savedInstanceState?.getInt("bottomSheetBehaviourState")?.also { state ->
+            behaviour.state = savedInstanceState?.getInt("bottomSheetBehaviourState").takeIf { it != 0 }?.also { state ->
                 state
             } ?: BottomSheetBehavior.STATE_COLLAPSED
             behaviour.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -108,7 +123,7 @@ class FragmentBottomSheetActivityInterceptor<TView : View, TFragment : Fragment>
                     }
                 }
             })
+            mCallback.onBottomSheetBehaviourCreated(behaviour)
         }
     }
-
 }

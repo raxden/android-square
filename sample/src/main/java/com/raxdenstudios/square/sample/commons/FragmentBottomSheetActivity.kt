@@ -1,5 +1,6 @@
 package com.raxdenstudios.square.sample.commons
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.app.AppCompatActivity
@@ -61,13 +62,16 @@ class FragmentBottomSheetActivity : AppCompatActivity(),
 
     override fun onCreateBottomSheetView(): View = bottom_sheet_view
 
-    override fun onBottomSheetViewCreated(bottomSheetView: BottomSheetBehavior<View>) {
+    override fun onBottomSheetBehaviourCreated(bottomSheetView: BottomSheetBehavior<View>) {
         mBottomSheetBehavior = bottomSheetView
     }
 
-    override fun onLoadBottomSheetFragmentContainer(): View = bottom_sheet_container_view
+    override fun onLoadBottomSheetFragmentContainer(): View = bottom_sheet_view
 
-    override fun onCreateBottomSheetFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply { putString("title", "Bottom Sheet Fragment") })
+    override fun onCreateBottomSheetFragment(): InjectedFragment = InjectedFragment.newInstance(Bundle().apply {
+        putString("title", "Bottom Sheet Fragment")
+        putInt("backgroundColor", Color.parseColor("#ff0000"))
+    })
 
     override fun onBottomSheetFragmentLoaded(fragment: InjectedFragment) {
         mInjectedBottomFragment = fragment

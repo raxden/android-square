@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.raxdenstudios.square.sample.R
 import kotlinx.android.synthetic.main.injected_fragment.*
 
-open class InjectedFragment: Fragment() {
+open class InjectedFragment : Fragment() {
 
     companion object {
         fun newInstance(bundle: Bundle?) = InjectedFragment().apply {
@@ -22,6 +22,11 @@ open class InjectedFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        text_view.text = arguments?.getString("title")
+        arguments?.getString("title")?.also {
+            text_view.text = it
+        }
+        arguments?.getInt("backgroundColor").takeIf { it != 0 }?.also {
+            container_view.setBackgroundColor(it)
+        }
     }
 }
