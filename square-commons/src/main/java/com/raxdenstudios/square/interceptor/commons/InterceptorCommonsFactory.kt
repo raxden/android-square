@@ -23,8 +23,8 @@ import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInject
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasNavigationDrawerInterceptor
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationDrawerActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.HasNavigationContentDrawerInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.NavigationContentDrawerActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasFragmentNavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.FragmentNavigationDrawerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.network.HasNetworkInterceptor
 import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.HasTelephonyInterceptor
@@ -46,7 +46,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasFragmentBottomSheetInterceptor<*, *>)?.also { int -> list.add(FragmentBottomSheetActivityInterceptor(int)) }
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         when (activity) {
-            is HasNavigationContentDrawerInterceptor<*> -> list.add(NavigationContentDrawerActivityInterceptor(activity))
+            is HasFragmentNavigationDrawerInterceptor<*> -> list.add(FragmentNavigationDrawerActivityInterceptor(activity))
             is HasNavigationDrawerInterceptor -> list.add(NavigationDrawerActivityInterceptor(activity))
         }
         (activity as? HasNetworkInterceptor)?.also { int -> list.add(NetworkActivityInterceptor(int)) }

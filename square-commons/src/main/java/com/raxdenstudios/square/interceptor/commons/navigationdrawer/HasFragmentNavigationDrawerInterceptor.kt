@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment
+package com.raxdenstudios.square.interceptor.commons.navigationdrawer
 
 import android.support.v4.app.Fragment
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.base.HasNavigationDrawerBaseInterceptor
@@ -6,7 +6,7 @@ import com.raxdenstudios.square.interceptor.commons.navigationdrawer.base.HasNav
 /**
  * Created by agomez on 21/05/2015.
  */
-interface HasNavigationContentDrawerInterceptor<TFragment : Fragment> : HasNavigationDrawerBaseInterceptor {
+interface HasFragmentNavigationDrawerInterceptor<TFragment : Fragment> : HasNavigationDrawerBaseInterceptor {
 
     fun onCreateContentDrawerFragment(gravity: Int): TFragment
 

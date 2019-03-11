@@ -1,4 +1,4 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment
+package com.raxdenstudios.square.interceptor.commons.navigationdrawer
 
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.base.NavigationDrawerBaseInterceptor
 
@@ -6,4 +6,4 @@ import com.raxdenstudios.square.interceptor.commons.navigationdrawer.base.Naviga
  * Created by Ángel Gómez on 29/12/2016.
  */
 
-interface NavigationContentDrawerInterceptor : NavigationDrawerBaseInterceptor
+interface FragmentNavigationDrawerInterceptor : NavigationDrawerBaseInterceptor

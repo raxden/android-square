@@ -14,18 +14,18 @@ import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflat
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.HasNavigationContentDrawerInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment.NavigationContentDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasFragmentNavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.navigationdrawer.FragmentNavigationDrawerInterceptor
 import kotlinx.android.synthetic.main.navigation_drawer_activity.*
 
-class NavigationDrawerActivity : AppCompatActivity(),
+class FragmentNavigationDrawerActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,
         HasInjectFragmentInterceptor<InjectedFragment>,
-        HasNavigationContentDrawerInterceptor<InjectedFragment> {
+        HasFragmentNavigationDrawerInterceptor<InjectedFragment> {
 
     private lateinit var mAutoInflateLayoutInterceptor: AutoInflateLayoutInterceptor
     private lateinit var mInjectFragmentInterceptor: InjectFragmentInterceptor
-    private lateinit var mNavigationContentDrawerInterceptor: NavigationContentDrawerInterceptor
+    private lateinit var mFragmentNavigationDrawerInterceptor: FragmentNavigationDrawerInterceptor
 
     var mContentView: View? = null
     var mToolbarView: Toolbar? = null
@@ -35,16 +35,16 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
-        mNavigationContentDrawerInterceptor.onConfigurationChanged(newConfig)
+        mFragmentNavigationDrawerInterceptor.onConfigurationChanged(newConfig)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        mNavigationContentDrawerInterceptor.onPrepareOptionsMenu(menu)
+        mFragmentNavigationDrawerInterceptor.onPrepareOptionsMenu(menu)
         return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onBackPressed() {
-        if (!mNavigationContentDrawerInterceptor.onBackPressed())
+        if (!mFragmentNavigationDrawerInterceptor.onBackPressed())
             super.onBackPressed()
     }
 
@@ -72,7 +72,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
         mInjectedContentFragment = fragment
     }
 
-    // ======== HasNavigationContentDrawerInterceptor =======================================================
+    // ======== HasFragmentNavigationDrawerInterceptor =======================================================
 
     override fun onCreateContentDrawerFragment(gravity: Int): InjectedFragment = when (gravity) {
         Gravity.START -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Fragment LEFT") })
@@ -105,7 +105,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
         when (interceptor) {
             is AutoInflateLayoutInterceptor -> mAutoInflateLayoutInterceptor = interceptor
             is InjectFragmentInterceptor -> mInjectFragmentInterceptor = interceptor
-            is NavigationContentDrawerInterceptor -> mNavigationContentDrawerInterceptor = interceptor
+            is FragmentNavigationDrawerInterceptor -> mFragmentNavigationDrawerInterceptor = interceptor
         }
     }
 }

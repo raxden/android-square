@@ -1,10 +1,8 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer.fragment
+package com.raxdenstudios.square.interceptor.commons.navigationdrawer
 
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.view.Gravity
 import com.raxdenstudios.square.interceptor.commons.navigationdrawer.base.NavigationDrawerActivityBaseInterceptor
 
 /**
@@ -63,10 +61,10 @@ android:layout_gravity="end" />
 </android.support.v4.widget.DrawerLayout>
  *
  */
-class NavigationContentDrawerActivityInterceptor<TFragment : Fragment>(
-        callback: HasNavigationContentDrawerInterceptor<TFragment>)
-    : NavigationDrawerActivityBaseInterceptor<NavigationContentDrawerInterceptor, HasNavigationContentDrawerInterceptor<TFragment>>(callback),
-        NavigationContentDrawerInterceptor {
+class FragmentNavigationDrawerActivityInterceptor<TFragment : Fragment>(
+        callback: HasFragmentNavigationDrawerInterceptor<TFragment>)
+    : NavigationDrawerActivityBaseInterceptor<FragmentNavigationDrawerInterceptor, HasFragmentNavigationDrawerInterceptor<TFragment>>(callback),
+        FragmentNavigationDrawerInterceptor {
 
     private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 

@@ -37,11 +37,12 @@ class FragmentBottomSheetActivity : AppCompatActivity(),
     var mInjectedBottomFragment: InjectedFragment? = null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(0, 1001, 0, "hide")
-        menu?.add(0, 1002, 0, "show")
-        menu?.add(0, 1003, 0, "expand")
-        menu?.add(0, 1004, 0, "collapse")
-        return super.onCreateOptionsMenu(menu)
+        return super.onCreateOptionsMenu(menu?.apply {
+            add(0, 1001, 0, "hide")
+            add(0, 1002, 0, "show")
+            add(0, 1003, 0, "expand")
+            add(0, 1004, 0, "collapse")
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
