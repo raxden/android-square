@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor
@@ -33,6 +35,24 @@ class FragmentBottomSheetActivity : AppCompatActivity(),
     var mBottomSheetBehavior: BottomSheetBehavior<View>? = null
     var mInjectedFragment: InjectedFragment? = null
     var mInjectedBottomFragment: InjectedFragment? = null
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menu?.add(0, 1001, 0, "hide")
+        menu?.add(0, 1002, 0, "show")
+        menu?.add(0, 1003, 0, "expand")
+        menu?.add(0, 1004, 0, "collapse")
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            1001 -> mBottomSheetInterceptor?.hide()
+            1002 -> mBottomSheetInterceptor?.show()
+            1003 -> mBottomSheetInterceptor?.expand()
+            1004 -> mBottomSheetInterceptor?.collapse()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     // ======== HasInflateLayoutInterceptor ====================================================
 

@@ -8,11 +8,10 @@ import com.raxdenstudios.square.interceptor.Interceptor
 
 interface FragmentBottomSheetInterceptor : Interceptor {
     fun collapse()
-    fun expandPartial()
+    fun show()
     fun hide()
     fun expand()
-    fun isHidden(): Boolean
-    fun isPartialExpanded(): Boolean
+    fun isVisible(): Boolean
     fun isExpanded(): Boolean
     fun isCollapsed(): Boolean
     fun addBottomSheetListener(listener: FragmentBottomSheetActivityInterceptor.BottomSheetListener)

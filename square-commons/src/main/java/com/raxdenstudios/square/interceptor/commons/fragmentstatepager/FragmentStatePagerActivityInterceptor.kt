@@ -76,6 +76,7 @@ class FragmentStatePagerActivityInterceptor<TFragment : Fragment>(
 
     override fun onActivityDestroyed(activity: Activity) {
         mViewPager.removeOnPageChangeListener(onPageChangeListener)
+        mOnPageChangeListenerList.clear()
         super.onActivityDestroyed(activity)
     }
 
