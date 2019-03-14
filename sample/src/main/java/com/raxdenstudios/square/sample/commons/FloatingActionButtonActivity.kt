@@ -27,7 +27,7 @@ class FloatingActionButtonActivity : AppCompatActivity(),
     var mContentView: View? = null
     var mToolbarView: Toolbar? = null
     var mMasterFragment: InjectedFragment? = null
-    var mDetailFragment: InjectedTwoFragment? = null
+    var mDetailFragment: InjectedFragment? = null
 
     override fun onBackPressed() {
         if (mFloatingActionButtonFragmentInterceptor?.onBackPressed(this) == false)
@@ -54,13 +54,13 @@ class FloatingActionButtonActivity : AppCompatActivity(),
 
     override fun onCreateFragment(type: FragmentType): Fragment = when (type) {
         FragmentType.MASTER -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Master Fragment") })
-        FragmentType.DETAIL -> InjectedTwoFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
+        FragmentType.DETAIL -> InjectedFragment.newInstance(Bundle().apply { putString("title", "Detail Fragment") })
     }
 
     override fun onFragmentLoaded(type: FragmentType, fragment: Fragment) {
         when (type) {
             FragmentType.MASTER -> mMasterFragment = fragment as InjectedFragment
-            FragmentType.DETAIL -> mDetailFragment = fragment as InjectedTwoFragment
+            FragmentType.DETAIL -> mDetailFragment = fragment as InjectedFragment
         }
     }
 
