@@ -1,8 +1,9 @@
-package com.raxdenstudios.square.interceptor.commons.navigationdrawer.base
+package com.raxdenstudios.square.interceptor.commons.fragmentnavigationdrawer
 
 import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,20 +15,78 @@ import android.view.View
 import com.raxdenstudios.square.interceptor.ActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.R
 
-abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : NavigationDrawerBaseInterceptor, TCallback : HasNavigationDrawerBaseInterceptor>(
-        callback: TCallback
-) : ActivityInterceptor<TInterceptor, TCallback>(callback),
-        NavigationDrawerBaseInterceptor {
+/**
+ * Created by agomez on 21/05/2015.
+ *
+<android.support.v4.widget.DrawerLayout
+android:id="@+id/drawer_layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:elevation="10dp">
 
-    protected val mContentDrawerView: MutableMap<Int, View?> = mutableMapOf()
-    protected var mToolbar: Toolbar? = null
-    protected lateinit var mDrawerLayout: DrawerLayout
-    protected lateinit var mDrawerToggle: ActionBarDrawerToggle
-    protected lateinit var mActivity: AppCompatActivity
+<android.support.constraint.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent">
 
-    protected var mDrawerListener: DrawerListener? = null
-    protected var mDrawerOpenListenerList: MutableMap<Int, MutableList<DrawerOpenListener>?> = mutableMapOf()
-    protected var mDrawerCloseListenerList: MutableMap<Int, MutableList<DrawerCloseListener>?> = mutableMapOf()
+<android.support.v7.widget.Toolbar
+android:id="@+id/toolbar_view"
+android:layout_width="match_parent"
+android:layout_height="?attr/actionBarSize"
+android:background="@color/colorPrimary"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent">
+
+<android.support.v7.widget.AppCompatTextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center"
+android:text="Toolbar" />
+
+</android.support.v7.widget.Toolbar>
+
+<FrameLayout
+android:id="@+id/container_view"
+android:layout_width="0dp"
+android:layout_height="0dp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/toolbar_view" />
+
+</android.support.constraint.ConstraintLayout>
+
+<FrameLayout
+android:id="@+id/left_offscreen_container"
+android:layout_width="330dp"
+android:layout_height="match_parent"
+android:layout_gravity="start" />
+
+<FrameLayout
+android:id="@+id/right_offscreen_container"
+android:layout_width="330dp"
+android:layout_height="match_parent"
+android:layout_gravity="end" />
+
+</android.support.v4.widget.DrawerLayout>
+ *
+ */
+class FragmentNavigationDrawerActivityInterceptor<TFragment : Fragment>(
+        callback: HasFragmentNavigationDrawerInterceptor<TFragment>)
+    : ActivityInterceptor<FragmentNavigationDrawerInterceptor, HasFragmentNavigationDrawerInterceptor<TFragment>>(callback),
+        FragmentNavigationDrawerInterceptor {
+
+    private val mContentDrawerView: MutableMap<Int, View?> = mutableMapOf()
+    private var mToolbar: Toolbar? = null
+    private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mDrawerToggle: ActionBarDrawerToggle
+    private lateinit var mActivity: AppCompatActivity
+
+    private var mDrawerListener: DrawerListener? = null
+    private var mDrawerOpenListenerList: MutableMap<Int, MutableList<DrawerOpenListener>?> = mutableMapOf()
+    private var mDrawerCloseListenerList: MutableMap<Int, MutableList<DrawerCloseListener>?> = mutableMapOf()
+
+    private var mContainerFragmentMap: MutableMap<Int, TFragment?> = mutableMapOf()
 
     interface DrawerListener {
         fun onDrawerSlide(gravity: Int, drawerView: View, slideOffset: Float)
@@ -50,6 +109,7 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
     private val drawerToggleDelegate: ActionBarDrawerToggle.Delegate?
         get() = mActivity.drawerToggleDelegate
 
+
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
@@ -71,16 +131,43 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
             mCallback.onDrawerLayoutCreated(it)
             it
         }
+
+        getFragmentManager(activity)?.also { fm ->
+            if (savedInstanceState == null) {
+                mContentDrawerView.keys.forEach { gravity ->
+                    mContainerFragmentMap[gravity] = mContentDrawerView[gravity]?.let { view ->
+                        mCallback.onCreateContentDrawerFragment(gravity).also {
+                            fm.beginTransaction()
+                                    .replace(view.id, it, it.javaClass.simpleName)
+                                    .commit()
+                            mCallback.onContentDrawerFragmentLoaded(gravity, it)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun onActivityStarted(activity: Activity, savedInstanceState: Bundle?) {
-        mDrawerToggle.syncState()
         super.onActivityStarted(activity, savedInstanceState)
+
+        mDrawerToggle.syncState()
+
+        getFragmentManager(activity)?.also { fm ->
+            mContentDrawerView.keys.forEach { gravity ->
+                mContainerFragmentMap[gravity] = mContentDrawerView[gravity]?.let { view ->
+                    (fm.findFragmentById(view.id) as? TFragment)?.also {
+                        mCallback.onContentDrawerFragmentLoaded(gravity, it)
+                    }
+                }
+            }
+        }
     }
 
     override fun onConfigurationChanged(configuration: Configuration?) {
         mDrawerToggle.onConfigurationChanged(configuration)
     }
+
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
         mDrawerToggle.apply {
@@ -108,6 +195,13 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
         }
         else -> false
     }
+
+    override fun onActivityDestroyed(activity: Activity) {
+        super.onActivityDestroyed(activity)
+
+        mContainerFragmentMap.clear()
+    }
+
 
     override fun toggleDrawer(gravity: Int) {
         if (isOpenDrawer(gravity)) closeDrawer(gravity) else openDrawer(gravity)
@@ -157,22 +251,22 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
             object : ActionBarDrawerToggle(mActivity, drawerLayout, R.string.square__drawer_open, R.string.square__drawer_close) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerClosed(drawerView)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerClosed(drawerView)
                 }
 
                 override fun onDrawerOpened(drawerView: View) {
                     super.onDrawerOpened(drawerView)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerOpened(drawerView)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerOpened(drawerView)
                 }
 
                 override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                     super.onDrawerSlide(drawerView, slideOffset)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerSlide(drawerView, slideOffset)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerSlide(drawerView, slideOffset)
                 }
 
                 override fun onDrawerStateChanged(newState: Int) {
                     super.onDrawerStateChanged(newState)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerStateChanged(newState)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerStateChanged(newState)
                 }
             }
 
@@ -180,22 +274,22 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
             object : ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.square__drawer_open, R.string.square__drawer_close) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerClosed(drawerView)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerClosed(drawerView)
                 }
 
                 override fun onDrawerOpened(drawerView: View) {
                     super.onDrawerOpened(drawerView)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerOpened(drawerView)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerOpened(drawerView)
                 }
 
                 override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                     super.onDrawerSlide(drawerView, slideOffset)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerSlide(drawerView, slideOffset)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerSlide(drawerView, slideOffset)
                 }
 
                 override fun onDrawerStateChanged(newState: Int) {
                     super.onDrawerStateChanged(newState)
-                    this@NavigationDrawerActivityBaseInterceptor.onDrawerStateChanged(newState)
+                    this@FragmentNavigationDrawerActivityInterceptor.onDrawerStateChanged(newState)
                 }
             }
 
@@ -243,5 +337,4 @@ abstract class NavigationDrawerActivityBaseInterceptor<TInterceptor : Navigation
     private fun onDrawerStateChanged(newState: Int) {
         mDrawerListener?.onDrawerStateChanged(newState)
     }
-
 }

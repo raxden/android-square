@@ -14,9 +14,9 @@ import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflat
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasFragmentNavigationDrawerInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.FragmentNavigationDrawerInterceptor
-import kotlinx.android.synthetic.main.navigation_drawer_activity.*
+import com.raxdenstudios.square.interceptor.commons.fragmentnavigationdrawer.HasFragmentNavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentnavigationdrawer.FragmentNavigationDrawerInterceptor
+import kotlinx.android.synthetic.main.fragment_navigation_drawer_activity.*
 
 class FragmentNavigationDrawerActivity : AppCompatActivity(),
         HasAutoInflateLayoutInterceptor,

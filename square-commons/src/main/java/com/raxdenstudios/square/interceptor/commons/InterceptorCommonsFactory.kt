@@ -21,10 +21,8 @@ import com.raxdenstudios.square.interceptor.commons.injectfragment.HasInjectFrag
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.HasInjectFragmentListInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragmentlist.InjectFragmentListActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasNavigationDrawerInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.NavigationDrawerActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.HasFragmentNavigationDrawerInterceptor
-import com.raxdenstudios.square.interceptor.commons.navigationdrawer.FragmentNavigationDrawerActivityInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentnavigationdrawer.HasFragmentNavigationDrawerInterceptor
+import com.raxdenstudios.square.interceptor.commons.fragmentnavigationdrawer.FragmentNavigationDrawerActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.network.HasNetworkInterceptor
 import com.raxdenstudios.square.interceptor.commons.network.NetworkActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.telephony.HasTelephonyInterceptor
@@ -45,12 +43,8 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasFragmentBottomNavigationInterceptor<*>)?.also { int -> list.add(FragmentBottomNavigationActivityInterceptor(int)) }
         (activity as? HasFragmentBottomSheetInterceptor<*, *>)?.also { int -> list.add(FragmentBottomSheetActivityInterceptor(int)) }
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
-        when (activity) {
-            is HasFragmentNavigationDrawerInterceptor<*> -> list.add(FragmentNavigationDrawerActivityInterceptor(activity))
-            is HasNavigationDrawerInterceptor -> list.add(NavigationDrawerActivityInterceptor(activity))
-        }
+        (activity as? HasFragmentNavigationDrawerInterceptor<*>)?.also { int -> list.add(FragmentNavigationDrawerActivityInterceptor(int)) }
         (activity as? HasNetworkInterceptor)?.also { int -> list.add(NetworkActivityInterceptor(int)) }
-
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {
