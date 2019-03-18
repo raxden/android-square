@@ -37,6 +37,13 @@ ext {
             cast: [group: 'com.google.android.gms', name: 'play-services-cast-framework', version: servicesVersion]
     ]
 
+    def firebaseLibs = [
+            core     : [group: 'com.google.firebase', name: 'firebase-core', version: '16.0.5'],
+            analytics: [group: 'com.google.firebase', name: 'firebase-analytics', version: '16.0.5'],
+            messaging: [group: 'com.google.firebase', name: 'firebase-messaging', version: '17.3.4'],
+            auth     : [group: 'com.google.firebase', name: 'firebase-auth', version: '16.1.0']
+    ]
+
     def rxLibs = [
             android: [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
             kotlin: [group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: rxKotlinVersion]
@@ -82,6 +89,7 @@ ext {
             [configuration: "compileOnly", dependency: androidLibs.appcompatV7],
             [configuration: "compileOnly", dependency: androidLibs.design],
             [configuration: "compileOnly", dependency: androidLibs.kotlin],
+            [configuration: "compileOnly", dependency: firebaseLibs.auth],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
             [configuration: "testImplementation", dependency: testLibs.mockito],
@@ -135,6 +143,8 @@ ext {
             [configuration: "implementation", dependency: androidLibs.design],
             [configuration: "implementation", dependency: androidLibs.constraintLayout],
             [configuration: "implementation", dependency: androidLibs.kotlin],
+            [configuration: "implementation", dependency: firebaseLibs.core],
+            [configuration: "implementation", dependency: firebaseLibs.auth],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],
             [configuration: "testImplementation", dependency: testLibs.mockito],
