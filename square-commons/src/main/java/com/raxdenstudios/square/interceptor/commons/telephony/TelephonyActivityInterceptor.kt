@@ -29,16 +29,13 @@ class TelephonyActivityInterceptor(
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        activity?.apply {
-            mTelephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-            mTelephonyManager?.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE)
-        }
+        mTelephonyManager = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        mTelephonyManager?.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE)
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        mTelephonyManager?.apply {
-            listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE)
-        }
+        mTelephonyManager?.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE)
+
         super.onActivityDestroyed(activity)
     }
 }

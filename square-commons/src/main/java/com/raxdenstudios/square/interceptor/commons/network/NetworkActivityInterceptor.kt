@@ -36,15 +36,12 @@ class NetworkActivityInterceptor(
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityCreated(activity, savedInstanceState)
 
-        activity?.apply {
-            registerReceiver(mNetworkBroadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-        }
+        activity.registerReceiver(mNetworkBroadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        activity?.apply {
-            unregisterReceiver(mNetworkBroadcastReceiver)
-        }
+        activity.unregisterReceiver(mNetworkBroadcastReceiver)
+
         super.onActivityDestroyed(activity)
     }
 
