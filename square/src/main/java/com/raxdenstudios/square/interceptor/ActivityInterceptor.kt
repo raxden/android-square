@@ -14,11 +14,15 @@ abstract class ActivityInterceptor<TInterceptor : Interceptor, TCallback : HasIn
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {}
 
+    open fun onActivityRestoreInstanceState(activity: Activity, savedInstanceState: Bundle) {
+        mSavedInstanceState = savedInstanceState
+    }
+
     // =============================================================================================
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         mCallback.onInterceptorCreated(this as TInterceptor)
-        mSavedInstanceState = savedInstanceState
+        savedInstanceState?.also { onActivityRestoreInstanceState(activity, savedInstanceState) }
     }
 
     // =============================================================================================

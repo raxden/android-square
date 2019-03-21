@@ -10,8 +10,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.11'
-        classpath 'com.google.gms:google-services:4.1.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.21'
+        classpath 'com.google.gms:google-services:4.2.0'
     }
 }
 
@@ -26,6 +26,9 @@ allprojects {
         minSdkVersion = 19
         targetSdkVersion = 28
         compileSdkVersion = 28
+
+        androidApplicationId = 'com.core.app'
+        geoApiKey = 'AIzaSyAqdyL5AsPccHY4ZVd-k4WdIpVLe5lbnVU'
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }

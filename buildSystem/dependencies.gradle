@@ -143,7 +143,6 @@ ext {
             [configuration: "implementation", dependency: androidLibs.design],
             [configuration: "implementation", dependency: androidLibs.constraintLayout],
             [configuration: "implementation", dependency: androidLibs.kotlin],
-            [configuration: "implementation", dependency: firebaseLibs.core],
             [configuration: "implementation", dependency: firebaseLibs.auth],
             [configuration: "testImplementation", dependency: testLibs.junit],
             [configuration: "testImplementation", dependency: testLibs.assertj],

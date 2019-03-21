@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.sample
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import com.raxdenstudios.square.InterceptorManager
 import com.raxdenstudios.square.interceptor.commons.InterceptorCommonsFactory
 
@@ -17,6 +18,8 @@ class AppApplication : Application() {
                 .addInterceptorFactory(InterceptorCommonsFactory())
                 .build()
         builder.init(this)
+
+        FirebaseApp.initializeApp(this)
     }
 }
 

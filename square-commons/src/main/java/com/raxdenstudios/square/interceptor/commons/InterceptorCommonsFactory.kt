@@ -4,8 +4,6 @@ import android.app.Activity
 import android.support.v4.app.FragmentActivity
 import com.raxdenstudios.square.InterceptorFactory
 import com.raxdenstudios.square.interceptor.Interceptor
-import com.raxdenstudios.square.interceptor.commons.authphone.AuthPhoneActivityInterceptor
-import com.raxdenstudios.square.interceptor.commons.authphone.HasAuthPhoneInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.HasAutoInflateLayoutInterceptor
 import com.raxdenstudios.square.interceptor.commons.fragmentbottomnavigation.FragmentBottomNavigationActivityInterceptor
@@ -47,7 +45,6 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         (activity as? HasFragmentNavigationDrawerInterceptor<*>)?.also { int -> list.add(FragmentNavigationDrawerActivityInterceptor(int)) }
         (activity as? HasNetworkInterceptor)?.also { int -> list.add(NetworkActivityInterceptor(int)) }
-        (activity as? HasAuthPhoneInterceptor)?.also { int -> list.add(AuthPhoneActivityInterceptor(int)) }
     }
 
     override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.raxdenstudios.square.sample">
 
+    <!-- uses permissions  -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".commons.FragmentNavigationDrawerActivity">
+        <activity android:name=".commons.AutoInflateLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
