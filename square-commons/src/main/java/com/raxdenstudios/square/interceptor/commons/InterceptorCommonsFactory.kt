@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.commons
 
 import android.app.Activity
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import com.raxdenstudios.square.InterceptorFactory
 import com.raxdenstudios.square.interceptor.Interceptor
@@ -49,7 +50,7 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         return list
     }
 
-    override fun initFragmentInterceptors(fragment: FragmentActivity) : MutableList<Interceptor> {
+    override fun initFragmentInterceptors(fragment: Fragment) : MutableList<Interceptor> {
         val list = mutableListOf<Interceptor>()
         (fragment as? HasInflateLayoutInterceptor)?.also { int -> list.add(InflateLayoutFragmentInterceptor(int)) }
         return list

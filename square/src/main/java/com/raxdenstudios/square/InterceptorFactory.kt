@@ -13,22 +13,20 @@ import com.raxdenstudios.square.interceptor.Interceptor
 abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
 
     private var activityInterceptorList = mutableMapOf<Activity, MutableList<Interceptor>>()
+    private var fragmentInterceptorList = mutableMapOf<Fragment, MutableList<Interceptor>>()
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-        activity?.let {
+        activity?.also {
             activityInterceptorList[activity] = initActivityInterceptors(activity)
             activityInterceptorList[activity]?.forEach { interceptor ->
                 if (interceptor is Application.ActivityLifecycleCallbacks)
                     interceptor.onActivityCreated(activity, savedInstanceState)
             }
-
-            (activity as FragmentActivity).run {
-                supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
-
-                    private var fragmentInterceptorList = mutableMapOf<Fragment, MutableList<Interceptor>>()
+            (activity as FragmentActivity).also {
+                it.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
                     override fun onFragmentPreAttached(fm: FragmentManager, fragment: Fragment, context: Context) {
-                        fragmentInterceptorList[fragment] = initFragmentInterceptors(activity)
+                        fragmentInterceptorList[fragment] = initFragmentInterceptors(fragment)
                         fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
                                 interceptor.onFragmentPreAttached(fm, fragment, context)
@@ -179,5 +177,5 @@ abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
 
     abstract fun initActivityInterceptors(activity: Activity): MutableList<Interceptor>
 
-    abstract fun initFragmentInterceptors(fragment: FragmentActivity): MutableList<Interceptor>
+    abstract fun initFragmentInterceptors(fragment: Fragment): MutableList<Interceptor>
 }
