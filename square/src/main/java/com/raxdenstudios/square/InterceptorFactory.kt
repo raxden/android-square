@@ -22,8 +22,8 @@ abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
                 if (interceptor is Application.ActivityLifecycleCallbacks)
                     interceptor.onActivityCreated(activity, savedInstanceState)
             }
-            (activity as FragmentActivity).also {
-                it.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
+            (activity as FragmentActivity).run {
+                supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
                     override fun onFragmentPreAttached(fm: FragmentManager, fragment: Fragment, context: Context) {
                         fragmentInterceptorList[fragment] = initFragmentInterceptors(fragment)
