@@ -7,21 +7,28 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.raxdenstudios.square.sample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+
+        applicationId rootProject.ext.androidApplicationId
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        resValue "string", "geo_api_key", "AIzaSyCJJ64kpDOT5HrQkfe99QbB7hGAXJzFCWc"
+        resValue "string", "geo_api_key", rootProject.ext.geoApiKey
 
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }
@@ -33,3 +40,5 @@ dependencies {
         add(it.configuration, it.dependency, it.options)
     }
 }
+
+apply plugin: 'com.google.gms.google-services'
