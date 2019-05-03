@@ -12,104 +12,119 @@ import com.raxdenstudios.square.interceptor.Interceptor
 
 abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
 
-    private var activityInterceptorList = mutableListOf<Interceptor>()
-    private var fragmentInterceptorList = mutableListOf<Interceptor>()
+    private var activityInterceptorList = mutableMapOf<Activity, MutableList<Interceptor>>()
+    private var fragmentInterceptorList = mutableMapOf<Fragment, MutableList<Interceptor>>()
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-        activity?.let {
-            initActivityInterceptors(activity, activityInterceptorList)
-            for (interceptor in activityInterceptorList) {
+        activity?.also {
+            activityInterceptorList[activity] = initActivityInterceptors(activity)
+            activityInterceptorList[activity]?.forEach { interceptor ->
                 if (interceptor is Application.ActivityLifecycleCallbacks)
                     interceptor.onActivityCreated(activity, savedInstanceState)
             }
             (activity as FragmentActivity).run {
                 supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
-                    override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
-                        initFragmentInterceptors(activity, fragmentInterceptorList)
-                        for (interceptor in fragmentInterceptorList) {
+                    override fun onFragmentPreAttached(fm: FragmentManager, fragment: Fragment, context: Context) {
+                        fragmentInterceptorList[fragment] = initFragmentInterceptors(fragment)
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentPreAttached(fm, f, context)
+                                interceptor.onFragmentPreAttached(fm, fragment, context)
                         }
                     }
 
-                    override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentAttached(fm: FragmentManager, fragment: Fragment, context: Context) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentAttached(fm, f, context)
+                                interceptor.onFragmentAttached(fm, fragment, context)
+                        }
                     }
 
-                    override fun onFragmentPreCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentPreCreated(fm: FragmentManager, fragment: Fragment, savedInstanceState: Bundle?) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentPreCreated(fm, f, savedInstanceState)
+                                interceptor.onFragmentPreCreated(fm, fragment, savedInstanceState)
+                        }
                     }
 
-                    override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentCreated(fm: FragmentManager, fragment: Fragment, savedInstanceState: Bundle?) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentCreated(fm, f, savedInstanceState)
+                                interceptor.onFragmentCreated(fm, fragment, savedInstanceState)
+                        }
                     }
 
-                    override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentViewCreated(fm: FragmentManager, fragment: Fragment, v: View, savedInstanceState: Bundle?) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentViewCreated(fm, f, v, savedInstanceState)
+                                interceptor.onFragmentViewCreated(fm, fragment, v, savedInstanceState)
+                        }
                     }
 
-                    override fun onFragmentActivityCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentActivityCreated(fm: FragmentManager, fragment: Fragment, savedInstanceState: Bundle?) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentActivityCreated(fm, f, savedInstanceState)
+                                interceptor.onFragmentActivityCreated(fm, fragment, savedInstanceState)
+                        }
                     }
 
-                    override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentStarted(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentStarted(fm, f)
+                                interceptor.onFragmentStarted(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentResumed(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentResumed(fm, f)
+                                interceptor.onFragmentResumed(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentPaused(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentPaused(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentPaused(fm, f)
+                                interceptor.onFragmentPaused(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentStopped(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentStopped(fm, f)
+                                interceptor.onFragmentStopped(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentViewDestroyed(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentViewDestroyed(fm, f)
+                                interceptor.onFragmentViewDestroyed(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentDestroyed(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentDestroyed(fm, f)
+                                interceptor.onFragmentDestroyed(fm, fragment)
+                        }
                     }
 
-                    override fun onFragmentDetached(fm: FragmentManager, f: Fragment) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentDetached(fm: FragmentManager, fragment: Fragment) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentDetached(fm, f)
-                        destroyFragmentInterceptors()
+                                interceptor.onFragmentDetached(fm, fragment)
+
+                        }
+                        fragmentInterceptorList[fragment]?.clear()
+                        fragmentInterceptorList.remove(fragment)
                     }
 
-                    override fun onFragmentSaveInstanceState(fm: FragmentManager, f: Fragment, outState: Bundle) {
-                        for (interceptor in fragmentInterceptorList)
+                    override fun onFragmentSaveInstanceState(fm: FragmentManager, fragment: Fragment, outState: Bundle) {
+                        fragmentInterceptorList[fragment]?.forEach { interceptor ->
                             if (interceptor is FragmentManager.FragmentLifecycleCallbacks)
-                                interceptor.onFragmentSaveInstanceState(fm, f, outState)
+                                interceptor.onFragmentSaveInstanceState(fm, fragment, outState)
+                        }
                     }
                 }, true)
             }
@@ -117,51 +132,50 @@ abstract class InterceptorFactory : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivityPaused(activity)
+        }
     }
 
     override fun onActivityResumed(activity: Activity?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivityResumed(activity)
+        }
     }
 
     override fun onActivityStarted(activity: Activity?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivityStarted(activity)
+        }
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivityDestroyed(activity)
-        destroyActivityInterceptors()
+        }
+        activityInterceptorList[activity]?.clear()
+        activityInterceptorList.remove(activity)
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivitySaveInstanceState(activity, outState)
+        }
     }
 
     override fun onActivityStopped(activity: Activity?) {
-        for (interceptor in activityInterceptorList)
+        activityInterceptorList[activity]?.forEach { interceptor ->
             if (interceptor is Application.ActivityLifecycleCallbacks)
                 interceptor.onActivityStopped(activity)
+        }
     }
 
-    abstract fun initActivityInterceptors(activity: Activity, list: MutableList<Interceptor>)
+    abstract fun initActivityInterceptors(activity: Activity): MutableList<Interceptor>
 
-    abstract fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>)
-
-    private fun destroyActivityInterceptors() {
-        activityInterceptorList.clear()
-    }
-
-    private fun destroyFragmentInterceptors() {
-        fragmentInterceptorList.clear()
-    }
+    abstract fun initFragmentInterceptors(fragment: Fragment): MutableList<Interceptor>
 }

@@ -1,6 +1,7 @@
 package com.raxdenstudios.square.interceptor.commons
 
 import android.app.Activity
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import com.raxdenstudios.square.InterceptorFactory
 import com.raxdenstudios.square.interceptor.Interceptor
@@ -32,7 +33,8 @@ import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarActivityInter
 
 class InterceptorCommonsFactory : InterceptorFactory() {
 
-    override fun initActivityInterceptors(activity: Activity, list: MutableList<Interceptor>) {
+    override fun initActivityInterceptors(activity: Activity) : MutableList<Interceptor> {
+        val list = mutableListOf<Interceptor>()
         (activity as? HasAutoInflateLayoutInterceptor)?.also { int -> list.add(AutoInflateLayoutActivityInterceptor(int)) }
         (activity as? HasInflateLayoutInterceptor)?.also { int -> list.add(InflateLayoutActivityInterceptor(int)) }
         (activity as? HasToolbarInterceptor)?.also { int -> list.add(ToolbarActivityInterceptor(int)) }
@@ -45,10 +47,12 @@ class InterceptorCommonsFactory : InterceptorFactory() {
         (activity as? HasTelephonyInterceptor)?.also { int -> list.add(TelephonyActivityInterceptor(int)) }
         (activity as? HasFragmentNavigationDrawerInterceptor<*>)?.also { int -> list.add(FragmentNavigationDrawerActivityInterceptor(int)) }
         (activity as? HasNetworkInterceptor)?.also { int -> list.add(NetworkActivityInterceptor(int)) }
+        return list
     }
 
-    override fun initFragmentInterceptors(fragment: FragmentActivity, list: MutableList<Interceptor>) {
+    override fun initFragmentInterceptors(fragment: Fragment) : MutableList<Interceptor> {
+        val list = mutableListOf<Interceptor>()
         (fragment as? HasInflateLayoutInterceptor)?.also { int -> list.add(InflateLayoutFragmentInterceptor(int)) }
+        return list
     }
-
 }
